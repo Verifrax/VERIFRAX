@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+node "$(cd "$(dirname "$0")/.." && pwd)/engines/cinelint/apps/cli/bin/verifrax.js" "$@"
+

@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
-INPUT=$1
-HASH=$(shasum -a 256 "$INPUT" | cut -d' ' -f1)
-
-echo "INPUT: $INPUT"
-echo "HASH:  $HASH"
-echo "PROOF: VERIFIED"
-echo "FINALITY: ABSOLUTE"
-echo "VERIFY: https://github.com/Verifrax/VERIFRAX"
-
+INPUT="${1:?usage: ./scripts/demo.sh <file>}"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+"$ROOT/scripts/verifrax" verify "$INPUT"

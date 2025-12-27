@@ -1,12 +1,12 @@
 {
   "name": "@verifrax/cli",
   "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
   "bin": {
-    "verifrax": "dist/index.js"
+    "verifrax": "bin/verifrax.js"
   },
-  "type": "module",
   "scripts": {
-    "build": "tsc",
-    "verify": "node dist/index.js verify"
+    "verify": "node bin/verifrax.js verify"
   }
 }
