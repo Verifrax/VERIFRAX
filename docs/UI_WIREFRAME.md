@@ -1,6 +1,6 @@
-[ Input ]
-[ Hash ]
-[ Proof ]
-[ Anchors ]
-[ Status: VERIFIED ]
-
+[ Upload / Select File ]
+[ SHA-256 Hash ]
+[ Certificate JSON (verifrax.certificate.v1) ]
+[ Proof JSON (verifrax.proof.v1) ]
+[ Anchors (empty/offline) ]
+[ Status: VERIFIED (hash matches proof) ]
