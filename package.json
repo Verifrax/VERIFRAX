@@ -8,7 +8,7 @@
     "test": "pnpm -r test",
     "lint": "pnpm -r lint",
     "bundle:build": "node engines/cinelint/scripts/bundle.build.mjs",
-    "bundle:verify": "node engines/cinelint/scripts/bundle.verify.mjs",
+    "bundle:verify": "node engines/cinelint/tools/bundle-verify.mjs",
     "freeze": "bash engines/cinelint/scripts/freeze.sh"
   }
 }
