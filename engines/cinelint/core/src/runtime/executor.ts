@@ -34,15 +34,15 @@ export class Executor {
 
         if (Array.isArray(result)) {
           findings.push(...result)
-          if (result.some(f => f.severity === "ERROR")) {
+          if (result.some((f: any) => f.severity === "ERROR")) {
             break
           }
         } else {
           findings.push({
-            node: result.node,
+            node: (result as any).node,
             severity: "ERROR",
             code: "NODE_CRASH",
-            message: result.error
+            message: (result as any).error
           })
           break
         }
@@ -67,7 +67,7 @@ export class Executor {
       )
 
       findings.push(
-        ...results.flatMap(r =>
+        ...results.flatMap((r: any) =>
           Array.isArray(r)
             ? r
             : [
@@ -83,7 +83,7 @@ export class Executor {
     }
 
     return {
-      runId: crypto.randomUUID(),
+      runId: crypto.randomUUID ? crypto.randomUUID() : "stub-uuid",
       status: findings.some(f => f.severity === "ERROR") ? "FAIL" : "PASS",
       findings,
       startedAt: new Date().toISOString(),

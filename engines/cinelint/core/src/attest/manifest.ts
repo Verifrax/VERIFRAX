@@ -1,5 +1,5 @@
-import { createHash } from "crypto";
-import fs from "fs";
+import { createHash } from "node:crypto";
+import * as fs from "node:fs";
 
 export type Entry = { path: string; sha256: string };
 

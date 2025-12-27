@@ -20,3 +20,5 @@ export function buildGraph(
     }
   })
 }
+
+export const buildExecutionGraph = buildGraph;

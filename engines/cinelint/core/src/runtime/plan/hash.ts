@@ -1,4 +1,4 @@
-import crypto from "crypto"
+import * as crypto from "node:crypto"
 import { ExecutionPlan } from "./execution.plan"
 
 export function hashPlan(plan: ExecutionPlan): string {

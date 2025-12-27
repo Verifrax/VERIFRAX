@@ -13,7 +13,7 @@ export async function runParallel(
       graph.map(async g => {
         const res = await g.node.execute(ctx)
         if (g.severityOverride) {
-          res.forEach(r => (r.severity = g.severityOverride))
+          res.forEach((r: any) => (r.severity = g.severityOverride))
         }
         return res
       })

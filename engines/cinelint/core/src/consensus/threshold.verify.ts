@@ -1,4 +1,4 @@
-import crypto from "crypto"
+import * as crypto from "node:crypto"
 import { ThresholdSignature } from "./threshold"
 
 export function verifyThreshold(

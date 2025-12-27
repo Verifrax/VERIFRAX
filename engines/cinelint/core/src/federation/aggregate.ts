@@ -1,4 +1,4 @@
-import crypto from "crypto";
+import * as crypto from "node:crypto";
 import { FederatedResult } from "./result";
 
 export const aggregateFederatedReceipt = (results: FederatedResult[]) =>

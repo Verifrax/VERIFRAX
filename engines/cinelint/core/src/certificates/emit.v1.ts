@@ -1,4 +1,4 @@
-import { createHash, randomUUID } from "crypto";
+import { createHash, randomUUID } from "node:crypto";
 import type { CineLintCertificateV1 } from "./schema.v1";
 
 export function sha256(x: string|Buffer) {

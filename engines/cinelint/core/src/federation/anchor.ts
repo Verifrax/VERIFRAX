@@ -11,7 +11,7 @@ export const anchorRoot = (root: string, anchorType: Anchor["anchorType"]): Anch
     anchoredAt: new Date().toISOString()
   });
 
-import { verifyAnchors } from "../../anchors/verify";
+import { verifyAnchors } from "../anchors/verify";
 
 export const requireMultiAnchor = async (anchors: Anchor[]) => {
   const types = new Set(anchors.map(a => a.anchorType));

@@ -1,5 +1,5 @@
-import fs from "fs"
-import crypto from "crypto"
+import * as fs from "node:fs"
+import * as crypto from "node:crypto"
 
 export function generateSBOM(files: string[]) {
   return files.map(f => ({

@@ -1,5 +1,5 @@
-import fs from "fs"
-import crypto from "crypto"
+import * as fs from "node:fs"
+import * as crypto from "node:crypto"
 import { Artifact } from "./artifact"
 
 export function resolveArtifact(path: string): Artifact {

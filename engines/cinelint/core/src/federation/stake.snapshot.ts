@@ -1,4 +1,4 @@
-import crypto from "crypto";
+import * as crypto from "node:crypto";
 import { EngineStake } from "./stake";
 
 export const snapshotStake = (stakes: EngineStake[]) =>

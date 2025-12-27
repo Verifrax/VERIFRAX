@@ -1,4 +1,4 @@
-import http from "http";
+import * as http from "node:http";
 import { execute } from "./execute";
 import { RunRequest } from "./protocol";
 import { verifyDistributed } from "../engine/verify";

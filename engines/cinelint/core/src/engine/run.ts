@@ -1,6 +1,6 @@
-import fs from "fs";
-import path from "path";
-import crypto from "crypto";
+import * as fs from "node:fs";
+import * as path from "node:path";
+import * as crypto from "node:crypto";
 
 const cfg = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
 const out = process.argv[3];
