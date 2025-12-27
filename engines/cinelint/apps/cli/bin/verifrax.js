@@ -61,7 +61,7 @@ function verifyOnly() {
     sha256: hash,
     finality: "ABSOLUTE",
     anchored: false,
-    verify_ref: "https://github.com/Verifrax/VERIFRAX"
+    verify_ref: "https://verifrax.github.io/VERIFRAX-verify/"
   };
   process.stdout.write(JSON.stringify(proof, null, 2) + "\n");
 }
@@ -94,7 +94,7 @@ function freeze() {
       finality: "ABSOLUTE"
     },
     anchors: [],
-    verify_ref: "https://github.com/Verifrax/VERIFRAX"
+    verify_ref: "https://verifrax.github.io/VERIFRAX-verify/"
   };
 
   writeJson(path.join(outDir, `${path.basename(abs)}.freeze.notice.json`), freezeNotice);
@@ -106,7 +106,7 @@ function freeze() {
     sha256: artifactHash,
     finality: "ABSOLUTE",
     anchored: false,
-    verify_ref: "https://github.com/Verifrax/VERIFRAX",
+    verify_ref: "https://verifrax.github.io/VERIFRAX-verify/",
     outputs: {
       freeze_notice: path.join(outDir, `${path.basename(abs)}.freeze.notice.json`),
       certificate_v1: path.join(outDir, `${path.basename(abs)}.certificate.v1.json`)
@@ -140,9 +140,9 @@ function prove() {
       subject: { artifact: path.basename(abs), sha256: artifactHash },
       claims: { deterministic: true, immutable_intent: true, finality: "ABSOLUTE" },
       anchors: [],
-      verify_ref: "https://github.com/Verifrax/VERIFRAX"
+      verify_ref: "https://verifrax.github.io/VERIFRAX-verify/"
     },
-    verify_ref: "https://github.com/Verifrax/VERIFRAX"
+    verify_ref: "https://verifrax.github.io/VERIFRAX-verify/"
   };
 
   const out = path.join(outDir, `${path.basename(abs)}.proof.v1.json`);
