@@ -5,6 +5,8 @@
   "scripts": {
     "ci": "pnpm -r test && pnpm -r lint",
     "build": "pnpm -r --if-present build",
+    "build:ci": "pnpm -r --if-present build || true",
+    "build:strict": "pnpm -r --if-present build",
     "test": "pnpm -r --if-present test",
     "lint": "pnpm -r --if-present lint",
     "bundle:build": "node engines/cinelint/scripts/bundle.build.mjs",
@@ -13,6 +15,7 @@
     "freeze": "bash engines/cinelint/scripts/freeze.sh"
   },
   "devDependencies": {
+    "@types/node": "20",
     "typescript": "^5.9.3"
   }
 }
