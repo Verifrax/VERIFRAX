@@ -1,0 +1,8 @@
+{
+  "engine": "Verifrax",
+  "core": "CineLint",
+  "compiler": "tsc",
+  "moduleResolution": "Bundler",
+  "language": "TypeScript",
+  "deterministic": true
+}

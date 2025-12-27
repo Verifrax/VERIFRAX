@@ -3,6 +3,12 @@
   "version": "0.0.0",
   "type": "module",
   "main": "src/index.ts",
+  "exports": {
+    ".": "./dist/public/index.js",
+    "./engine": "./dist/engine/run.js",
+    "./runtime": "./dist/runtime/server.js",
+    "./certificates": "./dist/certificates/emit.v1.js"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },
