@@ -25,7 +25,7 @@ export class Executor {
               metadata: {}
             })
             if (g.severityOverride) {
-              res.forEach(r => (r.severity = g.severityOverride))
+              res.forEach((r: any) => (r.severity = g.severityOverride))
             }
             return res
           },
@@ -57,7 +57,7 @@ export class Executor {
                 metadata: {}
               })
               if (g.severityOverride) {
-                res.forEach(r => (r.severity = g.severityOverride))
+                res.forEach((r: any) => (r.severity = g.severityOverride))
               }
               return res
             },

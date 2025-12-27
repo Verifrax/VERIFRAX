@@ -1,2 +1,2 @@
-export * from "./abi/node.abi"
-export * from "./base/abstract.node"
+export * from "./abi/node.abi";
+export * from "./abi/node.meta";

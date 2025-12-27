@@ -59,7 +59,20 @@ importers:
 
   engines/cinelint/apps/web-verifier: {}
 
-  engines/cinelint/core: {}
+  engines/cinelint/core:
+    dependencies:
+      '@verifrax/nodes':
+        specifier: workspace:*
+        version: link:../nodes
+    devDependencies:
+      '@types/node':
+        specifier: '20'
+        version: 20.19.27
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+
+  engines/cinelint/nodes: {}
 
   engines/cinelint/tools: {}
 

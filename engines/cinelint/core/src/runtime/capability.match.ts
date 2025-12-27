@@ -1,5 +1,5 @@
 import { MediaCapabilities } from "../artifacts/capabilities/media.cap"
-import { NodeMeta } from "@verifrax/nodes/src/abi/node.meta"
+import { NodeMeta } from "@verifrax/nodes"
 
 export function matchCapabilities(
   artifact: MediaCapabilities,

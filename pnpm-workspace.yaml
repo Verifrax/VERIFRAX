@@ -1,5 +1,6 @@
 packages:
   - "engines/cinelint/apps/*"
   - "engines/cinelint/core"
+  - "engines/cinelint/nodes"
   - "engines/cinelint/ui"
   - "engines/cinelint/tools"

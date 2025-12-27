@@ -12,6 +12,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },
+  "dependencies": {
+    "@verifrax/nodes": "workspace:*"
+  },
   "devDependencies": {
     "typescript": "5.9.3",
     "@types/node": "20"

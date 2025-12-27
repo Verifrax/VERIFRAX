@@ -1,4 +1,4 @@
-import { CineLintNode } from "@verifrax/nodes/src/abi/node.abi"
+import { CineLintNode } from "@verifrax/nodes"
 
 export interface GraphNode {
   node: CineLintNode

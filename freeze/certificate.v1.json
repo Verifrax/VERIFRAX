@@ -2,8 +2,8 @@
   "version": "v1",
   "system": "Verifrax",
   "engine": "CineLint",
-  "issued_at": "2025-12-27T17:08:11.844Z",
-  "artifact_hash": "1ba597d2a050badec396ea74eb6daa1834df991f67d7921d85a28b32acd3c96d",
+  "issued_at": "2025-12-27T17:11:56.519Z",
+  "artifact_hash": "ebb96c8987d588fd37cd54c81d80e9c40492ed1f3472e6a92dae435f7a896830",
   "meta": {
     "engine": "Verifrax",
     "core": "CineLint",
@@ -12,5 +12,5 @@
     "language": "TypeScript",
     "deterministic": true
   },
-  "certificate_hash": "5bb38a0b004cb3035c3cabf69ebb2594790be8767b41b8fe37174513b24b0993"
+  "certificate_hash": "ea98f86160671c2f961a3cfa781c9be21678c689af8e186bb193487c9c6f9f68"
 }
