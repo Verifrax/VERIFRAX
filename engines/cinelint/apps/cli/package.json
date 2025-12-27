@@ -1,9 +1,12 @@
 {
   "name": "@verifrax/cli",
+  "version": "0.1.0",
   "bin": {
-    "verifrax": "src/index.ts"
+    "verifrax": "dist/index.js"
   },
-  "dependencies": {
-    "@verifrax/core": "workspace:*"
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "verify": "node dist/index.js verify"
   }
 }
