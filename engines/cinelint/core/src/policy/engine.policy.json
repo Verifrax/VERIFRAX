@@ -1,0 +1,5 @@
+{
+  "zeroTrust": true,
+  "requireSignedNodes": true,
+  "allowUnsignedProfiles": false
+}

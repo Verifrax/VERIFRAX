@@ -1,0 +1,10 @@
+name: Semantics Required
+on: [push, pull_request]
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - run: git diff --exit-code engine-semantics-freeze-20251226-155121 -- core tools sample/run-003
+      - run: sha256sum freeze-manifests/engine-semantics-freeze-20251226-155121.MANIFEST.sha256

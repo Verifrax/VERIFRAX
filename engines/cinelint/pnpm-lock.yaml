@@ -12,9 +12,9 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
-  engines/cinelint/apps/api: {}
+  apps/api: {}
 
-  engines/cinelint/apps/api-verifier:
+  apps/api-verifier:
     dependencies:
       express:
         specifier: ^4.19.2
@@ -30,15 +30,15 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
-  engines/cinelint/apps/cli:
+  apps/cli:
     dependencies:
       '@verifrax/core':
         specifier: workspace:*
         version: link:../../core
 
-  engines/cinelint/apps/verifier: {}
+  apps/verifier: {}
 
-  engines/cinelint/apps/web:
+  apps/web:
     dependencies:
       react:
         specifier: ^18.3.1
@@ -54,11 +54,9 @@ importers:
         specifier: ^5.3.0
         version: 5.4.21
 
-  engines/cinelint/apps/web-verifier: {}
+  apps/web-verifier: {}
 
-  engines/cinelint/core: {}
-
-  engines/cinelint/tools: {}
+  core: {}
 
 packages:
 

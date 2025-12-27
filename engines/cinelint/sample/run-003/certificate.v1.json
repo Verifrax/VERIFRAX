@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "engine": "CineLint Core",
+  "system": "Verifrax",
+  "status": "PLACEHOLDER",
+  "note": "Temporary placeholder certificate to unblock deterministic pipeline; replace via freeze.",
+  "hash": "0000000000000000000000000000000000000000000000000000000000000000"
+}

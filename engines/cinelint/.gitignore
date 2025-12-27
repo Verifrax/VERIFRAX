@@ -1,0 +1,63 @@
+# dependencies
+node_modules/
+**/node_modules/
+
+# build outputs
+dist/
+**/dist/
+
+# runtime
+_runs/
+
+# logs
+*.log
+
+# env
+.env*
+
+# CA private keys
+product/ca/**/*.key
+
+# Generated bundles (never commit)
+out/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# build outputs
+/out/
+/out/**
+
+# secrets / local env
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+secrets/
+**/secrets/
+**/*secret*
+**/*private*
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Build artifacts
+.verifrax-root
+apps/cli/bin/
+
+# build outputs
+core/dist/
+
+# governance templates (local only)
+.github/workflows/*.template
+
+# build artifacts
+out/
+/tmp/

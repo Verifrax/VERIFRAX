@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "required": ["subject","anchors"],
+  "properties": {
+    "subject": {
+      "type": "object",
+      "required": ["asset_id"],
+      "properties": { "asset_id": { "type": "string", "minLength": 1 } }
+    },
+    "anchors": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["type","proof_ref"],
+        "properties": {
+          "type": { "type": "string" },
+          "proof_ref": { "type": "string" }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
+

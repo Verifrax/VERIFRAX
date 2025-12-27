@@ -1,0 +1,15 @@
+name: Freeze Invariants
+on: [push, pull_request]
+jobs:
+  invariants:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify frozen surface has no drift
+        run: ./scripts/require-refreeze.sh engine-semantics-freeze-20251226-155121
+      - name: Verify bundle
+        run: node tools/bundle-verify.mjs sample/run-003
+      - name: Verify manifest hash file exists and is readable
+        run: sha256sum freeze-manifests/engine-semantics-freeze-20251226-155121.MANIFEST.sha256

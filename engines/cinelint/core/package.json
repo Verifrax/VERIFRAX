@@ -1,0 +1,9 @@
+{
+  "name": "@verifrax/core",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc --outDir dist"
+  }
+}

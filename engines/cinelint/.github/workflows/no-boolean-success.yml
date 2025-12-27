@@ -1,0 +1,14 @@
+name: No Boolean Success Paths
+on: [push, pull_request]
+jobs:
+  enforce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Block boolean success in security domains
+        run: |
+          if git grep 'return true' core/src | grep -E 'zk|anchor|attestation|transparency'; then
+            echo "BOOLEAN SUCCESS PATH DETECTED"
+            exit 1
+          fi
+

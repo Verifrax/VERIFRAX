@@ -1,0 +1,6 @@
+{
+  "tx_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "chain_id": 1,
+  "rpc": "https://eth.llamarpc.com",
+  "commitment": "c57bb97f49fb65b37575c9a6287d65b81e1ffc212b6efe019c9552bb3ff0f81d"
+}

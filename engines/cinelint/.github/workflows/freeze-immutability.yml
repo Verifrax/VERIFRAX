@@ -1,0 +1,23 @@
+name: Freeze Immutability
+on: [push, pull_request]
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Enforce frozen semantics tag + guard
+        run: |
+          set -euo pipefail
+          ./scripts/semantics-guard.sh
+      - name: Block changes touching frozen dirs unless re-freeze
+        if: github.event_name == 'pull_request'
+        run: |
+          set -euo pipefail
+          base="${{ github.event.pull_request.base.sha }}"
+          head="${{ github.event.pull_request.head.sha }}"
+          git diff --name-only "$base" "$head" | grep -E '^(core|tools|sample/run-003)/' && {
+            echo "BLOCKED: frozen semantics touched; re-freeze required (new tag + manifest)."
+            exit 1
+          } || true

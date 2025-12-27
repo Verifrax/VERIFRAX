@@ -1,0 +1,5 @@
+{
+  "id": "netflix.v1",
+  "strictness": "hard",
+  "nodes": ["file.exists"]
+}

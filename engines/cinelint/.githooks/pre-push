@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+TAG="${CINELINT_FREEZE_TAG:-engine-semantics-freeze-20251226-155121}"
+
+./scripts/require-refreeze.sh "$TAG" >/dev/null
+
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+if [ "$BRANCH" = "main" ]; then
+  echo "BLOCKED: direct push to main forbidden (use PR)."
+  exit 1
+fi

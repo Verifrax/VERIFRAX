@@ -1,0 +1,9 @@
+{
+  "name": "@verifrax/web-verifier",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "echo 'web-verifier: implement UI shell later'",
+    "build": "echo 'web-verifier: implement UI shell later'"
+  }
+}

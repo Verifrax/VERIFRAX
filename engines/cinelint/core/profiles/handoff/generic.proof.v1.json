@@ -1,0 +1,14 @@
+{
+  "id": "handoff.generic.proof",
+  "version": "1.0.0",
+  "nodes": [
+    { "id": "integrity.check", "required": true },
+    { "id": "hash.generate", "required": true },
+    { "id": "video.probe" }
+  ]
+}
+
+
+
+
+

@@ -1,0 +1,5 @@
+{
+  "id": "ebu.v1",
+  "strictness": "hard",
+  "nodes": ["file.exists"]
+}

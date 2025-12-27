@@ -1,0 +1,9 @@
+{
+  "name": "@verifrax/cli",
+  "bin": {
+    "verifrax": "src/index.ts"
+  },
+  "dependencies": {
+    "@verifrax/core": "workspace:*"
+  }
+}

@@ -1,0 +1,27 @@
+name: Governance
+on: [push, pull_request]
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - run: node scripts/freeze-verify.mjs engine-semantics-freeze-20251226-155121
+  refreeze_required:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Fail if frozen surface changed (requires explicit re-freeze)
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+          CHANGED="$(git diff --name-only "$BASE" "$HEAD" || true)"
+          if echo "$CHANGED" | grep -E '^(core|tools|sample/run-003)/' >/dev/null; then
+            echo "FROZEN SURFACE CHANGED: core/tools/sample/run-003"
+            echo "REQUIRED: re-freeze -> new tag + freeze-manifests/<NEW_TAG>.MANIFEST.sha256"
+            exit 1
+          fi

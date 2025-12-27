@@ -1,0 +1,11 @@
+{
+  "dir": "sample/outputs",
+  "list_hash": "ad6db716f70ab61de1e2d81ac9ab83a4f44d1c10afe968860b7246070222f90f",
+  "merkle_root": "2cce864567b3f2f60a90da953f516999cd112ecc1546d6780ac36d9a15dfa1a0",
+  "entries": [
+    {
+      "path": "b.txt",
+      "sha256": "9c21d167163bc5b0a2df570660662bcf8e0c9c64b5ab9fc6d5787525fc1e902b"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+name: verify
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  node-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: sanity
+        run: node -v && npm -v
+      - name: certification verifier gate (tag-only)
+        shell: bash
+        run: |
+          if [[ "${GITHUB_REF}" != refs/tags/engine-semantics-freeze-* ]]; then
+            echo "SKIP: certification verifier gate (not a freeze tag)"
+            exit 0
+          fi
+          node -e "import('./tools/bundle-verify.mjs').then(()=>console.log('ok')).catch(e=>{console.error(e);process.exit(1)})"

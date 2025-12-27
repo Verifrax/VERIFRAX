@@ -1,0 +1,23 @@
+{
+  "schema": "verifrax.release.v1",
+  "required": {
+    "bundle_paths": [
+      "inputs/",
+      "outputs/",
+      "transparency/",
+      "verify.mjs",
+      "VERIFY.txt",
+      "release.json"
+    ],
+    "artifact_naming": {
+      "zip": "out/<TAG>.zip",
+      "sha256": "out/<TAG>.zip.sha256"
+    },
+    "outcomes": ["VERIFIED", "INVALID", "FRAUD"],
+    "exit_codes": {
+      "VERIFIED": 0,
+      "INVALID": 1,
+      "FRAUD": 3
+    }
+  }
+}

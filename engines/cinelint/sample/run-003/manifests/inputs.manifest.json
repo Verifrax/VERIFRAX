@@ -1,0 +1,11 @@
+{
+  "dir": "inputs",
+  "list_hash": "c391686af3eb62e5bd55e961558d0a7e94fbc662738df74989bd14012745fe8c",
+  "merkle_root": "5c82e9649adbebcab187bee32ccdc27409801b117ac9d1ceca85a4b6d8ff0cf9",
+  "entries": [
+    {
+      "path": "a.txt",
+      "sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+    }
+  ]
+}
