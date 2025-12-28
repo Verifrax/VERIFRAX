@@ -1,0 +1,18 @@
+{
+  "claim_id": "delivery-claim-001",
+  "claim_type": "delivery_acceptance",
+  "subject": "media-delivery-package",
+  "assertions": [
+    {
+      "assertion_id": "delivery-spec-match",
+      "predicate": "matches_specification",
+      "object": "declared-spec-v1"
+    }
+  ],
+  "issuer": {
+    "org": "verifrax",
+    "key_id": "test-key-001"
+  },
+  "issued_at": "2024-01-01T00:00:00Z"
+}
+

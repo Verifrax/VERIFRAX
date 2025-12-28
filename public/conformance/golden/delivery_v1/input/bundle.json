@@ -1,0 +1,17 @@
+{
+  "bundle_id": "delivery-v1-golden",
+  "bundle_version": "1.0.0",
+  "created_at": "2024-01-01T00:00:00Z",
+  "claims": [
+    "claims/delivery-claim.json"
+  ],
+  "evidence": [
+    {
+      "path": "evidence/delivery-manifest.txt",
+      "type": "file",
+      "hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "profile_id": "delivery_v1@1.0.0"
+}
+

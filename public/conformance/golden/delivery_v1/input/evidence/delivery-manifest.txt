@@ -1,0 +1,6 @@
+Delivery Package Manifest
+========================
+Package ID: delivery-v1-golden
+Specification: declared-spec-v1
+Status: Accepted
+

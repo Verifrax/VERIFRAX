@@ -1,0 +1,41 @@
+{
+  "contract_id": "evidence_bundle@1.0.0",
+  "contract_type": "evidence_bundle",
+  "version": "1.0.0",
+  "description": "Contract for delivery evidence bundle structure",
+  "schema_ref": "https://verifrax.org/schemas/evidence_bundle/v1",
+  "required_fields": [
+    "bundle_id",
+    "bundle_version",
+    "created_at",
+    "claims",
+    "evidence"
+  ],
+  "rules": [
+    {
+      "rule_id": "bundle-deterministic",
+      "description": "Bundle structure must be deterministic (stable file ordering, canonical JSON)",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "evidence-hashes-required",
+      "description": "All evidence files must have SHA-256 hashes",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "claims-required",
+      "description": "At least one claim must be present",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "profile-binding",
+      "description": "Profile ID must match the profile used for verification",
+      "enforcement": "strict"
+    }
+  ],
+  "compatibility": {
+    "backward_compatible": true,
+    "versioning_policy": "semantic"
+  }
+}
+

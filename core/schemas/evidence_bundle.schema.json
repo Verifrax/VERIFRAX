@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://verifrax.org/schemas/evidence_bundle/v1",
+  "title": "VERIFRAX Evidence Bundle Schema v1",
+  "description": "Canonical evidence bundle structure for delivery verification",
+  "type": "object",
+  "required": [
+    "bundle_id",
+    "bundle_version",
+    "created_at",
+    "claims",
+    "evidence"
+  ],
+  "properties": {
+    "bundle_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Unique bundle identifier"
+    },
+    "bundle_version": {
+      "type": "string",
+      "pattern": "^1\\.0\\.0$",
+      "description": "Bundle schema version"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 UTC timestamp of bundle creation"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Relative path to claim file"
+      },
+      "description": "List of claim file paths"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "type", "hash"],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Relative path to evidence file"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["file", "directory", "archive"],
+            "description": "Evidence type"
+          },
+          "hash": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$",
+            "description": "SHA-256 hash of evidence content"
+          }
+        }
+      },
+      "description": "List of evidence files with hashes"
+    },
+    "attestations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Relative path to attestation file"
+      },
+      "description": "List of attestation file paths"
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[a-z_]+@[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Profile ID used for verification"
+    },
+    "engine_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 hash of the verification engine"
+    },
+    "signatures": {
+      "type": "object",
+      "description": "Optional signatures block",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "key_id": {
+            "type": "string"
+          },
+          "signature": {
+            "type": "string"
+          },
+          "algorithm": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
+
