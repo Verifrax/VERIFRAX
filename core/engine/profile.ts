@@ -33,10 +33,15 @@ export interface Profile {
   profile_name: string;
   version: string;
   required_evidence_classes: string[];
-  allowed_trust_assumptions: string[];
   failure_severity_mapping: Record<string, string>;
   verdict_mapping: Record<string, string>;
   attestation_requirements: Record<string, boolean>;
+  attestation_policy?: {
+    required: boolean;
+    evidence_bound: boolean;
+    hash_addressed: boolean;
+    missing: string;
+  };
 }
 
 /**
@@ -181,7 +186,30 @@ export function enforceProfile(
   
   // Check attestation requirements
   const attestationCheck = checkAttestationRequirements(profile, bundle);
-  if (attestationCheck.missing.length > 0) {
+  
+  // Enforce attestation_policy if present
+  if (profile.attestation_policy && profile.attestation_policy.required) {
+    // Check if attestations exist as evidence (evidence_bound)
+    const hasAttestationEvidence = checkEvidenceClassPresent(bundle, 'attestations');
+    
+    if (!hasAttestationEvidence && attestationCheck.missing.length > 0) {
+      violations.push(`Missing required attestations: ${attestationCheck.missing.join(', ')}`);
+      
+      // Map missing attestations to reason codes (static mapping, no computation)
+      for (const field of attestationCheck.missing) {
+        const code = ENV_FIELD_TO_CODE[field];
+        if (code) {
+          reasonCodes.push(code);
+        } else {
+          // Unknown field - use generic code
+          reasonCodes.push('VFX-ENV-0001');
+        }
+      }
+      
+      // Enforce attestation_policy.missing verdict (no downgrade)
+      verdictOverride = profile.attestation_policy.missing;
+    }
+  } else if (attestationCheck.missing.length > 0) {
     violations.push(`Missing required attestations: ${attestationCheck.missing.join(', ')}`);
     
     // Map missing attestations to reason codes (static mapping, no computation)

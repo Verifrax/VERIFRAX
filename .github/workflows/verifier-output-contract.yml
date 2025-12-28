@@ -34,9 +34,10 @@ jobs:
       - name: Find golden bundle
         id: find-bundle
         run: |
+          set -euo pipefail
           # Find first available golden bundle
-          if [ -d "public/conformance/golden/delivery_v1" ]; then
-            BUNDLE_PATH="public/conformance/golden/delivery_v1"
+          if [ -d "public/conformance/golden/delivery_v1/input" ]; then
+            BUNDLE_PATH="public/conformance/golden/delivery_v1/input"
           elif [ -d "tests/bundles/valid" ]; then
             # Use first valid bundle
             BUNDLE_DIR=$(find tests/bundles/valid -mindepth 1 -maxdepth 1 -type d | head -1)
@@ -46,40 +47,34 @@ jobs:
           fi
           
           if [ -z "$BUNDLE_PATH" ]; then
-            echo "⚠️  No golden bundle found, skipping test"
-            echo "skip=true" >> $GITHUB_OUTPUT
-          else
-            echo "bundle_path=$BUNDLE_PATH" >> $GITHUB_OUTPUT
-            echo "skip=false" >> $GITHUB_OUTPUT
+            echo "❌ No golden bundle found"
+            exit 1
           fi
+          
+          echo "bundle_path=$BUNDLE_PATH" >> $GITHUB_OUTPUT
+      
+      - name: Build verifier
+        run: |
+          set -euo pipefail
+          pnpm build
       
       - name: Run verifier on golden bundle
-        if: steps.find-bundle.outputs.skip == 'false'
         id: run-verifier
         run: |
+          set -euo pipefail
           BUNDLE_PATH="${{ steps.find-bundle.outputs.bundle_path }}"
           
-          # Run verifier (adjust command based on your CLI)
-          # This assumes there's a way to run the verifier
-          # If using TypeScript directly:
-          node -e "
-            const { verify } = require('./core/engine/verifier.ts');
-            const verdict = verify({ bundlePath: '$BUNDLE_PATH', profileId: 'public@1.0.0' });
-            require('fs').writeFileSync('verdict.json', JSON.stringify(verdict, null, 2));
-          " || {
-            # Fallback: if verifier needs compilation, build first
-            echo "Building verifier..."
-            pnpm build || true
-            # Try alternative invocation
-            node scripts/verifrax delivery verify --bundle "$BUNDLE_PATH" --output verdict.json || {
-              echo "⚠️  Could not run verifier, creating placeholder for structure check"
-              echo '{"verdict_id": "VFXV1:sha256:0000000000000000000000000000000000000000000000000000000000000000:sha256:0000000000000000000000000000000000000000000000000000000000000000", "bundle_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"}' > verdict.json
-            }
-          }
+          # Run delivery CLI
+          node engines/cinelint/apps/cli/bin/verifrax.js delivery run \
+            --in "$BUNDLE_PATH" \
+            --out /tmp/verifier-output \
+            --profile delivery_v1@1.0.0
+          
+          cp /tmp/verifier-output/verdict.json verdict.json
       
       - name: Assert binary-only output contract
-        if: steps.find-bundle.outputs.skip == 'false'
         run: |
+          set -euo pipefail
           if [ ! -f "verdict.json" ]; then
             echo "❌ Verdict output not found"
             exit 1
@@ -122,6 +117,7 @@ jobs:
           echo "✅ Verifier output contract satisfied: binary-only output"
       
       - name: Install jq
-        if: steps.find-bundle.outputs.skip == 'false'
-        run: sudo apt-get update && sudo apt-get install -y jq
+        run: |
+          set -euo pipefail
+          sudo apt-get update && sudo apt-get install -y jq
 

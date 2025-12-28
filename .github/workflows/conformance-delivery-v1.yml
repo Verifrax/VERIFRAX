@@ -31,14 +31,19 @@ jobs:
           version: 9
       
       - name: Install dependencies
-        run: pnpm install
+        run: |
+          set -euo pipefail
+          pnpm install
       
       - name: Build verifier
-        run: pnpm build || true
+        run: |
+          set -euo pipefail
+          pnpm build
       
       - name: Run delivery CLI on golden bundle
         id: run-verifier
         run: |
+          set -euo pipefail
           BUNDLE_PATH="public/conformance/golden/delivery_v1/input"
           OUTPUT_DIR="/tmp/delivery-output"
           
@@ -46,19 +51,11 @@ jobs:
           node engines/cinelint/apps/cli/bin/verifrax.js delivery run \
             --in "$BUNDLE_PATH" \
             --out "$OUTPUT_DIR" \
-            --profile delivery_v1@1.0.0 || {
-            # Fallback: use reference verifier directly
-            node -e "
-              const { verifyBundle } = require('./verification/reference-verifier/index.ts');
-              const result = verifyBundle({ bundlePath: '$BUNDLE_PATH', profileId: 'delivery_v1@1.0.0' });
-              require('fs').writeFileSync('$OUTPUT_DIR/verdict.json', JSON.stringify(result, null, 2));
-            " || {
-              echo "⚠️  Could not run verifier, checking expected output"
-            }
-          }
+            --profile delivery_v1@1.0.0
       
       - name: Verify bundle hash matches expected
         run: |
+          set -euo pipefail
           OUTPUT_DIR="/tmp/delivery-output"
           EXPECTED_DIR="public/conformance/golden/delivery_v1/expected"
           
@@ -93,6 +90,7 @@ jobs:
       
       - name: Verify verdict_id format
         run: |
+          set -euo pipefail
           OUTPUT_DIR="/tmp/delivery-output"
           VERDICT_ID=$(jq -r '.verdict_id' "$OUTPUT_DIR/verdict.json")
           
@@ -106,6 +104,7 @@ jobs:
       
       - name: Verify binary-only output
         run: |
+          set -euo pipefail
           OUTPUT_DIR="/tmp/delivery-output"
           KEYS=$(jq -r 'keys | sort | join(",")' "$OUTPUT_DIR/verdict.json")
           
@@ -118,5 +117,7 @@ jobs:
           echo "✅ Binary-only output verified"
       
       - name: Install jq
-        run: sudo apt-get update && sudo apt-get install -y jq
+        run: |
+          set -euo pipefail
+          sudo apt-get update && sudo apt-get install -y jq
 

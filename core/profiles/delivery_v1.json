@@ -8,10 +8,12 @@
     "hashes",
     "attestations"
   ],
-  "allowed_trust_assumptions": [
-    "Verified certificate authorities",
-    "Attestation chain"
-  ],
+  "attestation_policy": {
+    "required": true,
+    "evidence_bound": true,
+    "hash_addressed": true,
+    "missing": "INVALID"
+  },
   "failure_severity_mapping": {
     "missing_evidence": "error",
     "invalid_signature": "error",
