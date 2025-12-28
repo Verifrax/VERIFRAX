@@ -1,0 +1,60 @@
+name: Finality Guard - Prevent Authority Re-Entry
+
+on:
+  push:
+    paths:
+      - 'core/axioms/**'
+      - 'core/contracts/**'
+      - 'core/schemas/**'
+      - 'public/VERDICT_REFERENCE_v1.md'
+  pull_request:
+    paths:
+      - 'core/axioms/**'
+      - 'core/contracts/**'
+      - 'core/schemas/**'
+      - 'public/VERDICT_REFERENCE_v1.md'
+
+jobs:
+  block-authority-re-entry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Check for semantic changes
+        run: |
+          CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^(core/axioms|core/contracts|core/schemas|public/VERDICT_REFERENCE_v1\.md)' || true)
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "✅ No frozen files modified"
+            exit 0
+          fi
+          
+          echo "❌ FROZEN FILES MODIFIED - AUTHORITY RE-ENTRY ATTEMPT"
+          echo ""
+          echo "Modified files:"
+          echo "$CHANGED_FILES"
+          echo ""
+          echo "These files are FROZEN under v1 finality:"
+          echo "- core/axioms/**"
+          echo "- core/contracts/**"
+          echo "- core/schemas/**"
+          echo "- public/VERDICT_REFERENCE_v1.md"
+          echo ""
+          echo "Changes to these files are BLOCKED unless:"
+          echo "1. Change is mechanical (formatting only)"
+          echo "2. Accompanied by conformance proof"
+          echo "3. Approved by v2+ versioning process"
+          echo ""
+          echo "To modify semantics, create a new major version (v2, v3, etc.)"
+          exit 1
+      
+      - name: Allow mechanical changes only
+        if: failure()
+        run: |
+          # Check if changes are only formatting (whitespace, indentation)
+          # This is a simplified check - in practice, use a proper diff tool
+          echo "⚠️  Checking if changes are mechanical only..."
+          echo "Manual review required for semantic changes"
+
