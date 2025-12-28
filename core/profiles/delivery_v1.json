@@ -1,0 +1,46 @@
+{
+  "profile_id": "delivery_v1@1.0.0",
+  "profile_name": "delivery_v1",
+  "version": "1.0.0",
+  "description": "Delivery acceptance profile - deterministic verification for media delivery",
+  "required_evidence_classes": [
+    "signatures",
+    "hashes",
+    "attestations"
+  ],
+  "allowed_trust_assumptions": [
+    "Verified certificate authorities",
+    "Attestation chain"
+  ],
+  "failure_severity_mapping": {
+    "missing_evidence": "error",
+    "invalid_signature": "error",
+    "hash_mismatch": "error",
+    "missing_attestation": "error"
+  },
+  "verdict_mapping": {
+    "missing_required_evidence": "INVALID",
+    "invalid_signature": "INVALID",
+    "hash_mismatch": "INVALID",
+    "missing_attestation": "INVALID",
+    "contradiction": "CONTRADICTED",
+    "unsupported_version": "UNSUPPORTED"
+  },
+  "attestation_requirements": {
+    "os": true,
+    "arch": true,
+    "toolchain": true,
+    "git_commit": true
+  },
+  "determinism_requirements": {
+    "stable_sorting": true,
+    "fixed_metadata": true,
+    "canonical_json": true,
+    "no_timestamps": false,
+    "no_nondeterministic_ordering": true
+  },
+  "dependency_policy": "fixed",
+  "output_policy": "fixed",
+  "input_policy": "fixed"
+}
+

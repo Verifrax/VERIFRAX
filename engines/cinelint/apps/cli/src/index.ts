@@ -23,6 +23,8 @@ if (cmd === "claim" && subcmd === "create") {
   const strict = args.includes("--strict");
   const outputPath = args.find(arg => arg !== "--strict" && !arg.startsWith("--") && arg !== bundlePath);
   exportAffidavit(bundlePath, outputPath, strict);
+} else if (cmd === "delivery" && subcmd === "run") {
+  finality.handleDeliveryRun(args);
 } else {
   console.error("usage: verifrax <command> [args]");
   console.error("\nCommands:");
@@ -33,5 +35,6 @@ if (cmd === "claim" && subcmd === "create") {
   console.error("  invalidate         - Create an invalidation");
   console.error("  index publish      - Publish to truth index");
   console.error("  export affidavit   - Export affidavit (facts only)");
+  console.error("  delivery run       - Run delivery verification");
   process.exit(1);
 }
