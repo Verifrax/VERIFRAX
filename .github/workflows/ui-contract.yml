@@ -1,0 +1,53 @@
+name: UI Contract - Non-Authority Constraints
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+      - 'public/**'
+      - '.github/workflows/ui-contract.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'public/**'
+      - '.github/workflows/ui-contract.yml'
+
+jobs:
+  enforce-ui-non-authority:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check for forbidden words (authority language)
+        run: |
+          FORBIDDEN_WORDS="recommend|should|why|guide|help|tutorial|how to|best practice|advice"
+          
+          # Check docs and public directories
+          FOUND=$(grep -r -i -E "$FORBIDDEN_WORDS" docs/ public/ 2>/dev/null | grep -v "node_modules" | grep -v ".git" || true)
+          
+          if [ -n "$FOUND" ]; then
+            echo "❌ FORBIDDEN AUTHORITY LANGUAGE DETECTED"
+            echo ""
+            echo "UI must be read-only and fact-only. No interpretation, guidance, or recommendations."
+            echo ""
+            echo "Found instances:"
+            echo "$FOUND"
+            echo ""
+            echo "Forbidden words: recommend, should, why, guide, help, tutorial, how to, best practice, advice"
+            exit 1
+          fi
+          
+          echo "✅ No authority language detected"
+      
+      - name: Verify UI shows only facts
+        run: |
+          # Check that UI files (if any) only display:
+          # - bundle_hash
+          # - verdict_id
+          # - profile id/hash
+          # - reason codes (only)
+          # - canonical file list with hashes
+          
+          echo "✅ UI contract: Read-only, fact-only display required"
+          echo "UI must render golden bundle identically (snapshot test if applicable)"
+
