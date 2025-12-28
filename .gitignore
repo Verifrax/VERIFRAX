@@ -9,3 +9,9 @@ coverage
 .env
 .env.*
 *.log
+
+# GitHub Pages artifacts (disabled for v1 finality)
+docs/index.html
+docs-site/
+_site/
+gh-pages/
