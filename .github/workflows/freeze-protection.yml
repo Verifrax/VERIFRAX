@@ -1,0 +1,39 @@
+name: Freeze Protection - Finality Law v1
+
+on:
+  push:
+    paths:
+      - 'core/axioms/**'
+      - 'core/schemas/**'
+      - 'core/contracts/**'
+  pull_request:
+    paths:
+      - 'core/axioms/**'
+      - 'core/schemas/**'
+      - 'core/contracts/**'
+
+jobs:
+  protect-freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Check for changes to frozen files
+        run: |
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^(core/axioms|core/schemas|core/contracts)/.*\.json$'; then
+            echo "❌ FROZEN FILE MODIFIED"
+            echo "Files in core/axioms/, core/schemas/, or core/contracts/ are FROZEN under finality-law-v1"
+            echo "Any changes to these files will cause build failure."
+            echo ""
+            echo "To modify semantics, create a new version (v2, v3, etc.)"
+            exit 1
+          fi
+      
+      - name: Verify freeze tag exists
+        run: |
+          if ! git tag -l | grep -q 'finality-law-v1'; then
+            echo "⚠️  Warning: finality-law-v1 tag not found"
+          fi
+

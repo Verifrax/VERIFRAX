@@ -1,0 +1,47 @@
+{
+  "axiom_id": "profile_compatibility@1.0.0",
+  "axiom_type": "profile_compatibility",
+  "version": "1.0.0",
+  "description": "Axiomatic profile compatibility rules for contradiction detection",
+  "enforcement": "non-negotiable",
+  "rule": "Profiles must NEVER define compatibility themselves. Compatibility is axiomatic only.",
+  "compatibility_rules": {
+    "public": {
+      "compatible_with": ["public"],
+      "description": "Public profile is only compatible with itself"
+    },
+    "enterprise": {
+      "compatible_with": ["enterprise", "legal_strict"],
+      "description": "Enterprise profile is compatible with enterprise and legal_strict"
+    },
+    "legal_strict": {
+      "compatible_with": ["legal_strict", "regulator", "forensics"],
+      "description": "Legal strict profile is compatible with legal_strict, regulator, and forensics"
+    },
+    "regulator": {
+      "compatible_with": ["regulator", "forensics"],
+      "description": "Regulator profile is compatible with regulator and forensics"
+    },
+    "forensics": {
+      "compatible_with": ["forensics"],
+      "description": "Forensics profile is only compatible with itself"
+    }
+  },
+  "enforcement_rules": [
+    {
+      "rule_id": "no-profile-defined-compatibility",
+      "description": "Profiles MUST NOT define compatibility rules. Only this axiom defines compatibility.",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "contradiction-scope",
+      "description": "Contradiction detection only applies to claims under compatible profiles as defined by this axiom.",
+      "enforcement": "strict"
+    }
+  ],
+  "compatibility": {
+    "backward_compatible": false,
+    "versioning_policy": "immutable"
+  }
+}
+

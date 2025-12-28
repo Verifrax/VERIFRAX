@@ -1,0 +1,55 @@
+name: Build Minimal Verifier
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            binary: verifrax-verifier-min-linux
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            binary: verifrax-verifier-min-macos
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            binary: verifrax-verifier-min-windows.exe
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: ${{ matrix.target }}
+          override: true
+      
+      - name: Build
+        run: |
+          cargo build --release --target ${{ matrix.target }}
+      
+      - name: Compute hash
+        run: |
+          if [ "${{ matrix.os }}" == "windows-latest" ]; then
+            certutil -hashfile target/${{ matrix.target }}/release/${{ matrix.binary }} SHA256 > hash.txt
+          else
+            shasum -a 256 target/${{ matrix.target }}/release/${{ matrix.binary }} > hash.txt
+          fi
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.binary }}
+          path: |
+            target/${{ matrix.target }}/release/${{ matrix.binary }}
+            hash.txt
+

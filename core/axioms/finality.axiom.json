@@ -1,0 +1,48 @@
+{
+  "axiom_id": "finality@1.0.0",
+  "axiom_type": "finality_semantics",
+  "version": "1.0.0",
+  "description": "Fundamental axioms for finality semantics v1",
+  "axioms": [
+    {
+      "axiom_id": "deterministic-verdicts",
+      "name": "Deterministic Verdicts",
+      "statement": "Given identical inputs (bundle content, profile, contracts, schemas), any verifier must produce byte-identical verdict output",
+      "enforcement": "non-negotiable",
+      "proof_requirement": "Any two verifiers with same inputs must output identical verdict.json"
+    },
+    {
+      "axiom_id": "unappealable-surface",
+      "name": "Unappealable Surface",
+      "statement": "Only bundle content can change outcomes. Not arguments, interpretations, or external state",
+      "enforcement": "non-negotiable",
+      "proof_requirement": "Verdict cannot change without bundle hash changing"
+    },
+    {
+      "axiom_id": "contradiction-detection",
+      "name": "Contradiction Detection",
+      "statement": "Two claims with same subject but incompatible assertions, both with valid signatures, must result in CONTRADICTED verdict",
+      "enforcement": "non-negotiable",
+      "proof_requirement": "Contradiction detection must be deterministic and cite which evidence invalidates which claim"
+    },
+    {
+      "axiom_id": "retroactive-invalidation",
+      "name": "Retroactive Invalidation",
+      "statement": "Invalidations are cryptographically bound and discoverable. Any matching invalidation downgrades verdict with explicit reason codes",
+      "enforcement": "non-negotiable",
+      "proof_requirement": "Invalidation matching must be deterministic and verifiable"
+    },
+    {
+      "axiom_id": "profile-legal-modes",
+      "name": "Profile Legal Modes",
+      "statement": "Different profiles define required evidence classes, trust assumptions, and failure severity mappings",
+      "enforcement": "non-negotiable",
+      "proof_requirement": "Profile requirements must be explicitly defined and enforced"
+    }
+  ],
+  "compatibility": {
+    "backward_compatible": false,
+    "versioning_policy": "immutable"
+  }
+}
+

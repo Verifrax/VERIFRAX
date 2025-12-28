@@ -1,0 +1,58 @@
+{
+  "contract_id": "verdict@1.0.0",
+  "contract_type": "verdict_output",
+  "version": "1.0.0",
+  "description": "Contract for verifier verdict output - finality oracle",
+  "schema_ref": "https://verifrax.org/schemas/verdict/v1",
+  "required_fields": [
+    "verdict",
+    "reason_codes",
+    "reason_graph",
+    "profile_id",
+    "contract_hash",
+    "schema_hashes",
+    "bundle_hash",
+    "verifier_build_hash",
+    "timestamp_utc"
+  ],
+  "verdict_enum": [
+    "VALID",
+    "INVALID",
+    "INCONCLUSIVE",
+    "CONTRADICTED",
+    "UNSUPPORTED",
+    "NONCONFORMING"
+  ],
+  "rules": [
+    {
+      "rule_id": "verdict-deterministic",
+      "description": "Verdict must be deterministic given identical inputs",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "reason-codes-required",
+      "description": "If verdict is not VALID, at least one reason_code must be present",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "bundle-hash-match",
+      "description": "bundle_hash must match actual bundle content hash",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "timestamp-utc",
+      "description": "timestamp_utc must be valid ISO8601 UTC timestamp",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "reason-graph-complete",
+      "description": "reason_graph must include all claims, evidence, rules, and failure_points referenced in reason_codes",
+      "enforcement": "strict"
+    }
+  ],
+  "compatibility": {
+    "backward_compatible": true,
+    "versioning_policy": "semantic"
+  }
+}
+

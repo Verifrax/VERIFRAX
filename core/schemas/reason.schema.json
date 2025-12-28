@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://verifrax.org/schemas/reason/v1",
+  "title": "VERIFRAX Reason Code Schema v1",
+  "description": "Schema for individual reason codes",
+  "type": "object",
+  "required": [
+    "code",
+    "name",
+    "layer",
+    "triggering_condition",
+    "required_proof_artifacts",
+    "deterministic_reproduction",
+    "human_readable_summary"
+  ],
+  "properties": {
+    "code": {
+      "type": "string",
+      "pattern": "^VFX-[A-Z]+-[0-9]{4}$",
+      "description": "Reason code in format VFX-<LAYER>-<####>"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name"
+    },
+    "layer": {
+      "type": "string",
+      "enum": [
+        "AXIOM",
+        "CONTRACT",
+        "EVIDENCE",
+        "EXEC",
+        "ENV",
+        "CHAIN",
+        "SIG",
+        "TIME",
+        "POLICY",
+        "PROFILE",
+        "LOG",
+        "INVALIDATION"
+      ],
+      "description": "Layer category"
+    },
+    "triggering_condition": {
+      "type": "string",
+      "description": "Exact condition that triggers this code"
+    },
+    "required_proof_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Evidence that must be present to prove this failure"
+    },
+    "deterministic_reproduction": {
+      "type": "string",
+      "description": "Step-by-step instructions to reproduce the failure"
+    },
+    "human_readable_summary": {
+      "type": "string",
+      "description": "One-line summary for humans"
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "error", "warning", "info"],
+      "description": "Severity level"
+    }
+  }
+}
+

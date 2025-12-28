@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Canonical Reference
+    url: https://verifrax.org/public/VERDICT_REFERENCE_v1.md
+    about: See canonical reference for verdict semantics
+  - name: Freeze Notice
+    url: https://github.com/verifrax/verifrax/blob/main/FREEZE_NOTICE.md
+    about: VERIFRAX v1 is frozen
+

@@ -1,0 +1,146 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://verifrax.org/schemas/attestation/v1",
+  "title": "VERIFRAX Attestation Schema v1",
+  "description": "Reality anchoring attestation for execution environment",
+  "type": "object",
+  "required": [
+    "attestation_id",
+    "attestation_type",
+    "subject",
+    "profile_id",
+    "issuer",
+    "issued_at",
+    "signature"
+  ],
+  "properties": {
+    "attestation_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "Unique identifier (UUID)"
+    },
+    "attestation_type": {
+      "type": "string",
+      "enum": [
+        "execution_environment",
+        "build_environment",
+        "container_runtime",
+        "hardware"
+      ],
+      "description": "Type of attestation"
+    },
+    "subject": {
+      "type": "object",
+      "required": ["type", "identifier"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["run", "build", "container", "system"],
+          "description": "Type of subject"
+        },
+        "identifier": {
+          "type": "string",
+          "description": "Unique identifier for the subject"
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "os": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "version": { "type": "string" },
+            "arch": { "type": "string" }
+          }
+        },
+        "arch": {
+          "type": "string",
+          "description": "CPU architecture (e.g., 'x86_64', 'arm64')"
+        },
+        "toolchain": {
+          "type": "object",
+          "properties": {
+            "compiler": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "version": { "type": "string" }
+              }
+            },
+            "runtime": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "version": { "type": "string" }
+              }
+            },
+            "build_tool": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "version": { "type": "string" }
+              }
+            }
+          }
+        },
+        "container_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Container image digest"
+        },
+        "git_commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$",
+          "description": "Git commit hash"
+        },
+        "sbom_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "SBOM hash"
+        }
+      },
+      "description": "Environment details being attested"
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[a-z_]+@[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Profile under which this attestation is valid"
+    },
+    "issuer": {
+      "type": "object",
+      "required": ["org", "key_id"],
+      "properties": {
+        "org": { "type": "string" },
+        "key_id": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 timestamp"
+    },
+    "signature": {
+      "type": "object",
+      "required": ["algorithm", "value", "public_key_ref"],
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": ["ECDSA-P256", "ECDSA-P384", "Ed25519", "RSA-PSS-2048", "RSA-PSS-4096"],
+          "description": "Signature algorithm"
+        },
+        "value": {
+          "type": "string",
+          "description": "Base64-encoded signature value"
+        },
+        "public_key_ref": {
+          "type": "string",
+          "description": "Reference to public key for verification"
+        }
+      }
+    }
+  }
+}
+

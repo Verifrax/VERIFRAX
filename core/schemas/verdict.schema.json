@@ -1,0 +1,191 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://verifrax.org/schemas/verdict/v1",
+  "title": "VERIFRAX Verdict Schema v1",
+  "description": "Deterministic verdict output from VERIFRAX verifier",
+  "type": "object",
+  "required": [
+    "verdict",
+    "reason_codes",
+    "reason_graph",
+    "profile_id",
+    "contract_hash",
+    "schema_hashes",
+    "bundle_hash",
+    "verifier_build_hash",
+    "timestamp_utc",
+    "verdict_id"
+  ],
+  "properties": {
+    "verdict": {
+      "type": "string",
+      "enum": ["VALID", "INVALID", "INCONCLUSIVE", "CONTRADICTED", "UNSUPPORTED", "NONCONFORMING"],
+      "description": "The final verdict enum value"
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^VFX-[A-Z]+-[0-9]{4}$"
+      },
+      "description": "Array of reason codes explaining the verdict",
+      "minItems": 0
+    },
+    "reason_graph": {
+      "type": "object",
+      "required": ["claims", "evidence", "rules", "failure_points"],
+      "properties": {
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim_id", "claim_type", "subject", "status"],
+            "properties": {
+              "claim_id": { "type": "string" },
+              "claim_type": { "type": "string" },
+              "subject": { "type": "string" },
+              "status": {
+                "type": "string",
+                "enum": ["valid", "invalid", "contradicted"]
+              }
+            }
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["evidence_id", "evidence_type", "status"],
+            "properties": {
+              "evidence_id": { "type": "string" },
+              "evidence_type": { "type": "string" },
+              "status": {
+                "type": "string",
+                "enum": ["valid", "invalid", "missing"]
+              },
+              "hash": { "type": "string" }
+            }
+          }
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["rule_id", "rule_type", "status"],
+            "properties": {
+              "rule_id": { "type": "string" },
+              "rule_type": { "type": "string" },
+              "status": {
+                "type": "string",
+                "enum": ["passed", "failed"]
+              },
+              "reason_code": { "type": "string" }
+            }
+          }
+        },
+        "failure_points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["component", "id", "reason_code", "description"],
+            "properties": {
+              "component": {
+                "type": "string",
+                "enum": ["claim", "evidence", "rule"]
+              },
+              "id": { "type": "string" },
+              "reason_code": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "counterfactuals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["condition", "would_become"],
+        "properties": {
+          "condition": {
+            "type": "string",
+            "description": "What would be needed (e.g., 'If X evidence were present')"
+          },
+          "would_become": {
+            "type": "string",
+            "enum": ["VALID", "INVALID", "INCONCLUSIVE", "CONTRADICTED", "UNSUPPORTED", "NONCONFORMING"]
+          },
+          "required_changes": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      },
+      "description": "What would be needed to achieve VALID verdict"
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[a-z_]+@[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Profile ID in format 'name@version'"
+    },
+    "contract_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 hash of the contract used"
+    },
+    "schema_hashes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^sha256:[a-f0-9]{64}$"
+      },
+      "description": "Array of SHA-256 hashes of schemas used"
+    },
+    "bundle_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 hash of the bundle content"
+    },
+    "verifier_build_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 hash of the verifier build"
+    },
+    "timestamp_utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 UTC timestamp of verdict generation"
+    },
+    "verdict_id": {
+      "type": "string",
+      "pattern": "^VFXV1:sha256:[a-f0-9]{64}:sha256:[a-f0-9]{64}$",
+      "description": "Citable verdict identifier: VFXV1:<bundle_hash>:<verdict_hash>"
+    },
+    "lie_cost_score": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Cost-of-lying metric (higher = more expensive to lie)"
+    },
+    "attack_surface_summary": {
+      "type": "object",
+      "properties": {
+        "independent_bindings": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of independent bindings (hashes, sigs, anchors, attestations)"
+        },
+        "contradiction_exposure": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of contradictions detected"
+        },
+        "missingness_penalties": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Penalties for missing evidence"
+        }
+      }
+    }
+  }
+}
+

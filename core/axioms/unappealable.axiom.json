@@ -1,0 +1,39 @@
+{
+  "axiom_id": "unappealable@1.0.0",
+  "axiom_type": "finality_boundary",
+  "version": "1.0.0",
+  "description": "Unappealable surface axiom - only bundle content can change outcomes",
+  "rule": "Only bundle content can change outcomes. Not arguments.",
+  "enforcement": "non-negotiable",
+  "what_cannot_change_outcomes": [
+    "External arguments or interpretations",
+    "New evidence discovered later (unless added to bundle and bundle hash changes)",
+    "Policy changes (unless profile version changes, which is a bundle content change)",
+    "Court rulings or legal interpretations",
+    "Platform decisions or third-party opinions"
+  ],
+  "what_can_change_outcomes": [
+    "Bundle content changes (adding/removing/modifying files changes bundle hash)",
+    "Profile version changes (using different profile version changes profile_id in bundle)",
+    "Schema version changes (using different schema versions changes schema_hashes)",
+    "Contract version changes (using different contract versions changes contract_hash)",
+    "Invalidation addition (adding valid invalidation targeting this bundle is structural change)"
+  ],
+  "verifier_requirements": [
+    "Compute bundle hash from bundle content only",
+    "Reject any attempt to influence verdict based on external state",
+    "Fail closed if bundle content is ambiguous or incomplete",
+    "Output verdict deterministically based solely on bundle content + profile + contracts + schemas"
+  ],
+  "legal_implications": [
+    "Verdicts are reproducible by any third party",
+    "No 'moving goalposts' after bundle is frozen",
+    "Cryptographic binding of truth to content",
+    "Dispute resolution based on evidence, not arguments"
+  ],
+  "compatibility": {
+    "backward_compatible": false,
+    "versioning_policy": "immutable"
+  }
+}
+

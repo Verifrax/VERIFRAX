@@ -1,0 +1,54 @@
+{
+  "build_id": "verifrax-verifier-min-v1.0.0",
+  "build_date": "2024-12-28T00:00:00Z",
+  "builder": {
+    "name": "VERIFRAX Build System",
+    "version": "1.0.0"
+  },
+  "source": {
+    "repo": "https://github.com/verifrax/verifrax",
+    "commit": "TBD",
+    "tag": "finality-law-v1"
+  },
+  "environment": {
+    "rust_version": "stable",
+    "targets": [
+      "x86_64-unknown-linux-gnu",
+      "x86_64-apple-darwin",
+      "x86_64-pc-windows-msvc"
+    ],
+    "deterministic": true
+  },
+  "artifacts": [
+    {
+      "name": "verifrax-verifier-min-linux",
+      "target": "x86_64-unknown-linux-gnu",
+      "hash": "sha256:TBD",
+      "size": 0
+    },
+    {
+      "name": "verifrax-verifier-min-macos",
+      "target": "x86_64-apple-darwin",
+      "hash": "sha256:TBD",
+      "size": 0
+    },
+    {
+      "name": "verifrax-verifier-min-windows.exe",
+      "target": "x86_64-pc-windows-msvc",
+      "hash": "sha256:TBD",
+      "size": 0
+    }
+  ],
+  "reproducibility": {
+    "verified": false,
+    "machine_a": {
+      "hash": "sha256:TBD",
+      "timestamp": "TBD"
+    },
+    "machine_b": {
+      "hash": "sha256:TBD",
+      "timestamp": "TBD"
+    }
+  }
+}
+

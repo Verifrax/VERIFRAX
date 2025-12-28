@@ -1,0 +1,116 @@
+name: Verifrax Finality
+
+on:
+  push:
+    branches: [main, finality-v1]
+  pull_request:
+    branches: [main]
+  release:
+    types: [created]
+
+jobs:
+  seed-claim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Create claim at build time
+        env:
+          VERIFRAX_ORG: ${{ github.repository_owner }}
+          VERIFRAX_KEY_ID: ${{ github.sha }}
+          VERIFRAX_PROFILE_ID: public@1.0.0
+        run: |
+          node scripts/seed.claim.mjs build-provenance ${{ github.sha }} run \
+            --assertions '[{"assertion_id":"build-commit","predicate":"has_git_commit","object":"${{ github.sha }}"}]'
+      
+      - name: Upload claim artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: claim
+          path: out/claims/*.json
+
+  build-evidence-bundle:
+    runs-on: ubuntu-latest
+    needs: seed-claim
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Download claim artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: claim
+      
+      - name: Build evidence bundle at release time
+        run: |
+          # Build bundle with claims, evidence, attestations
+          # This would call bundle.build.mjs with appropriate parameters
+          echo "Building evidence bundle..."
+      
+      - name: Upload bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle
+          path: out/bundles/*.zip
+
+  publish-index:
+    runs-on: ubuntu-latest
+    needs: build-evidence-bundle
+    if: github.event_name == 'release'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Download bundle artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: bundle
+      
+      - name: Publish to truth index at deploy time
+        run: |
+          # Extract bundle and publish to index
+          node scripts/publish.index.mjs out/bundles
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./index
+

@@ -1,0 +1,16 @@
+[package]
+name = "verifrax-verifier-min"
+version = "1.0.0"
+edition = "2021"
+
+[dependencies]
+sha2 = "0.10"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[profile.release]
+opt-level = "z"     # Optimize for size
+lto = true          # Link-time optimization
+codegen-units = 1   # Better optimization
+strip = true        # Strip symbols
+

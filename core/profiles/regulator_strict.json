@@ -1,0 +1,56 @@
+{
+  "profile_id": "regulator_strict@1.0.0",
+  "profile_name": "regulator_strict",
+  "version": "1.0.0",
+  "description": "Regulator strict profile - maximum enforcement for regulatory compliance",
+  "required_evidence_classes": [
+    "signatures",
+    "hashes",
+    "anchors",
+    "transparency_logs",
+    "attestations",
+    "sbom",
+    "execution_traces"
+  ],
+  "allowed_trust_assumptions": [
+    "Only verified certificate authorities",
+    "Multi-anchor requirements",
+    "Full attestation chain",
+    "SBOM verification",
+    "Execution trace verification"
+  ],
+  "failure_severity_mapping": {
+    "missing_evidence": "error",
+    "invalid_signature": "error",
+    "hash_mismatch": "error",
+    "missing_attestation": "error",
+    "missing_sbom": "error",
+    "missing_trace": "error",
+    "contradiction": "error"
+  },
+  "verdict_mapping": {
+    "missing_required_evidence": "INVALID",
+    "invalid_signature": "INVALID",
+    "hash_mismatch": "INVALID",
+    "missing_attestation": "INVALID",
+    "missing_sbom": "INVALID",
+    "missing_trace": "INVALID",
+    "contradiction": "CONTRADICTED",
+    "unsupported_version": "UNSUPPORTED"
+  },
+  "attestation_requirements": {
+    "os": true,
+    "arch": true,
+    "toolchain": true,
+    "container_digest": true,
+    "git_commit": true,
+    "sbom_hash": true
+  },
+  "additional_requirements": {
+    "execution_trace": true,
+    "detailed_timestamps": true,
+    "chain_of_custody": true,
+    "zero_tolerance": true
+  }
+}
+

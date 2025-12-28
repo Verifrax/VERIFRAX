@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://verifrax.org/schemas/claim/v1",
+  "title": "VERIFRAX Claim Schema v1",
+  "description": "First-class claim as post-hoc dispute unit",
+  "type": "object",
+  "required": [
+    "claim_id",
+    "claim_type",
+    "subject",
+    "assertions",
+    "evidence_refs",
+    "profile_id",
+    "issuer",
+    "issued_at"
+  ],
+  "properties": {
+    "claim_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "Unique identifier (UUID)"
+    },
+    "claim_type": {
+      "type": "string",
+      "description": "Type of claim (e.g., 'media-finality', 'build-provenance')"
+    },
+    "subject": {
+      "type": "object",
+      "required": ["identifier", "type"],
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "Unique identifier for the subject"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["artifact", "run", "person", "system"],
+          "description": "Type of subject"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Additional subject metadata"
+        }
+      }
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["assertion_id", "predicate", "object"],
+        "properties": {
+          "assertion_id": { "type": "string" },
+          "predicate": {
+            "type": "string",
+            "description": "The predicate (e.g., 'has_hash', 'was_executed_by')"
+          },
+          "object": {
+            "description": "The object of the assertion (can be string, number, object, etc.)"
+          },
+          "negated": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this assertion is negated"
+          }
+        }
+      },
+      "minItems": 1,
+      "description": "Array of assertions made in this claim"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidence_id", "evidence_type"],
+        "properties": {
+          "evidence_id": { "type": "string" },
+          "evidence_type": { "type": "string" },
+          "hash": { "type": "string" },
+          "relationship": {
+            "type": "string",
+            "description": "How this evidence supports the claim"
+          }
+        }
+      },
+      "description": "References to evidence supporting the claim"
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[a-z_]+@[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Profile under which this claim is valid"
+    },
+    "issuer": {
+      "type": "object",
+      "required": ["org", "key_id"],
+      "properties": {
+        "org": { "type": "string" },
+        "key_id": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 timestamp"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Optional expiration timestamp"
+    },
+    "signature": {
+      "type": "object",
+      "properties": {
+        "algorithm": { "type": "string" },
+        "value": { "type": "string" },
+        "public_key_ref": { "type": "string" }
+      },
+      "description": "Cryptographic signature of the claim"
+    }
+  }
+}
+

@@ -1,0 +1,50 @@
+{
+  "contract_id": "attestation@1.0.0",
+  "contract_type": "attestation",
+  "version": "1.0.0",
+  "description": "Contract for reality anchoring attestations",
+  "schema_ref": "https://verifrax.org/schemas/attestation/v1",
+  "required_fields": [
+    "attestation_id",
+    "attestation_type",
+    "subject",
+    "profile_id",
+    "issuer",
+    "issued_at",
+    "signature"
+  ],
+  "minimum_attestation_set": {
+    "public": [],
+    "enterprise": ["os", "arch"],
+    "legal_strict": ["os", "arch", "toolchain", "container_digest", "git_commit", "sbom_hash"],
+    "regulator": ["os", "arch", "toolchain", "container_digest", "git_commit", "sbom_hash"],
+    "forensics": ["os", "arch", "toolchain", "container_digest", "git_commit", "sbom_hash"]
+  },
+  "rules": [
+    {
+      "rule_id": "attestation-id-unique",
+      "description": "attestation_id must be unique UUID",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "profile-requirements",
+      "description": "Attestation must include all fields required by profile",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "signature-required",
+      "description": "signature must be present and valid",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "fail-closed-missing",
+      "description": "Under strict profiles, missing required attestations must result in INVALID",
+      "enforcement": "strict"
+    }
+  ],
+  "compatibility": {
+    "backward_compatible": true,
+    "versioning_policy": "semantic"
+  }
+}
+

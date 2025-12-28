@@ -1,0 +1,45 @@
+{
+  "profile_id": "regulator@1.0.0",
+  "profile_name": "regulator",
+  "version": "1.0.0",
+  "description": "Regulator profile - requirements for regulatory compliance",
+  "required_evidence_classes": [
+    "signatures",
+    "hashes",
+    "anchors",
+    "transparency_logs",
+    "attestations",
+    "sbom"
+  ],
+  "allowed_trust_assumptions": [
+    "Only verified certificate authorities",
+    "Multi-anchor requirements",
+    "Full attestation chain",
+    "SBOM verification"
+  ],
+  "failure_severity_mapping": {
+    "missing_evidence": "error",
+    "invalid_signature": "error",
+    "hash_mismatch": "error",
+    "missing_attestation": "error",
+    "missing_sbom": "error"
+  },
+  "verdict_mapping": {
+    "missing_required_evidence": "INVALID",
+    "invalid_signature": "INVALID",
+    "hash_mismatch": "INVALID",
+    "missing_attestation": "INVALID",
+    "missing_sbom": "INVALID",
+    "contradiction": "CONTRADICTED",
+    "unsupported_version": "UNSUPPORTED"
+  },
+  "attestation_requirements": {
+    "os": true,
+    "arch": true,
+    "toolchain": true,
+    "container_digest": true,
+    "git_commit": true,
+    "sbom_hash": true
+  }
+}
+

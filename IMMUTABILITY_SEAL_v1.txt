@@ -1,0 +1,72 @@
+VERIFRAX IMMUTABILITY SEAL v1
+============================
+
+Date: 2024-12-28
+Status: FINAL
+
+CANONICAL HASHES
+----------------
+
+See CANONICAL_HASHES_v1.txt for complete hash list.
+
+Key Artifacts:
+- VERDICT_REFERENCE_v1.md: [See CANONICAL_HASHES_v1.txt]
+- Axioms: [See CANONICAL_HASHES_v1.txt]
+- Contracts: [See CANONICAL_HASHES_v1.txt]
+- Schemas: [See CANONICAL_HASHES_v1.txt]
+- Golden Bundles: [See CANONICAL_HASHES_v1.txt]
+
+Script Integrity:
+- SCRIPTS_HASHES_v1.txt: [See SCRIPTS_HASHES_v1.txt]
+
+Environment Fingerprint:
+- ENVIRONMENT_FINGERPRINT.txt: [See ENVIRONMENT_FINGERPRINT.txt]
+
+VERIFIER BINARY HASHES
+----------------------
+
+Linux: sha256:TBD (to be computed from reproducible build)
+macOS: sha256:TBD (to be computed from reproducible build)
+Windows: sha256:TBD (to be computed from reproducible build)
+
+DECLARATION OF NON-AUTHORITY
+----------------------------
+
+VERIFRAX maintainers declare:
+
+1. NO authority over semantic arbitration
+2. NO authority over truth retraction
+3. NO authority over dispute resolution
+4. NO authority over semantic evolution
+
+See docs/NO_FUTURE_AUTHORITY.md for complete declaration.
+
+FINALITY IS SELF-SUSTAINING
+----------------------------
+
+- Verdicts are self-contained
+- Bundles are self-contained
+- Verifier is standalone
+- Finality is external
+
+No authority required. No authority possible.
+
+PUBLICATION LOCATIONS
+---------------------
+
+This seal is published to:
+1. Static site (verifrax.org)
+2. Git mirror (read-only)
+3. Archive store (WORM-compatible)
+
+IMMUTABILITY GUARANTEE
+----------------------
+
+This seal is IMMUTABLE.
+
+Any modification invalidates the seal.
+
+============================
+END OF IMMUTABILITY SEAL v1
+============================
+

@@ -1,0 +1,64 @@
+{
+  "contract_id": "claim@1.0.0",
+  "contract_type": "claim",
+  "version": "1.0.0",
+  "description": "Contract for first-class claims as post-hoc dispute units",
+  "schema_ref": "https://verifrax.org/schemas/claim/v1",
+  "required_fields": [
+    "claim_id",
+    "claim_type",
+    "subject",
+    "assertions",
+    "evidence_refs",
+    "profile_id",
+    "issuer",
+    "issued_at"
+  ],
+  "rules": [
+    {
+      "rule_id": "claim-id-unique",
+      "description": "claim_id must be unique UUID",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "subject-identifier-required",
+      "description": "subject.identifier must be present and non-empty",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "assertions-non-empty",
+      "description": "assertions array must contain at least one assertion",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "evidence-refs-valid",
+      "description": "All evidence_refs must reference valid evidence in bundle",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "signature-required",
+      "description": "signature must be present and valid for claim to be considered",
+      "enforcement": "strict"
+    },
+    {
+      "rule_id": "profile-compatibility",
+      "description": "profile_id must be compatible with verifier",
+      "enforcement": "strict"
+    }
+  ],
+  "contradiction_detection": {
+    "enabled": true,
+    "rules": [
+      {
+        "rule_id": "same-subject-contradiction",
+        "description": "Two claims with same subject.identifier and incompatible assertions must result in CONTRADICTED",
+        "enforcement": "strict"
+      }
+    ]
+  },
+  "compatibility": {
+    "backward_compatible": true,
+    "versioning_policy": "semantic"
+  }
+}
+

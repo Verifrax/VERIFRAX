@@ -1,0 +1,36 @@
+{
+  "profile_id": "enterprise@1.0.0",
+  "profile_name": "enterprise",
+  "version": "1.0.0",
+  "description": "Enterprise profile - moderate requirements for business use",
+  "required_evidence_classes": [
+    "signatures",
+    "hashes"
+  ],
+  "allowed_trust_assumptions": [
+    "Trusted certificate authorities",
+    "Enterprise key management"
+  ],
+  "failure_severity_mapping": {
+    "missing_evidence": "error",
+    "invalid_signature": "error",
+    "hash_mismatch": "error",
+    "missing_attestation": "warning"
+  },
+  "verdict_mapping": {
+    "missing_required_evidence": "INVALID",
+    "invalid_signature": "INVALID",
+    "hash_mismatch": "INVALID",
+    "contradiction": "CONTRADICTED",
+    "unsupported_version": "UNSUPPORTED"
+  },
+  "attestation_requirements": {
+    "os": true,
+    "arch": true,
+    "toolchain": false,
+    "container_digest": false,
+    "git_commit": false,
+    "sbom_hash": false
+  }
+}
+

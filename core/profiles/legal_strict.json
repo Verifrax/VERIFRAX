@@ -1,0 +1,41 @@
+{
+  "profile_id": "legal_strict@1.0.0",
+  "profile_name": "legal_strict",
+  "version": "1.0.0",
+  "description": "Legal strict profile - maximum requirements for legal proceedings",
+  "required_evidence_classes": [
+    "signatures",
+    "hashes",
+    "anchors",
+    "transparency_logs",
+    "attestations"
+  ],
+  "allowed_trust_assumptions": [
+    "Only verified certificate authorities",
+    "Multi-anchor requirements",
+    "Full attestation chain"
+  ],
+  "failure_severity_mapping": {
+    "missing_evidence": "error",
+    "invalid_signature": "error",
+    "hash_mismatch": "error",
+    "missing_attestation": "error"
+  },
+  "verdict_mapping": {
+    "missing_required_evidence": "INVALID",
+    "invalid_signature": "INVALID",
+    "hash_mismatch": "INVALID",
+    "missing_attestation": "INVALID",
+    "contradiction": "CONTRADICTED",
+    "unsupported_version": "UNSUPPORTED"
+  },
+  "attestation_requirements": {
+    "os": true,
+    "arch": true,
+    "toolchain": true,
+    "container_digest": true,
+    "git_commit": true,
+    "sbom_hash": true
+  }
+}
+
