@@ -46,10 +46,16 @@ Any mutation invalidates trust.
 
 **SHA256SUMS.txt:** Contains SHA-256 hash of `truth.ndjson`
 
+**GENESIS_HASH.txt:** Immutable cryptographic root (hash of `truth.ndjson` as of v2.3.0)
+- Computed once, never recomputed, never replaced
+- Anchor of anchors - enables offline verification
+- Survives repo migrations, history rewrites, mirroring
+
 **CI Enforcement:** GitHub Action verifies:
 - No existing entries modified
 - No existing entries removed
 - Only appends at end
+- Genesis segment immutable (cryptographic root)
 
 ## Third-Party Verification
 
@@ -60,6 +66,16 @@ To verify integrity:
 3. Compare with `index/SHA256SUMS.txt`
 4. Verify entries are valid JSON
 5. Verify no entries were reordered
+
+**Offline Verification (with Genesis Hash):**
+
+1. Download `index/truth.ndjson` and `index/GENESIS_HASH.txt`
+2. Extract genesis segment (first N entries that hash to genesis hash)
+3. Verify genesis segment hash matches `GENESIS_HASH.txt`
+4. Verify current file starts with genesis segment (append-only)
+5. Verify new entries are only at end
+
+This enables verification independent of git history.
 
 ## Access Model
 
