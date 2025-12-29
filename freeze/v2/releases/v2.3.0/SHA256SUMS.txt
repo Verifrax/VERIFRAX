@@ -1,0 +1,4 @@
+2ad92bbb0df77e413f5e8c5e3ad26ccb7c538fa5f229ed86fda819ce7bdf9b40  ./README.md
+bbd03b336323255b17d8001a352030a3aaf52e79513ccb61cf64ca76c8e9d9db  ./IMMUTABLE.txt
+bc0fcaa6ebc886345e1cc222aafcbfbf7bcbbe369e36431bab026238839626cb  ./truth.ndjson
+fb5a623c4d60db4ac2da3201ad535409432c183cf9c20495eb766c6705f2732c  ./truth-index-integrity.yml

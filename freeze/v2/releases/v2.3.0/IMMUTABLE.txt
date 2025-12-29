@@ -1,0 +1,4 @@
+This index is append-only.
+Existing entries MUST NOT be modified or removed.
+Any mutation invalidates trust.
+
