@@ -31,4 +31,13 @@ jobs:
           else
             echo "⚠ SHA256SUMS.txt not found (first commit)"
           fi
+      
+      - name: Verify genesis hash anchor
+        run: |
+          if [ -f index/GENESIS_HASH.txt ]; then
+            echo "✓ GENESIS_HASH.txt present"
+            cat index/GENESIS_HASH.txt
+          else
+            echo "⚠ GENESIS_HASH.txt not found (pre-v2.3.0)"
+          fi
 
