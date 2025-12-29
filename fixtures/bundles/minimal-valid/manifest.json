@@ -1,0 +1,9 @@
+{
+  "upload_id": "00000000-0000-0000-0000-000000000000",
+  "payment_intent_id": "pi_fixture",
+  "bundle_hash": "sha256:ba18a51f06af90c110924fc4e87a64dba5127bc092a582b33a2f1b844835413b",
+  "size_bytes": 43,
+  "completed_at": "2025-01-01T00:00:00.000Z",
+  "verifier": "verifrax-edge",
+  "version": "v1"
+}

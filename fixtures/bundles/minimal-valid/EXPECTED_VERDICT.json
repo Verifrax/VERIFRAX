@@ -1,0 +1,10 @@
+{
+  "upload_id": "00000000-0000-0000-0000-000000000000",
+  "bundle_hash": "sha256:ba18a51f06af90c110924fc4e87a64dba5127bc092a582b33a2f1b844835413b",
+  "profile_id": "public@1.0.0",
+  "verifier_version": "2.1.0",
+  "verdict": "verified",
+  "reason_codes": [],
+  "verdict_hash": "sha256:88196dc2dcc9e4cae432a478435b8941880afcece949cc8bb05967a5f4bfad9a",
+  "executed_at": "2025-01-01T00:00:00.000Z"
+}
