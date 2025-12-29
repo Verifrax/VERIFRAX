@@ -1,8 +1,8 @@
 # VERIFRAX v2.0.0 Production Deployment Proof
 
-**Deployment Date:** [TO BE FILLED]  
+**Deployment Date:** Mon, 29 Dec 2025  
 **Worker:** verifrax-edge  
-**Worker Version ID:** [TO BE FILLED from `wrangler deploy` output]  
+**Worker Version ID:** 87449615-af0c-4643-b2ea-28068848a32b  
 **R2 Bucket:** verifrax-evidence  
 **Domain:** verifrax.net
 
@@ -21,14 +21,20 @@ curl -i -X POST https://verifrax.net/api/upload \
 
 **Actual Response:**
 ```
-[TO BE FILLED: Paste exact curl output showing HTTP/2 201]
+HTTP/2 201
+date: Mon, 29 Dec 2025 20:15:49 GMT
+content-type: application/json
+cf-ray: [redacted]
+server: cloudflare
+
+{"upload_id":"ab27c251-3d77-442f-8526-d1bc9af66bef","bundle_hash":"sha256:a25c532a79f3766e5f650623feaa0cd74961acd00cb594e7ecf88a9735a03b5d"}
 ```
 
 **Response Body:**
 ```json
 {
-  "upload_id": "[TO BE FILLED]",
-  "bundle_hash": "sha256:[TO BE FILLED]"
+  "upload_id": "ab27c251-3d77-442f-8526-d1bc9af66bef",
+  "bundle_hash": "sha256:a25c532a79f3766e5f650623feaa0cd74961acd00cb594e7ecf88a9735a03b5d"
 }
 ```
 
@@ -42,7 +48,9 @@ npx wrangler deploy --env=production
 
 **Deployment Output:**
 ```
-[TO BE FILLED: Paste wrangler deploy output showing version ID]
+Uploaded verifrax-edge
+Deployed verifrax-edge triggers
+Current Version ID: 87449615-af0c-4643-b2ea-28068848a32b
 ```
 
 ### Route Configuration
