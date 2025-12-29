@@ -1,0 +1,19 @@
+name: Freeze Guard
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  freeze-protection:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Block changes to frozen releases
+        run: |
+          if git diff --name-only HEAD~1 | grep '^freeze/v2/releases/v2.0.0/'; then
+            echo "ERROR: Frozen release v2.0.0 modified. Create a new version."
+            exit 1
+          fi
+
