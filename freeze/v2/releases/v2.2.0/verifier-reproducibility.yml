@@ -1,0 +1,25 @@
+name: Verifier Reproducibility
+
+on: [push, pull_request]
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: Run reproducibility test
+        run: node ci/verify-reproducibility.mjs
+      
+      - name: Verify fixture integrity
+        run: |
+          echo "Checking fixture files..."
+          test -f fixtures/bundles/minimal-valid/bundle.bin || exit 1
+          test -f fixtures/bundles/minimal-valid/manifest.json || exit 1
+          test -f fixtures/bundles/minimal-valid/EXPECTED_VERDICT.json || exit 1
+          echo "✓ All fixture files present"
+
