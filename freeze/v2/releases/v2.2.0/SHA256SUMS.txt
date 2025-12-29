@@ -1,0 +1,6 @@
+2202ae98a3233bbd8dea5f944bab41295fa114d54e1628d28300ba2f1b3dca8a  ./verify-reproducibility.mjs
+29cf9474d2ffd41cd98d985e9748a2eb4cbc295cd65f6f39693968149a65e8c5  ./verifier-reproducibility.yml
+408aa694bfcd51006e0c871b65a55beaf9ece852310e187f2a05458ad8afbc2a  ./fixture/EXPECTED_VERDICT.json
+7c4629d66ed4163bc1b6a846e9889b5aace7a5ecaa3915ac218e89f63d003837  ./IMMUTABLE.txt
+ba18a51f06af90c110924fc4e87a64dba5127bc092a582b33a2f1b844835413b  ./fixture/bundle.bin
+c2ac5393ae9ce5632b7113d450e1ac0535f69c623f894a2af607092f77abe7f0  ./fixture/manifest.json
