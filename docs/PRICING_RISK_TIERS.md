@@ -10,6 +10,8 @@ This document defines the **pricing structure and risk tiers** for VERIFRAX veri
 
 **Pricing is event-based and risk-tiered. Higher risk tiers include additional liability protections and verification guarantees.**
 
+VERIFRAX verifies **conformance to declared rules**, not truth, legality, or factual correctness of evidence.
+
 ## Risk Tiers
 
 ### Tier 1: Public (Low Risk)

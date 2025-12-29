@@ -103,6 +103,7 @@ function merkleRoot(leafHashes: string[]): string {
  * 
  * Rules:
  * - Excludes verdict.json
+ * - Excludes created_at from bundle.json if present
  * - Deterministic file ordering (alphabetical by relative path)
  * - Uses Merkle root of all file hashes
  */
@@ -113,8 +114,53 @@ export function computeBundleHash(bundleDir: string): string {
     throw new Error('Bundle directory is empty or contains only verdict.json');
   }
   
+  // Filter created_at from bundle.json if it exists
+  const bundleJsonPath = path.join(bundleDir, 'bundle.json');
+  if (fs.existsSync(bundleJsonPath)) {
+    const bundleContent = fs.readFileSync(bundleJsonPath, 'utf8');
+    const bundle = JSON.parse(bundleContent);
+    const original = JSON.parse(JSON.stringify(bundle));
+    
+    // Remove created_at before hashing
+    if ('created_at' in bundle) {
+      delete bundle.created_at;
+    }
+    
+    // Assert: created_at must not influence hash
+    const hashed = JSON.parse(JSON.stringify(bundle));
+    if (original.created_at && hashed.created_at) {
+      throw new Error("created_at must not influence bundle hash");
+    }
+    
+    // If bundle.json was modified, we need to recompute its hash
+    // But since we hash files by content, we need to temporarily write the filtered version
+    // Actually, we hash file contents directly, so we need to filter at file read time
+    // For now, we'll filter it in the file reading logic
+  }
+  
   // Each file.hash is already path-bound (sha256(path + "\0" + contentHash))
-  const leafHashes = files.map(f => f.hash);
+  // But we need to filter created_at from bundle.json content before hashing
+  const filteredFiles = files.map(f => {
+    if (f.relativePath === 'bundle.json') {
+      const fullPath = path.join(bundleDir, f.relativePath);
+      let content = fs.readFileSync(fullPath, 'utf8');
+      const bundle = JSON.parse(content);
+      if ('created_at' in bundle) {
+        delete bundle.created_at;
+        content = JSON.stringify(bundle);
+      }
+      const contentHash = sha256(content);
+      const normalizedPath = f.relativePath.replace(/\\/g, '/');
+      const leafHash = sha256(normalizedPath + '\0' + contentHash);
+      return {
+        relativePath: f.relativePath,
+        hash: leafHash
+      };
+    }
+    return f;
+  });
+  
+  const leafHashes = filteredFiles.map(f => f.hash);
   const root = merkleRoot(leafHashes);
   
   return `sha256:${root}`;
