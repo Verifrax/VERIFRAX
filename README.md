@@ -1,18 +1,37 @@
-# VERIFRAX v1 — Finality Infrastructure
+# VERIFRAX
 
-**VERIFRAX is a deterministic verification system that produces a final, reproducible verdict on evidence bundles.**
+VERIFRAX is a deterministic verification system that produces final, reproducible verdicts for evidence bundles.
 
-VERIFRAX is not a product.
-VERIFRAX is not a service.
-VERIFRAX is not a platform.
+## Current Stable Version
+- **v2.0.0** (tagged, frozen)
 
-VERIFRAX defines how truth is finalized after dispute, failure, or uncertainty.
+## Active Surfaces
+- `/api/upload` — Worker-proxied R2 ingestion
+- Deterministic verification engine
+- Frozen governance and bundle specifications
 
-Once a VERIFRAX verdict exists:
-– Narratives cannot override evidence
-– Authority cannot reinterpret outcomes
-– History cannot be revised
+## What This Repo Is NOT
+- Not a blockchain
+- Not a storage service
+- Not a prediction system
+- Not a human review platform
 
-Maintainers have no authority over verdict meaning or dispute resolution.
+## Trust Boundary
+Only artifacts under `freeze/v2/releases/` are considered authoritative.
 
-[FREEZE_NOTICE.md](FREEZE_NOTICE.md)
+## Authoritative Documentation
+- `docs/V2_EDGE_API.md` — API specification
+- `docs/DNS_AUDIT_v2.md` — DNS security audit
+- `docs/GOVERNANCE_DISPUTE_FINALITY.md` — Dispute protocol
+- `docs/GOVERNANCE_VERSION_FINALITY.md` — Version guarantees
+- `docs/EVIDENCE_BUNDLE_SPEC_v1.md` — Bundle specification
+- `docs/PRICING_RISK_TIERS.md` — Pricing structure
+
+## Architecture
+- **Worker:** `workers/verifrax-edge/` — Cloudflare Worker (R2 upload rail)
+- **Core Engine:** `core/` — Deterministic verification engine
+- **Frozen Release:** `freeze/v2/releases/v2.0.0/` — Immutable v2.0.0 snapshot
+
+## Archived
+- `archive/engines/` — Historical engines (not part of v2 trusted computing base)
+- `docs/_graveyard/` — Non-authoritative documentation
