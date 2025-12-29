@@ -19,6 +19,8 @@ Running the verifier on this bundle must produce:
 
 The `bundle_hash` must be identical across all verifier implementations and runs.
 
+Note: created_at is excluded from hashing. Changing it must not change bundle_hash.
+
 ## Usage
 
 ```bash

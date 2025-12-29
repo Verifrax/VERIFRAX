@@ -25,7 +25,7 @@
     "created_at": {
       "type": "string",
       "format": "date-time",
-      "description": "ISO8601 UTC timestamp of bundle creation"
+      "description": "Metadata only. Explicitly excluded from bundle hash computation."
     },
     "claims": {
       "type": "array",

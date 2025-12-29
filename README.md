@@ -1,5 +1,7 @@
 # VERIFRAX v1 — Finality Infrastructure
 
+**VERIFRAX is a deterministic verification system that produces a final, reproducible verdict on evidence bundles.**
+
 VERIFRAX is not a product.
 VERIFRAX is not a service.
 VERIFRAX is not a platform.

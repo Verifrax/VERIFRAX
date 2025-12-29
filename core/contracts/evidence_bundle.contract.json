@@ -11,6 +11,7 @@
     "claims",
     "evidence"
   ],
+  "hash_exclusions": ["created_at"],
   "rules": [
     {
       "rule_id": "bundle-deterministic",
@@ -31,6 +32,12 @@
       "rule_id": "profile-binding",
       "description": "Profile ID must match the profile used for verification",
       "enforcement": "strict"
+    },
+    {
+      "rule_id": "created-at-frozen",
+      "description": "created_at must be excluded from bundle hash computation",
+      "enforcement": "strict",
+      "hash_policy": "excluded"
     }
   ],
   "compatibility": {

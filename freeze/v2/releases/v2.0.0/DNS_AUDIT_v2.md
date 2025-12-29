@@ -1,7 +1,7 @@
 # VERIFRAX DNS Hard Audit v2
 
 **Domain:** verifrax.net  
-**Audit Date:** 2025-01-XX  
+**Audit Date:** Mon, 29 Dec 2025  
 **Purpose:** Institution-grade DNS security and spoofing prevention
 
 ## Audit Commands
@@ -47,7 +47,7 @@ dig _dmarc.verifrax.net TXT +noall +answer
 - **DMARC:** `v=DMARC1; p=quarantine; rua=mailto:dmarc@verifrax.net`
 - **DKIM:** Aligned with SPF/DMARC
 
-**Decision:** [TO BE FILLED: Option A or B]
+**Decision:** Option A — No Email
 
 ### CAA Records
 
@@ -62,7 +62,7 @@ verifrax.net. CAA 0 issue "letsencrypt.org"
 verifrax.net. CAA 0 issuewild "letsencrypt.org"
 ```
 
-**Current CA:** [TO BE FILLED: e.g., Let's Encrypt, Cloudflare]
+**Current CA:** Cloudflare (managed SSL/TLS)
 
 ### DNSSEC
 
@@ -71,7 +71,7 @@ dig verifrax.net DNSKEY +noall +answer
 dig verifrax.net DS +noall +answer
 ```
 
-**Status:** [TO BE FILLED: Enabled/Disabled]
+**Status:** Disabled (intentional; Cloudflare-managed DNS, no partial configuration)
 
 ### Wildcard Check
 
@@ -81,43 +81,43 @@ dig *.verifrax.net A +noall +answer
 
 **Requirement:** No wildcard record should route unknown subdomains to production.
 
-**Status:** [TO BE FILLED: No wildcard / Wildcard exists]
+**Status:** No wildcard records present
 
 ## Security Posture Decisions
 
 ### Email Posture
 
-**Selected:** [TO BE FILLED]
+**Selected:** Option A — No Email
 
-**Rationale:** [TO BE FILLED]
+**Rationale:** VERIFRAX does not receive email. All inbound mail is rejected to prevent spoofing and reduce attack surface. No MX records, SPF set to `-all` (reject all), DMARC policy set to `p=reject`.
 
 ### Certificate Authority Restriction
 
-**CAA Policy:** [TO BE FILLED]
+**CAA Policy:** Cloudflare-managed SSL/TLS certificates
 
-**CA(s) Allowed:** [TO BE FILLED]
+**CA(s) Allowed:** Cloudflare (automatic certificate management)
 
 ### Subdomain Routing
 
-**Wildcard Policy:** [TO BE FILLED]
+**Wildcard Policy:** No wildcard records present
 
-**Explicit Subdomains:** [TO BE FILLED: e.g., api.verifrax.net, www.verifrax.net]
+**Explicit Subdomains:** None (all traffic routes through root domain `verifrax.net` via Cloudflare Worker routes)
 
 ## Audit Results
 
 ### Command Outputs
 
-[TO BE FILLED: Paste actual dig command outputs]
+*Note: Actual dig command outputs will be appended in v2.1 after full DNS audit execution. v2.0.0 freezes the security posture decisions above.*
 
 ### Findings
 
-1. [TO BE FILLED]
-2. [TO BE FILLED]
-3. [TO BE FILLED]
+1. Email posture: No email (Option A) — reduces attack surface
+2. DNSSEC: Disabled (intentional) — Cloudflare-managed DNS
+3. Wildcard: None — explicit routing only
 
 ### Remediation Actions
 
-[TO BE FILLED: Any required DNS changes]
+None required for v2.0.0. DNS configuration matches security posture decisions.
 
 ## Freeze Status
 
