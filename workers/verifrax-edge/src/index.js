@@ -145,6 +145,8 @@ export default {
     }
 
     // Verify endpoint (deterministic execution → verdict artifact)
+    // CRITICAL: /api/verify is idempotent. Re-running verification does not create state,
+    // mutate storage, or change outputs. Same inputs → same verdict_hash.
     if (path === "/api/verify" && method === "POST") {
       // Validate R2 bucket binding
       if (!env.EVIDENCE_BUCKET) {
@@ -154,9 +156,22 @@ export default {
         );
       }
 
+      // Hard-pin verifier version (enforces version finality)
+      const WORKER_VERIFIER_VERSION = "2.1.0";
+
       try {
         const body = await request.json();
-        const { upload_id, profile_id = "public@1.0.0", verifier_version = "2.0.0" } = body;
+        const { upload_id, profile_id = "public@1.0.0", verifier_version } = body;
+
+        // Enforce verifier version (must match worker version)
+        if (verifier_version && verifier_version !== WORKER_VERIFIER_VERSION) {
+          return new Response(
+            JSON.stringify({ error: "Unsupported verifier_version", supported_version: WORKER_VERIFIER_VERSION }),
+            { status: 400, headers: { "Content-Type": "application/json" } }
+          );
+        }
+        // Default to worker version if not specified
+        const effective_verifier_version = verifier_version || WORKER_VERIFIER_VERSION;
 
         if (!upload_id) {
           return new Response(
@@ -227,13 +242,27 @@ export default {
           upload_id,
           bundle_hash: computedHash,
           profile_id,
-          verifier_version,
+          verifier_version: effective_verifier_version,
           verdict,
           reason_codes: reasonCodes
         };
 
+        // Canonical JSON stringify (recursive, deterministic)
+        // CRITICAL: Ensures nested objects and arrays are deterministically ordered
+        function canonicalStringify(obj) {
+          if (Array.isArray(obj)) {
+            return `[${obj.map(canonicalStringify).join(",")}]`;
+          }
+          if (obj && typeof obj === "object") {
+            return `{${Object.keys(obj).sort().map(
+              key => `"${key}":${canonicalStringify(obj[key])}`
+            ).join(",")}}`;
+          }
+          return JSON.stringify(obj);
+        }
+
         // Compute verdict hash (excluding executed_at)
-        const verdictCanonical = JSON.stringify(verdictObject, Object.keys(verdictObject).sort());
+        const verdictCanonical = canonicalStringify(verdictObject);
         const verdictHashBuffer = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(verdictCanonical));
         const verdictHash =
           "sha256:" +
@@ -243,7 +272,12 @@ export default {
 
         // Final response (with executed_at for audit, but not in hash)
         const response = {
-          ...verdictObject,
+          upload_id,
+          bundle_hash: computedHash,
+          profile_id,
+          verifier_version: effective_verifier_version,
+          verdict,
+          reason_codes: reasonCodes,
           verdict_hash: verdictHash,
           executed_at: new Date().toISOString()
         };
