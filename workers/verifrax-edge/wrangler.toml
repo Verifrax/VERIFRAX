@@ -1,0 +1,10 @@
+name = "verifrax-edge"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[env.production]
+routes = [
+  { pattern = "verifrax.net/*", zone_name = "verifrax.net" },
+  { pattern = "verifrax.net/api/*", zone_name = "verifrax.net" }
+]
+
