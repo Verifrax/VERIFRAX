@@ -2,9 +2,21 @@ name = "verifrax-edge"
 main = "src/index.js"
 compatibility_date = "2024-01-01"
 
+# Required secrets (set via: npx wrangler secret put <NAME>):
+# - STRIPE_SECRET_KEY
+
+# R2 bucket for evidence storage
+# Bucket name: verifrax-evidence
+# Security: No public access, no custom domain, no CORS, all ingress through Worker only
+
 [env.production]
 routes = [
   { pattern = "verifrax.net/*", zone_name = "verifrax.net" },
   { pattern = "verifrax.net/api/*", zone_name = "verifrax.net" }
 ]
+
+# R2 bucket binding (MUST be inside [env.production] for Wrangler v4)
+[[env.production.r2_buckets]]
+binding = "EVIDENCE_BUCKET"
+bucket_name = "verifrax-evidence"
 
