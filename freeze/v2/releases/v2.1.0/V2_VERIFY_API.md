@@ -87,6 +87,19 @@ This document defines the **v2.1 verify API contract** for VERIFRAX. This contra
 The `verdict_hash` is computed over the verdict object **excluding** `executed_at`:
 
 ```javascript
+// Canonical JSON stringify (recursive, deterministic)
+function canonicalStringify(obj) {
+  if (Array.isArray(obj)) {
+    return `[${obj.map(canonicalStringify).join(",")}]`;
+  }
+  if (obj && typeof obj === "object") {
+    return `{${Object.keys(obj).sort().map(
+      key => `"${key}":${canonicalStringify(obj[key])}`
+    ).join(",")}}`;
+  }
+  return JSON.stringify(obj);
+}
+
 const verdictObject = {
   upload_id,
   bundle_hash,
@@ -95,7 +108,7 @@ const verdictObject = {
   verdict,
   reason_codes
 };
-const verdictCanonical = JSON.stringify(verdictObject, Object.keys(verdictObject).sort());
+const verdictCanonical = canonicalStringify(verdictObject);
 const verdictHash = sha256(verdictCanonical);
 ```
 
@@ -103,6 +116,19 @@ This ensures:
 - Same inputs → same `verdict_hash`
 - Timestamp does not affect hash
 - Verdict is independently verifiable
+- Nested objects and arrays are deterministically ordered (future-proof)
+
+### Verifier Version Enforcement
+
+The worker enforces a hard-pinned verifier version. If `verifier_version` is provided and does not match the worker version, the request is rejected with status 400.
+
+**Default behavior:** If `verifier_version` is not provided, it defaults to the worker's version.
+
+**Enforcement:** The worker version is `2.1.0`. Requests specifying a different `verifier_version` are rejected to preserve version finality guarantees.
+
+### Idempotency
+
+**`/api/verify` is idempotent.** Re-running verification does not create state, mutate storage, or change outputs. Same inputs produce identical outputs.
 
 ### Deterministic Behavior
 
@@ -111,6 +137,7 @@ This ensures:
 - Hash computation is deterministic (no randomness)
 - No external dependencies (no network calls)
 - No mutable state (no writes to storage)
+- Verifier version is hard-pinned and enforced
 
 ### v2.1 Limitations (Documented)
 
