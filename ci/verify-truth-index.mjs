@@ -69,12 +69,7 @@ function main() {
       process.exit(1);
     }
 
-    // Find the number of entries that were present at genesis
-    // We need to determine this by checking git history or counting from genesis
-    // For now, we'll verify that the genesis hash matches the current file hash
-    // if the file hasn't been appended to since genesis
-    
-    // Try to get the genesis version from git
+    // Try to get the genesis version from git (when GENESIS_HASH.txt was first added)
     let genesisContent = null;
     try {
       // Find the commit that added GENESIS_HASH.txt
@@ -90,8 +85,18 @@ function main() {
         ).trim();
       }
     } catch (error) {
-      // Genesis commit not found, use current content if it matches genesis hash
-      genesisContent = currentContent;
+      // Genesis commit not found - this is first commit with genesis hash
+      // Verify current file matches genesis hash
+      const currentHash = 'sha256:' + sha256(currentContent);
+      if (currentHash === genesisHash) {
+        console.log('  ✓ Current file matches genesis hash (genesis established)\n');
+        genesisContent = currentContent; // Mark as genesis
+      } else {
+        console.error('\n❌ FAIL: Current file does not match genesis hash');
+        console.error(`  Current hash: ${currentHash}`);
+        console.error(`  Genesis hash: ${genesisHash}`);
+        process.exit(1);
+      }
     }
 
     if (genesisContent) {
@@ -116,18 +121,10 @@ function main() {
       const genesisLines = genesisContent.split('\n').filter(line => line.trim() !== '');
       console.log(`  Genesis entries: ${genesisLines.length}`);
       console.log(`  Current entries: ${currentLines.length}`);
-      console.log(`  New entries: ${currentLines.length - genesisLines.length}\n`);
-    } else {
-      // If we can't find genesis in git, verify current file matches genesis hash
-      const currentHash = 'sha256:' + sha256(currentContent);
-      if (currentHash === genesisHash) {
-        console.log('  ✓ Current file matches genesis hash (no appends yet)\n');
-      } else {
-        // File has been appended to - verify genesis segment
-        // We need to find where genesis ends by checking git
-        console.log('  ⚠ Genesis segment verification requires git history');
-        console.log('  Verifying append-only via git comparison...\n');
+      if (currentLines.length > genesisLines.length) {
+        console.log(`  New entries: ${currentLines.length - genesisLines.length}`);
       }
+      console.log('');
     }
   }
 
