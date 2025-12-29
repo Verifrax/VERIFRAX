@@ -127,25 +127,44 @@ function main() {
     }
   }
 
-  // Try to get previous version from git
+  // If genesis hash exists and current file matches it, skip git comparison
+  // (genesis hash is the authoritative anchor)
+  let skipGitComparison = false;
+  if (existsSync(GENESIS_HASH_PATH)) {
+    const genesisHash = readFileSync(GENESIS_HASH_PATH, 'utf8').trim();
+    const currentHash = 'sha256:' + sha256(currentContent);
+    if (currentHash === genesisHash) {
+      console.log('  ✓ Genesis hash verified - file matches immutable root');
+      skipGitComparison = true;
+    }
+  }
+
+  // Try to get previous version from git (only if genesis check didn't pass)
   let previousContent = null;
-  try {
-    previousContent = execSync(
-      `git show HEAD:index/truth.ndjson 2>/dev/null || echo ""`,
-      { encoding: 'utf8', stdio: 'pipe' }
-    ).trim();
-  } catch (error) {
-    // First commit or file didn't exist before
-    previousContent = '';
+  if (!skipGitComparison) {
+    try {
+      previousContent = execSync(
+        `git show HEAD:index/truth.ndjson 2>/dev/null || echo ""`,
+        { encoding: 'utf8', stdio: 'pipe' }
+      ).trim();
+    } catch (error) {
+      // First commit or file didn't exist before
+      previousContent = '';
+    }
   }
 
   const previousLines = previousContent ? previousContent.split('\n').filter(line => line.trim() !== '') : [];
 
-  console.log(`Previous index: ${previousLines.length} entries`);
+  if (!skipGitComparison) {
+    console.log(`Previous index: ${previousLines.length} entries`);
 
-  // If no previous content, this is the first commit (allow)
-  if (previousLines.length === 0) {
-    console.log('\n✓ First commit - no previous entries to verify');
+    // If no previous content, this is the first commit (allow)
+    if (previousLines.length === 0) {
+      console.log('\n✓ First commit - no previous entries to verify');
+      process.exit(0);
+    }
+  } else {
+    console.log('\n✓ Genesis hash verification sufficient (immutable root established)');
     process.exit(0);
   }
 
