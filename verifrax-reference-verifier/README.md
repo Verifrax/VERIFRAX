@@ -77,7 +77,7 @@ This verifier is **deterministic**:
 
 ## Version
 
-**v2.4.0** (frozen)
+**v2.4.0** (candidate, pending freeze)
 
 This verifier matches VERIFRAX Worker verifier version 2.4.0.
 

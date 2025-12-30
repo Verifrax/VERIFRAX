@@ -1,7 +1,7 @@
 # VERIFRAX Delivery Certificate SKU
 
 **Version:** 2.4.0  
-**Status:** FROZEN  
+**Status:** CANDIDATE  
 **SKU:** VFX-DC-2.4.0
 
 ---
@@ -197,7 +197,7 @@
 
 ## Version
 
-**v2.4.0** (frozen, immutable)
+**v2.4.0** (candidate, pending freeze)
 
 This SKU applies to certificates issued by VERIFRAX Worker v2.4.0.
 
