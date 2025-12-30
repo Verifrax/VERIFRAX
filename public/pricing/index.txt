@@ -5,3 +5,7 @@ Pricing Model:
 - Verification Event (EUR 120)
 - Delivery Finality (EUR 650)
 - Institutional Delivery (Custom)
+
+Version:
+v2.3.0
+
