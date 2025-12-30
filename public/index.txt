@@ -8,3 +8,6 @@ Surfaces:
 - pricing.verifrax.net
 - legal.verifrax.net
 - status.verifrax.net
+
+Manifest:
+SYSTEM_SURFACE_MANIFEST.md
