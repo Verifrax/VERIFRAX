@@ -1,0 +1,3 @@
+VERIFRAX delivery pipeline.
+This surface defines delivery finality and dispute collapse artifacts.
+
