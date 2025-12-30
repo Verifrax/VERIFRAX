@@ -3,3 +3,6 @@ This surface defines delivery finality and dispute collapse artifacts.
 
 Pipeline:
 - delivery_pipeline.svg
+
+Governance:
+Delivery finality is issued only after payment authorization.
