@@ -17,6 +17,10 @@ GET /api/certificate?hash=<certificate_hash>
 Example:
 See example.md for complete execution path.
 
+Immutability:
+Certificates are persisted at issuance and survive service failure.
+See CERTIFICATE_IMMUTABILITY.md
+
 Entry:
 This is the primary human-facing VERIFRAX surface.
 

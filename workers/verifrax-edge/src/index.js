@@ -355,6 +355,18 @@ const handler = {
             .map(b => b.toString(16).padStart(2, "0"))
             .join("");
 
+        // Persist full certificate (finality artifact - never recomputed)
+        const fullCertificate = {
+          ...certificateObject,
+          certificate_hash: certificateHash
+        };
+        const certificateKey = `uploads/${upload_id}/certificate.json`;
+        await env.EVIDENCE_BUCKET.put(
+          certificateKey,
+          JSON.stringify(fullCertificate, null, 2),
+          { httpMetadata: { contentType: "application/json" } }
+        );
+
         // Final response with Delivery Certificate
         const response = {
           upload_id,
@@ -431,31 +443,31 @@ const handler = {
       try {
         // Lookup by upload_id (primary method)
         if (uploadId) {
-          const manifestKey = `uploads/${uploadId}/manifest.json`;
-          const manifestObj = await env.EVIDENCE_BUCKET.get(manifestKey);
+          const certificateKey = `uploads/${uploadId}/certificate.json`;
+          const certificateObj = await env.EVIDENCE_BUCKET.get(certificateKey);
           
-          if (!manifestObj) {
+          if (!certificateObj) {
             return new Response(
               JSON.stringify({ error: "Certificate not found" }),
               { status: 404, headers: { "Content-Type": "application/json" } }
             );
           }
 
-          // Return certificate info (full certificate would require re-verification)
+          // Return persisted certificate directly (no re-execution, no dependencies)
+          const certificate = JSON.parse(await certificateObj.text());
           return new Response(
-            JSON.stringify({
-              upload_id: uploadId,
-              message: "Certificate exists. Use /api/verify to retrieve full certificate."
-            }),
+            JSON.stringify(certificate),
             { status: 200, headers: { "Content-Type": "application/json" } }
           );
         }
 
         // Lookup by hash (requires scanning - not implemented in v2.3.0)
-        return new Response(
-          JSON.stringify({ error: "Hash lookup not yet implemented. Use upload_id." }),
-          { status: 501, headers: { "Content-Type": "application/json" } }
-        );
+        if (certificateHash) {
+          return new Response(
+            JSON.stringify({ error: "Hash lookup not yet implemented. Use upload_id." }),
+            { status: 501, headers: { "Content-Type": "application/json" } }
+          );
+        }
       } catch (error) {
         return new Response(
           JSON.stringify({ error: "Internal server error" }),
