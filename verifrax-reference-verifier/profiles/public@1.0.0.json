@@ -1,0 +1,33 @@
+{
+  "profile_id": "public@1.0.0",
+  "profile_name": "public",
+  "version": "1.0.0",
+  "description": "Public profile - minimal requirements for open verification",
+  "required_evidence_classes": [],
+  "allowed_trust_assumptions": [
+    "Self-signed certificates acceptable",
+    "Minimal attestation requirements"
+  ],
+  "failure_severity_mapping": {
+    "missing_evidence": "warning",
+    "invalid_signature": "error",
+    "hash_mismatch": "error",
+    "missing_attestation": "info"
+  },
+  "verdict_mapping": {
+    "missing_required_evidence": "INCONCLUSIVE",
+    "invalid_signature": "INVALID",
+    "hash_mismatch": "INVALID",
+    "contradiction": "CONTRADICTED",
+    "unsupported_version": "UNSUPPORTED"
+  },
+  "attestation_requirements": {
+    "os": false,
+    "arch": false,
+    "toolchain": false,
+    "container_digest": false,
+    "git_commit": false,
+    "sbom_hash": false
+  }
+}
+

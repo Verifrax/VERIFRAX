@@ -1,0 +1,33 @@
+{
+  "name": "verifrax-reference-verifier",
+  "version": "2.4.0",
+  "description": "Independent VERIFRAX certificate verifier (no infrastructure dependencies)",
+  "main": "cli.js",
+  "bin": {
+    "verifrax-verify": "./cli.js"
+  },
+  "scripts": {
+    "test": "node cli.js --help"
+  },
+  "keywords": [
+    "verifrax",
+    "verification",
+    "certificate",
+    "deterministic"
+  ],
+  "author": "VERIFRAX",
+  "license": "SEE LICENSE IN ../LICENSE",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "files": [
+    "src/",
+    "profiles/",
+    "cli.js",
+    "VERSION",
+    "README.md",
+    "VERIFY_WITHOUT_VERIFRAX.md"
+  ]
+}
+
