@@ -6,3 +6,7 @@ Pipeline:
 
 Governance:
 Delivery finality is issued only after payment authorization.
+
+Version:
+v2.3.0
+

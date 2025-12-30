@@ -1,3 +1,5 @@
 VERIFRAX documentation surface.
 Human-readable specifications for buyers, auditors, and reviewers.
 
+Version:
+v2.3.0
