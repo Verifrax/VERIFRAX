@@ -171,7 +171,7 @@ const handler = {
       }
 
       // Hard-pin verifier version (enforces version finality)
-      const WORKER_VERIFIER_VERSION = "2.1.0";
+      const WORKER_VERIFIER_VERSION = "2.3.0";
 
       try {
         const body = await request.json();
@@ -325,16 +325,51 @@ const handler = {
             .map(b => b.toString(16).padStart(2, "0"))
             .join("");
 
-        // Final response (with executed_at for audit, but not in hash)
+        // Compute version hash for execution finality
+        const versionHashBuffer = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(effective_verifier_version));
+        const versionHash =
+          "sha256:" +
+          [...new Uint8Array(versionHashBuffer)]
+            .map(b => b.toString(16).padStart(2, "0"))
+            .join("");
+
+        // Generate Delivery Certificate
+        const executedAt = new Date().toISOString();
+        const certificateObject = {
+          upload_id,
+          bundle_hash: computedHash,
+          profile_id,
+          verifier_version: effective_verifier_version,
+          version_hash: versionHash,
+          verdict,
+          reason_codes: reasonCodes,
+          verdict_hash: verdictHash,
+          executed_at: executedAt,
+          finality_statement: "Execution of this verification constitutes delivery acceptance. Upon issuance, the associated dispute space is closed."
+        };
+        const certificateCanonical = canonicalStringify(certificateObject);
+        const certificateHashBuffer = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(certificateCanonical));
+        const certificateHash =
+          "sha256:" +
+          [...new Uint8Array(certificateHashBuffer)]
+            .map(b => b.toString(16).padStart(2, "0"))
+            .join("");
+
+        // Final response with Delivery Certificate
         const response = {
           upload_id,
           bundle_hash: computedHash,
           profile_id,
           verifier_version: effective_verifier_version,
+          version_hash: versionHash,
           verdict,
           reason_codes: reasonCodes,
           verdict_hash: verdictHash,
-          executed_at: new Date().toISOString()
+          executed_at: executedAt,
+          delivery_certificate: {
+            certificate_hash: certificateHash,
+            finality_statement: certificateObject.finality_statement
+          }
         };
 
         return new Response(
@@ -369,6 +404,62 @@ const handler = {
         return new Response(
           "Invalid request body",
           { status: 400 }
+        );
+      }
+    }
+
+    // Delivery Certificate lookup
+    if (path === "/api/certificate" && method === "GET") {
+      const url = new URL(request.url);
+      const certificateHash = url.searchParams.get("hash");
+      const uploadId = url.searchParams.get("upload_id");
+      
+      if (!certificateHash && !uploadId) {
+        return new Response(
+          JSON.stringify({ error: "Missing certificate_hash or upload_id" }),
+          { status: 400, headers: { "Content-Type": "application/json" } }
+        );
+      }
+
+      if (!env.EVIDENCE_BUCKET) {
+        return new Response(
+          JSON.stringify({ error: "Service configuration error" }),
+          { status: 500, headers: { "Content-Type": "application/json" } }
+        );
+      }
+
+      try {
+        // Lookup by upload_id (primary method)
+        if (uploadId) {
+          const manifestKey = `uploads/${uploadId}/manifest.json`;
+          const manifestObj = await env.EVIDENCE_BUCKET.get(manifestKey);
+          
+          if (!manifestObj) {
+            return new Response(
+              JSON.stringify({ error: "Certificate not found" }),
+              { status: 404, headers: { "Content-Type": "application/json" } }
+            );
+          }
+
+          // Return certificate info (full certificate would require re-verification)
+          return new Response(
+            JSON.stringify({
+              upload_id: uploadId,
+              message: "Certificate exists. Use /api/verify to retrieve full certificate."
+            }),
+            { status: 200, headers: { "Content-Type": "application/json" } }
+          );
+        }
+
+        // Lookup by hash (requires scanning - not implemented in v2.3.0)
+        return new Response(
+          JSON.stringify({ error: "Hash lookup not yet implemented. Use upload_id." }),
+          { status: 501, headers: { "Content-Type": "application/json" } }
+        );
+      } catch (error) {
+        return new Response(
+          JSON.stringify({ error: "Internal server error" }),
+          { status: 500, headers: { "Content-Type": "application/json" } }
         );
       }
     }

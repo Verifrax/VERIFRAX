@@ -1,0 +1,12 @@
+VERIFRAX v2.3.0 FINALITY DECLARATION
+
+This version is frozen. No retroactive changes.
+
+All verdicts and certificates survive:
+- Company failure
+- Infrastructure changes  
+- Service discontinuation
+
+Operational Truth Hash: <TO_BE_FILLED>
+Declared: 2024-01-01
+

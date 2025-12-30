@@ -37,3 +37,21 @@ Previously issued artifacts remain verifiable.
 Operational status reflects factual system behavior only.
 No marketing, estimates, or forward-looking statements are provided.
 
+---
+
+## Finality Declaration
+
+VERIFRAX v2.3.0 is frozen.
+
+No retroactive changes will be made to:
+- Verification logic
+- Certificate format
+- Finality statements
+
+All verdicts and certificates issued by v2.3.0 survive:
+- Company failure
+- Infrastructure changes
+- Service discontinuation
+
+Verification artifacts remain independently verifiable regardless of VERIFRAX operational status.
+
