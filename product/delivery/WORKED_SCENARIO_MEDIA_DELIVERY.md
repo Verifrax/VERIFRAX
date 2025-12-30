@@ -1,7 +1,7 @@
 # VERIFRAX Worked Scenario: Media Delivery
 
 **Version:** 2.4.0  
-**Status:** FROZEN  
+**Status:** CANDIDATE  
 **Purpose:** Demonstrate real-world use of VERIFRAX Delivery Certificate to eliminate dispute costs.
 
 ---
@@ -290,7 +290,7 @@ If dispute arises later, Producer can submit Evidence Package to court:
 
 ## Version
 
-**v2.4.0** (frozen, immutable)
+**v2.4.0** (candidate, pending freeze)
 
 This scenario applies to certificates issued by VERIFRAX Worker v2.4.0.
 

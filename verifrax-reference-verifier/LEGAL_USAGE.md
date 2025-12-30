@@ -1,7 +1,7 @@
 # VERIFRAX Certificate: Legal Usage Guide
 
 **Version:** 2.4.0  
-**Status:** FROZEN  
+**Status:** CANDIDATE  
 **Purpose:** Define what a VERIFRAX certificate proves and does not prove in legal, audit, and arbitration contexts.
 
 ---
@@ -130,7 +130,7 @@ A VERIFRAX certificate is a **technical verification artifact**, not a legal jud
 
 ## Version
 
-**v2.4.0** (frozen, immutable)
+**v2.4.0** (candidate, pending freeze)
 
 This document applies to certificates issued by VERIFRAX Worker v2.4.0.
 

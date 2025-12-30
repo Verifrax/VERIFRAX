@@ -1,7 +1,7 @@
 # Why VERIFRAX Cannot Cheat
 
 **Version:** 2.4.0  
-**Status:** FROZEN  
+**Status:** CANDIDATE  
 **Purpose:** Demonstrate that VERIFRAX certificates remain valid even if VERIFRAX is malicious, compromised, or ceases operations.
 
 ---
@@ -255,7 +255,7 @@ Certificates are **cryptographically self-sufficient** and **independently verif
 
 ## Version
 
-**v2.4.0** (frozen, immutable)
+**v2.4.0** (candidate, pending freeze)
 
 This document applies to certificates issued by VERIFRAX Worker v2.4.0.
 

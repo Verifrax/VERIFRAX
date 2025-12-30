@@ -41,14 +41,14 @@ No marketing, estimates, or forward-looking statements are provided.
 
 ## Finality Declaration
 
-VERIFRAX v2.4.0 is frozen.
+VERIFRAX v2.3.0 is frozen.
 
 No retroactive changes will be made to:
 - Verification logic
 - Certificate format
 - Finality statements
 
-All verdicts and certificates issued by v2.4.0 survive:
+All verdicts and certificates issued by v2.3.0 survive:
 - Company failure
 - Infrastructure changes
 - Service discontinuation
@@ -57,9 +57,15 @@ Verification artifacts remain independently verifiable regardless of VERIFRAX op
 
 ---
 
+## Version Status
+
+VERIFRAX v2.4.0 is a candidate version pending freeze.
+
+---
+
 ## Profile Finality
 
-For v2.4.0, verification profiles are treated as **externally interpretable rule sets** whose semantic meaning is not guaranteed by VERIFRAX.
+For v2.3.0 and v2.4.0, verification profiles are treated as **externally interpretable rule sets** whose semantic meaning is not guaranteed by VERIFRAX.
 
 The certificate guarantees execution *against a profile identifier*, not the correctness or completeness of the profile itself.
 
