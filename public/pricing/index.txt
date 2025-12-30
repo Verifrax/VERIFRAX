@@ -9,3 +9,10 @@ Pricing Model:
 Version:
 v2.3.0
 
+Governance:
+- Verification Event → Compute authorization
+- Delivery Finality → Liability transfer
+- Institutional Delivery → Dispute annihilation
+
+Each price eliminates uncertainty forever.
+
