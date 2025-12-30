@@ -74,6 +74,18 @@ All certificates and verdicts issued by v2.4.0 survive:
 
 Verification artifacts remain independently verifiable without VERIFRAX.
 
+### Cryptographic Anchors
+
+**Freeze commit:** `160f1f94bfedb81c6de6f797abad6e5fc9e0f5f2`
+
+**Worker version hash:** `sha256:07b7164b80b10ee59f56ad6465e3b6c2cf127bfec26fc2b71638020b19d7f5c8`
+
+**Freeze artifact hashes:**
+- `a11cea82c2e9f76f61c43223fcb32e19c6731b7238efbccb13fc24e7ca240366` - `freeze/v2.4.0/REFERENCE_VERIFIER.md`
+- `56b1c0bbcd5ffcf5164501f0216e787895ca58ec57581cb1e354cf6ebd9fba61` - `freeze/v2.4.0/RELEASE_v2.4.0.md`
+- `97f3de610c482b05417e13eb09103e24de01dbf0729ed638bbe8b9c9dda124c5` - `freeze/v2.4.0/SYSTEM_SURFACE_MANIFEST.md`
+- `8105eb9b812f69acf89ce1f9e814e6902da73800ac85607c3f515b349a9280b1` - `freeze/v2.4.0/VERSION.md`
+
 ---
 
 ## Profile Finality
