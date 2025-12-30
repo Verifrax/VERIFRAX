@@ -5,9 +5,9 @@ Authority:
 Operational truth is defined in OPERATIONAL_TRUTH.md
 
 Version:
-v2.3.0
+v2.4.0
 
 Finality Declaration:
-v2.3.0 is frozen. All verdicts survive company failure.
+v2.4.0 is frozen. All verdicts survive company failure.
 See OPERATIONAL_TRUTH.md for full declaration.
 

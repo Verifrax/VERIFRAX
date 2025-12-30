@@ -8,11 +8,7 @@
     "build:ci": "pnpm -r --if-present build || true",
     "build:strict": "pnpm -r --if-present build",
     "test": "pnpm -r --if-present test",
-    "lint": "pnpm -r --if-present lint",
-    "bundle:build": "node engines/cinelint/scripts/bundle.build.mjs",
-    "bundle:verify": "node engines/cinelint/tools/bundle-verify.mjs",
-    "verify:bundle": "pnpm -C engines/cinelint/tools verify:bundle",
-    "freeze": "bash engines/cinelint/scripts/freeze.sh"
+    "lint": "pnpm -r --if-present lint"
   },
   "devDependencies": {
     "@types/node": "20",

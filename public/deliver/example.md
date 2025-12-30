@@ -48,7 +48,7 @@ curl -X POST https://verifrax.net/api/verify \
   -d '{
     "upload_id": "550e8400-e29b-41d4-a716-446655440000",
     "profile_id": "public@1.0.0",
-    "verifier_version": "2.3.0"
+    "verifier_version": "2.4.0"
   }'
 ```
 
@@ -58,7 +58,7 @@ Response:
   "upload_id": "550e8400-e29b-41d4-a716-446655440000",
   "bundle_hash": "sha256:abc123...",
   "profile_id": "public@1.0.0",
-  "verifier_version": "2.3.0",
+  "verifier_version": "2.4.0",
   "version_hash": "sha256:def456...",
   "verdict": "verified",
   "reason_codes": [],
@@ -86,7 +86,7 @@ curl "https://verifrax.net/api/certificate?upload_id=550e8400-e29b-41d4-a716-446
 Any third party can reproduce this result using:
 - The evidence bundle (hash: `sha256:abc123...`)
 - The verification profile (`public@1.0.0`)
-- The reference verifier (version `2.3.0`)
+- The reference verifier (version `2.4.0`)
 
 The certificate hash (`sha256:jkl012...`) cryptographically binds all inputs and outputs.
 
