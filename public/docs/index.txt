@@ -1,0 +1,3 @@
+VERIFRAX documentation surface.
+Human-readable specifications for buyers, auditors, and reviewers.
+

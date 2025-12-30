@@ -1,0 +1,3 @@
+VERIFRAX outcome-based pricing.
+Each price maps directly to eliminated uncertainty.
+

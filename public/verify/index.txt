@@ -1,0 +1,3 @@
+VERIFRAX execution boundary.
+This surface accepts evidence and produces deterministic verdicts.
+
