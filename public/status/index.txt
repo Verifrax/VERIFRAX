@@ -1,3 +1,5 @@
+Version: VERIFRAX v2.4.0 (frozen)
+
 VERIFRAX operational status.
 Authoritative, factual, non-marketing system state.
 
