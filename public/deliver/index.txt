@@ -17,3 +17,6 @@ GET /api/certificate?hash=<certificate_hash>
 Example:
 See example.md for complete execution path.
 
+Entry:
+This is the primary human-facing VERIFRAX surface.
+
