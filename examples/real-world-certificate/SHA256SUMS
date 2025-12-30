@@ -1,0 +1,8 @@
+# VERIFRAX Real-World Certificate Package - SHA256SUMS
+# Generated: 2025-01-01
+# Package: examples/real-world-certificate/
+
+ba18a51f06af90c110924fc4e87a64dba5127bc092a582b33a2f1b844835413b  bundle.bin
+0bb6c5af433595b665d57e4120975713a6d41db7d0f7e9d04d1438c0a29c3f8e  certificate.json
+d6a2296308f8f142c4e63c6efbf0aec6aca8541bdf587d071ccf6713486e400a  manifest.json
+

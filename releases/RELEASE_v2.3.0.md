@@ -1,4 +1,4 @@
-# VERIFRAX v2.3.0 — Public Finality Release
+# VERIFRAX v2.4.0 — Public Finality Release
 
 This release establishes VERIFRAX as a complete verification and
 delivery-finality system.

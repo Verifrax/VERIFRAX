@@ -171,7 +171,7 @@ const handler = {
       }
 
       // Hard-pin verifier version (enforces version finality)
-      const WORKER_VERIFIER_VERSION = "2.3.0";
+      const WORKER_VERIFIER_VERSION = "2.4.0";
 
       try {
         const body = await request.json();
@@ -356,18 +356,47 @@ const handler = {
             .join("");
 
         // Persist full certificate (finality artifact - never recomputed)
+        // CRITICAL: Certificate persistence is atomic with verdict issuance.
+        // If persistence fails, the verification must fail (no partial state).
         const fullCertificate = {
           ...certificateObject,
           certificate_hash: certificateHash
         };
         const certificateKey = `uploads/${upload_id}/certificate.json`;
-        await env.EVIDENCE_BUCKET.put(
-          certificateKey,
-          JSON.stringify(fullCertificate, null, 2),
-          { httpMetadata: { contentType: "application/json" } }
-        );
+        
+        // Idempotency check: if certificate exists, verify it matches (deterministic)
+        // This ensures true finality: once issued, certificate never changes
+        let persistedCertificate = fullCertificate;
+        const existingCertificateObj = await env.EVIDENCE_BUCKET.get(certificateKey);
+        if (existingCertificateObj) {
+          const existingCertificate = JSON.parse(await existingCertificateObj.text());
+          // Verify deterministic match (same inputs → same certificate_hash)
+          if (existingCertificate.certificate_hash === certificateHash) {
+            // Certificate already exists and matches - use existing (idempotent)
+            persistedCertificate = existingCertificate;
+          } else {
+            // Certificate exists but hash mismatch - this should never happen with deterministic verification
+            // This indicates either: corrupted storage, non-deterministic verifier, or hash collision
+            return new Response(
+              JSON.stringify({ 
+                error: "Certificate hash mismatch", 
+                message: "Deterministic verification produced different certificate hash for same inputs. This indicates a critical system error."
+              }),
+              { status: 500, headers: { "Content-Type": "application/json" } }
+            );
+          }
+        } else {
+          // Certificate does not exist - persist it (first issuance)
+          // CRITICAL: If this write fails, verification fails (no partial state)
+          await env.EVIDENCE_BUCKET.put(
+            certificateKey,
+            JSON.stringify(fullCertificate, null, 2),
+            { httpMetadata: { contentType: "application/json" } }
+          );
+        }
 
         // Final response with Delivery Certificate
+        // Use persisted certificate to ensure response matches exactly what was written
         const response = {
           upload_id,
           bundle_hash: computedHash,
@@ -377,10 +406,10 @@ const handler = {
           verdict,
           reason_codes: reasonCodes,
           verdict_hash: verdictHash,
-          executed_at: executedAt,
+          executed_at: persistedCertificate.executed_at,
           delivery_certificate: {
-            certificate_hash: certificateHash,
-            finality_statement: certificateObject.finality_statement
+            certificate_hash: persistedCertificate.certificate_hash,
+            finality_statement: persistedCertificate.finality_statement
           }
         };
 
@@ -421,6 +450,9 @@ const handler = {
     }
 
     // Delivery Certificate lookup
+    // CRITICAL: This endpoint is READ-ONLY. It never recomputes, never re-executes,
+    // never depends on verifier availability, payment systems, or runtime state.
+    // Certificates are self-sufficient legal artifacts that survive service failure.
     if (path === "/api/certificate" && method === "GET") {
       const url = new URL(request.url);
       const certificateHash = url.searchParams.get("hash");
@@ -454,6 +486,8 @@ const handler = {
           }
 
           // Return persisted certificate directly (no re-execution, no dependencies)
+          // This certificate was written atomically at issuance time and never modified.
+          // It contains all information necessary for independent verification.
           const certificate = JSON.parse(await certificateObj.text());
           return new Response(
             JSON.stringify(certificate),

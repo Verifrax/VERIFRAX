@@ -5,7 +5,7 @@ Governance:
 Payment authorizes irreversible execution and issuance of finality.
 
 Version:
-v2.3.0
+v2.4.0
 
 Execution:
 Live verification is active.
