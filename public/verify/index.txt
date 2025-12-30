@@ -7,3 +7,7 @@ Payment authorizes irreversible execution and issuance of finality.
 Version:
 v2.3.0
 
+Execution:
+Live verification is active.
+All executions are payment-gated and irreversible.
+
