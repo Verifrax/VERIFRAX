@@ -1,3 +1,5 @@
+Version: VERIFRAX v2.4.0 (frozen)
+
 VERIFRAX legal surface.
 Terms, licenses, liability limits, and governing law.
 

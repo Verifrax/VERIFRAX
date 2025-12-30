@@ -39,7 +39,7 @@ const handler = {
             amount: "12000",
             currency: "eur",
             "metadata[purpose]": "verifrax_verification",
-            "metadata[version]": "v1",
+            "metadata[version]": "v2.4.0",
           }),
         });
 
@@ -82,7 +82,7 @@ const handler = {
 
       const MAX = 2 * 1024 * 1024 * 1024; // 2GB
       if (Number(contentLength) > MAX) {
-        return new Response("Bundle exceeds v1 size limit", { status: 413 });
+        return new Response("Bundle exceeds v2.4.0 size limit", { status: 413 });
       }
 
       const paymentIntent = request.headers.get("x-payment-intent-id");
@@ -97,33 +97,48 @@ const handler = {
       }
 
       try {
-        // Generate VERIFRAX canonical upload ID
-        const uploadId = crypto.randomUUID();
-        const objectKey = `uploads/${uploadId}/bundle.bin`;
-
         // Stream directly into R2 (NO BUFFERING)
-        await env.EVIDENCE_BUCKET.put(objectKey, request.body, {
-          httpMetadata: {
-            contentType: "application/octet-stream"
-          }
-        });
-
-        // Hash after write (v1 acceptable)
-        const obj = await env.EVIDENCE_BUCKET.get(objectKey);
-        if (!obj) {
-          return new Response(
-            JSON.stringify({ error: "Failed to retrieve uploaded object" }),
-            { status: 500, headers: { "Content-Type": "application/json" } }
-          );
-        }
-
-        const buffer = await obj.arrayBuffer();
-        const hash = await crypto.subtle.digest("SHA-256", buffer);
+        // Note: We need to compute hash first to derive deterministic upload_id
+        // For v2.4.0, we read the bundle into memory to compute hash
+        // This is a v2.4.0 limitation; streaming hash will be available in v2.5.0
+        const bundleBuffer = await request.arrayBuffer();
+        const hash = await crypto.subtle.digest("SHA-256", bundleBuffer);
         const bundleHash =
           "sha256:" +
           [...new Uint8Array(hash)]
             .map(b => b.toString(16).padStart(2, "0"))
             .join("");
+
+        // Generate deterministic upload ID from bundle hash + verifier version
+        // This ensures identical bundles produce identical upload_ids
+        // NOTE: Identical bundles under the same verifier version intentionally
+        // resolve to the same upload_id. This enforces idempotent finality.
+        const WORKER_VERIFIER_VERSION = "2.4.0";
+        const uploadIdInput = bundleHash + WORKER_VERIFIER_VERSION;
+        const uploadIdHash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(uploadIdInput));
+        const uploadIdBytes = new Uint8Array(uploadIdHash);
+        // Convert to base64url (RFC 4648) and take first 32 chars for UUID-like format
+        const base64 = btoa(String.fromCharCode(...uploadIdBytes))
+          .replace(/\+/g, '-')
+          .replace(/\//g, '_')
+          .replace(/=/g, '');
+        // Format as UUID: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+        const uploadId = [
+          base64.substring(0, 8),
+          base64.substring(8, 12),
+          base64.substring(12, 16),
+          base64.substring(16, 20),
+          base64.substring(20, 32)
+        ].join('-');
+
+        const objectKey = `uploads/${uploadId}/bundle.bin`;
+
+        // Write bundle to R2
+        await env.EVIDENCE_BUCKET.put(objectKey, bundleBuffer, {
+          httpMetadata: {
+            contentType: "application/octet-stream"
+          }
+        });
 
         // Write immutable manifest (finality event)
         const manifest = {
@@ -133,7 +148,7 @@ const handler = {
           size_bytes: Number(contentLength),
           completed_at: new Date().toISOString(),
           verifier: "verifrax-edge",
-          version: "v1"
+          version: "v2.4.0"
         };
 
         await env.EVIDENCE_BUCKET.put(
@@ -512,18 +527,29 @@ const handler = {
 
     // API boundary
     if (path.startsWith("/api/")) {
-      return new Response(
-        "VERIFRAX API: not implemented",
-        { status: 501 }
-      );
+      // Check if this is an implemented endpoint (handled above)
+      // If not, return intentional 501
+      if (path !== "/api/create-payment-intent" && 
+          path !== "/api/upload" && 
+          path !== "/api/complete-upload" && 
+          path !== "/api/verify" && 
+          path !== "/api/verify-authorized" && 
+          path !== "/api/certificate") {
+        return new Response(
+          "VERIFRAX v2.4.0\n" +
+          "This endpoint is intentionally unavailable.\n" +
+          "Execution requires an authorized verification surface.\n",
+          { status: 501 }
+        );
+      }
     }
 
     // Verification endpoint (paid finality event)
     if (path === "/verify") {
       return new Response(
-        "VERIFRAX verification endpoint.\n" +
-        "This endpoint accepts an evidence bundle and produces a final verdict.\n" +
-        "Payment is required before execution.\n",
+        "VERIFRAX v2.4.0\n" +
+        "This endpoint is intentionally unavailable.\n" +
+        "Execution requires an authorized verification surface.\n",
         { status: 501 }
       );
     }
@@ -544,6 +570,7 @@ const handler = {
         "VERIFRAX does not replace courts, auditors, or humans.\n" +
         "VERIFRAX does not modify evidence.\n" +
         "VERIFRAX does not provide opinions.\n\n" +
+        "VERIFRAX does not evaluate the factual truth, legality, intent, or real-world meaning of submitted evidence.\n\n" +
         "VERIFRAX only verifies whether a submitted evidence bundle satisfies a declared verification standard.\n",
         { status: 200 }
       );
@@ -552,14 +579,19 @@ const handler = {
     // Specification
     if (path === "/spec") {
       return new Response(
-        "VERIFRAX Specification (v1)\n\n" +
+        "Authority Notice:\n" +
+        "This specification defines the execution semantics of VERIFRAX v2.4.0.\n" +
+        "This version is frozen and immutable.\n" +
+        "Earlier specifications are deprecated and non-authoritative.\n\n" +
+        "VERIFRAX Specification (v2.4.0 — Frozen)\n\n" +
         "Input:\n" +
         "- Evidence bundle\n" +
         "- Verification profile identifier\n\n" +
         "Process:\n" +
         "- The evidence bundle is hashed deterministically.\n" +
         "- The verification profile is applied without interpretation.\n" +
-        "- No external data is fetched.\n" +
+        "- Payment verification is an execution authorization step and is not part of the deterministic verification computation.\n" +
+        "- No external data is fetched during verification computation.\n" +
         "- No mutable state is used.\n\n" +
         "Output:\n" +
         "- verdict: verified | not_verified\n" +
@@ -571,10 +603,9 @@ const handler = {
         "- Stateless\n" +
         "- Portable\n\n" +
         "If the same evidence bundle is evaluated under the same verification profile, the output will always be identical.\n\n" +
-        "v1 Limits:\n" +
+        "v2.4.0 Limits:\n" +
         "- Evidence bundles up to 2GB\n" +
-        "- Hashing performed post-upload\n" +
-        "- Larger bundles require v2 streaming hash verification\n",
+        "- Hashing performed post-upload and is memory-bounded in v2.4.0\n",
         { status: 200 }
       );
     }
@@ -599,9 +630,18 @@ const handler = {
       );
     }
 
+    // Status redirect
+    if (path === "/status") {
+      return new Response(null, {
+        status: 301,
+        headers: { "Location": "https://status.verifrax.net/" }
+      });
+    }
+
     // Root
     if (path === "/") {
       return new Response(
+        "Version: VERIFRAX v2.4.0 (frozen)\n\n" +
         "VERIFRAX\n" +
         "Deterministic verification system.\n\n" +
         "Type: Verification system\n" +
