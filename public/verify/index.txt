@@ -1,3 +1,5 @@
 VERIFRAX execution boundary.
 This surface accepts evidence and produces deterministic verdicts.
 
+Governance:
+Payment authorizes irreversible execution and issuance of finality.
