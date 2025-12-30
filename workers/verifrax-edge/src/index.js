@@ -204,6 +204,47 @@ export default {
 
         const manifest = JSON.parse(await manifestObj.text());
 
+        // PAYMENT GATE: Verify payment is confirmed before execution
+        const paymentIntentId = manifest.payment_intent_id;
+        if (!paymentIntentId) {
+          return new Response(
+            JSON.stringify({ error: "Missing payment authorization" }),
+            { status: 402, headers: { "Content-Type": "application/json" } }
+          );
+        }
+
+        // Verify payment confirmation with Stripe
+        if (env.STRIPE_SECRET_KEY) {
+          try {
+            const stripeResponse = await fetch(`https://api.stripe.com/v1/payment_intents/${paymentIntentId}`, {
+              method: "GET",
+              headers: {
+                "Authorization": `Bearer ${env.STRIPE_SECRET_KEY}`,
+              },
+            });
+
+            if (!stripeResponse.ok) {
+              return new Response(
+                JSON.stringify({ error: "Payment verification failed" }),
+                { status: 402, headers: { "Content-Type": "application/json" } }
+              );
+            }
+
+            const paymentIntent = await stripeResponse.json();
+            if (paymentIntent.status !== "succeeded") {
+              return new Response(
+                JSON.stringify({ error: "Payment not confirmed", payment_status: paymentIntent.status }),
+                { status: 402, headers: { "Content-Type": "application/json" } }
+              );
+            }
+          } catch (error) {
+            return new Response(
+              JSON.stringify({ error: "Payment verification error" }),
+              { status: 402, headers: { "Content-Type": "application/json" } }
+            );
+          }
+        }
+
         // Recompute bundle hash (deterministic)
         const bundleBuffer = await bundleObj.arrayBuffer();
         const bundleHash = await crypto.subtle.digest("SHA-256", bundleBuffer);
