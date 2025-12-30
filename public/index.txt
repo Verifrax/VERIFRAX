@@ -1,3 +1,10 @@
 Artifacts:
 - VERIFRAX Delivery Certificate (finality-bearing)
 
+Surfaces:
+- docs.verifrax.net
+- verify.verifrax.net
+- deliver.verifrax.net
+- pricing.verifrax.net
+- legal.verifrax.net
+- status.verifrax.net
