@@ -57,9 +57,22 @@ Verification artifacts remain independently verifiable regardless of VERIFRAX op
 
 ---
 
-## Version Status
+## Finality Declaration
 
-VERIFRAX v2.4.0 is a candidate version pending freeze.
+VERIFRAX v2.4.0 is frozen.
+
+No retroactive changes will be made to:
+- Verification logic
+- Certificate format
+- Finality semantics
+- Reference verifier behavior
+
+All certificates and verdicts issued by v2.4.0 survive:
+- Company failure
+- Infrastructure changes
+- Service discontinuation
+
+Verification artifacts remain independently verifiable without VERIFRAX.
 
 ---
 
