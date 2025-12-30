@@ -11,3 +11,6 @@ Surfaces:
 
 Manifest:
 SYSTEM_SURFACE_MANIFEST.md
+
+Version:
+v2.3.0

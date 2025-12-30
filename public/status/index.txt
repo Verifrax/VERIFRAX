@@ -3,3 +3,7 @@ Authoritative, factual, non-marketing system state.
 
 Authority:
 Operational truth is defined in OPERATIONAL_TRUTH.md
+
+Version:
+v2.3.0
+
