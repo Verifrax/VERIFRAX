@@ -1,4 +1,18 @@
-export default {
+// Security headers helper
+function addSecurityHeaders(response) {
+  const headers = new Headers(response.headers);
+  headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("X-Frame-Options", "DENY");
+  headers.set("Referrer-Policy", "no-referrer");
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: headers
+  });
+}
+
+const handler = {
   async fetch(request, env) {
     const url = new URL(request.url);
     const path = url.pathname;
@@ -465,5 +479,13 @@ export default {
       "Not found",
       { status: 404 }
     );
+  }
+};
+
+// Wrap handler to add security headers to all responses
+export default {
+  async fetch(request, env) {
+    const response = await handler.fetch(request, env);
+    return addSecurityHeaders(response);
   }
 };
