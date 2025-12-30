@@ -1,7 +1,7 @@
 # How to Reimplement VERIFRAX
 
 **Version:** 2.4.0  
-**Status:** FROZEN  
+**Status:** CANDIDATE  
 **Purpose:** Complete specification for reimplementing VERIFRAX from scratch. This document makes VERIFRAX disappear by design.
 
 ---
@@ -421,7 +421,7 @@ After this document:
 
 ## Version
 
-**v2.4.0** (frozen, immutable)
+**v2.4.0** (candidate, pending freeze)
 
 This specification applies to VERIFRAX Worker v2.4.0 and certificates issued by it.
 
@@ -431,5 +431,5 @@ This specification applies to VERIFRAX Worker v2.4.0 and certificates issued by 
 
 - `verifrax-reference-verifier/` - Reference implementation
 - `product/delivery/DELIVERY_CERTIFICATE_SPEC.md` - Certificate specification
-- `freeze/v2.4.0/REFERENCE_VERIFIER.md` - Frozen verifier documentation
+- `freeze/v2.3.0/REFERENCE_VERIFIER.md` - Frozen verifier documentation (v2.3.0)
 
