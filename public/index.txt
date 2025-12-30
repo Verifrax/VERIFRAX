@@ -1,3 +1,5 @@
+Version: VERIFRAX v2.4.0 (frozen)
+
 Artifacts:
 - VERIFRAX Delivery Certificate (finality-bearing)
 
