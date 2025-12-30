@@ -79,8 +79,7 @@ This verifier is **deterministic**:
 
 **v2.4.0** (frozen, immutable)
 
-This verifier is the authoritative reference for all
-VERIFRAX v2.4.0 certificates.
+This verifier is the authoritative reference for all VERIFRAX v2.4.0 certificates.
 
 ## Files
 
