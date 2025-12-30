@@ -7,7 +7,7 @@ Pricing Model:
 - Institutional Delivery (Custom)
 
 Version:
-v2.3.0
+v2.4.0
 
 Governance:
 - Verification Event → Compute authorization

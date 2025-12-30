@@ -4,7 +4,7 @@ This manifest defines the complete public surface of VERIFRAX.
 
 ## Version
 
-- v2.3.0
+- v2.4.0
 
 ---
 

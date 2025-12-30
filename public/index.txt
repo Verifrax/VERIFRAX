@@ -13,7 +13,7 @@ Manifest:
 SYSTEM_SURFACE_MANIFEST.md
 
 Version:
-v2.3.0
+v2.4.0
 
 Primary Entry:
 https://deliver.verifrax.net
