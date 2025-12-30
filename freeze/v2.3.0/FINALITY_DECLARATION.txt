@@ -7,6 +7,6 @@ All verdicts and certificates survive:
 - Infrastructure changes  
 - Service discontinuation
 
-Operational Truth Hash: <TO_BE_FILLED>
+Operational Truth Hash: 4d9cb285b269c2c97b2dda4e8fcec1405f4820692d54bcae6a25f5f912686933
 Declared: 2024-01-01
 
