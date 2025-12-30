@@ -10,3 +10,10 @@ Delivery finality is issued only after payment authorization.
 Version:
 v2.3.0
 
+Certificate Lookup:
+GET /api/certificate?upload_id=<uuid>
+GET /api/certificate?hash=<certificate_hash>
+
+Example:
+See example.md for complete execution path.
+
