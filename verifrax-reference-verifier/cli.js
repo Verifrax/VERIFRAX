@@ -18,6 +18,21 @@ function parseArgs() {
   const args = process.argv.slice(2);
   const options = {};
 
+  // Minimal CLI: verify certificate.json
+  if (args.length === 1 && !args[0].startsWith('--')) {
+    const certPath = args[0];
+    // Try to infer bundle and profile from certificate location
+    const certDir = path.dirname(path.resolve(certPath));
+    const bundlePath = path.join(certDir, 'bundle.bin');
+    if (fs.existsSync(bundlePath)) {
+      options.certificatePath = path.resolve(certPath);
+      options.bundlePath = bundlePath;
+      // Default profile if not specified
+      options.profileId = 'public@1.0.0';
+      return options;
+    }
+  }
+
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     
@@ -32,12 +47,14 @@ function parseArgs() {
 VERIFRAX Reference Verifier v2.4.0
 
 Usage:
+  verify <certificate.json>
   node cli.js --bundle <path> --certificate <path> --profile <profile_id>
 
 Options:
+  <certificate.json>     Minimal: verify certificate (infers bundle.bin from same directory)
   --bundle <path>        Path to bundle.bin file
   --certificate <path>   Path to certificate.json file
-  --profile <profile>   Profile ID (e.g., "public@1.0.0")
+  --profile <profile>   Profile ID (e.g., "public@1.0.0", default: public@1.0.0)
   --help, -h            Show this help message
 
 Output:

@@ -1,3 +1,6 @@
+> **NON-AUTHORITATIVE — EXPLANATION ONLY**  
+> This document is for educational purposes. Authoritative specifications are in `freeze/v2.4.0/` and at `verifrax.net/spec`.
+
 # How to Reimplement VERIFRAX
 
 **Version:** 2.4.0  

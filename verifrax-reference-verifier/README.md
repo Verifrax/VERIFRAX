@@ -1,12 +1,18 @@
 # VERIFRAX Reference Verifier v2.4.0
 
+**VERSION:** v2.4.0  
+**ROLE:** AUTHORITATIVE REFERENCE VERIFIER  
+**STATUS:** FROZEN
+
 **Independent certificate verification without VERIFRAX infrastructure.**
+
+See `verifrax.net/spec` for authoritative specifications.
 
 This verifier allows third parties to validate VERIFRAX certificates without requiring:
 - Cloudflare Workers
 - Stripe payment systems
 - R2 storage
-- VERIFRAX service availability
+- VERIFRAX infrastructure
 - Network connectivity (after download)
 
 ## Purpose
@@ -24,6 +30,16 @@ cd verifrax-reference-verifier
 ```
 
 ## Usage
+
+### Minimal CLI
+
+```bash
+verify certificate.json
+```
+
+This automatically infers `bundle.bin` from the same directory and uses `public@1.0.0` as default profile.
+
+### Full CLI
 
 ```bash
 node cli.js \
@@ -93,7 +109,12 @@ This verifier is the authoritative reference for all VERIFRAX v2.4.0 certificate
 
 See parent repository LICENSE file.
 
+## Authority
+
+See `REFERENCE_AUTHORITY.md` for authority declaration and binding guarantees.
+
 ## See Also
 
+- `REFERENCE_AUTHORITY.md` - Authority declaration and binding guarantees
 - `VERIFY_WITHOUT_VERIFRAX.md` - Complete guide for verifying certificates when VERIFRAX is unavailable
 

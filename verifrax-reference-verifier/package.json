@@ -4,7 +4,9 @@
   "description": "Independent VERIFRAX certificate verifier (no infrastructure dependencies)",
   "main": "cli.js",
   "bin": {
-    "verifrax-verify": "./cli.js"
+    "verifrax-verify": "./cli.js",
+    "verify": "./cli.js",
+    "verify-package": "./verify-package.js"
   },
   "scripts": {
     "test": "node cli.js --help"
