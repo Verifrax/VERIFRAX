@@ -1,3 +1,6 @@
+> **NON-AUTHORITATIVE — EXPLANATION ONLY**  
+> This document is for educational purposes. Authoritative specifications are in `freeze/v2.4.0/`.
+
 # VERIFRAX Pricing and Risk Tiers
 
 **Version:** 1.0.0  
@@ -41,7 +44,7 @@ VERIFRAX verifies **conformance to declared rules**, not truth, legality, or fac
 **Liability Boundary:**
 - **No liability** for verification accuracy
 - **No warranty** on verdict correctness
-- **No guarantee** of service availability
+- **No guarantee** of infrastructure availability
 
 ### Tier 2: Enterprise (Medium Risk)
 
@@ -70,7 +73,7 @@ VERIFRAX verifies **conformance to declared rules**, not truth, legality, or fac
 **Liability Boundary:**
 - **Limited liability** for verification errors (up to fee amount)
 - **No warranty** on verdict correctness beyond deterministic verification
-- **Service availability** guaranteed (SLA)
+- **Infrastructure availability** guaranteed (SLA)
 
 ### Tier 3: Institutional (High Risk)
 

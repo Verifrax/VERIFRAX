@@ -1,3 +1,6 @@
+> **NON-AUTHORITATIVE — EXPLANATION ONLY**  
+> This document is for educational purposes. Authoritative specifications are in `freeze/v2.4.0/`.
+
 # VERIFRAX DNS Hard Audit v2
 
 **Domain:** verifrax.net  
