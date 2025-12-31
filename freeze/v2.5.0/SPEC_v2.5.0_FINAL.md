@@ -4,7 +4,7 @@
 **Status:** FINAL (FROZEN)  
 **Authority:** AUTHORITATIVE  
 **Date:** 2025-01-XX  
-**Freeze Commit:** <TO_BE_FILLED>
+**Freeze Commit:** fb923f18d08ee748b0d929e06af3ccf3396f837e
 
 ---
 
