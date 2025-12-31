@@ -64,7 +64,8 @@ Freeze Date: <DATE>
 
 #### SPEC
 
-- **File:** `freeze/v2.5.0/SPEC_v2.5.0_FINAL.md`
+- **File:** `freeze/v2.5.0/UNIVERSAL_PUBLIC_SURFACE_SPEC_v2.5.0.md` — Universal Public Surface, Authority & Institutional-Grade Final Specification
+- **File:** `freeze/v2.5.0/SPEC_v2.5.0_FINAL.md` — Technical Specification (classification, failure classes, TCB, multi-profile)
 - **Hash:** Include in SHA256SUMS.txt
 - **Authority:** AUTHORITATIVE
 
@@ -219,10 +220,24 @@ All authoritative content is in `freeze/v2.5.0/`.
 
 ---
 
+## ⚠️ CRITICAL: Freeze Blocker
+
+**v2.5.0 CANNOT be frozen until `/pay` endpoint is disabled.**
+
+See `FREEZE_BLOCKER.md` for details.
+
+**Current state:** `/pay` is still live and executing (Stripe.js loaded, PaymentIntents created, payment processed on-platform).
+
+**Required:** Disable `/pay` and verify before proceeding.
+
+---
+
 ## CRITICAL: Freeze Completion Checklist
 
 **Until these are complete, "FROZEN" is a claim, not a fact:**
 
+- ⚠️ **`/pay` endpoint must be disabled** (see FREEZE_BLOCKER.md) - **BLOCKING**
+- ⚠️ **Verification result documented** (PHASE5_PLATFORM_ALIGNMENT.md)
 - ⚠️ **Tag `v2.5.0` must exist** (run: `git tag -l v2.5.0`)
 - ⚠️ **SHA256SUMS.txt must exist and be committed**
 - ⚠️ **Freeze commit hash must be filled in** (SPEC_v2.5.0_FINAL.md, VERSION.md)

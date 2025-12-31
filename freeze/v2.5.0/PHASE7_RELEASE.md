@@ -56,7 +56,8 @@ This release adds structure and clarity to VERIFRAX verification, without adding
 
 ## Documentation
 
-- Specification: `freeze/v2.5.0/SPEC_v2.5.0_FINAL.md`
+- Universal Public Surface Spec: `freeze/v2.5.0/UNIVERSAL_PUBLIC_SURFACE_SPEC_v2.5.0.md` — institutional-grade public access, legal boundaries, operational commands
+- Technical Specification: `freeze/v2.5.0/SPEC_v2.5.0_FINAL.md` — classification, failure classes, TCB, multi-profile
 - Threat Model: `freeze/v2.5.0/THREAT_MODEL_v2.5.0.md`
 - Reference Implementation: `freeze/v2.5.0/PHASE3_REFERENCE_IMPLEMENTATION.md`
 - Test Matrix: `freeze/v2.5.0/TEST_MATRIX.md`
