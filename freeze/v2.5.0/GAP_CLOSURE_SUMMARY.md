@@ -82,7 +82,7 @@ Clear documentation that freeze is incomplete until script runs. Script automate
 
 ---
 
-## GAP 4 — Cloudflare /pay Functional ✅ CLOSED (DOCUMENTATION)
+## GAP 4 — Cloudflare /pay Functional ⚠️ NOT CLOSED (DOCUMENTATION ONLY)
 
 ### Issue
 `/pay` endpoint creates PaymentIntents, which is functional execution, not documentation. Conflicts with PHASE 5 claims.
@@ -105,6 +105,28 @@ Clear documentation that freeze is incomplete until script runs. Script automate
 
 ### Result
 Clear documentation that `/pay` must be disabled before freeze. Verification steps provided.
+
+### ⚠️ CRITICAL: NOT ACTUALLY CLOSED
+
+**Current State:**
+- `/pay` endpoint is **STILL LIVE AND EXECUTING**
+- Stripe.js is loaded
+- Stripe Elements are rendered
+- PaymentIntents are created
+- Payment is processed on-platform
+
+**This means:**
+- GAP 4 is **NOT CLOSED** - only documented
+- PHASE 5 alignment is **FACTUALLY FALSE** until `/pay` is disabled
+- v2.5.0 **CANNOT BE FROZEN** until `/pay` is disabled
+- v2.5.0 **CANNOT BE RELEASED** until `/pay` is disabled
+
+**Required Action:**
+- Disable `/pay` endpoint (return 404/503 or static HTML only)
+- OR externalize payment completely (Stripe Checkout hosted by Stripe)
+- Verify with `curl https://verifrax.net/pay` (must NOT show Stripe.js or create PaymentIntents)
+- Document verification result in PHASE5_PLATFORM_ALIGNMENT.md
+- **ONLY THEN** proceed to freeze
 
 ---
 
@@ -133,14 +155,20 @@ Clear documentation that `/pay` must be disabled before freeze. Verification ste
 
 ## Status
 
-**ALL FOUR GAPS CLOSED**
+**THREE GAPS CLOSED, ONE GAP BLOCKING FREEZE**
 
 - ✅ GAP 1: Language mismatch fixed
 - ✅ GAP 2: Legal disclaimer added
 - ✅ GAP 3: Freeze completion documented and scripted
-- ✅ GAP 4: /pay disable requirement documented
+- ⚠️ **GAP 4: /pay disable requirement documented BUT NOT EXECUTED**
 
-**Ready for:** Freeze completion (run script) → Tag → Release
+**BLOCKING:** v2.5.0 **CANNOT BE FROZEN** until `/pay` is disabled.
+
+**Required before freeze:**
+1. Disable `/pay` endpoint (404/503 or static HTML only)
+2. Verify with `curl https://verifrax.net/pay` (no Stripe.js, no PaymentIntents)
+3. Document verification in PHASE5_PLATFORM_ALIGNMENT.md
+4. **THEN** run freeze script
 
 ---
 
