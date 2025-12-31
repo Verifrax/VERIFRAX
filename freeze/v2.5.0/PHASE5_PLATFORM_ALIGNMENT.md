@@ -203,11 +203,51 @@ Verification truth is:
 **Platforms aligned, nothing live:**
 
 - ✅ GitHub: Tag `v2.5.0-rc` created, checksums published, branches locked
-- ✅ Cloudflare: Workers disabled, `/pay` informational/error, no routes
+- ⚠️ **Cloudflare: `/pay` endpoint is STILL LIVE AND EXECUTING** (BLOCKING)
 - ✅ AWS: Evidence storage archive-only, no execution authority
 - ✅ Stripe: Payment boundaries documented, product definition updated
 
-**Status:** PHASE 5 COMPLETE — Ready for freeze (PHASE 6)
+**⚠️ CRITICAL BLOCKER:**
+
+**Current State (VERIFIED):**
+- `/pay` endpoint loads Stripe.js (`https://js.stripe.com/v3/`)
+- Stripe Elements are rendered
+- `POST /api/create-payment-intent` is called
+- PaymentIntents are created
+- Payment is processed on-platform
+- UI says "Payment required for verification execution"
+
+**This is ACTIVE EXECUTION, not documentation.**
+
+**Required before freeze:**
+1. Disable `/pay` endpoint (return 404/503 or static HTML only)
+2. OR externalize payment completely (Stripe Checkout hosted by Stripe)
+3. Verify: `curl https://verifrax.net/pay` must NOT show Stripe.js or create PaymentIntents
+4. Document verification result below
+
+**Verification Result (TO BE FILLED AFTER DELETING ROUTES):**
+
+**⚠️ CRITICAL: Delete routes on `verifrax-edge-production` worker first:**
+- Go to Cloudflare Dashboard → Workers & Pages → **`verifrax-edge-production`**
+- Settings → Domains & Routes
+- **DELETE** `verifrax.net/*` and `verifrax.net/api/*`
+
+**Then fill in:**
+
+```
+Date: 2025-01-XX
+Command: curl -i https://verifrax.net/pay
+Result: <paste full output>
+Status: PASS/FAIL
+
+Command: curl -i -X POST https://verifrax.net/api/create-payment-intent
+Result: <paste full output>
+Status: PASS/FAIL
+```
+
+**See VERIFICATION_TEMPLATE.md for format.**
+
+**Status:** ⚠️ **PHASE 5 INCOMPLETE** — `/pay` must be disabled before freeze
 
 ---
 
