@@ -9,6 +9,7 @@ This release adds structure and clarity to VERIFRAX verification, without adding
 
 ## Included
 
+- **Universal Public Surface Specification** — institutional-grade public access, legal boundaries, and operational commands
 - Verification Classification (informational only)
 - Failure Class Taxonomy (taxonomic only)
 - Trust Context Bundles (TCB) support (optional, external, revocable)
@@ -36,6 +37,11 @@ All future changes require explicit version increments.
 
 This release is FROZEN and IMMUTABLE.
 All authoritative content is in `freeze/v2.5.0/`.
+
+## Specifications
+
+- **Universal Public Surface Spec:** `UNIVERSAL_PUBLIC_SURFACE_SPEC_v2.5.0.md` — public access model, legal boundaries, operational commands
+- **Technical Specification:** `SPEC_v2.5.0_FINAL.md` — classification, failure classes, TCB, multi-profile
 
 ## Independence
 

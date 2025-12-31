@@ -130,7 +130,8 @@
 
 ### Specification
 
-- **SPEC v2.5.0 FINAL:** `freeze/v2.5.0/SPEC_v2.5.0_FINAL.md`
+- **Universal Public Surface Spec:** `freeze/v2.5.0/UNIVERSAL_PUBLIC_SURFACE_SPEC_v2.5.0.md` — institutional-grade public access, legal boundaries, operational commands
+- **SPEC v2.5.0 FINAL:** `freeze/v2.5.0/SPEC_v2.5.0_FINAL.md` — technical features (classification, failure classes, TCB, multi-profile)
 - **Threat Model:** `freeze/v2.5.0/THREAT_MODEL_v2.5.0.md`
 
 ### Reference Implementation
