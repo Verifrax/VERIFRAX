@@ -10,7 +10,7 @@
  * Output: Machine-readable JSON (no prose, no interpretation)
  */
 
-const { verifyCertificate } = require('./src/verify');
+const { verifyCertificate, verifyCertificateV2_5_0 } = require('./src/verify');
 const fs = require('fs');
 const path = require('path');
 
@@ -94,8 +94,26 @@ function main() {
   const bundlePath = path.resolve(options.bundlePath);
   const certificatePath = path.resolve(options.certificatePath);
 
+  // Detect version and use appropriate verifier
+  let certificate;
+  try {
+    const certificateData = fs.readFileSync(certificatePath, 'utf8');
+    certificate = JSON.parse(certificateData);
+  } catch (e) {
+    // Will be caught below
+  }
+
+  const verifierVersion = certificate?.verifier_version || '2.4.0';
+  const isV2_5_0 = verifierVersion.startsWith('2.5.0') || 
+                   certificate?.classification || 
+                   certificate?.multi_profile || 
+                   certificate?.tcb_refs;
+
+  // Use v2.5.0 verifier if certificate has v2.5.0 features
+  const verifyFn = isV2_5_0 ? verifyCertificateV2_5_0 : verifyCertificate;
+
   // Verify certificate
-  const result = verifyCertificate({
+  const result = verifyFn({
     bundlePath,
     certificatePath,
     profileId: options.profileId

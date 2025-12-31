@@ -1,8 +1,8 @@
 /**
- * VERIFRAX Reference Verifier
+ * VERIFRAX Reference Verifier v2.5.0
  * 
- * This verifier independently validates VERIFRAX certificates without
- * requiring any VERIFRAX infrastructure, services, or availability.
+ * This verifier independently validates VERIFRAX certificates (v2.4.0 and v2.5.0)
+ * without requiring any VERIFRAX infrastructure, services, or availability.
  * 
  * Algorithm (authoritative):
  * 1. Recompute bundle_hash from bundle.bin
@@ -10,6 +10,7 @@
  * 3. Canonical-stringify the certificate object
  * 4. Recompute certificate_hash
  * 5. Compare with certificate.json.certificate_hash
+ * 6. (v2.5.0) Validate classification, failure classes, TCB refs, multi-profile
  * 
  * If hashes match → VALID
  * If hashes mismatch → INVALID
@@ -21,18 +22,23 @@ const fs = require('fs');
 const path = require('path');
 const { canonicalStringify } = require('./canonical_stringify');
 const { sha256, sha256File } = require('./hash');
+const { classifyCertificate, validateClassification } = require('./classification');
+const { extractFailureClasses } = require('./failure_classes');
+const { validateTCBReferences } = require('./tcb');
+const { validateMultiProfileStructure, validateMultiProfileSorting, extractMultiProfile } = require('./multi_profile');
 
 /**
- * Verify a VERIFRAX certificate
+ * Verify a VERIFRAX certificate (v2.4.0 or v2.5.0)
  * 
  * @param {Object} options
  * @param {string} options.bundlePath - Path to bundle.bin file
  * @param {string} options.certificatePath - Path to certificate.json file
  * @param {string} options.profileId - Profile ID (e.g., "public@1.0.0")
+ * @param {Object} options.tcbData - Optional TCB data for validation
  * @returns {Object} Verification result
  */
 function verifyCertificate(options) {
-  const { bundlePath, certificatePath, profileId } = options;
+  const { bundlePath, certificatePath, profileId, tcbData = null } = options;
 
   // Validate inputs
   if (!bundlePath || !certificatePath || !profileId) {
@@ -64,6 +70,10 @@ function verifyCertificate(options) {
     // Step 1: Load certificate
     const certificateData = fs.readFileSync(certificatePath, 'utf8');
     const certificate = JSON.parse(certificateData);
+
+    // Detect version
+    const verifierVersion = certificate.verifier_version || '2.4.0';
+    const isV2_5_0 = verifierVersion.startsWith('2.5.0') || certificate.classification || certificate.multi_profile || certificate.tcb_refs;
 
     // Validate certificate structure
     if (!certificate.certificate_hash) {
@@ -106,6 +116,22 @@ function verifyCertificate(options) {
       finality_statement: certificate.finality_statement
     };
 
+    // v2.5.0: Add optional features to certificate object for hash computation
+    if (isV2_5_0) {
+      // Classification (if present)
+      if (certificate.classification) {
+        certificateObject.classification = certificate.classification;
+      }
+
+      // Multi-profile (if present)
+      if (certificate.multi_profile) {
+        certificateObject.multi_profile = certificate.multi_profile;
+      }
+
+      // TCB refs are NOT included in certificate hash (metadata only)
+      // They are validated separately
+    }
+
     // Step 4: Canonical-stringify
     const certificateCanonical = canonicalStringify(certificateObject);
 
@@ -123,13 +149,61 @@ function verifyCertificate(options) {
       };
     }
 
+    // v2.5.0: Validate additional features
+    const v2_5_0_validation = {};
+    if (isV2_5_0) {
+      // Validate classification
+      if (certificate.classification) {
+        const classificationValidation = validateClassification(certificate.classification);
+        v2_5_0_validation.classification = {
+          present: true,
+          valid: classificationValidation.valid,
+          reason: classificationValidation.reason,
+          classification: classifyCertificate(certificate)
+        };
+      } else {
+        v2_5_0_validation.classification = { present: false };
+      }
+
+      // Extract failure classes
+      v2_5_0_validation.failure_classes = extractFailureClasses(certificate);
+
+      // Validate TCB references
+      if (certificate.tcb_refs) {
+        v2_5_0_validation.tcb_refs = validateTCBReferences(certificate.tcb_refs, tcbData);
+      } else {
+        v2_5_0_validation.tcb_refs = [];
+      }
+
+      // Validate multi-profile
+      if (certificate.multi_profile) {
+        const multiProfileValidation = validateMultiProfileStructure(certificate.multi_profile);
+        const sortingValidation = validateMultiProfileSorting(certificate.multi_profile);
+        v2_5_0_validation.multi_profile = {
+          present: true,
+          valid: multiProfileValidation.valid && sortingValidation.valid,
+          reason: multiProfileValidation.reason || sortingValidation.reason,
+          multi_profile: extractMultiProfile(certificate)
+        };
+      } else {
+        v2_5_0_validation.multi_profile = { present: false };
+      }
+    }
+
     // All checks passed
-    return {
+    const result = {
       status: 'VALID',
       certificate_hash: computedCertificateHash,
-      verifier_version: certificate.verifier_version || '2.4.0',
+      verifier_version: verifierVersion,
       bundle_hash: computedBundleHash
     };
+
+    // Add v2.5.0 validation results if present
+    if (isV2_5_0 && Object.keys(v2_5_0_validation).length > 0) {
+      result.v2_5_0_validation = v2_5_0_validation;
+    }
+
+    return result;
 
   } catch (error) {
     return {
@@ -141,11 +215,5 @@ function verifyCertificate(options) {
   }
 }
 
-// Export both v2.4.0 and v2.5.0 verifiers
-const { verifyCertificate: verifyCertificateV2_5_0 } = require('./verify_v2_5_0');
-
-module.exports = { 
-  verifyCertificate,
-  verifyCertificateV2_5_0
-};
+module.exports = { verifyCertificate };
 
