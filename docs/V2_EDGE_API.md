@@ -1,3 +1,6 @@
+> **NON-AUTHORITATIVE — EXPLANATION ONLY**  
+> This document is for educational purposes. Authoritative specifications are in `freeze/v2.4.0/`.
+
 # VERIFRAX v2 Edge API Specification
 
 **Version:** 2.0.0  

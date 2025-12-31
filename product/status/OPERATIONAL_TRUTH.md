@@ -90,14 +90,14 @@ Verification artifacts remain independently verifiable without VERIFRAX.
 
 ## Profile Finality
 
-For v2.3.0 and v2.4.0, verification profiles are treated as **externally interpretable rule sets** whose semantic meaning is not guaranteed by VERIFRAX.
+For v2.3.0 and v2.4.0, verification profiles are treated as **externally interpretable rule sets** whose semantic meaning is not provided by VERIFRAX.
 
-The certificate guarantees execution *against a profile identifier*, not the correctness or completeness of the profile itself.
+The certificate confirms execution *against a profile identifier*, not the correctness or completeness of the profile itself.
 
 VERIFRAX does not:
-- Guarantee profile semantics
-- Guarantee profile correctness
-- Guarantee profile completeness
+- Provide profile semantics
+- Provide profile correctness
+- Provide profile completeness
 - Interpret profile meaning
 
 VERIFRAX does:
