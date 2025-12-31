@@ -1,14 +1,20 @@
-# VERIFRAX Real-World Certificate Example
+> **NON-AUTHORITATIVE — EDUCATIONAL ONLY**  
+> This example is for educational purposes only. Contains fake data only. Not a conformance test.
+
+# VERIFRAX Certificate Example (Educational)
+
+> **NON-AUTHORITATIVE — EDUCATIONAL ONLY**  
+> This example is for educational purposes only. Contains fake data only. Not a conformance test.
 
 **Version:** 2.3.0  
-**Status:** FROZEN  
-**Purpose:** First real-world VERIFRAX certificate with complete evidence package and independent verification transcript.
+**Status:** EDUCATIONAL  
+**Purpose:** Example VERIFRAX certificate with complete evidence package and independent verification transcript.
 
 ---
 
 ## Package Contents
 
-This directory contains a complete, real-world VERIFRAX certificate example:
+This directory contains an example VERIFRAX certificate (educational only):
 
 - `bundle.bin` - Evidence bundle (43 bytes, minimal valid example)
 - `certificate.json` - VERIFRAX-issued certificate
@@ -18,14 +24,14 @@ This directory contains a complete, real-world VERIFRAX certificate example:
 
 ---
 
-## Certificate Details
+## Certificate Details (Example)
 
-**Upload ID:** `00000000-0000-0000-0000-000000000000`  
-**Bundle Hash:** `sha256:ba18a51f06af90c110924fc4e87a64dba5127bc092a582b33a2f1b844835413b`  
+**Upload ID:** `00000000-0000-0000-0000-000000000000` (example only)  
+**Bundle Hash:** `sha256:ba18a51f06af90c110924fc4e87a64dba5127bc092a582b33a2f1b844835413b` (example only)  
 **Profile:** `public@1.0.0`  
 **Verifier Version:** `2.3.0`  
 **Verdict:** `verified`  
-**Certificate Hash:** `sha256:0bb6c5af433595b665d57e4120975713a6d41db7d0f7e9d04d1438c0a29c3f8e`
+**Certificate Hash:** `sha256:0bb6c5af433595b665d57e4120975713a6d41db7d0f7e9d04d1438c0a29c3f8e` (example only)
 
 ---
 
@@ -49,24 +55,30 @@ See `VERIFICATION_TRANSCRIPT.md` for complete verification transcript.
 
 ## Use Case
 
-This example demonstrates:
+This example demonstrates (educational only):
 
-1. **Complete Evidence Package** - All files needed for independent verification
-2. **Real Certificate** - Actual VERIFRAX-issued certificate (not mock)
+1. **Example Evidence Package** - Example files for learning (not real evidence)
+2. **Example Certificate** - Example VERIFRAX certificate format (not real certificate)
 3. **Independent Verification** - Can be verified without VERIFRAX infrastructure
-4. **Court-Grade Evidence** - Suitable for legal submission
+4. **Educational Purpose** - For learning only, not real evidence
+
+## Independent Verifiability
+
+This example demonstrates independent verifiability. Certificate can be verified without VERIFRAX infrastructure.
 
 ---
 
-## Legal Admissibility
+## Independent Verifiability
 
-This package is legally admissible when:
+This package is independently verifiable when:
 
 1. All file hashes match `SHA256SUMS`
 2. Reference verifier confirms `VALID` status
 3. All required files are present
 
 **No VERIFRAX involvement required.**
+
+**Note:** VERIFRAX provides deterministic computation only. Legal admissibility is external to VERIFRAX.
 
 ---
 

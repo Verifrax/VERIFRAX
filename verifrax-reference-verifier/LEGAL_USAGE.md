@@ -58,9 +58,10 @@ A VERIFRAX certificate does **not** prove:
 ### 3. Legal Compliance
 
 - The evidence complies with laws or regulations
-- The evidence is legally admissible
 - The evidence satisfies legal requirements
 - The evidence is legally sufficient
+
+**Note:** VERIFRAX does not determine legal admissibility. Legal admissibility is external to VERIFRAX.
 
 ### 4. Quality or Suitability
 
