@@ -1,0 +1,22 @@
+# CODEOWNERS
+
+# Authoritative Engine
+/core/engine/ @verifrax/maintainers
+/freeze/ @verifrax/maintainers
+/verifrax-reference-verifier/ @verifrax/maintainers
+
+# Specifications
+/core/schemas/ @verifrax/maintainers
+/core/contracts/ @verifrax/maintainers
+/core/axioms/ @verifrax/maintainers
+
+# Freeze artifacts require maintainer approval
+/freeze/v2.4.0/ @verifrax/maintainers
+
+# Worker implementation
+/workers/verifrax-edge/ @verifrax/maintainers
+
+# Organization policy
+/.github/ @verifrax/maintainers
+/AUTHORITY.md @verifrax/maintainers
+
