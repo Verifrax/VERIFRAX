@@ -1,11 +1,12 @@
-# VERIFRAX Reference Verifier v2.4.0
+# VERIFRAX Reference Verifier v2.6.0
 
-**VERSION:** v2.4.0  
-**ROLE:** AUTHORITATIVE REFERENCE VERIFIER  
+**VERSION:** v2.6.0  
+**ROLE:** AUTHORITATIVE REFERENCE VERIFIER FOR v2.6.0  
 **STATUS:** FROZEN
 
 **Independent certificate verification without VERIFRAX infrastructure.**
 
+See `VERSION_AUTHORITY.md` for version authority declaration.
 See `verifrax.net/spec` for authoritative specifications.
 
 This verifier allows third parties to validate VERIFRAX certificates without requiring:
@@ -55,7 +56,7 @@ node cli.js \
 {
   "status": "VALID",
   "certificate_hash": "sha256:...",
-  "verifier_version": "2.4.0",
+  "verifier_version": "2.6.0",
   "bundle_hash": "sha256:..."
 }
 ```
@@ -93,9 +94,11 @@ This verifier is **deterministic**:
 
 ## Version
 
-**v2.4.0** (frozen, immutable)
+**v2.6.0** (frozen, immutable)
 
-This verifier is the authoritative reference for all VERIFRAX v2.4.0 certificates.
+This verifier is authoritative for VERIFRAX v2.6.0 certificates.
+
+Historical verification of v2.4.0 and v2.5.0 certificates remains possible using historical verifier versions, which are preserved for reference but are not authoritative for new executions.
 
 ## Files
 
