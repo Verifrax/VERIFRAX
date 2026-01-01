@@ -1,14 +1,16 @@
 # VERIFRAX
 
-## ⚠️ TERMINAL NOTICE
+## ⚠️ AUTHORITATIVE VERSION
 
-VERIFRAX v2.5.0 is the terminal and final authoritative version.
-No future version may alter or supersede its authority.
-See the v2.5.0 GitHub Release for canonical artifacts.
+VERIFRAX v2.6.0 is the authoritative version.
 
-**STATUS:** FROZEN — TERMINAL  
+See `VERSION_AUTHORITY.md` for version authority declaration.
+
+Historical versions (v2.4.0, v2.5.0) are frozen historically and remain verifiable but are superseded.
+
+**STATUS:** FROZEN  
 **ROLE:** AUTHORITATIVE ENGINE  
-**VERSION:** v2.5.0
+**VERSION:** v2.6.0
 
 ---
 
@@ -24,12 +26,12 @@ VERIFRAX is a deterministic verification system that produces final, reproducibl
 
 ### What Is Authoritative
 
-- **Frozen Release Artifacts:** `freeze/v2.5.0/` — Immutable v2.5.0 terminal snapshot
-- **Core Engine:** `core/engine/` — Deterministic verification logic
-- **Reference Verifier:** `verifrax-reference-verifier/` — Offline verification implementation
-- **Frozen Specifications:** Documents in `freeze/v2.5.0/` directory
-- **Terminal Freeze Commit:** `faa62cfdd249e60cce9ceb18357f6b00caf6a707`
-- **Signed Tag:** `v2.5.0` (annotated, cryptographically signed)
+- **Frozen Release Artifacts:** `freeze/v2.6.0/` — Immutable v2.6.0 snapshot
+- **Execution Engine:** `verifrax-engine/execute_v2_6_0.js` — Deterministic execution pipeline
+- **Reference Verifier:** `verifrax-reference-verifier/src/verify_v2_6_0.js` — Offline verification implementation
+- **Frozen Specifications:** Documents in `freeze/v2.6.0/` directory
+- **Freeze Commit:** `9c79fc8ecf722814705ae0ddd051f2c18ae94f40`
+- **Tag:** `v2.6.0`
 
 ### What Is NOT Authoritative
 
@@ -40,16 +42,17 @@ VERIFRAX is a deterministic verification system that produces final, reproducibl
 
 ### Version Policy
 
-**v2.5.0 = TERMINAL — FROZEN — IRREVERSIBLE**
+**v2.6.0 = FROZEN — AUTHORITATIVE**
 
-**v2.5.0 is the terminal and final authoritative version.**
-**All verification outcomes issued under v2.5.0 are final, immutable, and non-revocable.**
+**v2.6.0 is the authoritative version.**
+**All verification outcomes issued under v2.6.0 are final, immutable, and non-revocable.**
 
 - No retroactive changes to verification logic
 - No changes to certificate format
 - No changes to finality semantics
-- No future version may alter or supersede v2.5.0 authority
 - Authority derives solely from frozen specification and cryptographic determinism
+
+Historical versions (v2.4.0, v2.5.0) are frozen historically and remain verifiable but are superseded.
 
 ---
 
@@ -71,7 +74,7 @@ See `verifrax.net/spec` for authoritative specifications.
 
 - **Worker:** `workers/verifrax-edge/` — Cloudflare Worker (R2 upload rail)
 - **Core Engine:** `core/engine/` — Deterministic verification engine
-- **Terminal Release:** `freeze/v2.5.0/` — Immutable v2.5.0 terminal snapshot
+- **Frozen Release:** `freeze/v2.6.0/` — Immutable v2.6.0 snapshot
 - **Reference Verifier:** `verifrax-reference-verifier/` — Offline verification CLI
 
 ---
