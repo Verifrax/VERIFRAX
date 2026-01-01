@@ -22,6 +22,22 @@ function withHeaders(resp) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    const host = request.headers.get("host") || url.hostname;
+
+    // Enforce canonical host
+    const canonicalHost = "www.verifrax.net";
+    if (host !== canonicalHost) {
+      url.hostname = canonicalHost;
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
+
+    // Optional: enforce https even behind CF (usually already https)
+    if (url.protocol !== "https:") {
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
+
     const path = url.pathname;
 
     // HARD KILL /pay — FINAL
@@ -52,10 +68,22 @@ export default {
     if (path === "/" && request.method === "GET") {
       return withHeaders(new Response(
         "VERIFRAX v2.5.0\n\n" +
-        "Deterministic digital verification system.\n\n" +
+        "WHAT VERIFRAX IS:\n" +
+        "VERIFRAX is a deterministic digital verification system. It executes a single, one-time computational verification over a submitted digital evidence bundle and issues a final, immutable, reproducible certificate.\n\n" +
+        "WHAT VERIFRAX DOES:\n" +
+        "- Accepts digital evidence bundles\n" +
+        "- Executes deterministic verification (pure function, no side effects)\n" +
+        "- Produces certificates (self-contained, independently verifiable)\n" +
+        "- Delivers final verdicts (verified or not_verified)\n\n" +
+        "WHAT VERIFRAX DOES NOT DO:\n" +
+        "- Provide advice, opinions, or conclusions\n" +
+        "- Store mutable state or require accounts\n" +
+        "- Depend on infrastructure availability\n" +
+        "- Produce non-deterministic outcomes\n" +
+        "- Accept subjective inputs, voting, moderation, or overrides\n" +
+        "- Depend on external state, network connectivity, or real-time data\n\n" +
         "Public surfaces:\n" +
         "- GET /spec — frozen specification\n" +
-        "- GET /glossary — terminology\n" +
         "- GET /status — system status\n" +
         "- GET /reference-verifier — offline verification tools\n\n" +
         "Payment disabled in v2.5.0.\n",
@@ -143,7 +171,9 @@ SHA-256 hash of the evidence bundle, computed before upload and verified after u
         status: "operational",
         governance_state: "frozen",
         payment_status: "disabled",
-        frozen_spec: "freeze/v2.5.0/UNIVERSAL_PUBLIC_SURFACE_SPEC_v2.5.0.md"
+        frozen_spec: "freeze/v2.5.0/UNIVERSAL_PUBLIC_SURFACE_SPEC_v2.5.0.md",
+        infrastructure_authority: "none",
+        infrastructure_note: "VERIFRAX infrastructure has no authority over certificate validity. Certificates are independently verifiable and remain valid regardless of infrastructure availability or operator status."
       }, null, 2);
       return withHeaders(new Response(status, { 
         status: 200,
@@ -157,8 +187,16 @@ SHA-256 hash of the evidence bundle, computed before upload and verified after u
         "VERIFRAX Reference Verifier\n\n" +
         "GitHub: https://github.com/verifrax/verifrax-reference-verifier\n" +
         "Version: 2.5.0\n\n" +
-        "Offline verification tools available in verifrax-reference-verifier/\n" +
-        "Cryptographic hashes published in freeze/v2.5.0/\n",
+        "INDEPENDENT VERIFICATION:\n" +
+        "The reference verifier enables offline, independent certificate verification. Verification does not require VERIFRAX infrastructure, network access, or operator availability. Certificates can be verified using only the reference verifier and the certificate itself.\n\n" +
+        "CRYPTOGRAPHIC HASHES:\n" +
+        "All reference verifier files are cryptographically hashed. Hashes are published in:\n" +
+        "freeze/v2.5.0/REFERENCE_VERIFIER_HASHES.txt\n\n" +
+        "Key file hashes (SHA-256):\n" +
+        "cli.js: dac0993a38d26b8383b7262ddb67126641e128eb824224ec2564e23845e6924b\n" +
+        "verify_v2_5_0.js: 392192a1e55580dfaf50b6e0377b47d0e776e9263752ef2b5b6876de9d9d628d\n" +
+        "package.json: 26fa4e72c43d3ead93aaa2af1c721032130db18f61f6650c8194de24a090c053\n\n" +
+        "Full hash list: freeze/v2.5.0/REFERENCE_VERIFIER_HASHES.txt\n",
         { 
           status: 200,
           headers: { 'Content-Type': 'text/plain' }

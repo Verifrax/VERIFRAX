@@ -136,7 +136,7 @@ Clear documentation that `/pay` must be disabled before freeze. Verification ste
 
 1. **Run FREEZE_COMPLETION_SCRIPT.sh**
    ```bash
-   cd /Users/midiakiasat/Desktop/VERIFRAX
+   cd <project-root>
    ./freeze/v2.5.0/FREEZE_COMPLETION_SCRIPT.sh
    ```
 

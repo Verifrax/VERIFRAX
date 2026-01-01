@@ -56,7 +56,7 @@ console.log('Transaction hash:', receipt.transactionHash);
 **Quick mint using `tools/mint-anchor-eth.js`:**
 
 ```bash
-cd /Users/midiakiasat/Desktop/Kaaffilm/apps/Verifrax
+cd <project-root>
 
 # For Sepolia (recommended for testing):
 export CINELINT_ETH_RPC='https://rpc.sepolia.org'
@@ -82,7 +82,7 @@ node tools/mint-anchor-eth.js
 **After minting, set both chain_id and tx_hash:**
 
 ```bash
-cd /Users/midiakiasat/Desktop/Kaaffilm/apps/Verifrax
+cd <project-root>
 
 # Set chain_id (Mainnet=1, Sepolia=11155111)
 jq '.chain_id=1' out/cert-bundles/run-003/anchors/eth.json > /tmp/eth.json && mv /tmp/eth.json out/cert-bundles/run-003/anchors/eth.json

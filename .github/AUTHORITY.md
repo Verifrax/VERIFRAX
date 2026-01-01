@@ -10,9 +10,10 @@ This document defines what is authoritative and non-authoritative across the Ver
 
 ### `Verifrax/VERIFRAX`
 - **Role:** Authoritative engine implementation
-- **Status:** FROZEN at v2.4.0
-- **Authority:** Core verification logic, frozen release artifacts
-- **Freeze Commit:** `160f1f94bfedb81c6de6f797abad6e5fc9e0f5f2`
+- **Status:** TERMINAL — FROZEN at v2.5.0
+- **Authority:** Core verification logic, terminal release artifacts
+- **Terminal Freeze Commit:** `faa62cfdd249e60cce9ceb18357f6b00caf6a707`
+- **Signed Tag:** `v2.5.0` (annotated, cryptographically signed)
 
 ### `Verifrax/VERIFRAX-SPEC`
 - **Role:** Authoritative specification
@@ -22,12 +23,12 @@ This document defines what is authoritative and non-authoritative across the Ver
 ### `Verifrax/VERIFRAX-PROFILES`
 - **Role:** Declarative profile definitions
 - **Authority:** Profiles are declarative, non-interpreted by VERIFRAX
-- **Status:** Compatible profile set tagged for v2.4.0
+- **Status:** Compatible profile set tagged for v2.5.0
 
 ### `Verifrax/VERIFRAX-verify`
 - **Role:** Reference verifier implementation
 - **Authority:** Offline, deterministic verifier wins over infrastructure
-- **Status:** Tagged v2.4.0
+- **Status:** Tagged v2.5.0 (compatible ONLY with VERIFRAX v2.5.0)
 
 ---
 
@@ -47,11 +48,12 @@ This document defines what is authoritative and non-authoritative across the Ver
 
 ## What Is Authoritative
 
-1. **Frozen release artifacts** in `freeze/v2.4.0/`
-2. **Tagged releases** (v2.4.0 and earlier)
-3. **Core engine code** at freeze commit hash
-4. **Reference verifier** at tagged version
-5. **Specifications** in tagged releases
+1. **Terminal release artifacts** in `freeze/v2.5.0/`
+2. **Signed tagged release** (v2.5.0 — terminal, final, irreversible)
+3. **Core engine code** at terminal freeze commit hash
+4. **Reference verifier** at v2.5.0 tagged version
+5. **Specifications** in v2.5.0 tagged releases
+6. **Cryptographic signatures** on all terminal artifacts
 
 ---
 
@@ -87,10 +89,11 @@ Default branches are locked:
 
 ## Version Policy
 
-**v2.4.0 = FROZEN**
+**v2.5.0 = TERMINAL — FROZEN — IRREVERSIBLE**
 
-- No changes to frozen artifacts
+- No changes to terminal artifacts
 - No changes to verification logic
 - No changes to certificate format
-- All future changes require new version
+- No future version may alter or supersede v2.5.0 authority
+- Authority derives solely from frozen specification and cryptographic determinism
 
