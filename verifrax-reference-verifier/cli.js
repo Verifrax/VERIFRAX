@@ -11,6 +11,7 @@
  */
 
 const { verifyCertificate, verifyCertificateV2_5_0 } = require('./src/verify');
+const { verifyCertificateV2_6_0 } = require('./src/verify_v2_6_0');
 const fs = require('fs');
 const path = require('path');
 
@@ -96,21 +97,31 @@ function main() {
 
   // Detect version and use appropriate verifier
   let certificate;
+  let isV2_6_0 = false;
   try {
     const certificateData = fs.readFileSync(certificatePath, 'utf8');
     certificate = JSON.parse(certificateData);
+    
+    // Detect version from certificate
+    const verifraxVersion = certificate?.verifrax_version;
+    isV2_6_0 = verifraxVersion === '2.6.0';
   } catch (e) {
-    // Will be caught below
+    // Will be caught by verifier
   }
 
-  const verifierVersion = certificate?.verifier_version || '2.4.0';
-  const isV2_5_0 = verifierVersion.startsWith('2.5.0') || 
-                   certificate?.classification || 
-                   certificate?.multi_profile || 
-                   certificate?.tcb_refs;
-
-  // Use v2.5.0 verifier if certificate has v2.5.0 features
-  const verifyFn = isV2_5_0 ? verifyCertificateV2_5_0 : verifyCertificate;
+  // Use appropriate verifier
+  let verifyFn;
+  if (isV2_6_0) {
+    verifyFn = verifyCertificateV2_6_0;
+  } else {
+    // For non-v2.6.0, detect v2.5.0
+    const verifierVersion = certificate?.verifier_version || '2.4.0';
+    const isV2_5_0 = verifierVersion.startsWith('2.5.0') || 
+                     certificate?.classification || 
+                     certificate?.multi_profile || 
+                     certificate?.tcb_refs;
+    verifyFn = isV2_5_0 ? verifyCertificateV2_5_0 : verifyCertificate;
+  }
 
   // Verify certificate
   const result = verifyFn({
@@ -119,8 +130,12 @@ function main() {
     profileId: options.profileId
   });
 
-  // Output result as JSON
-  console.log(JSON.stringify(result, null, 2));
+  // Output result (v2.6.0: VALID/INVALID only, others: JSON)
+  if (isV2_6_0) {
+    console.log(result.status);
+  } else {
+    console.log(JSON.stringify(result, null, 2));
+  }
 
   // Exit with appropriate code
   if (result.status === 'VALID') {

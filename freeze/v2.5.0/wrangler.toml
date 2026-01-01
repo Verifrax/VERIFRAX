@@ -1,0 +1,10 @@
+name = "verifrax-edge-production"
+compatibility_date = "2025-01-01"
+workers_dev = false
+preview_urls = false
+main = "../../worker-production-v2.5.0.js"
+
+routes = [
+  { pattern = "verifrax.net/*", zone_name = "verifrax.net" },
+  { pattern = "www.verifrax.net/*", zone_name = "verifrax.net" }
+]
