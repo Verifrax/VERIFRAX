@@ -1,0 +1,3 @@
+# VERIFRAX v2.5.0 — ONE-PARAGRAPH PUBLIC NOTICE
+
+VERIFRAX v2.5.0 has been formally frozen and designated as the terminal and final authoritative version of the VERIFRAX deterministic verification system. All specifications, cryptographic rules, governance policies, and finality guarantees are permanently fixed and immutable. Certificates issued under v2.5.0 are final, non-revocable, and independently verifiable forever, regardless of operator action, infrastructure provider, payment processor, or organizational existence. No future version or system may inherit or alter the authority of VERIFRAX v2.5.0.

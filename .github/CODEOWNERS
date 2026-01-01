@@ -11,7 +11,7 @@
 /core/axioms/ @verifrax/maintainers
 
 # Freeze artifacts require maintainer approval
-/freeze/v2.4.0/ @verifrax/maintainers
+/freeze/v2.5.0/ @verifrax/maintainers
 
 # Worker implementation
 /workers/verifrax-edge/ @verifrax/maintainers
