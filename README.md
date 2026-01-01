@@ -1,8 +1,14 @@
 # VERIFRAX
 
-**STATUS:** FROZEN  
+## ⚠️ TERMINAL NOTICE
+
+VERIFRAX v2.5.0 is the terminal and final authoritative version.
+No future version may alter or supersede its authority.
+See the v2.5.0 GitHub Release for canonical artifacts.
+
+**STATUS:** FROZEN — TERMINAL  
 **ROLE:** AUTHORITATIVE ENGINE  
-**VERSION:** v2.4.0
+**VERSION:** v2.5.0
 
 ---
 
@@ -18,11 +24,12 @@ VERIFRAX is a deterministic verification system that produces final, reproducibl
 
 ### What Is Authoritative
 
-- **Frozen Release Artifacts:** `freeze/v2.4.0/` — Immutable v2.4.0 snapshot
+- **Frozen Release Artifacts:** `freeze/v2.5.0/` — Immutable v2.5.0 terminal snapshot
 - **Core Engine:** `core/engine/` — Deterministic verification logic
 - **Reference Verifier:** `verifrax-reference-verifier/` — Offline verification implementation
-- **Frozen Specifications:** Documents in `freeze/v2.4.0/` directory
-- **Freeze Commit:** `160f1f94bfedb81c6de6f797abad6e5fc9e0f5f2`
+- **Frozen Specifications:** Documents in `freeze/v2.5.0/` directory
+- **Terminal Freeze Commit:** `faa62cfdd249e60cce9ceb18357f6b00caf6a707`
+- **Signed Tag:** `v2.5.0` (annotated, cryptographically signed)
 
 ### What Is NOT Authoritative
 
@@ -33,15 +40,16 @@ VERIFRAX is a deterministic verification system that produces final, reproducibl
 
 ### Version Policy
 
-**v2.4.0 = FROZEN**
+**v2.5.0 = TERMINAL — FROZEN — IRREVERSIBLE**
 
-**v2.4.0 is frozen.**
-**All verification outcomes issued under v2.4.0 are final and immutable.**
+**v2.5.0 is the terminal and final authoritative version.**
+**All verification outcomes issued under v2.5.0 are final, immutable, and non-revocable.**
 
 - No retroactive changes to verification logic
 - No changes to certificate format
 - No changes to finality semantics
-- All future changes require explicit version increments
+- No future version may alter or supersede v2.5.0 authority
+- Authority derives solely from frozen specification and cryptographic determinism
 
 ---
 
@@ -63,7 +71,7 @@ See `verifrax.net/spec` for authoritative specifications.
 
 - **Worker:** `workers/verifrax-edge/` — Cloudflare Worker (R2 upload rail)
 - **Core Engine:** `core/engine/` — Deterministic verification engine
-- **Frozen Release:** `freeze/v2.4.0/` — Immutable v2.4.0 snapshot
+- **Terminal Release:** `freeze/v2.5.0/` — Immutable v2.5.0 terminal snapshot
 - **Reference Verifier:** `verifrax-reference-verifier/` — Offline verification CLI
 
 ---
