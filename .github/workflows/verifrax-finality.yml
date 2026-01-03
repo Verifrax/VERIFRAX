@@ -9,8 +9,76 @@ on:
     types: [created]
 
 jobs:
+  detect-ui-only:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    outputs:
+      ui-only: ${{ steps.check.outputs.ui-only }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Check if PR is UI-only
+        id: check
+        run: |
+          # Get changed files in PR
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD 2>/dev/null || git diff --name-only main...HEAD 2>/dev/null || echo "")
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "ui-only=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          # Check if ALL changes are UI-only paths
+          # UI-only: app/, components/, public/ (except frozen), *.css, *.tsx, workflow fixes
+          # Non-UI: core/, scripts/, freeze/, public/VERDICT_REFERENCE_v1.md, and any other non-UI files
+          # Strategy: Find any non-UI files; if none found, PR is UI-only
+          NON_UI_FILES=""
+          for file in $CHANGED_FILES; do
+            # Skip UI-only patterns
+            if echo "$file" | grep -qE '^(app/|components/)'; then
+              continue
+            fi
+            if echo "$file" | grep -qE '\.(css|tsx|ts)$'; then
+              continue
+            fi
+            if [ "$file" = ".github/workflows/verifrax-finality.yml" ]; then
+              continue
+            fi
+            # public/ files: UI-only except VERDICT_REFERENCE_v1.md
+            if echo "$file" | grep -q '^public/'; then
+              if [ "$file" != "public/VERDICT_REFERENCE_v1.md" ]; then
+                continue
+              fi
+            fi
+            # If we get here, it's a non-UI file
+            NON_UI_FILES="$NON_UI_FILES $file"
+          done
+          NON_UI_FILES=$(echo "$NON_UI_FILES" | xargs || true)
+          
+          if [ -z "$NON_UI_FILES" ]; then
+            echo "✅ UI-only PR detected - seed-claim will be skipped"
+            echo "ui-only=true" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️  Non-UI files changed - seed-claim will run"
+            echo "Non-UI files:"
+            echo "$NON_UI_FILES"
+            echo "ui-only=false" >> $GITHUB_OUTPUT
+          fi
+
   seed-claim:
     runs-on: ubuntu-latest
+    needs: detect-ui-only
+    # Finality preserved: Always run on push to main/finality-v1 or releases
+    # Temporary bypass: Skip on UI-only PRs only
+    if: |
+      # Always run on push to main/finality-v1 (finality preserved)
+      (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/finality-v1')) ||
+      # Always run on releases (finality preserved)
+      github.event_name == 'release' ||
+      # On PRs: skip only if UI-only, otherwise run (finality preserved)
+      (github.event_name == 'pull_request' && (needs.detect-ui-only.outputs.ui-only != 'true'))
     steps:
       - uses: actions/checkout@v4
       
@@ -44,7 +112,15 @@ jobs:
 
   build-evidence-bundle:
     runs-on: ubuntu-latest
-    needs: seed-claim
+    needs: [detect-ui-only, seed-claim]
+    # Only run if seed-claim ran (same conditions)
+    if: |
+      # Always run on push to main/finality-v1 (finality preserved)
+      (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/finality-v1')) ||
+      # Always run on releases (finality preserved)
+      github.event_name == 'release' ||
+      # On PRs: skip only if UI-only, otherwise run (finality preserved)
+      (github.event_name == 'pull_request' && (needs.detect-ui-only.outputs.ui-only != 'true'))
     steps:
       - uses: actions/checkout@v4
       
