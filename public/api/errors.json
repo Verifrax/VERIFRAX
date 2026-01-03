@@ -1,0 +1,66 @@
+{
+  "version": "2.7.0",
+  "errors": [
+    {
+      "code": "MISSING_TOKEN",
+      "meaning": "payment not completed / token absent",
+      "retry": "yes",
+      "http_status": 401
+    },
+    {
+      "code": "INVALID_TOKEN_FORMAT",
+      "meaning": "token format is invalid",
+      "retry": "no",
+      "http_status": 401
+    },
+    {
+      "code": "INVALID_SIGNATURE",
+      "meaning": "token tampered or invalid",
+      "retry": "no",
+      "http_status": 401
+    },
+    {
+      "code": "TOKEN_EXPIRED",
+      "meaning": "token lifetime exceeded",
+      "retry": "no",
+      "http_status": 401
+    },
+    {
+      "code": "TOKEN_NOT_FOUND",
+      "meaning": "token not found in system",
+      "retry": "no",
+      "http_status": 401
+    },
+    {
+      "code": "TOKEN_ALREADY_USED",
+      "meaning": "final execution consumed",
+      "retry": "no",
+      "http_status": 401
+    },
+    {
+      "code": "MISSING_FIELDS",
+      "meaning": "required fields (bundle, profile_id) are missing",
+      "retry": "yes",
+      "http_status": 400
+    },
+    {
+      "code": "INVALID_TIER",
+      "meaning": "payment tier must be A or B",
+      "retry": "yes",
+      "http_status": 400
+    },
+    {
+      "code": "STRIPE_ERROR",
+      "meaning": "Stripe API error during payment processing",
+      "retry": "yes",
+      "http_status": 500
+    },
+    {
+      "code": "SYSTEM_NON_EXECUTION",
+      "meaning": "infrastructure fault prevented completion",
+      "retry": "yes",
+      "http_status": 500
+    }
+  ]
+}
+
