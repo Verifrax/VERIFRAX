@@ -220,6 +220,7 @@ export default {
       '/api/create-payment-intent',
       '/api/stripe/webhook',
       '/api/verify',
+      '/api/get-token',
       '/status',
     ];
     
@@ -362,19 +363,41 @@ export default {
           try {
             const paymentObject = event.data.object;
             const paymentIntentId = paymentObject.payment_intent || paymentObject.id;
+            const sessionId = paymentObject.id; // Checkout session ID
             const amount = paymentObject.amount_total || paymentObject.amount;
             const currency = paymentObject.currency || 'eur';
             
             // Determine tier from amount
             const tier = amount === 65000 ? 'A' : amount === 150000 ? 'B' : 'A';
             
-            await mintExecutionToken(env, tier, paymentIntentId, amount, currency);
+            const token = await mintExecutionToken(env, tier, paymentIntentId, amount, currency);
+            
+            // Store session_id -> token mapping for redirect retrieval
+            if (sessionId) {
+              await env.ID_MAP.put(`session:${sessionId}`, token);
+            }
           } catch (error) {
             return new Response(JSON.stringify({ error: 'TOKEN_MINT_FAILED', message: error instanceof Error ? error.message : 'Unknown error' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
           }
         }
 
         return new Response(JSON.stringify({ received: true }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+      }
+
+      // GET /api/get-token?session_id=...
+      if (path === '/api/get-token' && request.method === 'GET') {
+        const url = new URL(request.url);
+        const sessionId = url.searchParams.get('session_id');
+        if (!sessionId) {
+          return new Response(JSON.stringify({ error: 'MISSING_SESSION_ID' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+        }
+
+        const token = await env.ID_MAP.get(`session:${sessionId}`);
+        if (!token) {
+          return new Response(JSON.stringify({ error: 'TOKEN_NOT_FOUND' }), { status: 404, headers: { 'Content-Type': 'application/json' } });
+        }
+
+        return new Response(JSON.stringify({ token }), { headers: { 'Content-Type': 'application/json' } });
       }
 
       // POST /api/verify
