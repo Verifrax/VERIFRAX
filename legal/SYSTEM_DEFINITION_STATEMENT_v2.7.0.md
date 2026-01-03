@@ -35,7 +35,7 @@ VERIFRAX is not:
 1. **A truth verification service** — VERIFRAX does not verify the truth, accuracy, or legal validity of evidence
 2. **An advisory service** — VERIFRAX provides no interpretation, guidance, or recommendations
 3. **A custody service** — VERIFRAX does not hold, manage, or control user funds beyond payment processing
-4. **A storage service** — Evidence bundles are stored for certificate generation only; no long-term custody
+4. **A general-purpose storage or custody service** — Evidence bundles are retained solely as a by-product of execution finality and certificate reproducibility, not as a custodial or access service.
 5. **A dispute resolution service** — VERIFRAX does not resolve disputes, mediate, or arbitrate
 6. **A certification authority** — VERIFRAX does not issue certificates of authenticity, compliance, or legal standing
 7. **A guarantee service** — VERIFRAX makes no guarantees about outcomes, acceptance, or third-party reliance
@@ -77,6 +77,7 @@ VERIFRAX is not:
   - Execution timestamp
   - Verdict (derived from verification)
   - Reason codes (derived from verification)
+- Execution timestamps reflect system clock time at execution and are not representations of external event timing
 - Certificate hash is computed from canonical JSON serialization (excluding certificate_hash field)
 - Certificate is stored at path: `cert/<certificate_hash>.json`
 - Certificate storage is write-once (no overwrite, no delete)
@@ -102,6 +103,8 @@ VERIFRAX makes no claims about:
 - The suitability of certificates for any purpose
 - The continued availability of the service
 - The accuracy or completeness of verification results
+
+No party may rely on a VERIFRAX certificate as a substitute for independent verification, legal judgment, or regulatory determination.
 
 ---
 

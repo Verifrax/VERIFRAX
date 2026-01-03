@@ -21,7 +21,8 @@
 - No code changes will be made to v2.7.0
 - No bug fixes will be applied to v2.7.0
 - No feature additions will be made to v2.7.0
-- No security patches will be applied to v2.7.0 (except critical security vulnerabilities affecting infrastructure)
+- No modifications affecting execution semantics, certificate generation, or verification behavior will be applied
+- Infrastructure-level mitigations that do not alter system behavior may occur
 
 ### 2. Specification Freeze
 
