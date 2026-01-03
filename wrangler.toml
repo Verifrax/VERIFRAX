@@ -1,5 +1,5 @@
 name = "verifrax-edge-production"
-main = "src/index.ts"
+main = "worker-production-v2.5.0.js"
 compatibility_date = "2026-01-01"
 
 routes = [
