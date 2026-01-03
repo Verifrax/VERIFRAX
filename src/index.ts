@@ -494,6 +494,7 @@ export default {
           governance_state: 'frozen',
           payment_gate: 'enforced',
           verifier_version: env.VERIFIER_VERSION,
+          role: 'terminal_verification_primitive',
         }), { headers: { 'Content-Type': 'application/json' } });
       }
 
