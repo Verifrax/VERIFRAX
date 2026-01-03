@@ -213,6 +213,14 @@ SHA-256 hash of the evidence bundle, computed before upload and verified after u
       ));
     }
 
+    // GET /verify
+    if (path === "/verify" && request.method === "GET") {
+      return withHeaders(new Response("VERIFRAX VERIFY ONLINE", {
+        status: 200,
+        headers: { "Content-Type": "text/plain" },
+      }));
+    }
+
     // 404 for all other routes
     return withHeaders(new Response("Not Found", { status: 404 }));
   }

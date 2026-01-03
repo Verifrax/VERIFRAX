@@ -64,6 +64,11 @@ export const staticPages: Record<string, string> = {
     .error { background: #fee; padding: 1rem; margin: 1rem 0; border-left: 4px solid #c00; }
     .success { background: #efe; padding: 1rem; margin: 1rem 0; border-left: 4px solid #0c0; }
     code { background: #f5f5f5; padding: 0.2rem 0.4rem; }
+    .payment-section { margin: 2rem 0; padding: 1rem; background: #f5f5f5; border-left: 4px solid #000; }
+    .payment-button { background: #000; color: #fff; padding: 0.75rem 2rem; border: none; cursor: pointer; font-size: 1rem; margin: 0.5rem 0; width: 100%; }
+    .payment-button:hover { background: #333; }
+    .payment-button:disabled { background: #ccc; cursor: not-allowed; }
+    .legal-copy { background: #f5f5f5; padding: 1rem; margin: 1rem 0; border-left: 4px solid #000; font-size: 0.9rem; }
   </style>
 </head>
 <body>
@@ -71,6 +76,15 @@ export const staticPages: Record<string, string> = {
   <p><a href="/">← Back to Home</a></p>
   <div id="error" class="error" style="display: none;"></div>
   <div id="success" class="success" style="display: none;"></div>
+  <div id="paymentSection" class="payment-section" style="display: none;">
+    <h2>Pay & Generate Execution Token</h2>
+    <p>You need an execution token to proceed. Generate one by completing payment:</p>
+    <button class="payment-button" id="payTierA" onclick="initiatePayment('A')">Pay & Generate Execution Token — Tier A (€650)</button>
+    <button class="payment-button" id="payTierB" onclick="initiatePayment('B')">Pay & Generate Execution Token — Tier B (€1,500)</button>
+    <div class="legal-copy">
+      <p><strong>One payment authorizes exactly one deterministic execution. No retries. No refunds due to outcome. No interpretation.</strong></p>
+    </div>
+  </div>
   <form id="verifyForm" enctype="multipart/form-data">
     <div class="field">
       <label for="token">Execution Token (Bearer Token)</label>
@@ -92,6 +106,9 @@ export const staticPages: Record<string, string> = {
     </div>
     <button type="submit">Execute Verification</button>
   </form>
+  <div class="legal-copy">
+    <p><strong>One payment authorizes exactly one deterministic execution. No retries. No refunds due to outcome. No interpretation.</strong></p>
+  </div>
   <h2>Error States</h2>
   <ul>
     <li><code>MISSING_TOKEN</code> — No execution token provided</li>
@@ -103,6 +120,65 @@ export const staticPages: Record<string, string> = {
     <li><code>MISSING_FIELDS</code> — Required fields (bundle, profile_id) are missing</li>
   </ul>
   <script>
+    // Check for session_id query param and auto-fill token
+    (async function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const sessionId = urlParams.get('session_id');
+      if (sessionId) {
+        try {
+          const response = await fetch(\`/api/get-token?session_id=\${sessionId}\`);
+          const result = await response.json();
+          if (response.ok && result.token) {
+            document.getElementById('token').value = result.token;
+            document.getElementById('paymentSection').style.display = 'none';
+          } else {
+            document.getElementById('paymentSection').style.display = 'block';
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = 'Token not yet available. Please wait a moment and refresh, or complete payment.';
+            errorDiv.style.display = 'block';
+          }
+        } catch (error) {
+          document.getElementById('paymentSection').style.display = 'block';
+        }
+      } else {
+        // Check if token field is empty, show payment section
+        const tokenField = document.getElementById('token');
+        if (!tokenField.value.trim()) {
+          document.getElementById('paymentSection').style.display = 'block';
+        }
+      }
+    })();
+
+    async function initiatePayment(tier) {
+      const errorDiv = document.getElementById('error');
+      errorDiv.style.display = 'none';
+      const buttonA = document.getElementById('payTierA');
+      const buttonB = document.getElementById('payTierB');
+      buttonA.disabled = true;
+      buttonB.disabled = true;
+      try {
+        const response = await fetch('/api/create-payment-intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tier })
+        });
+        const result = await response.json();
+        if (!response.ok) {
+          errorDiv.textContent = \`Error: \${result.error || 'Payment initiation failed'}\`;
+          errorDiv.style.display = 'block';
+          buttonA.disabled = false;
+          buttonB.disabled = false;
+        } else {
+          window.location.href = result.checkout_url;
+        }
+      } catch (error) {
+        errorDiv.textContent = \`Network error: \${error.message}\`;
+        errorDiv.style.display = 'block';
+        buttonA.disabled = false;
+        buttonB.disabled = false;
+      }
+    }
+
     document.getElementById('verifyForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const errorDiv = document.getElementById('error');
@@ -157,6 +233,12 @@ export const staticPages: Record<string, string> = {
     th, td { padding: 1rem; text-align: left; border-bottom: 1px solid #ddd; }
     th { background: #f5f5f5; font-weight: bold; }
     .rule { background: #f5f5f5; padding: 1rem; margin: 1rem 0; border-left: 4px solid #000; }
+    .payment-button { background: #000; color: #fff; padding: 0.75rem 2rem; border: none; cursor: pointer; font-size: 1rem; margin: 0.5rem 0; width: 100%; }
+    .payment-button:hover { background: #333; }
+    .payment-button:disabled { background: #ccc; cursor: not-allowed; }
+    .payment-section { margin: 2rem 0; }
+    .legal-copy { background: #f5f5f5; padding: 1rem; margin: 1rem 0; border-left: 4px solid #000; font-size: 0.9rem; }
+    .error { background: #fee; padding: 1rem; margin: 1rem 0; border-left: 4px solid #c00; }
   </style>
 </head>
 <body>
@@ -167,10 +249,27 @@ export const staticPages: Record<string, string> = {
       <tr><th>Tier</th><th>Description</th><th>Price</th></tr>
     </thead>
     <tbody>
-      <tr><td>A</td><td>Public Deterministic Verification</td><td>€650</td></tr>
-      <tr><td>B</td><td>Priority Deterministic Verification</td><td>€1,500</td></tr>
+      <tr>
+        <td>A</td>
+        <td>Public Deterministic Verification</td>
+        <td>€650</td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td>Priority Deterministic Verification</td>
+        <td>€1,500</td>
+      </tr>
     </tbody>
   </table>
+  <div class="payment-section">
+    <h2>Pay & Generate Execution Token</h2>
+    <div id="error" class="error" style="display: none;"></div>
+    <button class="payment-button" id="payTierA" onclick="initiatePayment('A')">Pay & Generate Execution Token — Tier A (€650)</button>
+    <button class="payment-button" id="payTierB" onclick="initiatePayment('B')">Pay & Generate Execution Token — Tier B (€1,500)</button>
+    <div class="legal-copy">
+      <p><strong>One payment authorizes exactly one deterministic execution. No retries. No refunds due to outcome. No interpretation.</strong></p>
+    </div>
+  </div>
   <div class="rule">
     <p><strong>Payment Terms:</strong></p>
     <ul>
@@ -190,7 +289,37 @@ export const staticPages: Record<string, string> = {
       <li>Certificate retrieval via <code>/certificate/{hash}</code></li>
     </ul>
   </div>
-  <p><a href="/verify">→ Execute Verification</a></p>
+  <script>
+    async function initiatePayment(tier) {
+      const errorDiv = document.getElementById('error');
+      errorDiv.style.display = 'none';
+      const buttonA = document.getElementById('payTierA');
+      const buttonB = document.getElementById('payTierB');
+      buttonA.disabled = true;
+      buttonB.disabled = true;
+      try {
+        const response = await fetch('/api/create-payment-intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tier })
+        });
+        const result = await response.json();
+        if (!response.ok) {
+          errorDiv.textContent = \`Error: \${result.error || 'Payment initiation failed'}\`;
+          errorDiv.style.display = 'block';
+          buttonA.disabled = false;
+          buttonB.disabled = false;
+        } else {
+          window.location.href = result.checkout_url;
+        }
+      } catch (error) {
+        errorDiv.textContent = \`Network error: \${error.message}\`;
+        errorDiv.style.display = 'block';
+        buttonA.disabled = false;
+        buttonB.disabled = false;
+      }
+    }
+  </script>
 </body>
 </html>`,
 
