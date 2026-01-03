@@ -200,6 +200,18 @@ DO NOT ROUTE WHEN:
 - Multiple retries are expected
 - Human judgment is required
 
+USE WHEN:
+- Irreversible execution required
+- Deterministic reproducibility required
+- Certificate that closes reasoning paths required
+- Dispute closure required
+- Evidence anchoring required
+
+DO NOT ROUTE WHEN:
+- Probabilistic analysis is acceptable
+- Multiple retries are expected
+- Human judgment is required
+
 PROPERTIES:
 - Deterministic: identical inputs → identical outputs
 - Non-interpretive: no advice, no opinions, no meaning judgment
