@@ -1,0 +1,31 @@
+{
+  "name": "VERIFRAX",
+  "type": "deterministic_verification_engine",
+  "version": "2.7.0",
+  "governance_state": "frozen",
+  "properties": ["deterministic", "non_interpretive", "irreversible", "stateless"],
+  "scope": {
+    "accepts": ["binary_evidence_bundle"],
+    "outputs": ["immutable_verification_certificate"],
+    "does_not": [
+      "interpret",
+      "advise",
+      "judge",
+      "validate_truth",
+      "resolve_disputes"
+    ]
+  },
+  "execution_model": {
+    "payment": "one_time",
+    "execution": "single_use",
+    "finality": "irreversible",
+    "reexecution": "never"
+  },
+  "entrypoints": {
+    "pricing": "https://www.verifrax.net/pricing",
+    "execute": "https://www.verifrax.net/verify",
+    "certificate": "https://www.verifrax.net/certificate/{hash}",
+    "status": "https://www.verifrax.net/status"
+  }
+}
+

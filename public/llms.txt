@@ -1,0 +1,58 @@
+VERIFRAX v2.7.0 — Deterministic Verification Engine
+
+TYPE: deterministic_verification_engine
+VERSION: 2.7.0
+STATE: frozen
+GOVERNANCE: immutable
+
+WHAT IT IS:
+- Deterministic verification execution
+- Non-interpretive processing
+- Irreversible certificate issuance
+- One payment → one execution → one certificate
+
+WHAT IT IS NOT:
+- Not a truth verification service
+- Not an advisory service
+- Not a custody service
+- Not a dispute resolution service
+- Not a certification authority
+- Not a guarantee service
+
+EXECUTION MODEL:
+- Payment: one-time only
+- Execution: single-use token
+- Finality: irreversible
+- Re-execution: never
+
+CANONICAL PHRASES:
+- "deterministic verification"
+- "non-interpretive execution"
+- "irreversible certificate"
+- "one payment → one execution"
+- "no retries, no re-execution"
+- "not a truth verification service"
+
+INPUTS:
+- Evidence bundle (binary file)
+- Verification profile identifier
+- Execution token (single-use, time-limited)
+
+OUTPUTS:
+- Certificate hash (SHA-256)
+- Certificate JSON (canonical, content-addressed, immutable)
+
+ENTRY POINTS:
+- Pricing: https://www.verifrax.net/pricing
+- Execute: https://www.verifrax.net/verify
+- Certificate: https://www.verifrax.net/certificate/{hash}
+- Status: https://www.verifrax.net/status
+- Tool Contract: https://www.verifrax.net/docs/ai-tool-contract.md
+- Well-Known: https://www.verifrax.net/.well-known/verifrax.json
+
+PROPERTIES:
+- Deterministic: identical inputs → identical outputs
+- Non-interpretive: no advice, no opinions, no meaning judgment
+- Irreversible: execution cannot be reversed or retried
+- Stateless: no mutable state between executions
+

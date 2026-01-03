@@ -1,0 +1,386 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "VERIFRAX API",
+    "description": "Deterministic verification engine. Non-interpretive execution. Irreversible certificate issuance. One payment → one execution → one certificate.",
+    "version": "2.7.0",
+    "contact": {
+      "name": "VERIFRAX",
+      "url": "https://www.verifrax.net"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.verifrax.net",
+      "description": "Production"
+    }
+  ],
+  "tags": [
+    {
+      "name": "payment",
+      "description": "Payment and token generation"
+    },
+    {
+      "name": "execution",
+      "description": "Deterministic verification execution"
+    },
+    {
+      "name": "certificates",
+      "description": "Certificate retrieval"
+    },
+    {
+      "name": "system",
+      "description": "System status and metadata"
+    }
+  ],
+  "paths": {
+    "/api/create-payment-intent": {
+      "post": {
+        "tags": ["payment"],
+        "summary": "Create Stripe Checkout Session",
+        "description": "Creates a Stripe Checkout Session for one-time payment. Returns checkout URL for redirect.",
+        "operationId": "createPaymentIntent",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["tier"],
+                "properties": {
+                  "tier": {
+                    "type": "string",
+                    "enum": ["A", "B"],
+                    "description": "Payment tier: A (€650) or B (€1,500)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Checkout session created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "checkout_url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Stripe Checkout URL for redirect"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid tier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Stripe API error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/get-token": {
+      "get": {
+        "tags": ["payment"],
+        "summary": "Retrieve execution token by session ID",
+        "description": "Retrieves execution token after successful payment completion.",
+        "operationId": "getToken",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Stripe Checkout Session ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "Execution token (Bearer token format)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing session_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Token not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/verify": {
+      "post": {
+        "tags": ["execution"],
+        "summary": "Execute deterministic verification",
+        "description": "Executes deterministic verification on evidence bundle. Requires valid execution token. Returns certificate hash.",
+        "operationId": "verify",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["bundle", "profile_id"],
+                "properties": {
+                  "bundle": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Evidence bundle (binary file)"
+                  },
+                  "profile_id": {
+                    "type": "string",
+                    "description": "Verification profile identifier (e.g., public@1.0.0, priority@1.0.0)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Verification complete",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "certificate_hash": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$",
+                      "description": "Certificate hash (SHA-256, 64 hex characters)"
+                    },
+                    "bundle_hash": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$",
+                      "description": "Evidence bundle hash (SHA-256)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token invalid, expired, or already used",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/certificate/{hash}": {
+      "get": {
+        "tags": ["certificates"],
+        "summary": "Retrieve certificate by hash",
+        "description": "Retrieves canonical JSON certificate by content-addressed hash.",
+        "operationId": "getCertificate",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "description": "Certificate hash (64 hexadecimal characters)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Certificate retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Certificate"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Certificate not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/status": {
+      "get": {
+        "tags": ["system"],
+        "summary": "System status",
+        "description": "Returns system version, governance state, and payment gate status.",
+        "operationId": "status",
+        "responses": {
+          "200": {
+            "description": "System status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string",
+                      "example": "v2.7.0"
+                    },
+                    "governance_state": {
+                      "type": "string",
+                      "enum": ["frozen"],
+                      "example": "frozen"
+                    },
+                    "payment_gate": {
+                      "type": "string",
+                      "enum": ["enforced"],
+                      "example": "enforced"
+                    },
+                    "verifier_version": {
+                      "type": "string",
+                      "example": "v2.7.0"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT-like",
+        "description": "Execution token (format: v1.{payload}.{signature})"
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error code"
+          },
+          "details": {
+            "type": "object",
+            "description": "Additional error details (if available)"
+          }
+        }
+      },
+      "Certificate": {
+        "type": "object",
+        "properties": {
+          "bundle_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "profile_id": {
+            "type": "string"
+          },
+          "verifier_version": {
+            "type": "string"
+          },
+          "executed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "verdict": {
+            "type": "string",
+            "enum": ["verified", "not_verified"]
+          },
+          "reason_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "certificate_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "finality_statement": {
+            "type": "string"
+          },
+          "upload_id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
+
