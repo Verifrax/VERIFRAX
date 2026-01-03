@@ -60,6 +60,12 @@
       "meaning": "infrastructure fault prevented completion",
       "retry": "yes",
       "http_status": 500
+    },
+    {
+      "code": "EXECUTION_FINALIZED",
+      "meaning": "certificate already issued for this token",
+      "retry": "no",
+      "http_status": 409
     }
   ]
 }

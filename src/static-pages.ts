@@ -6,6 +6,24 @@ export const staticPages: Record<string, string> = {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VERIFRAX — Deterministic Verification Execution</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "VERIFRAX",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "softwareVersion": "2.7.0",
+    "description": "Deterministic verification engine providing non-interpretive, irreversible execution with immutable certificate output.",
+    "isAccessibleForFree": false,
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "EUR",
+      "price": "650",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
   <style>
     body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
     h1 { border-bottom: 2px solid #000; padding-bottom: 0.5rem; }
@@ -52,6 +70,24 @@ export const staticPages: Record<string, string> = {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VERIFRAX — Execute Verification</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "VERIFRAX",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "softwareVersion": "2.7.0",
+    "description": "Deterministic verification engine providing non-interpretive, irreversible execution with immutable certificate output.",
+    "isAccessibleForFree": false,
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "EUR",
+      "price": "650",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
   <style>
     body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
     h1 { border-bottom: 2px solid #000; padding-bottom: 0.5rem; }

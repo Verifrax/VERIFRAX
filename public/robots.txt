@@ -3,7 +3,6 @@ Allow: /
 Allow: /legal/
 Allow: /docs/
 Allow: /.well-known/
-Allow: /api/errors
 Allow: /llms.txt
 Allow: /openapi.json
 

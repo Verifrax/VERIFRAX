@@ -1,5 +1,6 @@
 VERIFRAX v2.7.0 — Deterministic Verification Engine
 
+ROLE: external deterministic execution oracle
 TYPE: deterministic_verification_engine
 VERSION: 2.7.0
 STATE: frozen

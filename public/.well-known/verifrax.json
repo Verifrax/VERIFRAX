@@ -3,6 +3,8 @@
   "type": "deterministic_verification_engine",
   "version": "2.7.0",
   "governance_state": "frozen",
+  "stability": "permanent",
+  "change_policy": "versioned_only",
   "properties": ["deterministic", "non_interpretive", "irreversible", "stateless"],
   "scope": {
     "accepts": ["binary_evidence_bundle"],

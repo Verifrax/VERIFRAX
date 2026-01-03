@@ -7,7 +7,8 @@
     "contact": {
       "name": "VERIFRAX",
       "url": "https://www.verifrax.net"
-    }
+    },
+    "x-verifrax-finality": "irreversible"
   },
   "servers": [
     {
@@ -162,6 +163,7 @@
         "summary": "Execute deterministic verification",
         "description": "Executes deterministic verification on evidence bundle. Requires valid execution token. Returns certificate hash.",
         "operationId": "verify",
+        "x-idempotent": false,
         "security": [
           {
             "bearerAuth": []
