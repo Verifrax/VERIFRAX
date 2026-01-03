@@ -196,6 +196,20 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
+    // Frozen execution surface - only these endpoints allowed
+    const allowedPaths = [
+      '/api/create-payment-intent',
+      '/api/stripe/webhook',
+      '/api/verify',
+      '/status',
+    ];
+    
+    const isCertificatePath = path.startsWith('/certificate/') && path.match(/^\/certificate\/[0-9a-f]{64}$/);
+    
+    if (!allowedPaths.includes(path) && !isCertificatePath) {
+      return new Response('Not Found', { status: 404 });
+    }
+
     try {
       // POST /api/create-payment-intent
       if (path === '/api/create-payment-intent' && request.method === 'POST') {
@@ -214,7 +228,8 @@ export default {
           },
           body: new URLSearchParams({
             mode: 'payment',
-            line_items: JSON.stringify([{ price: priceId, quantity: 1 }]),
+            'line_items[0][price]': priceId,
+            'line_items[0][quantity]': '1',
             success_url: `https://www.verifrax.net/verify?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: 'https://www.verifrax.net/',
           }).toString(),
@@ -230,17 +245,76 @@ export default {
 
       // POST /api/stripe/webhook
       if (path === '/api/stripe/webhook' && request.method === 'POST') {
-        const signature = request.headers.get('stripe-signature');
-        if (!signature) {
+        const signatureHeader = request.headers.get('stripe-signature');
+        if (!signatureHeader) {
           return new Response(JSON.stringify({ error: 'MISSING_SIGNATURE' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
         }
 
         const body = await request.text();
         
-        // Verify signature (simplified - in production use stripe library)
-        // For now, we'll accept and process, but in production should verify properly
+        // Verify Stripe webhook signature
+        const signatures = signatureHeader.split(',');
+        let validSignature = false;
+        let timestamp: string | null = null;
         
-        const event = JSON.parse(body) as { id: string; type: string; data: { object: any } };
+        // Extract timestamp
+        for (const sig of signatures) {
+          if (sig.startsWith('t=')) {
+            timestamp = sig.substring(2);
+            break;
+          }
+        }
+        
+        if (!timestamp) {
+          return new Response(JSON.stringify({ error: 'INVALID_SIGNATURE_FORMAT' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+        }
+        
+        // Verify v1 signatures
+        for (const sig of signatures) {
+          if (!sig.startsWith('v1=')) continue;
+          
+          const providedSig = sig.substring(3);
+          const signedPayload = `${timestamp}.${body}`;
+          
+          // Compute HMAC-SHA256 and encode as hex
+          const keyBuffer = new TextEncoder().encode(env.STRIPE_WEBHOOK_SECRET);
+          const dataBuffer = new TextEncoder().encode(signedPayload);
+          const cryptoKey = await crypto.subtle.importKey(
+            'raw',
+            keyBuffer,
+            { name: 'HMAC', hash: 'SHA-256' },
+            false,
+            ['sign']
+          );
+          const signature = await crypto.subtle.sign('HMAC', cryptoKey, dataBuffer);
+          const sigArray = Array.from(new Uint8Array(signature));
+          const expectedSig = sigArray.map(b => b.toString(16).padStart(2, '0')).join('');
+          
+          // Constant-time comparison
+          if (providedSig.length === expectedSig.length) {
+            let match = true;
+            for (let i = 0; i < providedSig.length; i++) {
+              if (providedSig[i] !== expectedSig[i]) {
+                match = false;
+              }
+            }
+            if (match) {
+              validSignature = true;
+              break;
+            }
+          }
+        }
+        
+        if (!validSignature) {
+          return new Response(JSON.stringify({ error: 'INVALID_SIGNATURE' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+        }
+        
+        let event: { id: string; type: string; data: { object: any } };
+        try {
+          event = JSON.parse(body) as { id: string; type: string; data: { object: any } };
+        } catch (error) {
+          return new Response(JSON.stringify({ error: 'INVALID_JSON' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+        }
         
         // Check idempotency
         const eventRecord = await env.ID_MAP.get(event.id);
@@ -255,19 +329,27 @@ export default {
         }
 
         // Mark event as processed
-        await env.ID_MAP.put(event.id, 'processed');
+        try {
+          await env.ID_MAP.put(event.id, 'processed');
+        } catch (error) {
+          return new Response(JSON.stringify({ error: 'ID_MAP_WRITE_FAILED', message: error instanceof Error ? error.message : 'Unknown error' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
+        }
 
         // On successful payment, mint token
         if (event.type === 'checkout.session.completed' || event.type === 'payment_intent.succeeded') {
-          const paymentObject = event.data.object;
-          const paymentIntentId = paymentObject.payment_intent || paymentObject.id;
-          const amount = paymentObject.amount_total || paymentObject.amount;
-          const currency = paymentObject.currency || 'eur';
-          
-          // Determine tier from amount
-          const tier = amount === 65000 ? 'A' : amount === 150000 ? 'B' : 'A';
-          
-          await mintExecutionToken(env, tier, paymentIntentId, amount, currency);
+          try {
+            const paymentObject = event.data.object;
+            const paymentIntentId = paymentObject.payment_intent || paymentObject.id;
+            const amount = paymentObject.amount_total || paymentObject.amount;
+            const currency = paymentObject.currency || 'eur';
+            
+            // Determine tier from amount
+            const tier = amount === 65000 ? 'A' : amount === 150000 ? 'B' : 'A';
+            
+            await mintExecutionToken(env, tier, paymentIntentId, amount, currency);
+          } catch (error) {
+            return new Response(JSON.stringify({ error: 'TOKEN_MINT_FAILED', message: error instanceof Error ? error.message : 'Unknown error' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
+          }
         }
 
         return new Response(JSON.stringify({ received: true }), { status: 200, headers: { 'Content-Type': 'application/json' } });
