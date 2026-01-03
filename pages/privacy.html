@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERIFRAX — Privacy Policy</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
+    h1 { border-bottom: 2px solid #000; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2rem; }
+    .rule { background: #f5f5f5; padding: 1rem; margin: 1rem 0; border-left: 4px solid #000; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p><strong>Version:</strong> v2.7.0 | <strong>Effective:</strong> 2026-01-03</p>
+  <p><a href="/">← Back to Home</a></p>
+
+  <h2>1. No Accounts, No Profiling</h2>
+  <p>VERIFRAX does not require user accounts. No user profiling, no resale of data, no marketing databases.</p>
+
+  <h2>2. Data Collection</h2>
+  <p>VERIFRAX collects and processes:</p>
+  <ul>
+    <li><strong>Payment data:</strong> Processed by Stripe (payment processor). VERIFRAX receives payment confirmation webhooks only.</li>
+    <li><strong>Evidence bundles:</strong> Retained solely as a by-product of execution finality and certificate reproducibility, not as a custodial or access service.</li>
+    <li><strong>Execution tokens:</strong> Stored in key-value store (Cloudflare KV) with state tracking (issued/burned).</li>
+    <li><strong>Certificates:</strong> Stored in immutable storage (Cloudflare R2) at content-addressed paths.</li>
+  </ul>
+
+  <h2>3. Data Retention</h2>
+  <ul>
+    <li><strong>Evidence bundles:</strong> Retained permanently as part of certificate reproducibility (immutable storage).</li>
+    <li><strong>Certificates:</strong> Retained permanently (immutable storage).</li>
+    <li><strong>Execution tokens:</strong> Retained permanently with state tracking (for audit and finality enforcement).</li>
+  </ul>
+
+  <h2>4. Lawful Basis (GDPR)</h2>
+  <p>Processing is based on:</p>
+  <ul>
+    <li><strong>Contract:</strong> Payment and execution service delivery</li>
+    <li><strong>Legitimate interest:</strong> Certificate reproducibility and execution finality enforcement</li>
+  </ul>
+
+  <h2>5. Data Subject Rights</h2>
+  <p>Under GDPR, you have rights to access, rectification, erasure, restriction, portability, and objection. However:</p>
+  <ul>
+    <li>Evidence bundles and certificates are immutable (cannot be modified or deleted)</li>
+    <li>Execution tokens are required for finality enforcement (cannot be deleted)</li>
+    <li>Requests for data subject rights should be sent to: legal@verifrax.net</li>
+  </ul>
+
+  <h2>6. Data Storage Location</h2>
+  <p>Data is stored in Cloudflare infrastructure (EU/US). Payment processing is handled by Stripe (see Stripe privacy policy).</p>
+
+  <h2>7. No Third-Party Sharing</h2>
+  <p>VERIFRAX does not share data with third parties except:</p>
+  <ul>
+    <li>Stripe (payment processing)</li>
+    <li>Cloudflare (infrastructure provider)</li>
+  </ul>
+
+  <p><a href="/legal">→ Full Legal Documentation</a></p>
+</body>
+</html>
+

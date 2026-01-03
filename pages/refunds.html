@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERIFRAX — Refund Policy</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
+    h1 { border-bottom: 2px solid #000; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2rem; }
+    .rule { background: #f5f5f5; padding: 1rem; margin: 1rem 0; border-left: 4px solid #000; }
+    .no-refund { background: #fee; padding: 1rem; margin: 1rem 0; border-left: 4px solid #c00; }
+  </style>
+</head>
+<body>
+  <h1>Refund Policy</h1>
+  <p><strong>Version:</strong> v2.7.0 | <strong>Effective:</strong> 2026-01-03</p>
+  <p><a href="/">← Back to Home</a></p>
+
+  <h2>Refund Eligibility</h2>
+  <p>Refunds are available <strong>only</strong> for system non-execution:</p>
+  <ul>
+    <li>Payment completed but execution token never minted due to platform fault</li>
+    <li>System failure preventing execution completion</li>
+    <li>Infrastructure failure preventing certificate generation</li>
+  </ul>
+
+  <div class="no-refund">
+    <h2>No Refund For:</h2>
+    <ul>
+      <li>Execution outcome dissatisfaction</li>
+      <li>Third-party rejection of certificate</li>
+      <li>User error (wrong evidence, wrong profile, etc.)</li>
+      <li>Certificate interpretation disputes</li>
+      <li>Lost execution tokens</li>
+      <li>Expired execution tokens</li>
+      <li>Successful execution (certificate generated)</li>
+    </ul>
+  </div>
+
+  <h2>Refund Process</h2>
+  <p>To request a refund for system non-execution:</p>
+  <ol>
+    <li>Contact: legal@verifrax.net</li>
+    <li>Provide: Payment intent ID, evidence of system failure</li>
+    <li>Review period: 30 days</li>
+    <li>Refund method: Original payment method via Stripe</li>
+  </ol>
+
+  <div class="rule">
+    <p><strong>Payment Processor:</strong> Stripe is the payment processor. Stripe is not an arbiter of meaning, interpretation, or certificate validity.</p>
+  </div>
+
+  <h2>Execution Finality</h2>
+  <p>One payment → one execution → one certificate. Execution is irreversible. Certificate issuance closes the dispute space permanently. No refund is available as a consequence of execution outcome, dissatisfaction, or third-party rejection.</p>
+
+  <p><a href="/legal">→ Full Legal Documentation</a></p>
+</body>
+</html>
+
