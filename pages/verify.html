@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERIFRAX — Execute Verification</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
+    h1 { border-bottom: 2px solid #000; padding-bottom: 0.5rem; }
+    form { margin: 2rem 0; }
+    .field { margin: 1rem 0; }
+    label { display: block; font-weight: bold; margin-bottom: 0.5rem; }
+    input, select, textarea { width: 100%; padding: 0.5rem; font-size: 1rem; border: 1px solid #ccc; }
+    button { background: #000; color: #fff; padding: 0.75rem 2rem; border: none; cursor: pointer; font-size: 1rem; }
+    button:hover { background: #333; }
+    .error { background: #fee; padding: 1rem; margin: 1rem 0; border-left: 4px solid #c00; }
+    .success { background: #efe; padding: 1rem; margin: 1rem 0; border-left: 4px solid #0c0; }
+    code { background: #f5f5f5; padding: 0.2rem 0.4rem; }
+  </style>
+</head>
+<body>
+  <h1>Execute Verification</h1>
+  <p><a href="/">← Back to Home</a></p>
+
+  <div id="error" class="error" style="display: none;"></div>
+  <div id="success" class="success" style="display: none;"></div>
+
+  <form id="verifyForm" enctype="multipart/form-data">
+    <div class="field">
+      <label for="token">Execution Token (Bearer Token)</label>
+      <textarea id="token" name="token" rows="3" required placeholder="v1.eyJqdGkiOi..."></textarea>
+      <small>Paste the execution token received after payment completion.</small>
+    </div>
+
+    <div class="field">
+      <label for="profile_id">Verification Profile</label>
+      <select id="profile_id" name="profile_id" required>
+        <option value="">Select profile...</option>
+        <option value="public@1.0.0">public@1.0.0</option>
+        <option value="priority@1.0.0">priority@1.0.0</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="bundle">Evidence Bundle (Binary File)</label>
+      <input type="file" id="bundle" name="bundle" required accept="*/*">
+      <small>Upload the evidence bundle file to be verified.</small>
+    </div>
+
+    <button type="submit">Execute Verification</button>
+  </form>
+
+  <h2>Error States</h2>
+  <ul>
+    <li><code>MISSING_TOKEN</code> — No execution token provided</li>
+    <li><code>INVALID_TOKEN_FORMAT</code> — Token format is invalid</li>
+    <li><code>INVALID_SIGNATURE</code> — Token signature verification failed</li>
+    <li><code>TOKEN_EXPIRED</code> — Token has expired</li>
+    <li><code>TOKEN_NOT_FOUND</code> — Token not found in system</li>
+    <li><code>TOKEN_ALREADY_USED</code> — Token has already been consumed</li>
+    <li><code>MISSING_FIELDS</code> — Required fields (bundle, profile_id) are missing</li>
+  </ul>
+
+  <script>
+    document.getElementById('verifyForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const errorDiv = document.getElementById('error');
+      const successDiv = document.getElementById('success');
+      errorDiv.style.display = 'none';
+      successDiv.style.display = 'none';
+
+      const token = document.getElementById('token').value.trim();
+      const profileId = document.getElementById('profile_id').value;
+      const bundleFile = document.getElementById('bundle').files[0];
+
+      if (!token || !profileId || !bundleFile) {
+        errorDiv.textContent = 'All fields are required';
+        errorDiv.style.display = 'block';
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('bundle', bundleFile);
+      formData.append('profile_id', profileId);
+
+      try {
+        const response = await fetch('/api/verify', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          errorDiv.textContent = `Error: ${result.error || 'Unknown error'}`;
+          errorDiv.style.display = 'block';
+        } else {
+          const certHash = result.certificate_hash;
+          successDiv.innerHTML = `Verification complete. Certificate hash: <code>${certHash}</code><br><a href="/certificate/${certHash}">View Certificate</a>`;
+          successDiv.style.display = 'block';
+        }
+      } catch (error) {
+        errorDiv.textContent = `Network error: ${error.message}`;
+        errorDiv.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
+

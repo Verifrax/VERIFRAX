@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERIFRAX — Deterministic Verification Execution</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
+    h1 { border-bottom: 2px solid #000; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2rem; }
+    .rule { background: #f5f5f5; padding: 1rem; margin: 1rem 0; border-left: 4px solid #000; }
+    nav { margin: 2rem 0; }
+    nav a { margin-right: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>VERIFRAX</h1>
+  <p><strong>Version:</strong> v2.7.0 | <strong>State:</strong> Frozen | <strong>Mode:</strong> Deterministic · Non-Interpretive · Irreversible</p>
+
+  <nav>
+    <a href="/verify">Execute</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/legal">Legal</a>
+    <a href="/terms">Terms</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/refunds">Refunds</a>
+    <a href="/status">Status</a>
+  </nav>
+
+  <h2>What VERIFRAX Is</h2>
+  <p>VERIFRAX is a deterministic software verification service that:</p>
+  <ul>
+    <li>Accepts payment via Stripe Checkout Session (one-time payment, EUR)</li>
+    <li>Mints execution tokens upon successful payment confirmation (cryptographically signed, single-use)</li>
+    <li>Accepts evidence bundles (binary files) with a verification profile identifier</li>
+    <li>Executes deterministic verification using a specified verifier version</li>
+    <li>Generates certificates (canonical JSON documents) containing evidence bundle hash, verification profile, verifier version, execution timestamp, verdict, and certificate hash</li>
+    <li>Stores certificates in immutable storage at content-addressed paths</li>
+    <li>Serves certificates via public HTTP endpoint using certificate hash</li>
+  </ul>
+
+  <h2>What VERIFRAX Is Not</h2>
+  <ul>
+    <li><strong>Not a truth verification service</strong> — VERIFRAX does not verify the truth, accuracy, or legal validity of evidence</li>
+    <li><strong>Not an advisory service</strong> — VERIFRAX provides no interpretation, guidance, or recommendations</li>
+    <li><strong>Not a custody service</strong> — VERIFRAX does not hold, manage, or control user funds beyond payment processing</li>
+    <li><strong>Not a general-purpose storage service</strong> — Evidence bundles are retained solely as a by-product of execution finality and certificate reproducibility</li>
+    <li><strong>Not a dispute resolution service</strong> — VERIFRAX does not resolve disputes, mediate, or arbitrate</li>
+    <li><strong>Not a certification authority</strong> — VERIFRAX does not issue certificates of authenticity, compliance, or legal standing</li>
+    <li><strong>Not a guarantee service</strong> — VERIFRAX makes no guarantees about outcomes, acceptance, or third-party reliance</li>
+  </ul>
+
+  <div class="rule">
+    <p><strong>Determinism & Finality:</strong> One payment → one execution → one certificate. Identical inputs produce identical outputs (byte-for-byte). No randomness, no interpretation, no discretion. Execution is irreversible.</p>
+  </div>
+
+  <div class="rule">
+    <p><strong>Non-Reliance:</strong> No party may rely on a VERIFRAX certificate as a substitute for independent verification, legal judgment, or regulatory determination.</p>
+  </div>
+
+  <h2>Execution Flow</h2>
+  <ol>
+    <li>Create payment intent (select tier A or B)</li>
+    <li>Complete payment via Stripe Checkout</li>
+    <li>Receive execution token (single-use, time-limited)</li>
+    <li>Upload evidence bundle with profile identifier</li>
+    <li>Receive certificate hash</li>
+    <li>Retrieve certificate via <code>/certificate/{hash}</code></li>
+  </ol>
+
+  <p><a href="/verify">→ Execute Verification</a></p>
+</body>
+</html>
+
