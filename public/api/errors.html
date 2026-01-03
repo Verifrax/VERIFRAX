@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERIFRAX — Error Catalog</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
+    h1 { border-bottom: 2px solid #000; padding-bottom: 0.5rem; }
+    table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+    th, td { padding: 1rem; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #f5f5f5; font-weight: bold; }
+    .no-retry { background: #fee; }
+    .yes-retry { background: #efe; }
+    code { background: #f5f5f5; padding: 0.2rem 0.4rem; }
+  </style>
+</head>
+<body>
+  <h1>Error Catalog</h1>
+  <p><strong>Version:</strong> 2.7.0 | <a href="/api/errors.json">JSON</a> | <a href="/">Home</a></p>
+
+  <p>Machine-readable error semantics for agent routing and retry logic.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Meaning</th>
+        <th>Retry</th>
+        <th>HTTP Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="yes-retry">
+        <td><code>MISSING_TOKEN</code></td>
+        <td>Payment not completed / token absent</td>
+        <td>Yes</td>
+        <td>401</td>
+      </tr>
+      <tr class="no-retry">
+        <td><code>INVALID_TOKEN_FORMAT</code></td>
+        <td>Token format is invalid</td>
+        <td>No</td>
+        <td>401</td>
+      </tr>
+      <tr class="no-retry">
+        <td><code>INVALID_SIGNATURE</code></td>
+        <td>Token tampered or invalid</td>
+        <td>No</td>
+        <td>401</td>
+      </tr>
+      <tr class="no-retry">
+        <td><code>TOKEN_EXPIRED</code></td>
+        <td>Token lifetime exceeded</td>
+        <td>No</td>
+        <td>401</td>
+      </tr>
+      <tr class="no-retry">
+        <td><code>TOKEN_NOT_FOUND</code></td>
+        <td>Token not found in system</td>
+        <td>No</td>
+        <td>401</td>
+      </tr>
+      <tr class="no-retry">
+        <td><code>TOKEN_ALREADY_USED</code></td>
+        <td>Final execution consumed</td>
+        <td>No</td>
+        <td>401</td>
+      </tr>
+      <tr class="yes-retry">
+        <td><code>MISSING_FIELDS</code></td>
+        <td>Required fields (bundle, profile_id) are missing</td>
+        <td>Yes</td>
+        <td>400</td>
+      </tr>
+      <tr class="yes-retry">
+        <td><code>INVALID_TIER</code></td>
+        <td>Payment tier must be A or B</td>
+        <td>Yes</td>
+        <td>400</td>
+      </tr>
+      <tr class="yes-retry">
+        <td><code>STRIPE_ERROR</code></td>
+        <td>Stripe API error during payment processing</td>
+        <td>Yes</td>
+        <td>500</td>
+      </tr>
+      <tr class="yes-retry">
+        <td><code>SYSTEM_NON_EXECUTION</code></td>
+        <td>Infrastructure fault prevented completion</td>
+        <td>Yes</td>
+        <td>500</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Retry Semantics</h2>
+  <ul>
+    <li><strong>Retry: No</strong> — Finality errors. Execution consumed, token invalid, or signature tampered. Do not retry.</li>
+    <li><strong>Retry: Yes</strong> — Infrastructure or missing prerequisites. Safe to retry after fixing prerequisites.</li>
+  </ul>
+</body>
+</html>
+

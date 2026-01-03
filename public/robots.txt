@@ -1,5 +1,19 @@
 User-agent: *
-Disallow: /verify
-Disallow: /api/
 Allow: /
+Allow: /legal/
+Allow: /docs/
+Allow: /.well-known/
+Allow: /api/errors
+Allow: /llms.txt
+Allow: /openapi.json
 
+# Disallow API endpoints that require authentication or are not meant for crawling
+Disallow: /api/create-payment-intent
+Disallow: /api/stripe/webhook
+Disallow: /api/verify
+Disallow: /api/get-token
+
+# Allow certificate retrieval (content-addressed, public)
+Allow: /certificate/
+
+Sitemap: https://www.verifrax.net/sitemap.xml
