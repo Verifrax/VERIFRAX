@@ -6,6 +6,8 @@ export const staticFiles: Record<string, { content: string; contentType: string 
       type: 'deterministic_verification_engine',
       version: '2.7.0',
       governance_state: 'frozen',
+      stability: 'permanent',
+      change_policy: 'versioned_only',
       properties: ['deterministic', 'non_interpretive', 'irreversible', 'stateless'],
       scope: {
         accepts: ['binary_evidence_bundle'],
@@ -30,6 +32,7 @@ export const staticFiles: Record<string, { content: string; contentType: string 
   '/llms.txt': {
     content: `VERIFRAX v2.7.0 — Deterministic Verification Engine
 
+ROLE: external deterministic execution oracle
 TYPE: deterministic_verification_engine
 VERSION: 2.7.0
 STATE: frozen
@@ -102,6 +105,7 @@ PROPERTIES:
         { code: 'INVALID_TIER', meaning: 'payment tier must be A or B', retry: 'yes', http_status: 400 },
         { code: 'STRIPE_ERROR', meaning: 'Stripe API error during payment processing', retry: 'yes', http_status: 500 },
         { code: 'SYSTEM_NON_EXECUTION', meaning: 'infrastructure fault prevented completion', retry: 'yes', http_status: 500 },
+        { code: 'EXECUTION_FINALIZED', meaning: 'certificate already issued for this token', retry: 'no', http_status: 409 },
       ],
     }, null, 2),
     contentType: 'application/json',
