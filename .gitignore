@@ -15,3 +15,6 @@ docs/index.html
 docs-site/
 _site/
 gh-pages/
+
+.secrets/
+.dev.vars
