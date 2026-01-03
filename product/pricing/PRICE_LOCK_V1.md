@@ -1,0 +1,14 @@
+# VERIFRAX PRICE LOCK — V1 (IMMUTABLE)
+
+VERSION: v2.7.0
+STATE: LOCKED
+
+TIER_A:
+  PRODUCT: prod_Tj2goXXisC1w5l
+  PRICE:   price_1Slab4PtacRr5rcwoZuLPW1O
+  AMOUNT:  65000 EUR cents
+
+TIER_B:
+  PRODUCT: prod_Tj2gNnOTlVsXWy
+  PRICE:   price_1SlabFPtacRr5rcwgudWiFxB
+  AMOUNT:  150000 EUR cents
