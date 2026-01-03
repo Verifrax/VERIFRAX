@@ -56,7 +56,7 @@ Upon certificate issuance:
 - No re-execution is possible under any circumstance
 - No certificate modification is possible
 - No certificate revocation is possible
-- No refund is available (except as provided in separate refund policy for system failures)
+- No refund is available as a consequence of execution outcome, dissatisfaction, or third-party rejection
 - The dispute space for that execution is permanently closed
 
 ### 6. No Exceptions
