@@ -3,6 +3,8 @@
  * Execution-gated API surfaces
  */
 
+import { staticPages, legalDocs } from './static-pages';
+
 interface Env {
   EXEC_TOKENS: KVNamespace;
   ID_MAP: KVNamespace;
@@ -196,7 +198,24 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
-    // Frozen execution surface - only these endpoints allowed
+    // Serve static pages for GET requests
+    if (request.method === 'GET' && staticPages[path]) {
+      return new Response(staticPages[path], {
+        headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      });
+    }
+
+    // Serve legal markdown files
+    if (request.method === 'GET' && path.startsWith('/legal/') && path.endsWith('.md')) {
+      if (legalDocs[path]) {
+        return new Response(legalDocs[path], {
+          headers: { 'Content-Type': 'text/markdown; charset=utf-8' },
+        });
+      }
+      return new Response('Not Found', { status: 404 });
+    }
+
+    // Frozen execution surface - API endpoints
     const allowedPaths = [
       '/api/create-payment-intent',
       '/api/stripe/webhook',
@@ -205,8 +224,11 @@ export default {
     ];
     
     const isCertificatePath = path.startsWith('/certificate/') && path.match(/^\/certificate\/[0-9a-f]{64}$/);
+    const isPublicPage = ['/verify', '/pricing', '/terms', '/privacy', '/refunds', '/legal'].includes(path);
     
-    if (!allowedPaths.includes(path) && !isCertificatePath) {
+    if (request.method === 'GET' && (isPublicPage || isCertificatePath)) {
+      // Allow GET requests to public pages and certificates - handled above or below
+    } else if (!allowedPaths.includes(path) && !isCertificatePath && !isPublicPage) {
       return new Response('Not Found', { status: 404 });
     }
 

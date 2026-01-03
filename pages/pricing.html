@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERIFRAX — Pricing</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
+    h1 { border-bottom: 2px solid #000; padding-bottom: 0.5rem; }
+    table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+    th, td { padding: 1rem; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #f5f5f5; font-weight: bold; }
+    .rule { background: #f5f5f5; padding: 1rem; margin: 1rem 0; border-left: 4px solid #000; }
+  </style>
+</head>
+<body>
+  <h1>Pricing</h1>
+  <p><a href="/">← Back to Home</a></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tier</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>A</td>
+        <td>Public Deterministic Verification</td>
+        <td>€650</td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td>Priority Deterministic Verification</td>
+        <td>€1,500</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rule">
+    <p><strong>Payment Terms:</strong></p>
+    <ul>
+      <li>One-time payment only (no subscription)</li>
+      <li>One execution per payment</li>
+      <li>No account required</li>
+      <li>Payment processed by Stripe</li>
+      <li>VAT may apply (EU customers)</li>
+    </ul>
+  </div>
+
+  <div class="rule">
+    <p><strong>What You Receive:</strong></p>
+    <ul>
+      <li>One execution token (single-use, time-limited)</li>
+      <li>One deterministic verification execution</li>
+      <li>One certificate (canonical JSON, content-addressed, immutable)</li>
+      <li>Certificate retrieval via <code>/certificate/{hash}</code></li>
+    </ul>
+  </div>
+
+  <p><a href="/verify">→ Execute Verification</a></p>
+</body>
+</html>
+
