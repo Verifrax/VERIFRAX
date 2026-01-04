@@ -142,7 +142,7 @@ stripe prices list --limit 5
 wrangler secret put STRIPE_WEBHOOK_SECRET \
   --name verifrax-edge-production \
   --env=""
-# Paste: whsec_...
+# Paste: <STRIPE_WEBHOOK_SECRET>
 ```
 
 ---
