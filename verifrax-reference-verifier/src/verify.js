@@ -25,14 +25,17 @@ const { sha256, sha256File } = require('./hash');
 /**
  * Verify a VERIFRAX certificate
  * 
+ * Level-Up #3: Enhanced to accept profile manifest JSON
+ * 
  * @param {Object} options
  * @param {string} options.bundlePath - Path to bundle.bin file
  * @param {string} options.certificatePath - Path to certificate.json file
  * @param {string} options.profileId - Profile ID (e.g., "public@1.0.0")
+ * @param {string} [options.profileManifestPath] - Path to profile manifest JSON (optional)
  * @returns {Object} Verification result
  */
 function verifyCertificate(options) {
-  const { bundlePath, certificatePath, profileId } = options;
+  const { bundlePath, certificatePath, profileId, profileManifestPath } = options;
 
   // Validate inputs
   if (!bundlePath || !certificatePath || !profileId) {
@@ -88,23 +91,66 @@ function verifyCertificate(options) {
       };
     }
 
+    // Level-Up #3: Verify profile manifest hash if profile manifest is provided
+    if (profileManifestPath) {
+      if (!fs.existsSync(profileManifestPath)) {
+        return {
+          status: 'INVALID',
+          reason: 'PROFILE_MANIFEST_NOT_FOUND',
+          message: `Profile manifest file not found: ${profileManifestPath}`
+        };
+      }
+
+      const profileManifestData = fs.readFileSync(profileManifestPath, 'utf8');
+      const profileManifest = JSON.parse(profileManifestData);
+      const computedProfileManifestHash = sha256(profileManifestData);
+
+      // Verify profile manifest hash matches certificate (if present)
+      if (certificate.profile_manifest_hash && certificate.profile_manifest_hash !== computedProfileManifestHash) {
+        return {
+          status: 'INVALID',
+          reason: 'PROFILE_MANIFEST_HASH_MISMATCH',
+          message: `Computed profile manifest hash (${computedProfileManifestHash}) does not match certificate profile_manifest_hash (${certificate.profile_manifest_hash})`
+        };
+      }
+    }
+
     // Step 3: Rebuild certificate object (without certificate_hash)
-    // This must match the exact structure used during certificate issuance
-    // CRITICAL: Use certificate.bundle_hash (not computedBundleHash) because
-    // the certificate hash was computed using the certificate's bundle_hash value.
-    // We've already verified that computedBundleHash matches certificate.bundle_hash above.
-    const certificateObject = {
-      upload_id: certificate.upload_id,
-      bundle_hash: certificate.bundle_hash,
-      profile_id: certificate.profile_id,
-      verifier_version: certificate.verifier_version,
-      version_hash: certificate.version_hash,
-      verdict: certificate.verdict,
-      reason_codes: certificate.reason_codes,
-      verdict_hash: certificate.verdict_hash,
-      executed_at: certificate.executed_at,
-      finality_statement: certificate.finality_statement
-    };
+    // Support both v2.6.0 (legacy) and v2.7.0 (hardened) schemas
+    let certificateObject;
+    
+    if (certificate.cert_schema === 1) {
+      // v2.7.0 hardened schema (Level-Up #2)
+      certificateObject = {
+        cert_schema: certificate.cert_schema,
+        verifrax_version: certificate.verifrax_version,
+        certificate_version: certificate.certificate_version,
+        tool_identity: certificate.tool_identity,
+        bundle_hash: certificate.bundle_hash,
+        profile_id: certificate.profile_id,
+        profile_manifest_hash: certificate.profile_manifest_hash,
+        evidence_size_bytes: certificate.evidence_size_bytes,
+        hash_algorithms: certificate.hash_algorithms,
+        execution_context: certificate.execution_context,
+        verdict: certificate.verdict,
+        reason_codes: certificate.reason_codes,
+        executed_at: certificate.executed_at
+      };
+    } else {
+      // Legacy v2.6.0 schema
+      certificateObject = {
+        upload_id: certificate.upload_id,
+        bundle_hash: certificate.bundle_hash,
+        profile_id: certificate.profile_id,
+        verifier_version: certificate.verifier_version,
+        version_hash: certificate.version_hash,
+        verdict: certificate.verdict,
+        reason_codes: certificate.reason_codes,
+        verdict_hash: certificate.verdict_hash,
+        executed_at: certificate.executed_at,
+        finality_statement: certificate.finality_statement
+      };
+    }
 
     // Step 4: Canonical-stringify
     const certificateCanonical = canonicalStringify(certificateObject);

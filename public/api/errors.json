@@ -3,69 +3,115 @@
   "errors": [
     {
       "code": "MISSING_TOKEN",
+      "class": "AUTH",
       "meaning": "payment not completed / token absent",
       "retry": "yes",
+      "operator_action": "none",
       "http_status": 401
     },
     {
       "code": "INVALID_TOKEN_FORMAT",
+      "class": "AUTH",
       "meaning": "token format is invalid",
       "retry": "no",
+      "operator_action": "none",
       "http_status": 401
     },
     {
       "code": "INVALID_SIGNATURE",
+      "class": "AUTH",
       "meaning": "token tampered or invalid",
       "retry": "no",
+      "operator_action": "none",
       "http_status": 401
     },
     {
       "code": "TOKEN_EXPIRED",
+      "class": "AUTH",
       "meaning": "token lifetime exceeded",
       "retry": "no",
+      "operator_action": "none",
       "http_status": 401
     },
     {
       "code": "TOKEN_NOT_FOUND",
+      "class": "AUTH",
       "meaning": "token not found in system",
       "retry": "no",
+      "operator_action": "investigate",
       "http_status": 401
     },
     {
       "code": "TOKEN_ALREADY_USED",
+      "class": "FINALITY",
       "meaning": "final execution consumed",
       "retry": "no",
+      "operator_action": "none",
       "http_status": 401
     },
     {
+      "code": "EXECUTION_IN_PROGRESS",
+      "class": "FINALITY",
+      "meaning": "execution already in progress for this token",
+      "retry": "yes",
+      "operator_action": "none",
+      "http_status": 409
+    },
+    {
       "code": "MISSING_FIELDS",
+      "class": "INPUT",
       "meaning": "required fields (bundle, profile_id) are missing",
       "retry": "yes",
+      "operator_action": "none",
       "http_status": 400
     },
     {
       "code": "INVALID_TIER",
+      "class": "INPUT",
       "meaning": "payment tier must be A or B",
       "retry": "yes",
+      "operator_action": "none",
       "http_status": 400
     },
     {
       "code": "STRIPE_ERROR",
+      "class": "INFRA",
       "meaning": "Stripe API error during payment processing",
       "retry": "yes",
+      "operator_action": "investigate",
       "http_status": 500
     },
     {
       "code": "SYSTEM_NON_EXECUTION",
+      "class": "INFRA",
       "meaning": "infrastructure fault prevented completion",
       "retry": "yes",
+      "operator_action": "redeploy",
       "http_status": 500
     },
     {
       "code": "EXECUTION_FINALIZED",
+      "class": "FINALITY",
       "meaning": "certificate already issued for this token",
       "retry": "no",
+      "operator_action": "none",
       "http_status": 409
+    },
+    {
+      "code": "PROFILE_MANIFEST_NOT_FOUND",
+      "class": "INPUT",
+      "meaning": "profile manifest not found for profile_id",
+      "retry": "no",
+      "operator_action": "none",
+      "http_status": 400
+    },
+    {
+      "code": "BUNDLE_SIZE_EXCEEDED",
+      "class": "INPUT",
+      "meaning": "evidence bundle exceeds maximum size (100MB)",
+      "retry": "no",
+      "operator_action": "none",
+      "http_status": 413
     }
   ]
 }
