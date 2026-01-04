@@ -1,0 +1,30 @@
+name = "verifrax-edge-production"
+main = "src/index.ts"
+compatibility_date = "2026-01-01"
+
+routes = [
+  { pattern = "verifrax.net/*", zone_name = "verifrax.net" },
+  { pattern = "www.verifrax.net/*", zone_name = "verifrax.net" }
+]
+
+[vars]
+STRIPE_PRICE_TIER_A = "price_1Slab4PtacRr5rcwoZuLPW1O"
+STRIPE_PRICE_TIER_B = "price_1SlabFPtacRr5rcwgudWiFxB"
+EXEC_TOKEN_TTL_SECONDS = "3600"
+VERIFIER_VERSION = "v2.7.0"
+
+[[r2_buckets]]
+binding = "R2_EVIDENCE"
+bucket_name = "verifrax-evidence"
+
+[[r2_buckets]]
+binding = "R2_CERTS"
+bucket_name = "verifrax-certificates"
+
+[[kv_namespaces]]
+binding = "EXEC_TOKENS"
+id = "ae4ad2247b26469bb69123078a2195d8"
+
+[[kv_namespaces]]
+binding = "ID_MAP"
+id = "8c6fa3c53db5419c933190eef73d43d2"
