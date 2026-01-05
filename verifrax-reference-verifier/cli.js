@@ -97,6 +97,7 @@ function main() {
 
   // Detect version and use appropriate verifier
   let certificate;
+  let isV2_7_0 = false;
   let isV2_6_0 = false;
   try {
     const certificateData = fs.readFileSync(certificatePath, 'utf8');
@@ -104,6 +105,7 @@ function main() {
     
     // Detect version from certificate
     const verifraxVersion = certificate?.verifrax_version;
+    isV2_7_0 = verifraxVersion === '2.7.0';
     isV2_6_0 = verifraxVersion === '2.6.0';
   } catch (e) {
     // Will be caught by verifier
@@ -111,10 +113,11 @@ function main() {
 
   // Use appropriate verifier
   let verifyFn;
-  if (isV2_6_0) {
+  if (isV2_7_0 || isV2_6_0) {
+    // v2.7.0 and v2.6.0 use the same verifier logic
     verifyFn = verifyCertificateV2_6_0;
   } else {
-    // For non-v2.6.0, detect v2.5.0
+    // For non-v2.6.0/v2.7.0, detect v2.5.0
     const verifierVersion = certificate?.verifier_version || '2.4.0';
     const isV2_5_0 = verifierVersion.startsWith('2.5.0') || 
                      certificate?.classification || 
@@ -130,8 +133,8 @@ function main() {
     profileId: options.profileId
   });
 
-  // Output result (v2.6.0: VALID/INVALID only, others: JSON)
-  if (isV2_6_0) {
+  // Output result (v2.7.0/v2.6.0: VALID/INVALID only, others: JSON)
+  if (isV2_7_0 || isV2_6_0) {
     console.log(result.status);
   } else {
     console.log(JSON.stringify(result, null, 2));
