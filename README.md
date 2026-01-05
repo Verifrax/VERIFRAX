@@ -1,8 +1,8 @@
 # VERIFRAX
 
-## ⚠️ AUTHORITATIVE VERSION
+## ⚠️ VERSION MODEL
 
-VERIFRAX v2.8.0 is the sole authoritative version.
+**AUTHORITATIVE ENGINE:** v2.7.0 (FROZEN)
 
 Authority is defined exclusively by:
 - freeze/v2.6.0/
@@ -11,7 +11,10 @@ Authority is defined exclusively by:
 - SYSTEM_IDENTITY.*
 - BUILD_HASH.txt
 
-No other document, tag, or release defines authority.
+**RUNTIME / DISCOVERY LAYER:** v2.8.0
+
+v2.8.0 introduces discovery, runtime, and payment-layer evolution.
+Authority remains anchored to v2.7.0 frozen engine artifacts.
 
 ---
 
@@ -27,6 +30,7 @@ VERIFRAX is a deterministic verification system that produces final, reproducibl
 
 ### What Is Authoritative
 
+- **Authoritative Engine Version:** v2.7.0 (FROZEN)
 - **Frozen Release Artifacts:** `freeze/v2.6.0/` — Immutable v2.6.0 snapshot
 - **Execution Engine:** `verifrax-engine/execute_v2_6_0.js` — Deterministic execution pipeline
 - **Reference Verifier:** `verifrax-reference-verifier/src/verify_v2_6_0.js` — Offline verification implementation
@@ -35,6 +39,15 @@ VERIFRAX is a deterministic verification system that produces final, reproducibl
 - **Build Hash:** `BUILD_HASH.txt` — Cryptographic build attestation
 
 See `AUTHORITATIVE_SCOPE.md` for complete authority definition.
+
+### Runtime / Discovery Layer
+
+- **Runtime Version:** v2.8.0
+- **Payment Integration:** Stripe checkout enabled
+- **Discovery Endpoints:** Machine-routable certificate access
+- **Tiered Pricing:** Public (€120), Pro (€650), Institutional (€1,500)
+
+v2.8.0 does not change authority. Authority remains at v2.7.0.
 
 ### What Is NOT Authoritative
 
