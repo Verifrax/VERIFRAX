@@ -2,21 +2,9 @@ name: Finality Guard - Prevent Authority Re-Entry
 
 on:
   push:
-    paths:
-      - 'core/axioms/**'
-      - 'core/contracts/**'
-      - 'core/schemas/**'
-      - 'public/VERDICT_REFERENCE_v1.md'
-    paths-ignore:
-      - 'README.md'
+    branches: [main]
   pull_request:
-    paths:
-      - 'core/axioms/**'
-      - 'core/contracts/**'
-      - 'core/schemas/**'
-      - 'public/VERDICT_REFERENCE_v1.md'
-    paths-ignore:
-      - 'README.md'
+    branches: [main]
 
 jobs:
   block-authority-re-entry:
@@ -28,7 +16,16 @@ jobs:
       
       - name: Check for semantic changes
         run: |
-          CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^(core/axioms|core/contracts|core/schemas|public/VERDICT_REFERENCE_v1\.md)' || true)
+          # Get base ref for PRs, or before commit for pushes
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            BASE_REF="${{ github.event.pull_request.base.sha }}"
+            HEAD_REF="${{ github.event.pull_request.head.sha }}"
+          else
+            BASE_REF="${{ github.event.before }}"
+            HEAD_REF="${{ github.sha }}"
+          fi
+          
+          CHANGED_FILES=$(git diff --name-only $BASE_REF $HEAD_REF | grep -E '^(core/axioms|core/contracts|core/schemas|public/VERDICT_REFERENCE_v1\.md)' || true)
           
           if [ -z "$CHANGED_FILES" ]; then
             echo "✅ No frozen files modified"
