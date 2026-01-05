@@ -7,12 +7,16 @@ on:
       - 'core/contracts/**'
       - 'core/schemas/**'
       - 'public/VERDICT_REFERENCE_v1.md'
+    paths-ignore:
+      - 'README.md'
   pull_request:
     paths:
       - 'core/axioms/**'
       - 'core/contracts/**'
       - 'core/schemas/**'
       - 'public/VERDICT_REFERENCE_v1.md'
+    paths-ignore:
+      - 'README.md'
 
 jobs:
   block-authority-re-entry:
