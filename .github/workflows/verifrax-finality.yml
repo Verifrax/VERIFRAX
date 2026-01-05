@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -47,6 +49,8 @@ jobs:
     needs: seed-claim
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -84,6 +88,8 @@ jobs:
     if: github.event_name == 'release'
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
