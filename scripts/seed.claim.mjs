@@ -6,10 +6,11 @@
  * Part of CI authority guardrail.
  */
 
-const fs = require('fs');
-const path = require('path');
-const { fileURLToPath } = require('url');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const [,, command, sha, ...args] = process.argv;
@@ -55,4 +56,3 @@ if (command === 'build-provenance' && sha) {
   console.error('Usage: node scripts/seed.claim.mjs build-provenance <sha> run [--assertions=...]');
   process.exit(1);
 }
-
