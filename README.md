@@ -2,7 +2,7 @@
 
 ## ⚠️ AUTHORITATIVE VERSION
 
-VERIFRAX v2.6.0 is the authoritative version.
+VERIFRAX v2.7.0 is the authoritative version.
 
 See `VERSION_AUTHORITY.md` for version authority declaration.
 
@@ -44,7 +44,7 @@ VERIFRAX is a deterministic verification system that produces final, reproducibl
 
 **v2.6.0 = FROZEN — AUTHORITATIVE**
 
-**v2.6.0 is the authoritative version.**
+**v2.7.0 is the authoritative version.**
 **All verification outcomes issued under v2.6.0 are final, immutable, and non-revocable.**
 
 - No retroactive changes to verification logic
