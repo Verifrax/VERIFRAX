@@ -13,6 +13,52 @@ import Stripe from "stripe";
 const VERSION = "2.8.0";
 const PAYMENT_STATUS = "enabled";
 
+// Language tier definitions (inlined for Cloudflare Workers compatibility)
+// tier0: en (canonical)
+// tier1: major languages
+// tier2: assistive only
+const TIER1 = ['en','zh','es','hi','ar','pt','bn','ru','ja','pa','de','jv','ko','fr','te','mr','tr','ta','vi','ur','it','fa','th','gu','pl','uk','ro','nl','el','hu','sv','cs','he','id','ms','sw','no','da','fi','sk','bg','hr','sr','sl','lt','lv','et','is'];
+const TIER2 = ['am','yo','ig','zu','km','lo','my','ne','si','bo','ug','ps','ku','fy','gd','mi','sm','to','qu','ay','gn','ha','rw','so','ti','wo','xh','st','ts','tn','ve','nr','ny','mg','lb','fo'];
+
+// Embedded translations (stateless, deterministic)
+const TRANSLATIONS = {
+  en: {
+    hero_title: "Deterministic Verification",
+    hero_subtitle: "One execution. One certificate. Final.",
+    cta_verify: "Start verification",
+    invariant_notice: "Language does not affect execution or certificates."
+  },
+  fr: {
+    hero_title: "Vérification déterministe",
+    hero_subtitle: "Une exécution. Un certificat. Final.",
+    cta_verify: "Démarrer la vérification",
+    invariant_notice: "La langue n'affecte ni l'exécution ni les certificats."
+  },
+  am: {
+    hero_title: "ውሳኔ የማይለወጥ ማረጋገጫ",
+    hero_subtitle: "አንድ አሰራር። አንድ ማረጋገጫ። መጨረሻ።",
+    assistive_notice: "This translation is provided for accessibility only. The authoritative language of VERIFRAX is English."
+  }
+};
+
+// Language resolution (stateless, deterministic)
+function resolveLang(request, cf = {}) {
+  const url = new URL(request.url);
+  const qp = url.searchParams.get("lang");
+  if (qp && (TIER1.includes(qp) || TIER2.includes(qp))) return qp;
+
+  const al = request.headers.get("accept-language");
+  if (al) {
+    const p = al.split(",")[0].split("-")[0];
+    if (TIER1.includes(p) || TIER2.includes(p)) return p;
+  }
+
+  const map = { FR: "fr", DE: "de", ES: "es", IT: "it", IR: "fa", JP: "ja", CN: "zh" };
+  if (map[cf.country]) return map[cf.country];
+
+  return "en";
+}
+
 function withHeaders(resp) {
   const h = new Headers(resp.headers);
   h.set("x-verifrax-version", VERSION);
@@ -686,16 +732,26 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
 
     // GET / (LANDING PAGE)
     if (path === "/" && request.method === "GET") {
+      const lang = resolveLang(request, request.cf || {});
+      const tier = TIER2.includes(lang) ? 2 : 1;
+      const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+      const assistiveBanner = tier === 2
+        ? `<div class="assistive-banner">${t.assistive_notice || "This translation is provided for accessibility only. The authoritative language of VERIFRAX is English."}</div>`
+        : "";
       const html = `<!DOCTYPE html>
-<html>
+<html lang="${lang}" aria-label="${tier === 2 ? "assistive-translation" : "authoritative-ui"}">
 <head>
-  <title>VERIFRAX — Deterministic Verification</title>
+  <title>VERIFRAX — ${t.hero_title}</title>
+  <link rel="alternate" hreflang="fr" href="https://www.verifrax.net/?lang=fr">
+  <link rel="alternate" hreflang="de" href="https://www.verifrax.net/?lang=de">
+  <link rel="alternate" hreflang="x-default" href="https://www.verifrax.net/">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; color: #333; background: #fff; }
     .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
     h1 { font-size: 48px; font-weight: 700; margin-bottom: 20px; text-align: center; }
-    .tagline { font-size: 20px; text-align: center; color: #666; margin-bottom: 50px; }
+    .tagline { font-size: 20px; text-align: center; color: #666; margin-bottom: 30px; }
+    .assistive-banner { background: #fff3cd; color: #8a6d3b; padding: 12px 16px; border: 1px solid #f5e3a3; border-radius: 6px; font-size: 14px; margin-bottom: 20px; text-align: center; }
     .cta-buttons { display: flex; gap: 20px; justify-content: center; margin-bottom: 60px; flex-wrap: wrap; }
     .btn { display: inline-block; padding: 16px 32px; font-size: 18px; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.2s; }
     .btn-primary { background: #000; color: #fff; border: 2px solid #000; }
@@ -710,8 +766,9 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
 </head>
 <body>
   <div class="container">
+    ${assistiveBanner}
     <h1>VERIFRAX</h1>
-    <p class="tagline">Deterministic Verification. One Execution. Final Certificate.</p>
+    <p class="tagline">${t.hero_title}. ${t.hero_subtitle}</p>
     <p style="text-align: center; font-size: 16px; margin: 20px 0; color: #666; font-style: italic;">
       VERIFRAX has issued live certificates relied upon externally.
     </p>
@@ -719,11 +776,11 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
       €120 — One execution · One certificate · Final
     </p>
     <p style="text-align: center; font-size: 16px; margin: 30px 0; color: #666;">
-      <strong>How it works:</strong> Pay once → Upload evidence → Receive final certificate
+      ${t.invariant_notice || ""}
     </p>
     
     <div class="cta-buttons">
-      <a href="/start?tier=public" class="btn btn-primary">Verify Evidence — €120</a>
+      <a href="/start?tier=public" class="btn btn-primary">${t.cta_verify || "Verify Evidence"} — €120</a>
       <a href="/start?tier=pro" class="btn btn-secondary">Legal / Professional Verification — €650</a>
       <a href="/institutional" class="btn btn-secondary">Request Institutional Execution — €1500</a>
     </div>
@@ -745,9 +802,13 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
   </div>
 </body>
 </html>`;
+      const headers = new Headers({ 'Content-Type': 'text/html; charset=utf-8' });
+      if (TIER2.includes(lang)) {
+        headers.set('X-Robots-Tag', 'noindex, nofollow');
+      }
       return withHeaders(new Response(html, {
         status: 200,
-        headers: { 'Content-Type': 'text/html; charset=utf-8' }
+        headers
       }));
     }
 
