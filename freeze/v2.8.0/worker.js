@@ -768,6 +768,9 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
     .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
     h1 { font-size: 48px; font-weight: 700; margin-bottom: 20px; text-align: center; }
     .tagline { font-size: 20px; text-align: center; color: #666; margin-bottom: 30px; }
+    .lang-switch { text-align: center; margin: 20px 0; font-size: 14px; }
+    .lang-switch a { color: #000; text-decoration: none; font-weight: 600; }
+    .lang-switch a:hover { text-decoration: underline; }
     .assistive-banner { background: #fff3cd; color: #8a6d3b; padding: 12px 16px; border: 1px solid #f5e3a3; border-radius: 6px; font-size: 14px; margin-bottom: 20px; text-align: center; }
     .cta-buttons { display: flex; gap: 20px; justify-content: center; margin-bottom: 60px; flex-wrap: wrap; }
     .btn { display: inline-block; padding: 16px 32px; font-size: 18px; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.2s; }
@@ -786,6 +789,12 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
     ${assistiveBanner}
     <h1>VERIFRAX</h1>
     <p class="tagline">${t.hero_title}. ${t.hero_subtitle}</p>
+    <nav class="lang-switch">
+      <a href="/?lang=en">EN</a> ·
+      <a href="/?lang=fr">FR</a> ·
+      <a href="/?lang=de">DE</a> ·
+      <a href="/?lang=fa">FA</a>
+    </nav>
     <p style="text-align: center; font-size: 16px; margin: 20px 0; color: #666; font-style: italic;">
       VERIFRAX has issued live certificates relied upon externally.
     </p>
