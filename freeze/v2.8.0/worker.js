@@ -1053,7 +1053,6 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
           }],
           success_url: `https://www.verifrax.net/verify?session_id={CHECKOUT_SESSION_ID}&tier=${tier}`,
           cancel_url: `https://www.verifrax.net/start?tier=${tier}`,
-          success_url: `https://www.verifrax.net/verify?session_id={CHECKOUT_SESSION_ID}&tier=${tier}`,
           metadata: {
             // session_id will be attached post-create to ensure truthfulness
             verifrax_version: VERSION,
