@@ -20,6 +20,15 @@ const PAYMENT_STATUS = "enabled";
 const TIER1 = ['en','zh','es','hi','ar','pt','bn','ru','ja','pa','de','jv','ko','fr','te','mr','tr','ta','vi','ur','it','fa','th','gu','pl','uk','ro','nl','el','hu','sv','cs','he','id','ms','sw','no','da','fi','sk','bg','hr','sr','sl','lt','lv','et','is'];
 const TIER2 = ['am','yo','ig','zu','km','lo','my','ne','si','bo','ug','ps','ku','fy','gd','mi','sm','to','qu','ay','gn','ha','rw','so','ti','wo','xh','st','ts','tn','ve','nr','ny','mg','lb','fo'];
 
+const LANG_LABELS = {
+  en:"EN", zh:"ZH", es:"ES", hi:"HI", ar:"AR", pt:"PT", bn:"BN", ru:"RU",
+  ja:"JA", pa:"PA", de:"DE", jv:"JV", ko:"KO", fr:"FR", te:"TE", mr:"MR",
+  tr:"TR", ta:"TA", vi:"VI", ur:"UR", it:"IT", fa:"FA", th:"TH", gu:"GU",
+  pl:"PL", uk:"UK", ro:"RO", nl:"NL", el:"EL", hu:"HU", sv:"SV", cs:"CS",
+  he:"HE", id:"ID", ms:"MS", sw:"SW", no:"NO", da:"DA", fi:"FI", sk:"SK",
+  bg:"BG", hr:"HR", sr:"SR", sl:"SL", lt:"LT", lv:"LV", et:"ET", is:"IS"
+};
+
 // Centralized pricing (single source of truth for presentation)
 const PRICES = {
   public: 120,
@@ -41,9 +50,173 @@ const TRANSLATIONS = {
     cta_verify: "Démarrer la vérification",
     invariant_notice: "La langue n'affecte ni l'exécution ni les certificats."
   },
+  es: {
+    hero_title: "Verificación determinista",
+    hero_subtitle: "Una ejecución. Un certificado. Final.",
+    cta_verify: "Iniciar verificación",
+    invariant_notice: "El idioma no afecta la ejecución ni los certificados."
+  },
+  de: {
+    hero_title: "Deterministische Verifikation",
+    hero_subtitle: "Eine Ausführung. Ein Zertifikat. Final.",
+    cta_verify: "Verifikation starten",
+    invariant_notice: "Die Sprache beeinflusst weder Ausführung noch Zertifikate."
+  },
+  pt: {
+    hero_title: "Verificação determinística",
+    hero_subtitle: "Uma execução. Um certificado. Final.",
+    cta_verify: "Iniciar verificação",
+    invariant_notice: "O idioma não afeta a execução nem os certificados."
+  },
+  it: {
+    hero_title: "Verifica deterministica",
+    hero_subtitle: "Una esecuzione. Un certificato. Finale.",
+    cta_verify: "Avvia verifica",
+    invariant_notice: "La lingua non influisce sull'esecuzione né sui certificati."
+  },
+  ru: {
+    hero_title: "Детерминированная верификация",
+    hero_subtitle: "Один запуск. Один сертификат. Финальный.",
+    cta_verify: "Запустить проверку",
+    invariant_notice: "Язык не влияет ни на выполнение, ни на сертификаты."
+  },
+  zh: {
+    hero_title: "确定性验证",
+    hero_subtitle: "一次执行。一个证明。最终结果。",
+    cta_verify: "开始验证",
+    invariant_notice: "界面语言不会影响执行过程或证书。"
+  },
+  ar: {
+    hero_title: "التحقق الحتمي",
+    hero_subtitle: "تنفيذ واحد. شهادة واحدة. نهائي.",
+    cta_verify: "بدء التحقق",
+    invariant_notice: "اللغة لا تؤثر على التنفيذ أو الشهادات."
+  },
+  hi: {
+    hero_title: "नियतात्मक सत्यापन",
+    hero_subtitle: "एक निष्पादन। एक प्रमाणपत्र। अंतिम।",
+    cta_verify: "सत्यापन प्रारंभ करें",
+    invariant_notice: "भाषा का निष्पादन या प्रमाणपत्रों पर कोई प्रभाव नहीं पड़ता।"
+  },
+  ja: {
+    hero_title: "決定的な検証",
+    hero_subtitle: "1 回の実行。1 つの証明書。ファイナル。",
+    cta_verify: "検証を開始",
+    invariant_notice: "言語は実行や証明書に影響しません。"
+  },
+  ko: {
+    hero_title: "결정적 검증",
+    hero_subtitle: "한 번의 실행. 하나의 인증서. 최종.",
+    cta_verify: "검증 시작",
+    invariant_notice: "언어는 실행이나 인증서에 영향을 주지 않습니다."
+  },
+  tr: {
+    hero_title: "Deterministik doğrulama",
+    hero_subtitle: "Tek yürütme. Tek sertifika. Nihai.",
+    cta_verify: "Doğrulamayı başlat",
+    invariant_notice: "Dil, yürütmeyi veya sertifikaları etkilemez."
+  },
+  nl: {
+    hero_title: "Deterministische verificatie",
+    hero_subtitle: "Eén uitvoering. Eén certificaat. Definitief.",
+    cta_verify: "Verificatie starten",
+    invariant_notice: "De taal heeft geen invloed op uitvoering of certificaten."
+  },
+  sv: {
+    hero_title: "Deterministisk verifiering",
+    hero_subtitle: "En körning. Ett certifikat. Slutgiltigt.",
+    cta_verify: "Start verifiering",
+    invariant_notice: "Språket påverkar inte körningen eller certifikaten."
+  },
+  no: {
+    hero_title: "Deterministisk verifisering",
+    hero_subtitle: "Én kjøring. Ett sertifikat. Endelig.",
+    cta_verify: "Start verifisering",
+    invariant_notice: "Språk påvirker ikke kjøringen eller sertifikatene."
+  },
+  da: {
+    hero_title: "Deterministisk verifikation",
+    hero_subtitle: "Én kørsel. Ét certifikat. Endeligt.",
+    cta_verify: "Start verifikation",
+    invariant_notice: "Sproget påvirker ikke udførelsen eller certifikaterne."
+  },
+  fi: {
+    hero_title: "Deterministinen varmentaminen",
+    hero_subtitle: "Yksi suoritus. Yksi varmenne. Lopullinen.",
+    cta_verify: "Aloita varmentaminen",
+    invariant_notice: "Kieli ei vaikuta suoritukseen tai varmenteisiin."
+  },
+  pl: {
+    hero_title: "Weryfikacja deterministyczna",
+    hero_subtitle: "Jedno wykonanie. Jeden certyfikat. Ostateczny.",
+    cta_verify: "Rozpocznij weryfikację",
+    invariant_notice: "Język nie wpływa na wykonanie ani certyfikaty."
+  },
+  uk: {
+    hero_title: "Детермінована верифікація",
+    hero_subtitle: "Одне виконання. Один сертифікат. Остаточний.",
+    cta_verify: "Почати верифікацію",
+    invariant_notice: "Мова не впливає на виконання або сертифікати."
+  },
+  cs: {
+    hero_title: "Deterministická verifikace",
+    hero_subtitle: "Jedno spuštění. Jeden certifikát. Konečný.",
+    cta_verify: "Spustit verifikaci",
+    invariant_notice: "Jazyk nemá vliv na provedení ani certifikáty."
+  },
+  el: {
+    hero_title: "Ντετερμινιστική επαλήθευση",
+    hero_subtitle: "Μία εκτέλεση. Ένα πιστοποιητικό. Τελικό.",
+    cta_verify: "Έναρξη επαλήθευσης",
+    invariant_notice: "Η γλώσσα δεν επηρεάζει την εκτέλεση ή τα πιστοποιητικά."
+  },
+  he: {
+    hero_title: "אימות דטרמיניסטי",
+    hero_subtitle: "הרצה אחת. תעודה אחת. סופי.",
+    cta_verify: "התחל אימות",
+    invariant_notice: "השפה אינה משפיעה על ההרצה או על התעודות."
+  },
+  id: {
+    hero_title: "Verifikasi deterministik",
+    hero_subtitle: "Satu eksekusi. Satu sertifikat. Final.",
+    cta_verify: "Mulai verifikasi",
+    invariant_notice: "Bahasa tidak memengaruhi eksekusi atau sertifikat."
+  },
+  ms: {
+    hero_title: "Pengesahan deterministik",
+    hero_subtitle: "Satu pelaksanaan. Satu sijil. Muktamad.",
+    cta_verify: "Mula pengesahan",
+    invariant_notice: "Bahasa tidak menjejaskan pelaksanaan atau sijil."
+  },
+  sw: {
+    hero_title: "Uthibitishaji wa kimaamuzi",
+    hero_subtitle: "Utekelezaji mmoja. Cheti kimoja. Cha mwisho.",
+    cta_verify: "Anza uthibitishaji",
+    invariant_notice: "Lugha haiathiri utekelezaji wala vyeti."
+  },
+  th: {
+    hero_title: "การตรวจสอบแบบกำหนดแน่",
+    hero_subtitle: "การรันหนึ่งครั้ง ใบรับรองหนึ่งใบ สุดท้าย",
+    cta_verify: "เริ่มการตรวจสอบ",
+    invariant_notice: "ภาษาไม่ส่งผลต่อการรันหรือใบรับรอง."
+  },
+  vi: {
+    hero_title: "Xác minh tất định",
+    hero_subtitle: "Một lần thực thi. Một chứng chỉ. Cuối cùng.",
+    cta_verify: "Bắt đầu xác minh",
+    invariant_notice: "Ngôn ngữ không ảnh hưởng đến quá trình thực thi hoặc chứng chỉ."
+  },
+  fa: {
+    hero_title: "اعتبارسنجی تعیین‌گرا",
+    hero_subtitle: "یک اجرا. یک گواهی. نهایی.",
+    cta_verify: "شروع اعتبارسنجی",
+    invariant_notice: "زبان بر اجرا یا گواهی‌ها تأثیری ندارد."
+  },
   am: {
     hero_title: "ውሳኔ የማይለወጥ ማረጋገጫ",
     hero_subtitle: "አንድ አሰራር። አንድ ማረጋገጫ። መጨረሻ።",
+    cta_verify: "ማረጋገጫ ጀምር",
+    invariant_notice: "ቋንቋው በእንቅስቃሴው ወይም በማረጋገጫዎች ላይ ተፅዕኖ አያሳድርም።",
     assistive_notice: "This translation is provided for accessibility only. The authoritative language of VERIFRAX is English."
   }
 };
@@ -755,6 +928,9 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
       const assistiveBanner = isAssistive
         ? `<div class="assistive-banner">${t.assistive_notice || "This translation is provided for accessibility only. The authoritative language of VERIFRAX is English."}</div>`
         : "";
+      const langLinks = TIER1
+        .map(l => `<a href="/?lang=${l}">${LANG_LABELS[l] || l.toUpperCase()}</a>`)
+        .join(" · ");
       const html = `<!DOCTYPE html>
 <html lang="${lang}" aria-label="${tier === 2 ? "assistive-translation" : "authoritative-ui"}">
 <head>
@@ -789,12 +965,7 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
     ${assistiveBanner}
     <h1>VERIFRAX</h1>
     <p class="tagline">${t.hero_title}. ${t.hero_subtitle}</p>
-    <nav class="lang-switch">
-      <a href="/?lang=en">EN</a> ·
-      <a href="/?lang=fr">FR</a> ·
-      <a href="/?lang=de">DE</a> ·
-      <a href="/?lang=fa">FA</a>
-    </nav>
+    <nav class="lang-switch">${langLinks}</nav>
     <p style="text-align: center; font-size: 16px; margin: 20px 0; color: #666; font-style: italic;">
       VERIFRAX has issued live certificates relied upon externally.
     </p>
