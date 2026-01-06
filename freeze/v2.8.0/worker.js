@@ -13,6 +13,62 @@ import Stripe from "stripe";
 const VERSION = "2.8.0";
 const PAYMENT_STATUS = "enabled";
 
+// Language tier definitions (inlined for Cloudflare Workers compatibility)
+// tier0: en (canonical)
+// tier1: major languages
+// tier2: assistive only
+const TIER1 = ['en','zh','es','hi','ar','pt','bn','ru','ja','pa','de','jv','ko','fr','te','mr','tr','ta','vi','ur','it','fa','th','gu','pl','uk','ro','nl','el','hu','sv','cs','he','id','ms','sw','no','da','fi','sk','bg','hr','sr','sl','lt','lv','et','is'];
+const TIER2 = ['am','yo','ig','zu','km','lo','my','ne','si','bo','ug','ps','ku','fy','gd','mi','sm','to','qu','ay','gn','ha','rw','so','ti','wo','xh','st','ts','tn','ve','nr','ny','mg','lb','fo'];
+
+// Centralized pricing (single source of truth for presentation)
+const PRICES = {
+  public: 120,
+  pro: 650,
+  institutional: 1500
+};
+
+// Embedded translations (stateless, deterministic)
+const TRANSLATIONS = {
+  en: {
+    hero_title: "Deterministic Verification",
+    hero_subtitle: "One execution. One certificate. Final.",
+    cta_verify: "Start verification",
+    invariant_notice: "Language does not affect execution or certificates."
+  },
+  fr: {
+    hero_title: "Vérification déterministe",
+    hero_subtitle: "Une exécution. Un certificat. Final.",
+    cta_verify: "Démarrer la vérification",
+    invariant_notice: "La langue n'affecte ni l'exécution ni les certificats."
+  },
+  am: {
+    hero_title: "ውሳኔ የማይለወጥ ማረጋገጫ",
+    hero_subtitle: "አንድ አሰራር። አንድ ማረጋገጫ። መጨረሻ።",
+    assistive_notice: "This translation is provided for accessibility only. The authoritative language of VERIFRAX is English."
+  }
+};
+
+// Language resolution (stateless, deterministic)
+function resolveLang(request, cf = {}) {
+  const url = new URL(request.url);
+  const qp = url.searchParams.get("lang");
+  if (qp && (TIER1.includes(qp) || TIER2.includes(qp))) return qp;
+
+  const al = request.headers.get("accept-language");
+  if (al) {
+    const match = al
+      .split(",")
+      .map(x => x.split(";")[0].trim().split("-")[0])
+      .find(l => TIER1.includes(l) || TIER2.includes(l));
+    if (match) return match;
+  }
+
+  const map = { FR: "fr", DE: "de", ES: "es", IT: "it", IR: "fa", JP: "ja", CN: "zh" };
+  if (map[cf.country]) return map[cf.country];
+
+  return "en";
+}
+
 function withHeaders(resp) {
   const h = new Headers(resp.headers);
   h.set("x-verifrax-version", VERSION);
@@ -244,6 +300,9 @@ export default {
 <body>
   <div class="container">
     <h1>${framing.title}</h1>
+    <p style="text-align: left; font-size: 14px; color: #666; margin: -10px 0 20px 0;">
+      Execution surfaces are always presented in English. Language selection affects informational pages only.
+    </p>
     
     <div class="status-badge">
       Status: ${paymentStatus === "confirmed" ? "Payment confirmed ✓" : "Waiting for payment..."}
@@ -686,16 +745,30 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
 
     // GET / (LANDING PAGE)
     if (path === "/" && request.method === "GET") {
+      const resolved = resolveLang(request, request.cf || {});
+      const hasContent = Boolean(TRANSLATIONS[resolved]);
+      const lang = hasContent ? resolved : "en";
+      const isAssistive = TIER2.includes(resolved) && hasContent;
+      const tier = isAssistive ? 2 : 1;
+      const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+      const title = tier === 2 ? "VERIFRAX — Assistive Translation" : `VERIFRAX — ${t.hero_title}`;
+      const assistiveBanner = isAssistive
+        ? `<div class="assistive-banner">${t.assistive_notice || "This translation is provided for accessibility only. The authoritative language of VERIFRAX is English."}</div>`
+        : "";
       const html = `<!DOCTYPE html>
-<html>
+<html lang="${lang}" aria-label="${tier === 2 ? "assistive-translation" : "authoritative-ui"}">
 <head>
-  <title>VERIFRAX — Deterministic Verification</title>
+  <title>${title}</title>
+  <link rel="alternate" hreflang="fr" href="https://www.verifrax.net/?lang=fr">
+  <link rel="alternate" hreflang="de" href="https://www.verifrax.net/?lang=de">
+  <link rel="alternate" hreflang="x-default" href="https://www.verifrax.net/">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; color: #333; background: #fff; }
     .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
     h1 { font-size: 48px; font-weight: 700; margin-bottom: 20px; text-align: center; }
-    .tagline { font-size: 20px; text-align: center; color: #666; margin-bottom: 50px; }
+    .tagline { font-size: 20px; text-align: center; color: #666; margin-bottom: 30px; }
+    .assistive-banner { background: #fff3cd; color: #8a6d3b; padding: 12px 16px; border: 1px solid #f5e3a3; border-radius: 6px; font-size: 14px; margin-bottom: 20px; text-align: center; }
     .cta-buttons { display: flex; gap: 20px; justify-content: center; margin-bottom: 60px; flex-wrap: wrap; }
     .btn { display: inline-block; padding: 16px 32px; font-size: 18px; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.2s; }
     .btn-primary { background: #000; color: #fff; border: 2px solid #000; }
@@ -710,20 +783,21 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
 </head>
 <body>
   <div class="container">
+    ${assistiveBanner}
     <h1>VERIFRAX</h1>
-    <p class="tagline">Deterministic Verification. One Execution. Final Certificate.</p>
+    <p class="tagline">${t.hero_title}. ${t.hero_subtitle}</p>
     <p style="text-align: center; font-size: 16px; margin: 20px 0; color: #666; font-style: italic;">
       VERIFRAX has issued live certificates relied upon externally.
     </p>
     <p style="text-align: center; font-size: 24px; font-weight: 600; margin: 20px 0; color: #000;">
-      €120 — One execution · One certificate · Final
+      €${PRICES.public} — One execution · One certificate · Final
     </p>
     <p style="text-align: center; font-size: 16px; margin: 30px 0; color: #666;">
-      <strong>How it works:</strong> Pay once → Upload evidence → Receive final certificate
+      ${t.invariant_notice || ""}
     </p>
     
     <div class="cta-buttons">
-      <a href="/start?tier=public" class="btn btn-primary">Verify Evidence — €120</a>
+      <a href="/start?tier=public" class="btn btn-primary">${t.cta_verify || "Verify Evidence"} — €${PRICES.public}</a>
       <a href="/start?tier=pro" class="btn btn-secondary">Legal / Professional Verification — €650</a>
       <a href="/institutional" class="btn btn-secondary">Request Institutional Execution — €1500</a>
     </div>
@@ -745,9 +819,13 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
   </div>
 </body>
 </html>`;
+      const headers = new Headers({ 'Content-Type': 'text/html; charset=utf-8' });
+      if (TIER2.includes(lang)) {
+        headers.set('X-Robots-Tag', 'noindex, nofollow');
+      }
       return withHeaders(new Response(html, {
         status: 200,
-        headers: { 'Content-Type': 'text/html; charset=utf-8' }
+        headers
       }));
     }
 
@@ -755,9 +833,9 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
     if (path === "/start" && request.method === "GET") {
       const tier = url.searchParams.get("tier") || "public";
       const tierConfig = {
-        public: { price: 120, name: "Public Execution", description: "Low-friction entry for journalists, individuals, demos" },
-        pro: { price: 650, name: "Professional Execution", description: "Designed for disputes, legal, arbitration, crypto incidents" },
-        institutional: { price: 1500, name: "Institutional Execution", description: "Institutional-grade for law firms, funds, DAOs, compliance" }
+        public: { price: PRICES.public, name: "Public Execution", description: "Low-friction entry for journalists, individuals, demos" },
+        pro: { price: PRICES.pro, name: "Professional Execution", description: "Designed for disputes, legal, arbitration, crypto incidents" },
+        institutional: { price: PRICES.institutional, name: "Institutional Execution", description: "Institutional-grade for law firms, funds, DAOs, compliance" }
       };
       const config = tierConfig[tier] || tierConfig.public;
       
@@ -785,6 +863,9 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
     <h1>${config.name}</h1>
     <p style="font-size: 20px; font-weight: 600; margin: 10px 0 30px 0; color: #000;">
       €${config.price}
+    </p>
+    <p style="text-align: left; font-size: 14px; color: #666; margin: -10px 0 20px 0;">
+      Execution surfaces are always presented in English. Language selection affects informational pages only.
     </p>
     <p style="color: #666; margin-bottom: 30px;">
       ${config.description}
@@ -864,6 +945,9 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
   <div class="container">
     <h1>Institutional Execution</h1>
     <p class="price">€1,500</p>
+    <p style="text-align: left; font-size: 14px; color: #666; margin: -5px 0 20px 0;">
+      Execution surfaces are always presented in English. Language selection affects informational pages only.
+    </p>
     
     <div class="statement">
       <p><strong>Institutional-grade deterministic execution</strong></p>
@@ -946,16 +1030,13 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
         const stripe = new Stripe(env.STRIPE_SECRET_KEY);
         const tier = url.searchParams.get("tier") || "public";
         
-        // Tier configuration
+        // Tier configuration (amounts derived from single-source PRICES)
         const tierConfig = {
-          public: { amount: 12000, name: "VERIFRAX Public Execution", tierName: "public" },
-          pro: { amount: 65000, name: "VERIFRAX Professional Execution", tierName: "pro" },
-          institutional: { amount: 150000, name: "VERIFRAX Institutional Execution", tierName: "institutional" }
+          public: { amount: PRICES.public * 100, name: "VERIFRAX Public Execution", tierName: "public" },
+          pro: { amount: PRICES.pro * 100, name: "VERIFRAX Professional Execution", tierName: "pro" },
+          institutional: { amount: PRICES.institutional * 100, name: "VERIFRAX Institutional Execution", tierName: "institutional" }
         };
         const config = tierConfig[tier] || tierConfig.public;
-
-        // Generate unique session_id
-        const sessionId = `cs_${Date.now()}_${Math.random().toString(36).substring(2, 15)}`;
 
         // Create Stripe Checkout Session
         const session = await stripe.checkout.sessions.create({
@@ -973,18 +1054,38 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
           success_url: `https://www.verifrax.net/verify?session_id={CHECKOUT_SESSION_ID}&tier=${tier}`,
           cancel_url: `https://www.verifrax.net/start?tier=${tier}`,
           metadata: {
-            session_id: sessionId,
+            // session_id will be attached post-create to ensure truthfulness
             verifrax_version: VERSION,
             tier: config.tierName
           },
           payment_intent_data: {
             metadata: {
-              session_id: sessionId,
               verifrax_version: VERSION,
               tier: config.tierName
             }
           }
         });
+
+        const sessionId = session.id;
+
+        // Attach authoritative session_id after creation (session + payment intent)
+        await stripe.checkout.sessions.update(sessionId, {
+          metadata: {
+            session_id: sessionId,
+            verifrax_version: VERSION,
+            tier: config.tierName
+          }
+        });
+
+        if (session.payment_intent) {
+          await stripe.paymentIntents.update(session.payment_intent, {
+            metadata: {
+              session_id: sessionId,
+              verifrax_version: VERSION,
+              tier: config.tierName
+            }
+          });
+        }
 
         return withHeaders(new Response(JSON.stringify({ 
           checkout_url: session.url,
@@ -1157,6 +1258,9 @@ Version: 2.8.0
       const content = `VERIFRAX Legal Information — v2.8.0
 
 Jurisdiction, operator identity, system role.
+
+AUTHORITATIVE SCOPE:
+See AUTHORITATIVE_SCOPE.md
 
 SYSTEM IDENTITY:
 VERIFRAX is a deterministic digital verification system. It executes a single, one-time computational verification over a submitted digital evidence bundle and issues a final, immutable, reproducible certificate.
