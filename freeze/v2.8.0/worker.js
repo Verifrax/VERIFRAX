@@ -1123,30 +1123,6 @@ export default {
         }
 
         const tokenObj = JSON.parse(tokenData);
-        
-        // 4. Handle retry: if CONSUMING, check if certificate already exists
-        if (tokenObj.state === "consuming") {
-          // Retry path: check for existing certificate
-          // We need to derive the expected certificate hash from the request
-          // For now, allow retry to proceed (certificate write is idempotent)
-          // Certificate hash will be computed from bundle, so same bundle = same hash
-          const executionTier = tokenObj.tier || "public";
-          // Lock acquired, continue to execution (idempotent)
-        } else if (tokenObj.state !== "unused") {
-          // Token already consumed
-          await env.KV.delete(lockKey);
-          return withHeaders(new Response(JSON.stringify({ error: "TOKEN_ALREADY_USED" }), {
-            status: 403,
-            headers: { 'Content-Type': 'application/json; charset=utf-8' }
-          }));
-        } else {
-          // Atomic claim: transition to CONSUMING
-          await env.KV.put(tokenKey, JSON.stringify({
-            ...tokenObj,
-            state: "consuming"
-          }));
-        }
-
         const executionTier = tokenObj.tier || "public";
         
         // Parse multipart form data
@@ -1179,6 +1155,33 @@ export default {
         const bundleHashBuffer = await crypto.subtle.digest("SHA-256", bundleArrayBuffer);
         const bundleHashArray = Array.from(new Uint8Array(bundleHashBuffer));
         const bundleHash = bundleHashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        
+        // 4. Handle retry: if CONSUMING, enforce bundle hash binding
+        if (tokenObj.state === "consuming") {
+          // Retry path: enforce strict bundle hash equality
+          if (tokenObj.bundle_hash && tokenObj.bundle_hash !== bundleHash) {
+            await env.KV.delete(lockKey);
+            return withHeaders(new Response(JSON.stringify({ error: "BUNDLE_MISMATCH_RETRY_FORBIDDEN" }), {
+              status: 409,
+              headers: { 'Content-Type': 'application/json; charset=utf-8' }
+            }));
+          }
+          // Same bundle hash - continue to execution (idempotent)
+        } else if (tokenObj.state !== "unused") {
+          // Token already consumed
+          await env.KV.delete(lockKey);
+          return withHeaders(new Response(JSON.stringify({ error: "TOKEN_ALREADY_USED" }), {
+            status: 403,
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
+          }));
+        } else {
+          // Atomic claim: transition to CONSUMING with bundle hash binding
+          await env.KV.put(tokenKey, JSON.stringify({
+            ...tokenObj,
+            state: "consuming",
+            bundle_hash: bundleHash
+          }));
+        }
         
         // Minimal deterministic verification (v2.8.0)
         // For public@1.0.0 profile: bundle exists and is readable = verified
