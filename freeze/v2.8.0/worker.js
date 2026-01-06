@@ -42,294 +42,392 @@ const TRANSLATIONS = {
     hero_title: "Deterministic Verification",
     hero_subtitle: "One execution. One certificate. Final.",
     cta_verify: "Start verification",
+    cta_pro: "Legal / Professional Verification",
+    cta_institutional: "Request Institutional Execution",
     invariant_notice: "Language does not affect execution or certificates."
   },
   fr: {
     hero_title: "Vérification déterministe",
     hero_subtitle: "Une exécution. Un certificat. Final.",
     cta_verify: "Démarrer la vérification",
+    cta_pro: "Vérification légale / professionnelle",
+    cta_institutional: "Demander une exécution institutionnelle",
     invariant_notice: "La langue n'affecte ni l'exécution ni les certificats."
   },
   es: {
     hero_title: "Verificación determinista",
     hero_subtitle: "Una ejecución. Un certificado. Final.",
     cta_verify: "Iniciar verificación",
+    cta_pro: "Verificación legal / profesional",
+    cta_institutional: "Solicitar ejecución institucional",
     invariant_notice: "El idioma no afecta la ejecución ni los certificados."
   },
   de: {
     hero_title: "Deterministische Verifikation",
     hero_subtitle: "Eine Ausführung. Ein Zertifikat. Final.",
     cta_verify: "Verifikation starten",
+    cta_pro: "Rechtliche / professionelle Verifikation",
+    cta_institutional: "Institutionelle Ausführung anfordern",
     invariant_notice: "Die Sprache beeinflusst weder Ausführung noch Zertifikate."
   },
   pt: {
     hero_title: "Verificação determinística",
     hero_subtitle: "Uma execução. Um certificado. Final.",
     cta_verify: "Iniciar verificação",
+    cta_pro: "Verificação legal / profissional",
+    cta_institutional: "Solicitar execução institucional",
     invariant_notice: "O idioma não afeta a execução nem os certificados."
   },
   it: {
     hero_title: "Verifica deterministica",
     hero_subtitle: "Una esecuzione. Un certificato. Finale.",
     cta_verify: "Avvia verifica",
+    cta_pro: "Verifica legale / professionale",
+    cta_institutional: "Richiedi esecuzione istituzionale",
     invariant_notice: "La lingua non influisce sull'esecuzione né sui certificati."
   },
   ru: {
     hero_title: "Детерминированная верификация",
     hero_subtitle: "Один запуск. Один сертификат. Финальный.",
     cta_verify: "Запустить проверку",
+    cta_pro: "Юридическая / профессиональная верификация",
+    cta_institutional: "Запросить институциональное выполнение",
     invariant_notice: "Язык не влияет ни на выполнение, ни на сертификаты."
   },
   zh: {
     hero_title: "确定性验证",
     hero_subtitle: "一次执行。一个证明。最终结果。",
     cta_verify: "开始验证",
+    cta_pro: "法律/专业验证",
+    cta_institutional: "请求机构执行",
     invariant_notice: "界面语言不会影响执行过程或证书。"
   },
   ar: {
     hero_title: "التحقق الحتمي",
     hero_subtitle: "تنفيذ واحد. شهادة واحدة. نهائي.",
     cta_verify: "بدء التحقق",
+        cta_pro: "التحقق القانوني / المهني",
+    cta_institutional: "طلب تنفيذ مؤسسي",
     invariant_notice: "اللغة لا تؤثر على التنفيذ أو الشهادات."
   },
   hi: {
     hero_title: "नियतात्मक सत्यापन",
     hero_subtitle: "एक निष्पादन। एक प्रमाणपत्र। अंतिम।",
     cta_verify: "सत्यापन प्रारंभ करें",
+        cta_pro: "कानूनी / पेशेवर सत्यापन",
+    cta_institutional: "संस्थागत निष्पादन का अनुरोध करें",
     invariant_notice: "भाषा का निष्पादन या प्रमाणपत्रों पर कोई प्रभाव नहीं पड़ता।"
   },
   ja: {
     hero_title: "決定的な検証",
     hero_subtitle: "1 回の実行。1 つの証明書。ファイナル。",
     cta_verify: "検証を開始",
+        cta_pro: "法的/専門検証",
+    cta_institutional: "機関実行をリクエスト",
     invariant_notice: "言語は実行や証明書に影響しません。"
   },
   ko: {
     hero_title: "결정적 검증",
     hero_subtitle: "한 번의 실행. 하나의 인증서. 최종.",
     cta_verify: "검증 시작",
+        cta_pro: "법률/전문 검증",
+    cta_institutional: "기관 실행 요청",
     invariant_notice: "언어는 실행이나 인증서에 영향을 주지 않습니다."
   },
   tr: {
     hero_title: "Deterministik doğrulama",
     hero_subtitle: "Tek yürütme. Tek sertifika. Nihai.",
     cta_verify: "Doğrulamayı başlat",
+        cta_pro: "Yasal / Profesyonel Doğrulama",
+    cta_institutional: "Kurumsal Yürütme İste",
     invariant_notice: "Dil, yürütmeyi veya sertifikaları etkilemez."
   },
   nl: {
     hero_title: "Deterministische verificatie",
     hero_subtitle: "Eén uitvoering. Eén certificaat. Definitief.",
     cta_verify: "Verificatie starten",
+        cta_pro: "Juridische / professionele verificatie",
+    cta_institutional: "Institutionele uitvoering aanvragen",
     invariant_notice: "De taal heeft geen invloed op uitvoering of certificaten."
   },
   sv: {
     hero_title: "Deterministisk verifiering",
     hero_subtitle: "En körning. Ett certifikat. Slutgiltigt.",
     cta_verify: "Start verifiering",
+        cta_pro: "Juridisk / professionell verifiering",
+    cta_institutional: "Begär institutionell körning",
     invariant_notice: "Språket påverkar inte körningen eller certifikaten."
   },
   no: {
     hero_title: "Deterministisk verifisering",
     hero_subtitle: "Én kjøring. Ett sertifikat. Endelig.",
     cta_verify: "Start verifisering",
+        cta_pro: "Juridisk / profesjonell verifisering",
+    cta_institutional: "Be om institusjonell kjøring",
     invariant_notice: "Språk påvirker ikke kjøringen eller sertifikatene."
   },
   da: {
     hero_title: "Deterministisk verifikation",
     hero_subtitle: "Én kørsel. Ét certifikat. Endeligt.",
     cta_verify: "Start verifikation",
+        cta_pro: "Juridisk / professionel verifikation",
+    cta_institutional: "Anmod om institutionel kørsel",
     invariant_notice: "Sproget påvirker ikke udførelsen eller certifikaterne."
   },
   fi: {
     hero_title: "Deterministinen varmentaminen",
     hero_subtitle: "Yksi suoritus. Yksi varmenne. Lopullinen.",
     cta_verify: "Aloita varmentaminen",
+        cta_pro: "Juridinen / ammattimainen varmentaminen",
+    cta_institutional: "Pyydä institutionaalista suoritusta",
     invariant_notice: "Kieli ei vaikuta suoritukseen tai varmenteisiin."
   },
   pl: {
     hero_title: "Weryfikacja deterministyczna",
     hero_subtitle: "Jedno wykonanie. Jeden certyfikat. Ostateczny.",
     cta_verify: "Rozpocznij weryfikację",
+        cta_pro: "Weryfikacja prawna / profesjonalna",
+    cta_institutional: "Zamów wykonanie instytucjonalne",
     invariant_notice: "Język nie wpływa na wykonanie ani certyfikaty."
   },
   uk: {
     hero_title: "Детермінована верифікація",
     hero_subtitle: "Одне виконання. Один сертифікат. Остаточний.",
     cta_verify: "Почати верифікацію",
+        cta_pro: "Юридична / професійна верифікація",
+    cta_institutional: "Запросити інституційне виконання",
     invariant_notice: "Мова не впливає на виконання або сертифікати."
   },
   cs: {
     hero_title: "Deterministická verifikace",
     hero_subtitle: "Jedno spuštění. Jeden certifikát. Konečný.",
     cta_verify: "Spustit verifikaci",
+        cta_pro: "Právní / profesionální verifikace",
+    cta_institutional: "Požádat o institucionální provedení",
     invariant_notice: "Jazyk nemá vliv na provedení ani certifikáty."
   },
   el: {
     hero_title: "Ντετερμινιστική επαλήθευση",
     hero_subtitle: "Μία εκτέλεση. Ένα πιστοποιητικό. Τελικό.",
     cta_verify: "Έναρξη επαλήθευσης",
+        cta_pro: "Νομική / επαγγελματική επαλήθευση",
+    cta_institutional: "Αίτημα θεσμικής εκτέλεσης",
     invariant_notice: "Η γλώσσα δεν επηρεάζει την εκτέλεση ή τα πιστοποιητικά."
   },
   he: {
     hero_title: "אימות דטרמיניסטי",
     hero_subtitle: "הרצה אחת. תעודה אחת. סופי.",
     cta_verify: "התחל אימות",
+        cta_pro: "אימות משפטי / מקצועי",
+    cta_institutional: "בקש ביצוע מוסדי",
     invariant_notice: "השפה אינה משפיעה על ההרצה או על התעודות."
   },
   id: {
     hero_title: "Verifikasi deterministik",
     hero_subtitle: "Satu eksekusi. Satu sertifikat. Final.",
     cta_verify: "Mulai verifikasi",
+        cta_pro: "Verifikasi hukum / profesional",
+    cta_institutional: "Minta eksekusi institusional",
     invariant_notice: "Bahasa tidak memengaruhi eksekusi atau sertifikat."
   },
   ms: {
     hero_title: "Pengesahan deterministik",
     hero_subtitle: "Satu pelaksanaan. Satu sijil. Muktamad.",
     cta_verify: "Mula pengesahan",
+        cta_pro: "Pengesahan undang-undang / profesional",
+    cta_institutional: "Minta pelaksanaan institusi",
     invariant_notice: "Bahasa tidak menjejaskan pelaksanaan atau sijil."
   },
   sw: {
     hero_title: "Uthibitishaji wa kimaamuzi",
     hero_subtitle: "Utekelezaji mmoja. Cheti kimoja. Cha mwisho.",
     cta_verify: "Anza uthibitishaji",
+        cta_pro: "Uthibitishaji wa kisheria / kitaalamu",
+    cta_institutional: "Omba utekelezaji wa taasisi",
     invariant_notice: "Lugha haiathiri utekelezaji wala vyeti."
   },
   th: {
     hero_title: "การตรวจสอบแบบกำหนดแน่",
     hero_subtitle: "การรันหนึ่งครั้ง ใบรับรองหนึ่งใบ สุดท้าย",
     cta_verify: "เริ่มการตรวจสอบ",
+        cta_pro: "การตรวจสอบทางกฎหมาย / วิชาชีพ",
+    cta_institutional: "ขอการรันสถาบัน",
     invariant_notice: "ภาษาไม่ส่งผลต่อการรันหรือใบรับรอง."
   },
   vi: {
     hero_title: "Xác minh tất định",
     hero_subtitle: "Một lần thực thi. Một chứng chỉ. Cuối cùng.",
     cta_verify: "Bắt đầu xác minh",
+        cta_pro: "Xác minh pháp lý / chuyên nghiệp",
+    cta_institutional: "Yêu cầu thực thi thể chế",
     invariant_notice: "Ngôn ngữ không ảnh hưởng đến quá trình thực thi hoặc chứng chỉ."
   },
   fa: {
     hero_title: "اعتبارسنجی تعیین‌گرا",
     hero_subtitle: "یک اجرا. یک گواهی. نهایی.",
     cta_verify: "شروع اعتبارسنجی",
+        cta_pro: "اعتبارسنجی حقوقی / حرفه‌ای",
+    cta_institutional: "درخواست اجرای نهادی",
     invariant_notice: "زبان بر اجرا یا گواهی‌ها تأثیری ندارد."
   },
   bn: {
     hero_title: "নির্ধারক যাচাইকরণ",
     hero_subtitle: "একটি নির্বাহ। একটি সার্টিফিকেট। চূড়ান্ত।",
     cta_verify: "যাচাইকরণ শুরু করুন",
+        cta_pro: "আইনি / পেশাদার যাচাইকরণ",
+    cta_institutional: "প্রাতিষ্ঠানিক নির্বাহের অনুরোধ",
     invariant_notice: "ভাষা নির্বাহ বা সার্টিফিকেটকে প্রভাবিত করে না।"
   },
   pa: {
     hero_title: "ਨਿਰਧਾਰਿਤ ਪੜਤਾਲ",
     hero_subtitle: "ਇੱਕ ਨਿਰਵਹਨ। ਇੱਕ ਸਰਟੀਫਿਕੇਟ। ਅੰਤਿਮ।",
     cta_verify: "ਪੜਤਾਲ ਸ਼ੁਰੂ ਕਰੋ",
+        cta_pro: "ਕਾਨੂੰਨੀ / ਪੇਸ਼ੇਵਰ ਪੜਤਾਲ",
+    cta_institutional: "ਸੰਸਥਾਗਤ ਨਿਰਵਹਨ ਦੀ ਬੇਨਤੀ",
     invariant_notice: "ਭਾਸ਼ਾ ਨਿਰਵਹਨ ਜਾਂ ਸਰਟੀਫਿਕੇਟਾਂ ਨੂੰ ਪ੍ਰਭਾਵਿਤ ਨਹੀਂ ਕਰਦੀ।"
   },
   jv: {
     hero_title: "Verifikasi deterministik",
     hero_subtitle: "Siji eksekusi. Siji sertifikat. Final.",
     cta_verify: "Mulai verifikasi",
+        cta_pro: "Verifikasi hukum / profesional",
+    cta_institutional: "Nyuwun eksekusi institusional",
     invariant_notice: "Basa ora mengaruhi eksekusi utawa sertifikat."
   },
   te: {
     hero_title: "నిర్ణయాత్మక ధృవీకరణ",
     hero_subtitle: "ఒక అమలు. ఒక సర్టిఫికేట్. తుది.",
     cta_verify: "ధృవీకరణ ప్రారంభించండి",
+        cta_pro: "చట్టపరమైన / వృత్తిపరమైన ధృవీకరణ",
+    cta_institutional: "సంస్థాగత అమలు అభ్యర్థించండి",
     invariant_notice: "భాష అమలు లేదా సర్టిఫికేట్లను ప్రభావితం చేయదు."
   },
   mr: {
     hero_title: "निर्धारक सत्यापन",
     hero_subtitle: "एक अंमलबजावणी. एक प्रमाणपत्र. अंतिम.",
     cta_verify: "सत्यापन सुरू करा",
+        cta_pro: "कायदेशीर / व्यावसायिक सत्यापन",
+    cta_institutional: "संस्थागत अंमलबजावणीची विनंती",
     invariant_notice: "भाषा अंमलबजावणी किंवा प्रमाणपत्रांवर परिणाम करत नाही."
   },
   ta: {
     hero_title: "தீர்மானிக்கப்பட்ட சரிபார்ப்பு",
     hero_subtitle: "ஒரு செயலாக்கம். ஒரு சான்றிதழ். இறுதி.",
     cta_verify: "சரிபார்ப்பைத் தொடங்கவும்",
+        cta_pro: "சட்ட / தொழில்முறை சரிபார்ப்பு",
+    cta_institutional: "நிறுவன செயலாக்கத்தைக் கோரவும்",
     invariant_notice: "மொழி செயலாக்கம் அல்லது சான்றிதழ்களை பாதிக்காது."
   },
   ur: {
     hero_title: "تعین کنندہ تصدیق",
     hero_subtitle: "ایک عمل۔ ایک سرٹیفکیٹ۔ حتمی۔",
     cta_verify: "تصدیق شروع کریں",
+        cta_pro: "قانونی / پیشہ ورانہ تصدیق",
+    cta_institutional: "ادارتی عمل کی درخواست",
     invariant_notice: "زبان عمل یا سرٹیفکیٹس کو متاثر نہیں کرتی۔"
   },
   gu: {
     hero_title: "નિર્ધારિત ચકાસણી",
     hero_subtitle: "એક અમલીકરણ. એક પ્રમાણપત્ર. અંતિમ.",
     cta_verify: "ચકાસણી શરૂ કરો",
+        cta_pro: "કાનૂની / વ્યાવસાયિક ચકાસણી",
+    cta_institutional: "સંસ્થાગત અમલીકરણની વિનંતી",
     invariant_notice: "ભાષા અમલીકરણ અથવા પ્રમાણપત્રોને અસર કરતી નથી."
   },
   ro: {
     hero_title: "Verificare deterministă",
     hero_subtitle: "O execuție. Un certificat. Final.",
     cta_verify: "Începe verificarea",
+        cta_pro: "Verificare legală / profesională",
+    cta_institutional: "Solicită execuție instituțională",
     invariant_notice: "Limba nu afectează execuția sau certificatele."
   },
   hu: {
     hero_title: "Determinisztikus ellenőrzés",
     hero_subtitle: "Egy végrehajtás. Egy tanúsítvány. Végső.",
     cta_verify: "Ellenőrzés indítása",
+        cta_pro: "Jogi / szakmai ellenőrzés",
+    cta_institutional: "Intézményi végrehajtás kérése",
     invariant_notice: "A nyelv nem befolyásolja a végrehajtást vagy a tanúsítványokat."
   },
   sk: {
     hero_title: "Deterministická verifikácia",
     hero_subtitle: "Jedno spustenie. Jeden certifikát. Konečný.",
     cta_verify: "Spustiť verifikáciu",
+        cta_pro: "Právna / profesionálna verifikácia",
+    cta_institutional: "Požiadať o inštitucionálne vykonanie",
     invariant_notice: "Jazyk neovplyvňuje vykonanie ani certifikáty."
   },
   bg: {
     hero_title: "Детерминирана верификация",
     hero_subtitle: "Едно изпълнение. Един сертификат. Финално.",
     cta_verify: "Започнете верификация",
+        cta_pro: "Правна / професионална верификация",
+    cta_institutional: "Заявка за институционално изпълнение",
     invariant_notice: "Езикът не влияе на изпълнението или сертификатите."
   },
   hr: {
     hero_title: "Deterministička verifikacija",
     hero_subtitle: "Jedno izvršenje. Jedan certifikat. Konačno.",
     cta_verify: "Pokreni verifikaciju",
+        cta_pro: "Pravna / profesionalna verifikacija",
+    cta_institutional: "Zatraži institucionalno izvršenje",
     invariant_notice: "Jezik ne utječe na izvršenje ili certifikate."
   },
   sr: {
     hero_title: "Детерминистичка верификација",
     hero_subtitle: "Једно извршење. Један сертификат. Коначно.",
     cta_verify: "Покрени верификацију",
+        cta_pro: "Правна / професионална верификација",
+    cta_institutional: "Захтев за институционално извршење",
     invariant_notice: "Језик не утиче на извршење или сертификате."
   },
   sl: {
     hero_title: "Deterministična verifikacija",
     hero_subtitle: "Ena izvedba. En certifikat. Končno.",
     cta_verify: "Začni verifikacijo",
+        cta_pro: "Pravna / strokovna verifikacija",
+    cta_institutional: "Zahtevaj institucionalno izvedbo",
     invariant_notice: "Jezik ne vpliva na izvedbo ali certifikate."
   },
   lt: {
     hero_title: "Deterministinė patikra",
     hero_subtitle: "Vienas vykdymas. Vienas sertifikatas. Galutinis.",
     cta_verify: "Pradėti patikrą",
+        cta_pro: "Teisinė / profesionali patikra",
+    cta_institutional: "Prašyti institucinio vykdymo",
     invariant_notice: "Kalba neturi įtakos vykdymui ar sertifikatams."
   },
   lv: {
     hero_title: "Deterministiska verifikācija",
     hero_subtitle: "Viena izpilde. Viens sertifikāts. Galīgs.",
     cta_verify: "Sākt verifikāciju",
+        cta_pro: "Juridiska / profesionāla verifikācija",
+    cta_institutional: "Pieprasīt institucionālu izpildi",
     invariant_notice: "Valoda neietekmē izpildi vai sertifikātus."
   },
   et: {
     hero_title: "Deterministlik kinnitamine",
     hero_subtitle: "Üks käivitamine. Üks sertifikaat. Lõplik.",
     cta_verify: "Alusta kinnitamist",
+        cta_pro: "Õiguslik / professionaalne kinnitamine",
+    cta_institutional: "Taotleda institutsionaalset käivitamist",
     invariant_notice: "Keel ei mõjuta käivitamist ega sertifikaate."
   },
   is: {
     hero_title: "Ákveðin staðfesting",
     hero_subtitle: "Eitt keyrsla. Eitt vottorð. Endanlegt.",
     cta_verify: "Hefja staðfestingu",
+        cta_pro: "Lögleg / fagleg staðfesting",
+    cta_institutional: "Beiðni um stofnunarkeyrslu",
     invariant_notice: "Tungumálið hefur ekki áhrif á keyrslu eða vottorð."
   },
   am: {
     hero_title: "ውሳኔ የማይለወጥ ማረጋገጫ",
     hero_subtitle: "አንድ አሰራር። አንድ ማረጋገጫ። መጨረሻ።",
     cta_verify: "ማረጋገጫ ጀምር",
+        cta_pro: "ሕጋዊ / ሙያዊ ማረጋገጫ",
+    cta_institutional: "የተቋማዊ አፈጻጸም ጥያቄ",
     invariant_notice: "ቋንቋው በእንቅስቃሴው ወይም በማረጋገጫዎች ላይ ተፅዕኖ አያሳድርም።",
     assistive_notice: "This translation is provided for accessibility only. The authoritative language of VERIFRAX is English."
   }
@@ -1092,8 +1190,8 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
     
     <div class="cta-buttons">
       <a href="/start?tier=public" class="btn btn-primary">${t.cta_verify || "Verify Evidence"} — €${PRICES.public}</a>
-      <a href="/start?tier=pro" class="btn btn-secondary">Legal / Professional Verification — €650</a>
-      <a href="/institutional" class="btn btn-secondary">Request Institutional Execution — €1500</a>
+      <a href="/start?tier=pro" class="btn btn-secondary">${t.cta_pro || "Legal / Professional Verification"} — €${PRICES.pro}</a>
+      <a href="/institutional" class="btn btn-secondary">${t.cta_institutional || "Request Institutional Execution"} — €${PRICES.institutional}</a>
     </div>
     
     <div class="features">
