@@ -20,6 +20,13 @@ const PAYMENT_STATUS = "enabled";
 const TIER1 = ['en','zh','es','hi','ar','pt','bn','ru','ja','pa','de','jv','ko','fr','te','mr','tr','ta','vi','ur','it','fa','th','gu','pl','uk','ro','nl','el','hu','sv','cs','he','id','ms','sw','no','da','fi','sk','bg','hr','sr','sl','lt','lv','et','is'];
 const TIER2 = ['am','yo','ig','zu','km','lo','my','ne','si','bo','ug','ps','ku','fy','gd','mi','sm','to','qu','ay','gn','ha','rw','so','ti','wo','xh','st','ts','tn','ve','nr','ny','mg','lb','fo'];
 
+// Centralized pricing (single source of truth for presentation)
+const PRICES = {
+  public: 120,
+  pro: 650,
+  institutional: 1500
+};
+
 // Embedded translations (stateless, deterministic)
 const TRANSLATIONS = {
   en: {
@@ -739,11 +746,13 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
     // GET / (LANDING PAGE)
     if (path === "/" && request.method === "GET") {
       const resolved = resolveLang(request, request.cf || {});
-      const lang = TRANSLATIONS[resolved] ? resolved : "en";
-      const tier = TIER2.includes(lang) ? 2 : 1;
+      const hasContent = Boolean(TRANSLATIONS[resolved]);
+      const lang = hasContent ? resolved : "en";
+      const isAssistive = TIER2.includes(resolved) && hasContent;
+      const tier = isAssistive ? 2 : 1;
       const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
       const title = tier === 2 ? "VERIFRAX — Assistive Translation" : `VERIFRAX — ${t.hero_title}`;
-      const assistiveBanner = tier === 2
+      const assistiveBanner = isAssistive
         ? `<div class="assistive-banner">${t.assistive_notice || "This translation is provided for accessibility only. The authoritative language of VERIFRAX is English."}</div>`
         : "";
       const html = `<!DOCTYPE html>
@@ -781,14 +790,14 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
       VERIFRAX has issued live certificates relied upon externally.
     </p>
     <p style="text-align: center; font-size: 24px; font-weight: 600; margin: 20px 0; color: #000;">
-      €120 — One execution · One certificate · Final
+      €${PRICES.public} — One execution · One certificate · Final
     </p>
     <p style="text-align: center; font-size: 16px; margin: 30px 0; color: #666;">
       ${t.invariant_notice || ""}
     </p>
     
     <div class="cta-buttons">
-      <a href="/start?tier=public" class="btn btn-primary">${t.cta_verify || "Verify Evidence"} — €120</a>
+      <a href="/start?tier=public" class="btn btn-primary">${t.cta_verify || "Verify Evidence"} — €${PRICES.public}</a>
       <a href="/start?tier=pro" class="btn btn-secondary">Legal / Professional Verification — €650</a>
       <a href="/institutional" class="btn btn-secondary">Request Institutional Execution — €1500</a>
     </div>
@@ -824,9 +833,9 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
     if (path === "/start" && request.method === "GET") {
       const tier = url.searchParams.get("tier") || "public";
       const tierConfig = {
-        public: { price: 120, name: "Public Execution", description: "Low-friction entry for journalists, individuals, demos" },
-        pro: { price: 650, name: "Professional Execution", description: "Designed for disputes, legal, arbitration, crypto incidents" },
-        institutional: { price: 1500, name: "Institutional Execution", description: "Institutional-grade for law firms, funds, DAOs, compliance" }
+        public: { price: PRICES.public, name: "Public Execution", description: "Low-friction entry for journalists, individuals, demos" },
+        pro: { price: PRICES.pro, name: "Professional Execution", description: "Designed for disputes, legal, arbitration, crypto incidents" },
+        institutional: { price: PRICES.institutional, name: "Institutional Execution", description: "Institutional-grade for law firms, funds, DAOs, compliance" }
       };
       const config = tierConfig[tier] || tierConfig.public;
       
@@ -1021,16 +1030,13 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
         const stripe = new Stripe(env.STRIPE_SECRET_KEY);
         const tier = url.searchParams.get("tier") || "public";
         
-        // Tier configuration
+        // Tier configuration (amounts derived from single-source PRICES)
         const tierConfig = {
-          public: { amount: 12000, name: "VERIFRAX Public Execution", tierName: "public" },
-          pro: { amount: 65000, name: "VERIFRAX Professional Execution", tierName: "pro" },
-          institutional: { amount: 150000, name: "VERIFRAX Institutional Execution", tierName: "institutional" }
+          public: { amount: PRICES.public * 100, name: "VERIFRAX Public Execution", tierName: "public" },
+          pro: { amount: PRICES.pro * 100, name: "VERIFRAX Professional Execution", tierName: "pro" },
+          institutional: { amount: PRICES.institutional * 100, name: "VERIFRAX Institutional Execution", tierName: "institutional" }
         };
         const config = tierConfig[tier] || tierConfig.public;
-
-        // Generate unique session_id
-        const sessionId = `cs_${Date.now()}_${Math.random().toString(36).substring(2, 15)}`;
 
         // Create Stripe Checkout Session
         const session = await stripe.checkout.sessions.create({
@@ -1047,19 +1053,40 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
           }],
           success_url: `https://www.verifrax.net/verify?session_id={CHECKOUT_SESSION_ID}&tier=${tier}`,
           cancel_url: `https://www.verifrax.net/start?tier=${tier}`,
+          success_url: `https://www.verifrax.net/verify?session_id={CHECKOUT_SESSION_ID}&tier=${tier}`,
           metadata: {
-            session_id: sessionId,
+            // session_id will be attached post-create to ensure truthfulness
             verifrax_version: VERSION,
             tier: config.tierName
           },
           payment_intent_data: {
             metadata: {
-              session_id: sessionId,
               verifrax_version: VERSION,
               tier: config.tierName
             }
           }
         });
+
+        const sessionId = session.id;
+
+        // Attach authoritative session_id after creation (session + payment intent)
+        await stripe.checkout.sessions.update(sessionId, {
+          metadata: {
+            session_id: sessionId,
+            verifrax_version: VERSION,
+            tier: config.tierName
+          }
+        });
+
+        if (session.payment_intent) {
+          await stripe.paymentIntents.update(session.payment_intent, {
+            metadata: {
+              session_id: sessionId,
+              verifrax_version: VERSION,
+              tier: config.tierName
+            }
+          });
+        }
 
         return withHeaders(new Response(JSON.stringify({ 
           checkout_url: session.url,
