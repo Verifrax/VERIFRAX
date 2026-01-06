@@ -44,6 +44,12 @@ const TRANSLATIONS = {
     cta_verify: "Start verification",
     cta_pro: "Legal / Professional Verification",
     cta_institutional: "Request Institutional Execution",
+        feature_one_title: "One Execution",
+    feature_one_desc: "Single, irreversible computation over your evidence bundle",
+    feature_two_title: "Final Certificate",
+    feature_two_desc: "Immutable, independently verifiable certificate",
+    feature_three_title: "No Accounts",
+    feature_three_desc: "No sign-up, no tracking, no data reuse",
     invariant_notice: "Language does not affect execution or certificates."
   },
   fr: {
@@ -52,6 +58,12 @@ const TRANSLATIONS = {
     cta_verify: "Démarrer la vérification",
     cta_pro: "Vérification légale / professionnelle",
     cta_institutional: "Demander une exécution institutionnelle",
+        feature_one_title: "Une exécution",
+    feature_one_desc: "Calcul unique et irréversible sur votre bundle de preuves",
+    feature_two_title: "Certificat final",
+    feature_two_desc: "Certificat immuable et vérifiable indépendamment",
+    feature_three_title: "Aucun compte",
+    feature_three_desc: "Pas d'inscription, pas de suivi, pas de réutilisation des données",
     invariant_notice: "La langue n'affecte ni l'exécution ni les certificats."
   },
   es: {
@@ -60,6 +72,12 @@ const TRANSLATIONS = {
     cta_verify: "Iniciar verificación",
     cta_pro: "Verificación legal / profesional",
     cta_institutional: "Solicitar ejecución institucional",
+        feature_one_title: "Una ejecución",
+    feature_one_desc: "Cálculo único e irreversible sobre su bundle de evidencia",
+    feature_two_title: "Certificado final",
+    feature_two_desc: "Certificado inmutable e independientemente verificable",
+    feature_three_title: "Sin cuentas",
+    feature_three_desc: "Sin registro, sin seguimiento, sin reutilización de datos",
     invariant_notice: "El idioma no afecta la ejecución ni los certificados."
   },
   de: {
@@ -68,6 +86,12 @@ const TRANSLATIONS = {
     cta_verify: "Verifikation starten",
     cta_pro: "Rechtliche / professionelle Verifikation",
     cta_institutional: "Institutionelle Ausführung anfordern",
+        feature_one_title: "Eine Ausführung",
+    feature_one_desc: "Einzelne, irreversible Berechnung über Ihr Beweisbündel",
+    feature_two_title: "Endgültiges Zertifikat",
+    feature_two_desc: "Unveränderliches, unabhängig verifizierbares Zertifikat",
+    feature_three_title: "Keine Konten",
+    feature_three_desc: "Keine Anmeldung, kein Tracking, keine Datenwiederverwendung",
     invariant_notice: "Die Sprache beeinflusst weder Ausführung noch Zertifikate."
   },
   pt: {
@@ -76,6 +100,12 @@ const TRANSLATIONS = {
     cta_verify: "Iniciar verificação",
     cta_pro: "Verificação legal / profissional",
     cta_institutional: "Solicitar execução institucional",
+        feature_one_title: "Uma execução",
+    feature_one_desc: "Cálculo único e irreversível sobre seu bundle de evidências",
+    feature_two_title: "Certificado final",
+    feature_two_desc: "Certificado imutável e independentemente verificável",
+    feature_three_title: "Sem contas",
+    feature_three_desc: "Sem cadastro, sem rastreamento, sem reutilização de dados",
     invariant_notice: "O idioma não afeta a execução nem os certificados."
   },
   it: {
@@ -84,6 +114,12 @@ const TRANSLATIONS = {
     cta_verify: "Avvia verifica",
     cta_pro: "Verifica legale / professionale",
     cta_institutional: "Richiedi esecuzione istituzionale",
+        feature_one_title: "Una esecuzione",
+    feature_one_desc: "Calcolo singolo e irreversibile sul tuo bundle di prove",
+    feature_two_title: "Certificato finale",
+    feature_two_desc: "Certificato immutabile e verificabile indipendentemente",
+    feature_three_title: "Nessun account",
+    feature_three_desc: "Nessuna registrazione, nessun tracciamento, nessun riutilizzo dei dati",
     invariant_notice: "La lingua non influisce sull'esecuzione né sui certificati."
   },
   ru: {
@@ -92,6 +128,12 @@ const TRANSLATIONS = {
     cta_verify: "Запустить проверку",
     cta_pro: "Юридическая / профессиональная верификация",
     cta_institutional: "Запросить институциональное выполнение",
+        feature_one_title: "Одно выполнение",
+    feature_one_desc: "Единичное, необратимое вычисление над вашим пакетом доказательств",
+    feature_two_title: "Финальный сертификат",
+    feature_two_desc: "Неизменяемый, независимо проверяемый сертификат",
+    feature_three_title: "Без аккаунтов",
+    feature_three_desc: "Без регистрации, без отслеживания, без повторного использования данных",
     invariant_notice: "Язык не влияет ни на выполнение, ни на сертификаты."
   },
   zh: {
@@ -100,6 +142,12 @@ const TRANSLATIONS = {
     cta_verify: "开始验证",
     cta_pro: "法律/专业验证",
     cta_institutional: "请求机构执行",
+        feature_one_title: "一次执行",
+    feature_one_desc: "对您的证据包进行单一、不可逆的计算",
+    feature_two_title: "最终证书",
+    feature_two_desc: "不可变、可独立验证的证书",
+    feature_three_title: "无账户",
+    feature_three_desc: "无需注册，无跟踪，无数据重用",
     invariant_notice: "界面语言不会影响执行过程或证书。"
   },
   ar: {
@@ -108,6 +156,12 @@ const TRANSLATIONS = {
     cta_verify: "بدء التحقق",
         cta_pro: "التحقق القانوني / المهني",
     cta_institutional: "طلب تنفيذ مؤسسي",
+        feature_one_title: "تنفيذ واحد",
+    feature_one_desc: "حساب واحد لا رجوع فيه على حزمة الأدلة الخاصة بك",
+    feature_two_title: "شهادة نهائية",
+    feature_two_desc: "شهادة ثابتة وقابلة للتحقق بشكل مستقل",
+    feature_three_title: "لا حسابات",
+    feature_three_desc: "لا تسجيل، لا تتبع، لا إعادة استخدام للبيانات",
     invariant_notice: "اللغة لا تؤثر على التنفيذ أو الشهادات."
   },
   hi: {
@@ -116,6 +170,12 @@ const TRANSLATIONS = {
     cta_verify: "सत्यापन प्रारंभ करें",
         cta_pro: "कानूनी / पेशेवर सत्यापन",
     cta_institutional: "संस्थागत निष्पादन का अनुरोध करें",
+        feature_one_title: "एक निष्पादन",
+    feature_one_desc: "आपके साक्ष्य बंडल पर एकल, अपरिवर्तनीय गणना",
+    feature_two_title: "अंतिम प्रमाणपत्र",
+    feature_two_desc: "अपरिवर्तनीय, स्वतंत्र रूप से सत्यापन योग्य प्रमाणपत्र",
+    feature_three_title: "कोई खाते नहीं",
+    feature_three_desc: "कोई साइन-अप नहीं, कोई ट्रैकिंग नहीं, कोई डेटा पुन: उपयोग नहीं",
     invariant_notice: "भाषा का निष्पादन या प्रमाणपत्रों पर कोई प्रभाव नहीं पड़ता।"
   },
   ja: {
@@ -124,6 +184,12 @@ const TRANSLATIONS = {
     cta_verify: "検証を開始",
         cta_pro: "法的/専門検証",
     cta_institutional: "機関実行をリクエスト",
+        feature_one_title: "1回の実行",
+    feature_one_desc: "証拠バンドルに対する単一の不可逆的な計算",
+    feature_two_title: "最終証明書",
+    feature_two_desc: "不変で独立して検証可能な証明書",
+    feature_three_title: "アカウント不要",
+    feature_three_desc: "登録不要、追跡なし、データ再利用なし",
     invariant_notice: "言語は実行や証明書に影響しません。"
   },
   ko: {
@@ -132,6 +198,12 @@ const TRANSLATIONS = {
     cta_verify: "검증 시작",
         cta_pro: "법률/전문 검증",
     cta_institutional: "기관 실행 요청",
+        feature_one_title: "한 번의 실행",
+    feature_one_desc: "증거 번들에 대한 단일, 비가역적 계산",
+    feature_two_title: "최종 인증서",
+    feature_two_desc: "불변의 독립적으로 검증 가능한 인증서",
+    feature_three_title: "계정 없음",
+    feature_three_desc: "가입 없음, 추적 없음, 데이터 재사용 없음",
     invariant_notice: "언어는 실행이나 인증서에 영향을 주지 않습니다."
   },
   tr: {
@@ -140,6 +212,12 @@ const TRANSLATIONS = {
     cta_verify: "Doğrulamayı başlat",
         cta_pro: "Yasal / Profesyonel Doğrulama",
     cta_institutional: "Kurumsal Yürütme İste",
+        feature_one_title: "Tek yürütme",
+    feature_one_desc: "Kanıt paketiniz üzerinde tek, geri alınamaz hesaplama",
+    feature_two_title: "Nihai sertifika",
+    feature_two_desc: "Değişmez, bağımsız olarak doğrulanabilir sertifika",
+    feature_three_title: "Hesap yok",
+    feature_three_desc: "Kayıt yok, takip yok, veri yeniden kullanımı yok",
     invariant_notice: "Dil, yürütmeyi veya sertifikaları etkilemez."
   },
   nl: {
@@ -148,6 +226,12 @@ const TRANSLATIONS = {
     cta_verify: "Verificatie starten",
         cta_pro: "Juridische / professionele verificatie",
     cta_institutional: "Institutionele uitvoering aanvragen",
+        feature_one_title: "Eén uitvoering",
+    feature_one_desc: "Enkele, onomkeerbare berekening over uw bewijsbundel",
+    feature_two_title: "Definitief certificaat",
+    feature_two_desc: "Onveranderlijk, onafhankelijk verifieerbaar certificaat",
+    feature_three_title: "Geen accounts",
+    feature_three_desc: "Geen aanmelding, geen tracking, geen hergebruik van gegevens",
     invariant_notice: "De taal heeft geen invloed op uitvoering of certificaten."
   },
   sv: {
@@ -156,6 +240,12 @@ const TRANSLATIONS = {
     cta_verify: "Start verifiering",
         cta_pro: "Juridisk / professionell verifiering",
     cta_institutional: "Begär institutionell körning",
+        feature_one_title: "En körning",
+    feature_one_desc: "Enkel, oåterkallelig beräkning över ditt bevispaket",
+    feature_two_title: "Slutgiltigt certifikat",
+    feature_two_desc: "Oföränderligt, oberoende verifierbart certifikat",
+    feature_three_title: "Inga konton",
+    feature_three_desc: "Ingen registrering, ingen spårning, ingen dataåteranvändning",
     invariant_notice: "Språket påverkar inte körningen eller certifikaten."
   },
   no: {
@@ -164,6 +254,12 @@ const TRANSLATIONS = {
     cta_verify: "Start verifisering",
         cta_pro: "Juridisk / profesjonell verifisering",
     cta_institutional: "Be om institusjonell kjøring",
+        feature_one_title: "Én kjøring",
+    feature_one_desc: "Enkelt, irreversibelt beregning over bevispakken din",
+    feature_two_title: "Endelig sertifikat",
+    feature_two_desc: "Uforanderlig, uavhengig verifiserbart sertifikat",
+    feature_three_title: "Ingen kontoer",
+    feature_three_desc: "Ingen registrering, ingen sporing, ingen gjenbruk av data",
     invariant_notice: "Språk påvirker ikke kjøringen eller sertifikatene."
   },
   da: {
@@ -172,6 +268,12 @@ const TRANSLATIONS = {
     cta_verify: "Start verifikation",
         cta_pro: "Juridisk / professionel verifikation",
     cta_institutional: "Anmod om institutionel kørsel",
+        feature_one_title: "Én kørsel",
+    feature_one_desc: "Enkelt, irreversibelt beregning over dit bevispakke",
+    feature_two_title: "Endeligt certifikat",
+    feature_two_desc: "Uforanderligt, uafhængigt verificerbart certifikat",
+    feature_three_title: "Ingen konti",
+    feature_three_desc: "Ingen tilmelding, ingen sporing, ingen genbrug af data",
     invariant_notice: "Sproget påvirker ikke udførelsen eller certifikaterne."
   },
   fi: {
@@ -180,6 +282,12 @@ const TRANSLATIONS = {
     cta_verify: "Aloita varmentaminen",
         cta_pro: "Juridinen / ammattimainen varmentaminen",
     cta_institutional: "Pyydä institutionaalista suoritusta",
+        feature_one_title: "Yksi suoritus",
+    feature_one_desc: "Yksittäinen, peruuttamaton laskenta todistepakettisi yli",
+    feature_two_title: "Lopullinen varmenne",
+    feature_two_desc: "Muuttumaton, itsenäisesti varmennettavissa oleva varmenne",
+    feature_three_title: "Ei tilejä",
+    feature_three_desc: "Ei rekisteröitymistä, ei seurantaa, ei tietojen uudelleenkäyttöä",
     invariant_notice: "Kieli ei vaikuta suoritukseen tai varmenteisiin."
   },
   pl: {
@@ -188,6 +296,12 @@ const TRANSLATIONS = {
     cta_verify: "Rozpocznij weryfikację",
         cta_pro: "Weryfikacja prawna / profesjonalna",
     cta_institutional: "Zamów wykonanie instytucjonalne",
+        feature_one_title: "Jedno wykonanie",
+    feature_one_desc: "Pojedyncze, nieodwracalne obliczenie nad pakietem dowodów",
+    feature_two_title: "Ostateczny certyfikat",
+    feature_two_desc: "Niezmienny, niezależnie weryfikowalny certyfikat",
+    feature_three_title: "Brak kont",
+    feature_three_desc: "Brak rejestracji, brak śledzenia, brak ponownego wykorzystania danych",
     invariant_notice: "Język nie wpływa na wykonanie ani certyfikaty."
   },
   uk: {
@@ -196,6 +310,12 @@ const TRANSLATIONS = {
     cta_verify: "Почати верифікацію",
         cta_pro: "Юридична / професійна верифікація",
     cta_institutional: "Запросити інституційне виконання",
+        feature_one_title: "Одне виконання",
+    feature_one_desc: "Одиночне, незворотне обчислення над вашим пакетом доказів",
+    feature_two_title: "Остаточний сертифікат",
+    feature_two_desc: "Незмінний, незалежно перевіряємий сертифікат",
+    feature_three_title: "Без акаунтів",
+    feature_three_desc: "Без реєстрації, без відстеження, без повторного використання даних",
     invariant_notice: "Мова не впливає на виконання або сертифікати."
   },
   cs: {
@@ -204,6 +324,12 @@ const TRANSLATIONS = {
     cta_verify: "Spustit verifikaci",
         cta_pro: "Právní / profesionální verifikace",
     cta_institutional: "Požádat o institucionální provedení",
+        feature_one_title: "Jedno spuštění",
+    feature_one_desc: "Jediný, nevratný výpočet nad vaším balíčkem důkazů",
+    feature_two_title: "Konečný certifikát",
+    feature_two_desc: "Neměnný, nezávisle ověřitelný certifikát",
+    feature_three_title: "Žádné účty",
+    feature_three_desc: "Žádná registrace, žádné sledování, žádné opakované použití dat",
     invariant_notice: "Jazyk nemá vliv na provedení ani certifikáty."
   },
   el: {
@@ -212,6 +338,12 @@ const TRANSLATIONS = {
     cta_verify: "Έναρξη επαλήθευσης",
         cta_pro: "Νομική / επαγγελματική επαλήθευση",
     cta_institutional: "Αίτημα θεσμικής εκτέλεσης",
+        feature_one_title: "Μία εκτέλεση",
+    feature_one_desc: "Μονή, μη αναστρέψιμη υπολογισμός πάνω στο bundle αποδεικτικών σας",
+    feature_two_title: "Τελικό πιστοποιητικό",
+    feature_two_desc: "Αμετάβλητο, ανεξάρτητα επαληθεύσιμο πιστοποιητικό",
+    feature_three_title: "Χωρίς λογαριασμούς",
+    feature_three_desc: "Χωρίς εγγραφή, χωρίς παρακολούθηση, χωρίς επαναχρησιμοποίηση δεδομένων",
     invariant_notice: "Η γλώσσα δεν επηρεάζει την εκτέλεση ή τα πιστοποιητικά."
   },
   he: {
@@ -220,6 +352,12 @@ const TRANSLATIONS = {
     cta_verify: "התחל אימות",
         cta_pro: "אימות משפטי / מקצועי",
     cta_institutional: "בקש ביצוע מוסדי",
+        feature_one_title: "הרצה אחת",
+    feature_one_desc: "חישוב יחיד ובלתי הפיך על חבילת הראיות שלך",
+    feature_two_title: "תעודה סופית",
+    feature_two_desc: "תעודה בלתי ניתנת לשינוי, ניתנת לאימות באופן עצמאי",
+    feature_three_title: "ללא חשבונות",
+    feature_three_desc: "ללא הרשמה, ללא מעקב, ללא שימוש חוזר בנתונים",
     invariant_notice: "השפה אינה משפיעה על ההרצה או על התעודות."
   },
   id: {
@@ -228,6 +366,12 @@ const TRANSLATIONS = {
     cta_verify: "Mulai verifikasi",
         cta_pro: "Verifikasi hukum / profesional",
     cta_institutional: "Minta eksekusi institusional",
+        feature_one_title: "Satu eksekusi",
+    feature_one_desc: "Perhitungan tunggal dan tidak dapat dibatalkan atas bundle bukti Anda",
+    feature_two_title: "Sertifikat final",
+    feature_two_desc: "Sertifikat yang tidak dapat diubah dan dapat diverifikasi secara independen",
+    feature_three_title: "Tanpa akun",
+    feature_three_desc: "Tanpa pendaftaran, tanpa pelacakan, tanpa penggunaan ulang data",
     invariant_notice: "Bahasa tidak memengaruhi eksekusi atau sertifikat."
   },
   ms: {
@@ -236,6 +380,12 @@ const TRANSLATIONS = {
     cta_verify: "Mula pengesahan",
         cta_pro: "Pengesahan undang-undang / profesional",
     cta_institutional: "Minta pelaksanaan institusi",
+        feature_one_title: "Satu pelaksanaan",
+    feature_one_desc: "Pengiraan tunggal dan tidak dapat dipulihkan ke atas bundle bukti anda",
+    feature_two_title: "Sijil muktamad",
+    feature_two_desc: "Sijil yang tidak berubah dan boleh disahkan secara bebas",
+    feature_three_title: "Tiada akaun",
+    feature_three_desc: "Tiada pendaftaran, tiada penjejakan, tiada penggunaan semula data",
     invariant_notice: "Bahasa tidak menjejaskan pelaksanaan atau sijil."
   },
   sw: {
@@ -244,6 +394,12 @@ const TRANSLATIONS = {
     cta_verify: "Anza uthibitishaji",
         cta_pro: "Uthibitishaji wa kisheria / kitaalamu",
     cta_institutional: "Omba utekelezaji wa taasisi",
+        feature_one_title: "Utekelezaji mmoja",
+    feature_one_desc: "Hesabu moja, isiyoweza kubadilishwa juu ya kifurushi chako cha ushahidi",
+    feature_two_title: "Cheti cha mwisho",
+    feature_two_desc: "Cheti kisichobadilika, kinachoweza kuthibitishwa kwa kujitegemea",
+    feature_three_title: "Hakuna akaunti",
+    feature_three_desc: "Hakuna usajili, hakuna ufuatiliaji, hakuna matumizi ya tena ya data",
     invariant_notice: "Lugha haiathiri utekelezaji wala vyeti."
   },
   th: {
@@ -252,6 +408,12 @@ const TRANSLATIONS = {
     cta_verify: "เริ่มการตรวจสอบ",
         cta_pro: "การตรวจสอบทางกฎหมาย / วิชาชีพ",
     cta_institutional: "ขอการรันสถาบัน",
+        feature_one_title: "การรันหนึ่งครั้ง",
+    feature_one_desc: "การคำนวณครั้งเดียวที่ไม่สามารถย้อนกลับได้บนชุดหลักฐานของคุณ",
+    feature_two_title: "ใบรับรองสุดท้าย",
+    feature_two_desc: "ใบรับรองที่ไม่เปลี่ยนแปลงและสามารถตรวจสอบได้อย่างอิสระ",
+    feature_three_title: "ไม่มีบัญชี",
+    feature_three_desc: "ไม่มีการลงทะเบียน ไม่มีการติดตาม ไม่มีการใช้ข้อมูลซ้ำ",
     invariant_notice: "ภาษาไม่ส่งผลต่อการรันหรือใบรับรอง."
   },
   vi: {
@@ -260,6 +422,12 @@ const TRANSLATIONS = {
     cta_verify: "Bắt đầu xác minh",
         cta_pro: "Xác minh pháp lý / chuyên nghiệp",
     cta_institutional: "Yêu cầu thực thi thể chế",
+        feature_one_title: "Một lần thực thi",
+    feature_one_desc: "Tính toán đơn lẻ, không thể đảo ngược trên bundle bằng chứng của bạn",
+    feature_two_title: "Chứng chỉ cuối cùng",
+    feature_two_desc: "Chứng chỉ bất biến, có thể xác minh độc lập",
+    feature_three_title: "Không có tài khoản",
+    feature_three_desc: "Không đăng ký, không theo dõi, không tái sử dụng dữ liệu",
     invariant_notice: "Ngôn ngữ không ảnh hưởng đến quá trình thực thi hoặc chứng chỉ."
   },
   fa: {
@@ -268,6 +436,12 @@ const TRANSLATIONS = {
     cta_verify: "شروع اعتبارسنجی",
         cta_pro: "اعتبارسنجی حقوقی / حرفه‌ای",
     cta_institutional: "درخواست اجرای نهادی",
+        feature_one_title: "یک اجرا",
+    feature_one_desc: "محاسبه واحد و غیرقابل برگشت روی بسته شواهد شما",
+    feature_two_title: "گواهی نهایی",
+    feature_two_desc: "گواهی تغییرناپذیر و قابل تأیید مستقل",
+    feature_three_title: "بدون حساب",
+    feature_three_desc: "بدون ثبت نام، بدون ردیابی، بدون استفاده مجدد از داده",
     invariant_notice: "زبان بر اجرا یا گواهی‌ها تأثیری ندارد."
   },
   bn: {
@@ -276,6 +450,12 @@ const TRANSLATIONS = {
     cta_verify: "যাচাইকরণ শুরু করুন",
         cta_pro: "আইনি / পেশাদার যাচাইকরণ",
     cta_institutional: "প্রাতিষ্ঠানিক নির্বাহের অনুরোধ",
+        feature_one_title: "একটি নির্বাহ",
+    feature_one_desc: "আপনার প্রমাণ বান্ডেলে একক, অপরিবর্তনীয় গণনা",
+    feature_two_title: "চূড়ান্ত সার্টিফিকেট",
+    feature_two_desc: "অপরিবর্তনীয়, স্বাধীনভাবে যাচাইযোগ্য সার্টিফিকেট",
+    feature_three_title: "কোন অ্যাকাউন্ট নেই",
+    feature_three_desc: "কোন সাইন-আপ নেই, কোন ট্র্যাকিং নেই, কোন ডেটা পুনরায় ব্যবহার নেই",
     invariant_notice: "ভাষা নির্বাহ বা সার্টিফিকেটকে প্রভাবিত করে না।"
   },
   pa: {
@@ -284,6 +464,12 @@ const TRANSLATIONS = {
     cta_verify: "ਪੜਤਾਲ ਸ਼ੁਰੂ ਕਰੋ",
         cta_pro: "ਕਾਨੂੰਨੀ / ਪੇਸ਼ੇਵਰ ਪੜਤਾਲ",
     cta_institutional: "ਸੰਸਥਾਗਤ ਨਿਰਵਹਨ ਦੀ ਬੇਨਤੀ",
+        feature_one_title: "ਇੱਕ ਨਿਰਵਹਨ",
+    feature_one_desc: "ਤੁਹਾਡੇ ਸਬੂਤ ਬੰਡਲ ਉੱਤੇ ਇੱਕ, ਅਟੱਲ ਗਣਨਾ",
+    feature_two_title: "ਅੰਤਿਮ ਸਰਟੀਫਿਕੇਟ",
+    feature_two_desc: "ਅਟੱਲ, ਸੁਤੰਤਰ ਤੌਰ 'ਤੇ ਪੜਤਾਲਯੋਗ ਸਰਟੀਫਿਕੇਟ",
+    feature_three_title: "ਕੋਈ ਖਾਤੇ ਨਹੀਂ",
+    feature_three_desc: "ਕੋਈ ਸਾਈਨ-ਅਪ ਨਹੀਂ, ਕੋਈ ਟ੍ਰੈਕਿੰਗ ਨਹੀਂ, ਕੋਈ ਡੇਟਾ ਦੁਬਾਰਾ ਵਰਤੋਂ ਨਹੀਂ",
     invariant_notice: "ਭਾਸ਼ਾ ਨਿਰਵਹਨ ਜਾਂ ਸਰਟੀਫਿਕੇਟਾਂ ਨੂੰ ਪ੍ਰਭਾਵਿਤ ਨਹੀਂ ਕਰਦੀ।"
   },
   jv: {
@@ -292,6 +478,12 @@ const TRANSLATIONS = {
     cta_verify: "Mulai verifikasi",
         cta_pro: "Verifikasi hukum / profesional",
     cta_institutional: "Nyuwun eksekusi institusional",
+        feature_one_title: "Siji eksekusi",
+    feature_one_desc: "Perhitungan tunggal lan ora bisa dibatalake ing bundle bukti sampeyan",
+    feature_two_title: "Sertifikat final",
+    feature_two_desc: "Sertifikat sing ora bisa diganti lan bisa diverifikasi kanthi mandiri",
+    feature_three_title: "Ora ana akun",
+    feature_three_desc: "Ora ana pendaftaran, ora ana pelacakan, ora ana panggunaan maneh data",
     invariant_notice: "Basa ora mengaruhi eksekusi utawa sertifikat."
   },
   te: {
@@ -300,6 +492,12 @@ const TRANSLATIONS = {
     cta_verify: "ధృవీకరణ ప్రారంభించండి",
         cta_pro: "చట్టపరమైన / వృత్తిపరమైన ధృవీకరణ",
     cta_institutional: "సంస్థాగత అమలు అభ్యర్థించండి",
+        feature_one_title: "ఒక అమలు",
+    feature_one_desc: "మీ సాక్ష్య బండిల్ పై ఒకే, తిరిగి రాని గణన",
+    feature_two_title: "తుది సర్టిఫికేట్",
+    feature_two_desc: "మార్పులేని, స్వతంత్రంగా ధృవీకరించదగిన సర్టిఫికేట్",
+    feature_three_title: "ఖాతాలు లేవు",
+    feature_three_desc: "సైన్-అప్ లేదు, ట్రాకింగ్ లేదు, డేటా తిరిగి ఉపయోగం లేదు",
     invariant_notice: "భాష అమలు లేదా సర్టిఫికేట్లను ప్రభావితం చేయదు."
   },
   mr: {
@@ -308,6 +506,12 @@ const TRANSLATIONS = {
     cta_verify: "सत्यापन सुरू करा",
         cta_pro: "कायदेशीर / व्यावसायिक सत्यापन",
     cta_institutional: "संस्थागत अंमलबजावणीची विनंती",
+        feature_one_title: "एक अंमलबजावणी",
+    feature_one_desc: "तुमच्या पुरावा बंडलवर एकल, अपरिवर्तनीय गणना",
+    feature_two_title: "अंतिम प्रमाणपत्र",
+    feature_two_desc: "अपरिवर्तनीय, स्वतंत्रपणे सत्यापन करण्यायोग्य प्रमाणपत्र",
+    feature_three_title: "कोणतेही खाते नाही",
+    feature_three_desc: "कोणतेही साइन-अप नाही, कोणतेही ट्रॅकिंग नाही, कोणतेही डेटा पुन्हा वापर नाही",
     invariant_notice: "भाषा अंमलबजावणी किंवा प्रमाणपत्रांवर परिणाम करत नाही."
   },
   ta: {
@@ -316,6 +520,12 @@ const TRANSLATIONS = {
     cta_verify: "சரிபார்ப்பைத் தொடங்கவும்",
         cta_pro: "சட்ட / தொழில்முறை சரிபார்ப்பு",
     cta_institutional: "நிறுவன செயலாக்கத்தைக் கோரவும்",
+        feature_one_title: "ஒரு செயலாக்கம்",
+    feature_one_desc: "உங்கள் சான்று தொகுப்பில் ஒற்றை, மீளமுடியாத கணக்கீடு",
+    feature_two_title: "இறுதி சான்றிதழ்",
+    feature_two_desc: "மாறாத, சுயாதீனமாக சரிபார்க்கக்கூடிய சான்றிதழ்",
+    feature_three_title: "கணக்குகள் இல்லை",
+    feature_three_desc: "பதிவு இல்லை, கண்காணிப்பு இல்லை, தரவு மீண்டும் பயன்பாடு இல்லை",
     invariant_notice: "மொழி செயலாக்கம் அல்லது சான்றிதழ்களை பாதிக்காது."
   },
   ur: {
@@ -324,6 +534,12 @@ const TRANSLATIONS = {
     cta_verify: "تصدیق شروع کریں",
         cta_pro: "قانونی / پیشہ ورانہ تصدیق",
     cta_institutional: "ادارتی عمل کی درخواست",
+        feature_one_title: "ایک عمل",
+    feature_one_desc: "آپ کے ثبوت بنڈل پر واحد، ناقابل واپسی حساب",
+    feature_two_title: "حتمی سرٹیفکیٹ",
+    feature_two_desc: "ناقابل تبدیل، آزادانہ طور پر قابل تصدیق سرٹیفکیٹ",
+    feature_three_title: "کوئی اکاؤنٹس نہیں",
+    feature_three_desc: "کوئی سائن اپ نہیں، کوئی ٹریکنگ نہیں، کوئی ڈیٹا دوبارہ استعمال نہیں",
     invariant_notice: "زبان عمل یا سرٹیفکیٹس کو متاثر نہیں کرتی۔"
   },
   gu: {
@@ -332,6 +548,12 @@ const TRANSLATIONS = {
     cta_verify: "ચકાસણી શરૂ કરો",
         cta_pro: "કાનૂની / વ્યાવસાયિક ચકાસણી",
     cta_institutional: "સંસ્થાગત અમલીકરણની વિનંતી",
+        feature_one_title: "એક અમલીકરણ",
+    feature_one_desc: "તમારા પુરાવા બંડલ પર એક, અપરિવર્તનીય ગણતરી",
+    feature_two_title: "અંતિમ પ્રમાણપત્ર",
+    feature_two_desc: "અપરિવર્તનીય, સ્વતંત્ર રીતે ચકાસણી યોગ્ય પ્રમાણપત્ર",
+    feature_three_title: "કોઈ એકાઉન્ટ નથી",
+    feature_three_desc: "કોઈ સાઇન-અપ નથી, કોઈ ટ્રેકિંગ નથી, કોઈ ડેટા પુનઃઉપયોગ નથી",
     invariant_notice: "ભાષા અમલીકરણ અથવા પ્રમાણપત્રોને અસર કરતી નથી."
   },
   ro: {
@@ -340,6 +562,12 @@ const TRANSLATIONS = {
     cta_verify: "Începe verificarea",
         cta_pro: "Verificare legală / profesională",
     cta_institutional: "Solicită execuție instituțională",
+        feature_one_title: "O execuție",
+    feature_one_desc: "Calcul unic și ireversibil asupra bundle-ului de dovezi",
+    feature_two_title: "Certificat final",
+    feature_two_desc: "Certificat imuabil, verificabil independent",
+    feature_three_title: "Fără conturi",
+    feature_three_desc: "Fără înregistrare, fără urmărire, fără reutilizare a datelor",
     invariant_notice: "Limba nu afectează execuția sau certificatele."
   },
   hu: {
@@ -348,6 +576,12 @@ const TRANSLATIONS = {
     cta_verify: "Ellenőrzés indítása",
         cta_pro: "Jogi / szakmai ellenőrzés",
     cta_institutional: "Intézményi végrehajtás kérése",
+        feature_one_title: "Egy végrehajtás",
+    feature_one_desc: "Egyetlen, visszafordíthatatlan számítás a bizonyítékcsomagod felett",
+    feature_two_title: "Végső tanúsítvány",
+    feature_two_desc: "Változatlan, függetlenül ellenőrizhető tanúsítvány",
+    feature_three_title: "Nincs fiók",
+    feature_three_desc: "Nincs regisztráció, nincs követés, nincs adatújrafelhasználás",
     invariant_notice: "A nyelv nem befolyásolja a végrehajtást vagy a tanúsítványokat."
   },
   sk: {
@@ -356,6 +590,12 @@ const TRANSLATIONS = {
     cta_verify: "Spustiť verifikáciu",
         cta_pro: "Právna / profesionálna verifikácia",
     cta_institutional: "Požiadať o inštitucionálne vykonanie",
+        feature_one_title: "Jedno spustenie",
+    feature_one_desc: "Jediný, nevratný výpočet nad vaším balíčkom dôkazov",
+    feature_two_title: "Konečný certifikát",
+    feature_two_desc: "Nemenný, nezávisle overiteľný certifikát",
+    feature_three_title: "Žiadne účty",
+    feature_three_desc: "Žiadna registrácia, žiadne sledovanie, žiadne opakované použitie údajov",
     invariant_notice: "Jazyk neovplyvňuje vykonanie ani certifikáty."
   },
   bg: {
@@ -364,6 +604,12 @@ const TRANSLATIONS = {
     cta_verify: "Започнете верификация",
         cta_pro: "Правна / професионална верификация",
     cta_institutional: "Заявка за институционално изпълнение",
+        feature_one_title: "Едно изпълнение",
+    feature_one_desc: "Единично, необратимо изчисление върху вашия пакет доказателства",
+    feature_two_title: "Финално сертификат",
+    feature_two_desc: "Непроменяем, независимо проверяем сертификат",
+    feature_three_title: "Без акаунти",
+    feature_three_desc: "Без регистрация, без проследяване, без повторно използване на данни",
     invariant_notice: "Езикът не влияе на изпълнението или сертификатите."
   },
   hr: {
@@ -372,6 +618,12 @@ const TRANSLATIONS = {
     cta_verify: "Pokreni verifikaciju",
         cta_pro: "Pravna / profesionalna verifikacija",
     cta_institutional: "Zatraži institucionalno izvršenje",
+        feature_one_title: "Jedno izvršenje",
+    feature_one_desc: "Jedinstveni, nepovratni izračun nad vašim paketom dokaza",
+    feature_two_title: "Konačni certifikat",
+    feature_two_desc: "Nepromjenjiv, neovisno provjerljiv certifikat",
+    feature_three_title: "Nema računa",
+    feature_three_desc: "Nema registracije, nema praćenja, nema ponovne upotrebe podataka",
     invariant_notice: "Jezik ne utječe na izvršenje ili certifikate."
   },
   sr: {
@@ -380,6 +632,12 @@ const TRANSLATIONS = {
     cta_verify: "Покрени верификацију",
         cta_pro: "Правна / професионална верификација",
     cta_institutional: "Захтев за институционално извршење",
+        feature_one_title: "Једно извршење",
+    feature_one_desc: "Јединствено, неповратни израчун над вашим пакетом доказа",
+    feature_two_title: "Коначни сертификат",
+    feature_two_desc: "Непромењив, независно проверив сертификат",
+    feature_three_title: "Нема налога",
+    feature_three_desc: "Нема регистрације, нема праћења, нема поновне употребе података",
     invariant_notice: "Језик не утиче на извршење или сертификате."
   },
   sl: {
@@ -388,6 +646,12 @@ const TRANSLATIONS = {
     cta_verify: "Začni verifikacijo",
         cta_pro: "Pravna / strokovna verifikacija",
     cta_institutional: "Zahtevaj institucionalno izvedbo",
+        feature_one_title: "Ena izvedba",
+    feature_one_desc: "Enoten, nepovraten izračun nad vašim paketom dokazov",
+    feature_two_title: "Končni certifikat",
+    feature_two_desc: "Nespremenljiv, neodvisno preverljiv certifikat",
+    feature_three_title: "Brez računov",
+    feature_three_desc: "Brez registracije, brez sledenja, brez ponovne uporabe podatkov",
     invariant_notice: "Jezik ne vpliva na izvedbo ali certifikate."
   },
   lt: {
@@ -396,6 +660,12 @@ const TRANSLATIONS = {
     cta_verify: "Pradėti patikrą",
         cta_pro: "Teisinė / profesionali patikra",
     cta_institutional: "Prašyti institucinio vykdymo",
+        feature_one_title: "Vienas vykdymas",
+    feature_one_desc: "Vienkartinis, negrįžtamas skaičiavimas jūsų įrodymų paketui",
+    feature_two_title: "Galutinis sertifikatas",
+    feature_two_desc: "Nepakeičiamas, savarankiškai patikrinamas sertifikatas",
+    feature_three_title: "Nėra paskyrų",
+    feature_three_desc: "Nėra registracijos, nėra stebėjimo, nėra duomenų pakartotinio naudojimo",
     invariant_notice: "Kalba neturi įtakos vykdymui ar sertifikatams."
   },
   lv: {
@@ -404,6 +674,12 @@ const TRANSLATIONS = {
     cta_verify: "Sākt verifikāciju",
         cta_pro: "Juridiska / profesionāla verifikācija",
     cta_institutional: "Pieprasīt institucionālu izpildi",
+        feature_one_title: "Viena izpilde",
+    feature_one_desc: "Vienreizējs, neatgriezenisks aprēķins jūsu pierādījumu paketē",
+    feature_two_title: "Galīgs sertifikāts",
+    feature_two_desc: "Nemainīgs, neatkarīgi pārbaudāms sertifikāts",
+    feature_three_title: "Nav kontu",
+    feature_three_desc: "Nav reģistrācijas, nav izsekošanas, nav datu atkārtotas izmantošanas",
     invariant_notice: "Valoda neietekmē izpildi vai sertifikātus."
   },
   et: {
@@ -412,6 +688,12 @@ const TRANSLATIONS = {
     cta_verify: "Alusta kinnitamist",
         cta_pro: "Õiguslik / professionaalne kinnitamine",
     cta_institutional: "Taotleda institutsionaalset käivitamist",
+        feature_one_title: "Üks käivitamine",
+    feature_one_desc: "Üksik, pöördumatu arvutus teie tõendipakendi kohal",
+    feature_two_title: "Lõplik sertifikaat",
+    feature_two_desc: "Muutumatu, sõltumatult kontrollitav sertifikaat",
+    feature_three_title: "Kontosid pole",
+    feature_three_desc: "Registreerumist pole, jälgimist pole, andmete taaskasutamist pole",
     invariant_notice: "Keel ei mõjuta käivitamist ega sertifikaate."
   },
   is: {
@@ -420,6 +702,12 @@ const TRANSLATIONS = {
     cta_verify: "Hefja staðfestingu",
         cta_pro: "Lögleg / fagleg staðfesting",
     cta_institutional: "Beiðni um stofnunarkeyrslu",
+        feature_one_title: "Eitt keyrsla",
+    feature_one_desc: "Einstakur, óafturkræfur útreikningur yfir sönnunarpakka þinn",
+    feature_two_title: "Endanlegt vottorð",
+    feature_two_desc: "Óbreytanlegt, sjálfstætt staðfestanlegt vottorð",
+    feature_three_title: "Engar reikningar",
+    feature_three_desc: "Engin skráning, engin rakning, engin endurnotkun gagna",
     invariant_notice: "Tungumálið hefur ekki áhrif á keyrslu eða vottorð."
   },
   am: {
@@ -429,6 +717,12 @@ const TRANSLATIONS = {
         cta_pro: "ሕጋዊ / ሙያዊ ማረጋገጫ",
     cta_institutional: "የተቋማዊ አፈጻጸም ጥያቄ",
     invariant_notice: "ቋንቋው በእንቅስቃሴው ወይም በማረጋገጫዎች ላይ ተፅዕኖ አያሳድርም።",
+        feature_one_title: "አንድ አሰራር",
+    feature_one_desc: "አንድ ነጠላ፣ የማይመለስ ስሌት በማስረጃ ቦታዎ ላይ",
+    feature_two_title: "መጨረሻ ማረጋገጫ",
+    feature_two_desc: "የማይለወጥ፣ በነጻ ሊረጋገጥ የሚችል ማረጋገጫ",
+    feature_three_title: "መለያዎች የሉም",
+    feature_three_desc: "ምዝግብ የለም፣ ክትትል የለም፣ የውሂብ እንደገና አጠቃቀም የለም",
     assistive_notice: "This translation is provided for accessibility only. The authoritative language of VERIFRAX is English."
   }
 };
@@ -1196,16 +1490,16 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
     
     <div class="features">
       <div class="feature">
-        <h3>One Execution</h3>
-        <p>Single, irreversible computation over your evidence bundle</p>
+        <h3>${t.feature_one_title || "One Execution"}</h3>
+        <p>${t.feature_one_desc || "Single, irreversible computation over your evidence bundle"}</p>
       </div>
       <div class="feature">
-        <h3>Final Certificate</h3>
-        <p>Immutable, independently verifiable certificate</p>
+        <h3>${t.feature_two_title || "Final Certificate"}</h3>
+        <p>${t.feature_two_desc || "Immutable, independently verifiable certificate"}</p>
       </div>
       <div class="feature">
-        <h3>No Accounts</h3>
-        <p>No sign-up, no tracking, no data reuse</p>
+        <h3>${t.feature_three_title || "No Accounts"}</h3>
+        <p>${t.feature_three_desc || "No sign-up, no tracking, no data reuse"}</p>
       </div>
     </div>
   </div>
