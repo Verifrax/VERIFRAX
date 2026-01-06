@@ -1259,6 +1259,9 @@ Version: 2.8.0
 
 Jurisdiction, operator identity, system role.
 
+AUTHORITATIVE SCOPE:
+See AUTHORITATIVE_SCOPE.md
+
 SYSTEM IDENTITY:
 VERIFRAX is a deterministic digital verification system. It executes a single, one-time computational verification over a submitted digital evidence bundle and issues a final, immutable, reproducible certificate.
 
