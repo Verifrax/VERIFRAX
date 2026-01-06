@@ -712,6 +712,9 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
   <div class="container">
     <h1>VERIFRAX</h1>
     <p class="tagline">Deterministic Verification. One Execution. Final Certificate.</p>
+    <p style="text-align: center; font-size: 16px; margin: 20px 0; color: #666; font-style: italic;">
+      VERIFRAX has issued live certificates relied upon externally.
+    </p>
     <p style="text-align: center; font-size: 24px; font-weight: 600; margin: 20px 0; color: #000;">
       €120 — One execution · One certificate · Final
     </p>
