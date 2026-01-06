@@ -1073,6 +1073,7 @@ export default {
 
     // POST /api/verify (EXECUTION GATE)
     if (path === "/api/verify" && request.method === "POST") {
+      let lockKey = null;
       try {
         // Extract Bearer token from Authorization header
         const authHeader = request.headers.get("Authorization");
@@ -1084,6 +1085,7 @@ export default {
         }
         
         const token = authHeader.substring(7); // Remove "Bearer "
+        lockKey = `v2.8:lock:${token}`;
         
         // Check if token exists and is unused
         if (!env.KV) {
@@ -1095,10 +1097,25 @@ export default {
 
         // PHASE 1: ATOMIC CLAIM (UNUSED → CONSUMING)
         const tokenKey = `v2.8:token:${token}`;
+        const lockKey = `v2.8:lock:${token}`;
 
-        // 1. Read token
+        // 1. Acquire consumption lock (prevents concurrent claim)
+        const existingLock = await env.KV.get(lockKey);
+        if (existingLock) {
+          return withHeaders(new Response(JSON.stringify({ error: "TOKEN_IN_USE_RETRY_LATER" }), {
+            status: 409,
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
+          }));
+        }
+
+        // 2. Set lock with TTL (auto-expires on crash, prevents double claim)
+        await env.KV.put(lockKey, "locked", { expirationTtl: 300 });
+
+        // 3. Read token
         const tokenData = await env.KV.get(tokenKey);
         if (!tokenData) {
+          // Release lock on token not found
+          await env.KV.delete(lockKey);
           return withHeaders(new Response(JSON.stringify({ error: "TOKEN_NOT_FOUND_OR_ALREADY_USED" }), {
             status: 403,
             headers: { 'Content-Type': 'application/json; charset=utf-8' }
@@ -1107,20 +1124,21 @@ export default {
 
         const tokenObj = JSON.parse(tokenData);
         
-        // 2. Atomic state transition: UNUSED → CONSUMING
-        if (tokenObj.state !== "unused") {
-          // Handle retry: if CONSUMING, allow retry (idempotent execution)
-          if (tokenObj.state === "consuming") {
-            // Token is in consuming state - check if certificate already exists
-            // This handles retry after partial failure
-            const executionTier = tokenObj.tier || "public";
-            // Continue to execution phase (idempotent)
-          } else {
-            return withHeaders(new Response(JSON.stringify({ error: "TOKEN_ALREADY_USED" }), {
-              status: 403,
-              headers: { 'Content-Type': 'application/json; charset=utf-8' }
-            }));
-          }
+        // 4. Handle retry: if CONSUMING, check if certificate already exists
+        if (tokenObj.state === "consuming") {
+          // Retry path: check for existing certificate
+          // We need to derive the expected certificate hash from the request
+          // For now, allow retry to proceed (certificate write is idempotent)
+          // Certificate hash will be computed from bundle, so same bundle = same hash
+          const executionTier = tokenObj.tier || "public";
+          // Lock acquired, continue to execution (idempotent)
+        } else if (tokenObj.state !== "unused") {
+          // Token already consumed
+          await env.KV.delete(lockKey);
+          return withHeaders(new Response(JSON.stringify({ error: "TOKEN_ALREADY_USED" }), {
+            status: 403,
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
+          }));
         } else {
           // Atomic claim: transition to CONSUMING
           await env.KV.put(tokenKey, JSON.stringify({
@@ -1137,6 +1155,7 @@ export default {
         const profileId = formData.get("profile_id") || "public@1.0.0";
         
         if (!bundleFile || !(bundleFile instanceof File)) {
+          await env.KV.delete(lockKey);
           return withHeaders(new Response(JSON.stringify({ error: "MISSING_BUNDLE" }), {
             status: 400,
             headers: { 'Content-Type': 'application/json; charset=utf-8' }
@@ -1146,6 +1165,7 @@ export default {
         // Validate profile ID format
         const profileIdPattern = /^[a-z_]+@[0-9]+\.[0-9]+\.[0-9]+$/;
         if (!profileIdPattern.test(profileId)) {
+          await env.KV.delete(lockKey);
           return withHeaders(new Response(JSON.stringify({ error: "INVALID_PROFILE_ID" }), {
             status: 400,
             headers: { 'Content-Type': 'application/json; charset=utf-8' }
@@ -1195,6 +1215,17 @@ export default {
         };
         
         // PHASE 2: EXECUTE (fallible, retry-safe)
+        // Check if certificate already exists (idempotence check)
+        const existingCert = await env.KV.get(`certificate:${certificateHash}`);
+        if (existingCert) {
+          // Certificate already exists - return it (strict idempotence)
+          await env.KV.delete(lockKey);
+          return withHeaders(new Response(JSON.stringify({ certificate_hash: certificateHash }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
+          }));
+        }
+        
         // Store canonical certificate in KV (sorted keys, no pretty-print)
         const canonicalCert = canonicalStringify(certificate);
         await env.KV.put(`certificate:${certificateHash}`, canonicalCert);
@@ -1206,6 +1237,7 @@ export default {
         
         // PHASE 3: FINALIZE (irreversible - only after certificate persistence succeeds)
         await env.KV.delete(tokenKey);
+        await env.KV.delete(lockKey);
         
         // Optional: Consumption ledger (read-only, non-authoritative, audit trail only)
         await env.KV.put(
@@ -1468,7 +1500,7 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
         .map(l => `<a href="/?lang=${l}">${LANG_LABELS[l] || l.toUpperCase()}</a>`)
         .join(" · ");
       const html = `<!DOCTYPE html>
-<html lang="${lang}" aria-label="${tier === 2 ? "assistive-translation" : "authoritative-ui"}">
+<html lang="${lang}" aria-label="${tier === 2 ? "assistive-translation" : "primary-ui"}">
 <head>
   <title>${title}</title>
   <link rel="alternate" hreflang="fr" href="https://www.verifrax.net/?lang=fr">
