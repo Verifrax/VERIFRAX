@@ -212,6 +212,120 @@ const TRANSLATIONS = {
     cta_verify: "شروع اعتبارسنجی",
     invariant_notice: "زبان بر اجرا یا گواهی‌ها تأثیری ندارد."
   },
+  bn: {
+    hero_title: "নির্ধারক যাচাইকরণ",
+    hero_subtitle: "একটি নির্বাহ। একটি সার্টিফিকেট। চূড়ান্ত।",
+    cta_verify: "যাচাইকরণ শুরু করুন",
+    invariant_notice: "ভাষা নির্বাহ বা সার্টিফিকেটকে প্রভাবিত করে না।"
+  },
+  pa: {
+    hero_title: "ਨਿਰਧਾਰਿਤ ਪੜਤਾਲ",
+    hero_subtitle: "ਇੱਕ ਨਿਰਵਹਨ। ਇੱਕ ਸਰਟੀਫਿਕੇਟ। ਅੰਤਿਮ।",
+    cta_verify: "ਪੜਤਾਲ ਸ਼ੁਰੂ ਕਰੋ",
+    invariant_notice: "ਭਾਸ਼ਾ ਨਿਰਵਹਨ ਜਾਂ ਸਰਟੀਫਿਕੇਟਾਂ ਨੂੰ ਪ੍ਰਭਾਵਿਤ ਨਹੀਂ ਕਰਦੀ।"
+  },
+  jv: {
+    hero_title: "Verifikasi deterministik",
+    hero_subtitle: "Siji eksekusi. Siji sertifikat. Final.",
+    cta_verify: "Mulai verifikasi",
+    invariant_notice: "Basa ora mengaruhi eksekusi utawa sertifikat."
+  },
+  te: {
+    hero_title: "నిర్ణయాత్మక ధృవీకరణ",
+    hero_subtitle: "ఒక అమలు. ఒక సర్టిఫికేట్. తుది.",
+    cta_verify: "ధృవీకరణ ప్రారంభించండి",
+    invariant_notice: "భాష అమలు లేదా సర్టిఫికేట్లను ప్రభావితం చేయదు."
+  },
+  mr: {
+    hero_title: "निर्धारक सत्यापन",
+    hero_subtitle: "एक अंमलबजावणी. एक प्रमाणपत्र. अंतिम.",
+    cta_verify: "सत्यापन सुरू करा",
+    invariant_notice: "भाषा अंमलबजावणी किंवा प्रमाणपत्रांवर परिणाम करत नाही."
+  },
+  ta: {
+    hero_title: "தீர்மானிக்கப்பட்ட சரிபார்ப்பு",
+    hero_subtitle: "ஒரு செயலாக்கம். ஒரு சான்றிதழ். இறுதி.",
+    cta_verify: "சரிபார்ப்பைத் தொடங்கவும்",
+    invariant_notice: "மொழி செயலாக்கம் அல்லது சான்றிதழ்களை பாதிக்காது."
+  },
+  ur: {
+    hero_title: "تعین کنندہ تصدیق",
+    hero_subtitle: "ایک عمل۔ ایک سرٹیفکیٹ۔ حتمی۔",
+    cta_verify: "تصدیق شروع کریں",
+    invariant_notice: "زبان عمل یا سرٹیفکیٹس کو متاثر نہیں کرتی۔"
+  },
+  gu: {
+    hero_title: "નિર્ધારિત ચકાસણી",
+    hero_subtitle: "એક અમલીકરણ. એક પ્રમાણપત્ર. અંતિમ.",
+    cta_verify: "ચકાસણી શરૂ કરો",
+    invariant_notice: "ભાષા અમલીકરણ અથવા પ્રમાણપત્રોને અસર કરતી નથી."
+  },
+  ro: {
+    hero_title: "Verificare deterministă",
+    hero_subtitle: "O execuție. Un certificat. Final.",
+    cta_verify: "Începe verificarea",
+    invariant_notice: "Limba nu afectează execuția sau certificatele."
+  },
+  hu: {
+    hero_title: "Determinisztikus ellenőrzés",
+    hero_subtitle: "Egy végrehajtás. Egy tanúsítvány. Végső.",
+    cta_verify: "Ellenőrzés indítása",
+    invariant_notice: "A nyelv nem befolyásolja a végrehajtást vagy a tanúsítványokat."
+  },
+  sk: {
+    hero_title: "Deterministická verifikácia",
+    hero_subtitle: "Jedno spustenie. Jeden certifikát. Konečný.",
+    cta_verify: "Spustiť verifikáciu",
+    invariant_notice: "Jazyk neovplyvňuje vykonanie ani certifikáty."
+  },
+  bg: {
+    hero_title: "Детерминирана верификация",
+    hero_subtitle: "Едно изпълнение. Един сертификат. Финално.",
+    cta_verify: "Започнете верификация",
+    invariant_notice: "Езикът не влияе на изпълнението или сертификатите."
+  },
+  hr: {
+    hero_title: "Deterministička verifikacija",
+    hero_subtitle: "Jedno izvršenje. Jedan certifikat. Konačno.",
+    cta_verify: "Pokreni verifikaciju",
+    invariant_notice: "Jezik ne utječe na izvršenje ili certifikate."
+  },
+  sr: {
+    hero_title: "Детерминистичка верификација",
+    hero_subtitle: "Једно извршење. Један сертификат. Коначно.",
+    cta_verify: "Покрени верификацију",
+    invariant_notice: "Језик не утиче на извршење или сертификате."
+  },
+  sl: {
+    hero_title: "Deterministična verifikacija",
+    hero_subtitle: "Ena izvedba. En certifikat. Končno.",
+    cta_verify: "Začni verifikacijo",
+    invariant_notice: "Jezik ne vpliva na izvedbo ali certifikate."
+  },
+  lt: {
+    hero_title: "Deterministinė patikra",
+    hero_subtitle: "Vienas vykdymas. Vienas sertifikatas. Galutinis.",
+    cta_verify: "Pradėti patikrą",
+    invariant_notice: "Kalba neturi įtakos vykdymui ar sertifikatams."
+  },
+  lv: {
+    hero_title: "Deterministiska verifikācija",
+    hero_subtitle: "Viena izpilde. Viens sertifikāts. Galīgs.",
+    cta_verify: "Sākt verifikāciju",
+    invariant_notice: "Valoda neietekmē izpildi vai sertifikātus."
+  },
+  et: {
+    hero_title: "Deterministlik kinnitamine",
+    hero_subtitle: "Üks käivitamine. Üks sertifikaat. Lõplik.",
+    cta_verify: "Alusta kinnitamist",
+    invariant_notice: "Keel ei mõjuta käivitamist ega sertifikaate."
+  },
+  is: {
+    hero_title: "Ákveðin staðfesting",
+    hero_subtitle: "Eitt keyrsla. Eitt vottorð. Endanlegt.",
+    cta_verify: "Hefja staðfestingu",
+    invariant_notice: "Tungumálið hefur ekki áhrif á keyrslu eða vottorð."
+  },
   am: {
     hero_title: "ውሳኔ የማይለወጥ ማረጋገጫ",
     hero_subtitle: "አንድ አሰራር። አንድ ማረጋገጫ። መጨረሻ።",
