@@ -1093,27 +1093,34 @@ export default {
           }));
         }
 
-        const tokenData = await env.KV.get(`v2.8:token:${token}`);
+        // ATOMIC CONSUMPTION STEP
+        const tokenKey = `v2.8:token:${token}`;
+
+        // 1. Read token
+        const tokenData = await env.KV.get(tokenKey);
         if (!tokenData) {
-          return withHeaders(new Response(JSON.stringify({ error: "TOKEN_NOT_FOUND" }), {
+          return withHeaders(new Response(JSON.stringify({ error: "TOKEN_NOT_FOUND_OR_ALREADY_USED" }), {
             status: 403,
             headers: { 'Content-Type': 'application/json; charset=utf-8' }
           }));
         }
 
+        // 2. DELETE TOKEN IMMEDIATELY (this is the atomic edge)
+        await env.KV.delete(tokenKey);
+
+        // 3. Proceed with execution ONLY AFTER deletion
         const tokenObj = JSON.parse(tokenData);
-        if (tokenObj.used === true) {
-          return withHeaders(new Response(JSON.stringify({ error: "TOKEN_ALREADY_USED" }), {
-            status: 403,
-            headers: { 'Content-Type': 'application/json; charset=utf-8' }
-          }));
-        }
-
-        // Get tier from token metadata
         const executionTier = tokenObj.tier || "public";
 
-        // Mark token as used atomically
-        await env.KV.put(`v2.8:token:${token}`, JSON.stringify({ used: true, tier: executionTier }));
+        // Optional: Consumption ledger (read-only, non-authoritative, audit trail only)
+        await env.KV.put(
+          `v2.8:consumed:${token}`,
+          JSON.stringify({
+            consumed_at: new Date().toISOString(),
+            tier: executionTier
+          }),
+          { expirationTtl: 86400 }
+        );
         
         // Parse multipart form data
         const formData = await request.formData();
