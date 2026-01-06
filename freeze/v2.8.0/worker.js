@@ -49,8 +49,11 @@ function resolveLang(request, cf = {}) {
 
   const al = request.headers.get("accept-language");
   if (al) {
-    const p = al.split(",")[0].split("-")[0];
-    if (TIER1.includes(p) || TIER2.includes(p)) return p;
+    const match = al
+      .split(",")
+      .map(x => x.split(";")[0].trim().split("-")[0])
+      .find(l => TIER1.includes(l) || TIER2.includes(l));
+    if (match) return match;
   }
 
   const map = { FR: "fr", DE: "de", ES: "es", IT: "it", IR: "fa", JP: "ja", CN: "zh" };
@@ -290,6 +293,9 @@ export default {
 <body>
   <div class="container">
     <h1>${framing.title}</h1>
+    <p style="text-align: left; font-size: 14px; color: #666; margin: -10px 0 20px 0;">
+      Execution surfaces are always presented in English. Language selection affects informational pages only.
+    </p>
     
     <div class="status-badge">
       Status: ${paymentStatus === "confirmed" ? "Payment confirmed ✓" : "Waiting for payment..."}
@@ -732,16 +738,18 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
 
     // GET / (LANDING PAGE)
     if (path === "/" && request.method === "GET") {
-      const lang = resolveLang(request, request.cf || {});
+      const resolved = resolveLang(request, request.cf || {});
+      const lang = TRANSLATIONS[resolved] ? resolved : "en";
       const tier = TIER2.includes(lang) ? 2 : 1;
       const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+      const title = tier === 2 ? "VERIFRAX — Assistive Translation" : `VERIFRAX — ${t.hero_title}`;
       const assistiveBanner = tier === 2
         ? `<div class="assistive-banner">${t.assistive_notice || "This translation is provided for accessibility only. The authoritative language of VERIFRAX is English."}</div>`
         : "";
       const html = `<!DOCTYPE html>
 <html lang="${lang}" aria-label="${tier === 2 ? "assistive-translation" : "authoritative-ui"}">
 <head>
-  <title>VERIFRAX — ${t.hero_title}</title>
+  <title>${title}</title>
   <link rel="alternate" hreflang="fr" href="https://www.verifrax.net/?lang=fr">
   <link rel="alternate" hreflang="de" href="https://www.verifrax.net/?lang=de">
   <link rel="alternate" hreflang="x-default" href="https://www.verifrax.net/">
@@ -847,6 +855,9 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
     <p style="font-size: 20px; font-weight: 600; margin: 10px 0 30px 0; color: #000;">
       €${config.price}
     </p>
+    <p style="text-align: left; font-size: 14px; color: #666; margin: -10px 0 20px 0;">
+      Execution surfaces are always presented in English. Language selection affects informational pages only.
+    </p>
     <p style="color: #666; margin-bottom: 30px;">
       ${config.description}
     </p>
@@ -925,6 +936,9 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
   <div class="container">
     <h1>Institutional Execution</h1>
     <p class="price">€1,500</p>
+    <p style="text-align: left; font-size: 14px; color: #666; margin: -5px 0 20px 0;">
+      Execution surfaces are always presented in English. Language selection affects informational pages only.
+    </p>
     
     <div class="statement">
       <p><strong>Institutional-grade deterministic execution</strong></p>
