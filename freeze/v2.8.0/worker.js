@@ -873,7 +873,7 @@ export default {
           if (env.KV) {
             const tier = pi.metadata?.tier || "public";
             await env.KV.put(`v2.8:session:${sessionId}`, token);
-            await env.KV.put(`v2.8:token:${token}`, JSON.stringify({ used: false, tier: tier }));
+            await env.KV.put(`v2.8:token:${token}`, JSON.stringify({ state: "unused", tier: tier }));
             // Store tier metadata for session
             await env.KV.put(`v2.8:session:${sessionId}:metadata`, JSON.stringify({ tier }));
           }
@@ -1093,7 +1093,7 @@ export default {
           }));
         }
 
-        // ATOMIC CONSUMPTION STEP
+        // PHASE 1: ATOMIC CLAIM (UNUSED → CONSUMING)
         const tokenKey = `v2.8:token:${token}`;
 
         // 1. Read token
@@ -1105,22 +1105,31 @@ export default {
           }));
         }
 
-        // 2. DELETE TOKEN IMMEDIATELY (this is the atomic edge)
-        await env.KV.delete(tokenKey);
-
-        // 3. Proceed with execution ONLY AFTER deletion
         const tokenObj = JSON.parse(tokenData);
-        const executionTier = tokenObj.tier || "public";
+        
+        // 2. Atomic state transition: UNUSED → CONSUMING
+        if (tokenObj.state !== "unused") {
+          // Handle retry: if CONSUMING, allow retry (idempotent execution)
+          if (tokenObj.state === "consuming") {
+            // Token is in consuming state - check if certificate already exists
+            // This handles retry after partial failure
+            const executionTier = tokenObj.tier || "public";
+            // Continue to execution phase (idempotent)
+          } else {
+            return withHeaders(new Response(JSON.stringify({ error: "TOKEN_ALREADY_USED" }), {
+              status: 403,
+              headers: { 'Content-Type': 'application/json; charset=utf-8' }
+            }));
+          }
+        } else {
+          // Atomic claim: transition to CONSUMING
+          await env.KV.put(tokenKey, JSON.stringify({
+            ...tokenObj,
+            state: "consuming"
+          }));
+        }
 
-        // Optional: Consumption ledger (read-only, non-authoritative, audit trail only)
-        await env.KV.put(
-          `v2.8:consumed:${token}`,
-          JSON.stringify({
-            consumed_at: new Date().toISOString(),
-            tier: executionTier
-          }),
-          { expirationTtl: 86400 }
-        );
+        const executionTier = tokenObj.tier || "public";
         
         // Parse multipart form data
         const formData = await request.formData();
@@ -1185,6 +1194,7 @@ export default {
           certificate_hash: certificateHash
         };
         
+        // PHASE 2: EXECUTE (fallible, retry-safe)
         // Store canonical certificate in KV (sorted keys, no pretty-print)
         const canonicalCert = canonicalStringify(certificate);
         await env.KV.put(`certificate:${certificateHash}`, canonicalCert);
@@ -1193,6 +1203,19 @@ export default {
         if (env.KV) {
           await env.KV.put(`certificate:${certificateHash}:tier`, executionTier);
         }
+        
+        // PHASE 3: FINALIZE (irreversible - only after certificate persistence succeeds)
+        await env.KV.delete(tokenKey);
+        
+        // Optional: Consumption ledger (read-only, non-authoritative, audit trail only)
+        await env.KV.put(
+          `v2.8:consumed:${token}`,
+          JSON.stringify({
+            consumed_at: new Date().toISOString(),
+            tier: executionTier
+          }),
+          { expirationTtl: 86400 }
+        );
         
         // Return certificate_hash
         return withHeaders(new Response(JSON.stringify({ certificate_hash: certificateHash }), {
