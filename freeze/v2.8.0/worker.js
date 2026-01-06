@@ -1255,6 +1255,10 @@ export default {
           headers: { 'Content-Type': 'application/json; charset=utf-8' }
         }));
       } catch (error) {
+        // Release lock on error
+        if (lockKey && env.KV) {
+          await env.KV.delete(lockKey).catch(() => {}); // Ignore errors on cleanup
+        }
         return withHeaders(new Response(JSON.stringify({ error: error.message }), {
           status: 500,
           headers: { 'Content-Type': 'application/json; charset=utf-8' }
