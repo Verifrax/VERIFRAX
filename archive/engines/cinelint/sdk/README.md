@@ -1,3 +1,0 @@
-# Verifrax SDK
-
-Programmatic interfaces.
