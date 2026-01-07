@@ -1,8 +1,0 @@
-{
-  "name": "@verifrax/verifier",
-  "version": "1.0.0",
-  "type": "module",
-  "bin": { "verifrax-verify": "src/index.ts" },
-  "dependencies": {}
-}
-
