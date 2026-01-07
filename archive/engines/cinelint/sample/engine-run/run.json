@@ -1,9 +1,0 @@
-{
-  "engine_id": "engine-dev-001",
-  "inputs": {
-    "files": {
-      "a.txt": "hello world"
-    }
-  },
-  "profile": "generic"
-}
