@@ -873,7 +873,7 @@ export default {
           if (env.KV) {
             const tier = pi.metadata?.tier || "public";
             await env.KV.put(`v2.8:session:${sessionId}`, token);
-            await env.KV.put(`v2.8:token:${token}`, JSON.stringify({ used: false, tier: tier }));
+            await env.KV.put(`v2.8:token:${token}`, JSON.stringify({ state: "unused", tier: tier }));
             // Store tier metadata for session
             await env.KV.put(`v2.8:session:${sessionId}:metadata`, JSON.stringify({ tier }));
           }
@@ -1073,6 +1073,7 @@ export default {
 
     // POST /api/verify (EXECUTION GATE)
     if (path === "/api/verify" && request.method === "POST") {
+      let lockKey = null;
       try {
         // Extract Bearer token from Authorization header
         const authHeader = request.headers.get("Authorization");
@@ -1084,6 +1085,7 @@ export default {
         }
         
         const token = authHeader.substring(7); // Remove "Bearer "
+        lockKey = `v2.8:lock:${token}`;
         
         // Check if token exists and is unused
         if (!env.KV) {
@@ -1093,27 +1095,35 @@ export default {
           }));
         }
 
-        const tokenData = await env.KV.get(`v2.8:token:${token}`);
+        // PHASE 1: ATOMIC CLAIM (UNUSED → CONSUMING)
+        const tokenKey = `v2.8:token:${token}`;
+        const lockKey = `v2.8:lock:${token}`;
+
+        // 1. Acquire consumption lock (prevents concurrent claim)
+        const existingLock = await env.KV.get(lockKey);
+        if (existingLock) {
+          return withHeaders(new Response(JSON.stringify({ error: "TOKEN_IN_USE_RETRY_LATER" }), {
+            status: 409,
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
+          }));
+        }
+
+        // 2. Set lock with TTL (auto-expires on crash, prevents double claim)
+        await env.KV.put(lockKey, "locked", { expirationTtl: 300 });
+
+        // 3. Read token
+        const tokenData = await env.KV.get(tokenKey);
         if (!tokenData) {
-          return withHeaders(new Response(JSON.stringify({ error: "TOKEN_NOT_FOUND" }), {
+          // Release lock on token not found
+          await env.KV.delete(lockKey);
+          return withHeaders(new Response(JSON.stringify({ error: "TOKEN_NOT_FOUND_OR_ALREADY_USED" }), {
             status: 403,
             headers: { 'Content-Type': 'application/json; charset=utf-8' }
           }));
         }
 
         const tokenObj = JSON.parse(tokenData);
-        if (tokenObj.used === true) {
-          return withHeaders(new Response(JSON.stringify({ error: "TOKEN_ALREADY_USED" }), {
-            status: 403,
-            headers: { 'Content-Type': 'application/json; charset=utf-8' }
-          }));
-        }
-
-        // Get tier from token metadata
         const executionTier = tokenObj.tier || "public";
-
-        // Mark token as used atomically
-        await env.KV.put(`v2.8:token:${token}`, JSON.stringify({ used: true, tier: executionTier }));
         
         // Parse multipart form data
         const formData = await request.formData();
@@ -1121,6 +1131,7 @@ export default {
         const profileId = formData.get("profile_id") || "public@1.0.0";
         
         if (!bundleFile || !(bundleFile instanceof File)) {
+          await env.KV.delete(lockKey);
           return withHeaders(new Response(JSON.stringify({ error: "MISSING_BUNDLE" }), {
             status: 400,
             headers: { 'Content-Type': 'application/json; charset=utf-8' }
@@ -1130,6 +1141,7 @@ export default {
         // Validate profile ID format
         const profileIdPattern = /^[a-z_]+@[0-9]+\.[0-9]+\.[0-9]+$/;
         if (!profileIdPattern.test(profileId)) {
+          await env.KV.delete(lockKey);
           return withHeaders(new Response(JSON.stringify({ error: "INVALID_PROFILE_ID" }), {
             status: 400,
             headers: { 'Content-Type': 'application/json; charset=utf-8' }
@@ -1143,6 +1155,33 @@ export default {
         const bundleHashBuffer = await crypto.subtle.digest("SHA-256", bundleArrayBuffer);
         const bundleHashArray = Array.from(new Uint8Array(bundleHashBuffer));
         const bundleHash = bundleHashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        
+        // 4. Handle retry: if CONSUMING, enforce bundle hash binding
+        if (tokenObj.state === "consuming") {
+          // Retry path: enforce strict bundle hash equality
+          if (tokenObj.bundle_hash && tokenObj.bundle_hash !== bundleHash) {
+            await env.KV.delete(lockKey);
+            return withHeaders(new Response(JSON.stringify({ error: "BUNDLE_MISMATCH_RETRY_FORBIDDEN" }), {
+              status: 409,
+              headers: { 'Content-Type': 'application/json; charset=utf-8' }
+            }));
+          }
+          // Same bundle hash - continue to execution (idempotent)
+        } else if (tokenObj.state !== "unused") {
+          // Token already consumed
+          await env.KV.delete(lockKey);
+          return withHeaders(new Response(JSON.stringify({ error: "TOKEN_ALREADY_USED" }), {
+            status: 403,
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
+          }));
+        } else {
+          // Atomic claim: transition to CONSUMING with bundle hash binding
+          await env.KV.put(tokenKey, JSON.stringify({
+            ...tokenObj,
+            state: "consuming",
+            bundle_hash: bundleHash
+          }));
+        }
         
         // Minimal deterministic verification (v2.8.0)
         // For public@1.0.0 profile: bundle exists and is readable = verified
@@ -1178,6 +1217,18 @@ export default {
           certificate_hash: certificateHash
         };
         
+        // PHASE 2: EXECUTE (fallible, retry-safe)
+        // Check if certificate already exists (idempotence check)
+        const existingCert = await env.KV.get(`certificate:${certificateHash}`);
+        if (existingCert) {
+          // Certificate already exists - return it (strict idempotence)
+          await env.KV.delete(lockKey);
+          return withHeaders(new Response(JSON.stringify({ certificate_hash: certificateHash }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
+          }));
+        }
+        
         // Store canonical certificate in KV (sorted keys, no pretty-print)
         const canonicalCert = canonicalStringify(certificate);
         await env.KV.put(`certificate:${certificateHash}`, canonicalCert);
@@ -1187,12 +1238,30 @@ export default {
           await env.KV.put(`certificate:${certificateHash}:tier`, executionTier);
         }
         
+        // PHASE 3: FINALIZE (irreversible - only after certificate persistence succeeds)
+        await env.KV.delete(tokenKey);
+        await env.KV.delete(lockKey);
+        
+        // Optional: Consumption ledger (read-only, non-authoritative, audit trail only)
+        await env.KV.put(
+          `v2.8:consumed:${token}`,
+          JSON.stringify({
+            consumed_at: new Date().toISOString(),
+            tier: executionTier
+          }),
+          { expirationTtl: 86400 }
+        );
+        
         // Return certificate_hash
         return withHeaders(new Response(JSON.stringify({ certificate_hash: certificateHash }), {
           status: 200,
           headers: { 'Content-Type': 'application/json; charset=utf-8' }
         }));
       } catch (error) {
+        // Release lock on error
+        if (lockKey && env.KV) {
+          await env.KV.delete(lockKey).catch(() => {}); // Ignore errors on cleanup
+        }
         return withHeaders(new Response(JSON.stringify({ error: error.message }), {
           status: 500,
           headers: { 'Content-Type': 'application/json; charset=utf-8' }
@@ -1438,7 +1507,7 @@ Verification tools: https://github.com/verifrax/verifrax-reference-verifier
         .map(l => `<a href="/?lang=${l}">${LANG_LABELS[l] || l.toUpperCase()}</a>`)
         .join(" · ");
       const html = `<!DOCTYPE html>
-<html lang="${lang}" aria-label="${tier === 2 ? "assistive-translation" : "authoritative-ui"}">
+<html lang="${lang}" aria-label="${tier === 2 ? "assistive-translation" : "primary-ui"}">
 <head>
   <title>${title}</title>
   <link rel="alternate" hreflang="fr" href="https://www.verifrax.net/?lang=fr">
