@@ -1,1 +1,0 @@
-*/10 * * * * cd /srv/verifrax && ./scripts/require-refreeze.sh engine-semantics-freeze-20251226-155121 >> /var/log/verifrax/guard.log 2>&1

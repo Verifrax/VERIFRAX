@@ -1,3 +1,0 @@
-Phase 1 rule: no new consensus primitives, no new execution semantics.
-Only: certificates, attestations, verifier, profiles, governance, anchors.
-
