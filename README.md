@@ -24,6 +24,8 @@ VERIFRAX is a deterministic verification system that produces final, reproducibl
 
 VERIFRAX has issued live certificates relied upon externally.
 
+**Execution Guarantee:** Each execution at api.verifrax.net produces exactly one final certificate; re-execution of the same bundle is not permitted.
+
 ---
 
 ## AUTHORITY STATEMENT
