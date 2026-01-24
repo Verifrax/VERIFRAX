@@ -10,7 +10,7 @@ jobs:
         with:
           fetch-depth: 2  # Need previous commit for comparison
       
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 20
       
