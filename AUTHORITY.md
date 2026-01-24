@@ -86,6 +86,37 @@ This commit represents the immutable state of v2.4.0. All authoritative content 
 
 ---
 
+## Production Worker Authority (v2.8.0)
+
+**Deployed:** 2026-01-24
+
+### Source of Truth
+
+- **Location:** `verifrax-freeze/v2.8.0/source/VERIFRAX/freeze/v2.8.0/worker.js`
+- **Status:** IMMUTABLE
+- **Worker Name:** `verifrax-edge`
+- **Version ID:** `a8d0be87-7e81-4fa3-bc2d-659ed00df7c8`
+
+### Binding
+
+- Production Worker is bound to `api.verifrax.net/*`
+- `wrangler.toml` references the frozen source path
+- Changes require a new freeze + new version + new deployment
+
+### Immutability Constraint
+
+The `verifrax-freeze/v2.8.0` directory is immutable. No modifications permitted.
+
+Any change to execution logic requires:
+1. New version number (v2.8.1, v2.9.0, etc.)
+2. New freeze directory
+3. New wrangler deployment
+4. New authority attestation
+
+**This is not negotiable.**
+
+---
+
 ## Authority Boundaries
 
 ### What VERIFRAX Provides
