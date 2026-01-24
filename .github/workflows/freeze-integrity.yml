@@ -10,7 +10,7 @@ jobs:
   block-freeze-modification:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e1148ab8c88cfd102cc39c0ff8041a19fc37d2 # v4
         with:
           fetch-depth: 0
 
@@ -32,10 +32,10 @@ jobs:
   offline-verifier:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e1148ab8c88cfd102cc39c0ff8041a19fc37d2 # v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '20'
 
@@ -64,7 +64,7 @@ jobs:
   build-hash-verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e1148ab8c88cfd102cc39c0ff8041a19fc37d2 # v4
 
       - name: Verify BUILD_HASH.txt consistency
         run: |
@@ -77,17 +77,18 @@ jobs:
             CURRENT=$(cat BUILD_HASH.txt)
             
             if [ "$RECORDED" != "$CURRENT" ]; then
-              echo "WARN: Build hash changed. Update if intentional."
+              echo "FAIL: Build hash changed without version bump"
               echo "Recorded: $RECORDED"
               echo "Current: $CURRENT"
+              exit 1
             fi
           fi
-          echo "PASS: Build hash check complete"
+          echo "PASS: Build hash verified"
 
   certificate-schema-verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e1148ab8c88cfd102cc39c0ff8041a19fc37d2 # v4
 
       - name: Verify certificate schema checksum
         run: |
