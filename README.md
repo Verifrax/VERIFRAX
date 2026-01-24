@@ -8,6 +8,10 @@
 
 VERIFRAX is a deterministic verification system producing **one execution, one certificate, final**. The system is operational, billable, and publicly frozen under an explicit authority model.
 
+For scope limits and common misinterpretations, see:
+- [CANONICAL.md](CANONICAL.md)
+- [ADVERSARIAL_FAQ.md](ADVERSARIAL_FAQ.md)
+
 ---
 
 ## VERSION & AUTHORITY MODEL (NON-NEGOTIABLE)
