@@ -1,0 +1,30 @@
+# VERIFRAX Edge Worker Configuration
+# Stateless execution only — no storage, no sessions, no logs after execution
+
+name = "verifrax-edge"
+main = "verifrax-engine/execute_v2_6_0.js"
+compatibility_date = "2025-01-01"
+
+# HARD RULE: No dev endpoint exposure
+workers_dev = false
+
+# Production routes only
+routes = [
+  { pattern = "api.verifrax.net/*", zone_name = "verifrax.net" }
+]
+
+# EXECUTION CONSTRAINTS (enforced by architecture)
+# - No KV bindings
+# - No Durable Objects
+# - No D1 databases
+# - No R2 buckets (execution layer)
+# - No Queues
+# - No Analytics Engine
+
+# Stateless execution model:
+# Input → Execute → Certificate → Destroy
+# No state persists beyond request lifecycle
+
+[vars]
+ENVIRONMENT = "production"
+PAYMENT_REQUIRED = "true"
