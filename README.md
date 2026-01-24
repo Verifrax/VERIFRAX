@@ -1,101 +1,127 @@
 # VERIFRAX
 
-## ⚠️ VERSION MODEL
+## 🔒 PUBLIC AUTHORITY & FREEZE STATEMENT
 
-**AUTHORITATIVE ENGINE:** v2.7.0 (FROZEN)
+**STATUS:** LIVE · PUBLIC · FORWARD-ONLY
 
-Authority is defined exclusively by:
-- freeze/v2.6.0/
-- verifrax-engine/execute_v2_6_0.js
-- verifrax-reference-verifier/src/verify_v2_6_0.js
-- SYSTEM_IDENTITY.*
-- BUILD_HASH.txt
+**PUBLIC EXECUTION ENDPOINT:** [https://api.verifrax.net](https://api.verifrax.net)
 
-**RUNTIME / DISCOVERY LAYER:** v2.8.0
-
-v2.8.0 introduces discovery, runtime, and payment-layer evolution.
-Authority remains anchored to v2.7.0 frozen engine artifacts.
+VERIFRAX is a deterministic verification system producing **one execution, one certificate, final**. The system is operational, billable, and publicly frozen under an explicit authority model.
 
 ---
 
-## System Identity
+## VERSION & AUTHORITY MODEL (NON-NEGOTIABLE)
 
-VERIFRAX is a deterministic verification system that produces final, reproducible verdicts for evidence bundles. The system operates without mutable state, accounts, or sessions, ensuring that verification artifacts remain independently verifiable regardless of infrastructure availability or operational status.
+### AUTHORITATIVE ENGINE — **v2.7.0 (FROZEN)**
+
+The verification *authority* of VERIFRAX is permanently anchored to the following immutable artifacts:
+
+* `freeze/v2.6.0/` — Immutable frozen release snapshot
+* `verifrax-engine/execute_v2_6_0.js` — Deterministic execution pipeline
+* `verifrax-reference-verifier/src/verify_v2_6_0.js` — Offline reference verifier
+* `SYSTEM_IDENTITY.*` — System identity declarations
+* `BUILD_HASH.txt` — Cryptographic build attestation
+
+These artifacts define **all authoritative behavior**. No runtime, UI, or infrastructure change can alter verification outcomes without a new explicit freeze.
+
+See `AUTHORITATIVE_SCOPE.md` for the complete authority boundary.
+
+---
+
+### RUNTIME / DISCOVERY LAYER — **v2.8.0 (LIVE)**
+
+v2.8.0 introduces **runtime, discovery, and payment-layer evolution only**. It does **not** modify verification authority.
+
+* Runtime Version: **v2.8.0**
+* Execution Surface: `api.verifrax.net`
+* Payment Integration: Stripe enabled
+* Tiered Pricing:
+
+  * Public: €120
+  * Pro / Legal: €650
+  * Institutional: €1,500
+
+Authority remains **anchored to v2.7.0**.
+
+---
+
+## EXECUTION GUARANTEE
+
+* Each request to `api.verifrax.net` produces **exactly one final certificate**.
+* Re-execution of the same evidence bundle is **not permitted**.
+* Certificates are independently verifiable without reliance on VERIFRAX infrastructure.
 
 VERIFRAX has issued live certificates relied upon externally.
 
-**Execution Guarantee:** Each execution at api.verifrax.net produces exactly one final certificate; re-execution of the same bundle is not permitted.
+---
+
+## Genesis Certificate
+
+The first paid production verification was executed on **2026-01-24**.
+
+Certificate Hash:
+d7c23b65887c0ef554555b231c59935f6e2717586b54a68da8dc49b0bc61731b
+
+See: public/genesis/certificate.json
 
 ---
 
-## AUTHORITY STATEMENT
+## PUBLIC FREEZE & GOVERNANCE
 
-**This repository (`Verifrax/VERIFRAX`) is the authoritative source for the VERIFRAX verification engine.**
+### Production Freeze
 
-### What Is Authoritative
+* **Freeze Version:** v2.8.0 (runtime)
+* **Authority Version:** v2.7.0 (engine)
+* **Freeze Tag:** `freeze-v2.8.0`
+* **Deployment Date:** 2026-01-24
 
-- **Authoritative Engine Version:** v2.7.0 (FROZEN)
-- **Frozen Release Artifacts:** `freeze/v2.6.0/` — Immutable v2.6.0 snapshot
-- **Execution Engine:** `verifrax-engine/execute_v2_6_0.js` — Deterministic execution pipeline
-- **Reference Verifier:** `verifrax-reference-verifier/src/verify_v2_6_0.js` — Offline verification implementation
-- **Frozen Specifications:** Documents in `freeze/v2.6.0/` directory
-- **System Identity:** `SYSTEM_IDENTITY.*` — Version and identity declarations
-- **Build Hash:** `BUILD_HASH.txt` — Cryptographic build attestation
+This repository records a **public, auditable, immutable production state**.
 
-See `AUTHORITATIVE_SCOPE.md` for complete authority definition.
+All future changes require:
 
-### Runtime / Discovery Layer
+1. A new frozen engine snapshot
+2. A new authority declaration
+3. A new public freeze
 
-- **Runtime Version:** v2.8.0
-- **Payment Integration:** Stripe checkout enabled
-- **Discovery Endpoints:** Machine-routable certificate access
-- **Tiered Pricing:** Public (€120), Pro (€650), Institutional (€1,500)
+There is no silent mutation path.
 
-v2.8.0 does not change authority. Authority remains at v2.7.0.
+See:
 
-### What Is NOT Authoritative
-
-- **Documentation in `docs/`:** Explanatory only, may be updated
-- **Archived content:** Historical reference only
-- **Product documentation:** Non-executable explanations
+* `AUTHORITY.md`
+* `BUILD_ATTESTATION.md`
 
 ---
 
-## Canonical Links
+## WHAT THIS REPOSITORY IS
 
-- **Specification:** `verifrax.net/spec` (or `Verifrax/VERIFRAX-SPEC`)
-- **Profiles:** `Verifrax/VERIFRAX-PROFILES`
-- **Reference Verifier:** `Verifrax/VERIFRAX-verify`
-- **Documentation:** `Verifrax/VERIFRAX-DOCS` (non-authoritative)
-- **Samples:** `Verifrax/VERIFRAX-SAMPLES` (non-authoritative)
+* An authoritative verification engine
+* A public audit surface
+* A reproducible, deterministic system
 
-See `verifrax.net/spec` for authoritative specifications.
+## WHAT THIS REPOSITORY IS NOT
 
-**Legal Position:** See `LEGAL_POSITION.md`
-
----
-
-## Architecture
-
-- **Worker:** `workers/verifrax-edge/` — Cloudflare Worker (R2 upload rail)
-- **Core Engine:** `core/engine/` — Deterministic verification engine
-- **Frozen Release:** `freeze/v2.6.0/` — Immutable v2.6.0 snapshot
-- **Reference Verifier:** `verifrax-reference-verifier/` — Offline verification CLI
+* Not a blockchain
+* Not a storage service
+* Not a prediction or scoring system
+* Not a human review platform
+* Not mutable documentation
 
 ---
 
-## What This Repo Is NOT
+## CANONICAL REFERENCES
 
-- Not a blockchain
-- Not a storage service
-- Not a prediction system
-- Not a human review platform
-- Not executable documentation (docs are explanatory only)
+* Specification: `verifrax.net/spec`
+* Authority Scope: `AUTHORITATIVE_SCOPE.md`
+* Legal Position: `LEGAL_POSITION.md`
 
 ---
 
-## Archived
+## FINALITY
 
-- `archive/engines/` — Historical engines (not part of v2 trusted computing base)
-- `docs/_graveyard/` — Non-authoritative documentation
+This repository now represents a **final, publicly frozen production system**.
 
+**State:** Immutable
+
+**Direction:** Forward-only
+
+**Any deviation without a new freeze is invalid.**

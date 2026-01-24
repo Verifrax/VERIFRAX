@@ -84,3 +84,37 @@ x-verifrax-version: 2.8.0
 
 **This deployment is authoritative.**
 
+---
+
+## Genesis Certificate Execution
+
+### Executed: 2026-01-24T12:21:29.434Z
+
+| Field | Value |
+|-------|-------|
+| Certificate Hash | `d7c23b65887c0ef554555b231c59935f6e2717586b54a68da8dc49b0bc61731b` |
+| Bundle Hash | `6844deb82bb6806be4b70db7e97ef8c0e6a52d689e2dc51ee77fe810c34e21a8` |
+| Verdict | `verified` |
+| Profile | `public@1.0.0` |
+| Certificate Version | `1.1.0` |
+| VERIFRAX Version | `2.8.0` |
+| Reason Codes | `[]` |
+
+### Evidence Bundle
+
+```
+VERIFRAX Public Demonstration Evidence Bundle
+Repository: https://github.com/Verifrax/VERIFRAX
+Freeze Tag: freeze-v2.8.0
+Freeze Commit: dc7238ffb4e0507192d588564f6c0d2f06387451
+```
+
+### Attestation
+
+This certificate was produced by:
+- A real €120 payment through Stripe
+- Execution on the live `api.verifrax.net` Worker
+- One-time token consumption (no retry possible)
+
+**This is the Genesis Certificate. It proves the system is real, paid, and final.**
+
