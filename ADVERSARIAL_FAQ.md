@@ -50,3 +50,7 @@ Admissibility and legal effect are determined by courts or other decision-makers
 
 **Incorrect.**
 A certificate without understanding the underlying evidence and verdict semantics is meaningless. The system is a precision tool; safe use requires informed human interpretation.
+
+---
+
+This document is authoritative for misinterpretations. No other claims override it.
