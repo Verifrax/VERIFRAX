@@ -2,7 +2,7 @@
 # Stateless execution only — no storage, no sessions, no logs after execution
 
 name = "verifrax-edge"
-main = "verifrax-engine/execute_v2_6_0.js"
+main = "verifrax-freeze/v2.8.0/source/VERIFRAX/freeze/v2.8.0/worker.js"
 compatibility_date = "2025-01-01"
 
 # HARD RULE: No dev endpoint exposure
