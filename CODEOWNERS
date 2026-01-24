@@ -2,3 +2,11 @@
 # All changes require approval from the authoritative owner.
 
 * @Verifrax
+
+# Protected paths (require explicit approval)
+/verifrax-freeze/ @Verifrax
+/verifrax-engine/ @Verifrax
+/verifrax-reference-verifier/ @Verifrax
+/CERTIFICATE_SCHEMA.json @Verifrax
+/.certificate_schema_checksum @Verifrax
+/BUILD_HASH.txt @Verifrax
