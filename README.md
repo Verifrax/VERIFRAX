@@ -22,7 +22,9 @@ Authority remains anchored to v2.7.0 frozen engine artifacts.
 
 VERIFRAX is a deterministic verification system that produces final, reproducible verdicts for evidence bundles. The system operates without mutable state, accounts, or sessions, ensuring that verification artifacts remain independently verifiable regardless of infrastructure availability or operational status.
 
-VERIFRAX has issued live certificates relied upon externaly.
+VERIFRAX has issued live certificates relied upon externally.
+
+**Execution Guarantee:** Each execution at api.verifrax.net produces exactly one final certificate; re-execution of the same bundle is not permitted.
 
 ---
 
