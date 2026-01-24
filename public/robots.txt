@@ -1,11 +1,10 @@
-# Standard crawlers
+# Default
 User-agent: *
-Disallow: /verify
 Disallow: /api/
 Disallow: /certificate/
 Allow: /
 
-# Block AI training crawlers
+# Explicit AI training crawlers
 User-agent: GPTBot
 Disallow: /
 
