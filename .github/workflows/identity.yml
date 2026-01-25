@@ -1,0 +1,27 @@
+name: Identity
+
+on:
+  push:
+    paths:
+      - 'README.md'
+  pull_request:
+    paths:
+      - 'README.md'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify README identity (SYS-003)
+        run: |
+          set -euo pipefail
+          HEADER=$(sed -n '/^```$/,/^```$/p' README.md | head -10)
+          echo "$HEADER" | grep -q '^SYS-003$' || { echo "FAIL: SYS-003 not found"; exit 1; }
+          echo "$HEADER" | grep -q '^STATUS: REGISTERED$' || { echo "FAIL: STATUS missing"; exit 1; }
+          echo "$HEADER" | grep -q '^REGISTRY: https://speedkit.eu$' || { echo "FAIL: REGISTRY missing"; exit 1; }
+          echo "PASS: SYS-003 identity verified"
