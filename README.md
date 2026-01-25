@@ -1,6 +1,19 @@
+```
+SYS-003
+VERIFRAX
+Deterministic verification
+
+STATUS: REGISTERED
+REGISTRY: https://speedkit.eu
+```
+
+Registered system. Identity governed by SPEEDKIT registry.
+
+---
+
 # VERIFRAX
 
-## 🔒 PUBLIC AUTHORITY & FREEZE STATEMENT
+## PUBLIC AUTHORITY & FREEZE STATEMENT
 
 **STATUS:** LIVE · PUBLIC · FORWARD-ONLY
 
