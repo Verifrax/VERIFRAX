@@ -1,0 +1,92 @@
+name: Release with SLSA Provenance
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+env:
+  LC_ALL: C
+  TZ: UTC
+jobs:
+  build:
+    name: Build release artifacts
+    runs-on: ubuntu-latest
+    outputs:
+      hashes: ${{ steps.hash.outputs.hashes }}
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '20'
+
+      - name: Create release bundle
+        run: |
+          mkdir -p dist
+          
+          # Package reference verifier
+          cd verifrax-reference-verifier
+          npm pack
+          mv *.tgz ../dist/
+          cd ..
+          
+          # Copy frozen artifacts
+          cp -r freeze dist/
+          cp BUILD_HASH.txt dist/
+          cp SYSTEM_IDENTITY.json dist/
+          
+          # Create tarball
+          tar -czvf dist/verifrax-release-${{ github.ref_name }}.tar.gz \
+            dist/freeze \
+            dist/BUILD_HASH.txt \
+            dist/SYSTEM_IDENTITY.json
+
+      - name: Generate hashes
+        id: hash
+        run: |
+          cd dist
+          echo "hashes=$(sha256sum verifrax-release-*.tar.gz *.tgz 2>/dev/null | base64 -w0)" >> $GITHUB_OUTPUT
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: release-artifacts
+          path: dist/
+
+  provenance:
+    needs: [build]
+    permissions:
+      actions: read
+      id-token: write
+      contents: write
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # v2.0.0
+    with:
+      base64-subjects: "${{ needs.build.outputs.hashes }}"
+      upload-assets: true
+
+  upload-release:
+    name: Upload to release
+    needs: [build, provenance]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: release-artifacts
+          path: dist/
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v1
+        with:
+          files: |
+            dist/verifrax-release-*.tar.gz
+            dist/*.tgz
