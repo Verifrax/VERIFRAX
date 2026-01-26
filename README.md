@@ -5,6 +5,7 @@ Deterministic verification
 
 STATUS: REGISTERED
 REGISTRY: https://speedkit.eu
+SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
 ```
 
 Registered system. Identity governed by SPEEDKIT registry.
