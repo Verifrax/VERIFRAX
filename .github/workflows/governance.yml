@@ -1,0 +1,34 @@
+name: Governance CI
+
+on:
+  pull_request:
+    paths:
+      - ".github/**"
+      - "AUTHORITY_BOUNDARY.md"
+      - "AUTHORITY.md"
+      - "GOVERNANCE_*.md"
+      - "**/*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  governance-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authority Boundary Guard
+        run: |
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+          CHANGED="$(git diff --name-only "$BASE" "$HEAD")"
+
+          DENY_REGEX='^(freeze/v2\.6\.0/|verifrax-engine/execute_v2_6_0\.js$|verifrax-reference-verifier/src/verify_v2_6_0\.js$|SYSTEM_IDENTITY\..*|BUILD_HASH\.txt$)'
+          if echo "$CHANGED" | grep -E "$DENY_REGEX" >/dev/null; then
+            echo "::error::Authoritative surface modified"
+            exit 1
+          fi
+
+      - name: Governance OK
+        run: echo "Governance CI passed"
