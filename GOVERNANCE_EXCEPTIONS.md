@@ -1,3 +1,6 @@
+BASELINE_TAG: gov-baseline-2026-01-29
+BASELINE_COMMIT: 2b7eaef
+
 ## EX-001 — Bootstrap: Runtime CI Non-Blocking on Governance-Only PRs / Missing Artifacts
 
 **Purpose**
