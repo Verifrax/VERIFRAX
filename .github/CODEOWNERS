@@ -1,22 +1,7 @@
-# CODEOWNERS
+* @midiakiasat
 
-# Authoritative Engine
-/core/engine/ @verifrax/maintainers
-/freeze/ @verifrax/maintainers
-/verifrax-reference-verifier/ @verifrax/maintainers
-
-# Specifications
-/core/schemas/ @verifrax/maintainers
-/core/contracts/ @verifrax/maintainers
-/core/axioms/ @verifrax/maintainers
-
-# Freeze artifacts require maintainer approval
-/freeze/v2.5.0/ @verifrax/maintainers
-
-# Worker implementation
-/workers/verifrax-edge/ @verifrax/maintainers
-
-# Organization policy
-/.github/ @verifrax/maintainers
-/AUTHORITY.md @verifrax/maintainers
-
+/freeze/v2.6.0/ @midiakiasat
+/verifrax-engine/execute_v2_6_0.js @midiakiasat
+/verifrax-reference-verifier/src/verify_v2_6_0.js @midiakiasat
+/SYSTEM_IDENTITY.* @midiakiasat
+/BUILD_HASH.txt @midiakiasat
