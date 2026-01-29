@@ -1,0 +1,22 @@
+name: Authority Boundary
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  deny-authority-mutations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Block changes to authoritative surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+          CHANGED="$(git diff --name-only "$BASE" "$HEAD" || true)"
+          DENY_REGEX='^(freeze/v2\.6\.0/|verifrax-engine/execute_v2_6_0\.js$|verifrax-reference-verifier/src/verify_v2_6_0\.js$|SYSTEM_IDENTITY\..*$|BUILD_HASH\.txt$)'
+          if echo "$CHANGED" | grep -E "$DENY_REGEX" >/dev/null; then
+            echo "::error::Authoritative surface modified. Merge denied."
+            exit 1
+          fi
