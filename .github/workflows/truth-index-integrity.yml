@@ -1,6 +1,10 @@
+# .github/workflows/truth-index-integrity.yml
 name: Truth Index Integrity
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
 
 env:
   LC_ALL: C
@@ -22,6 +26,10 @@ jobs:
 
           BASE="${{ github.event.pull_request.base.sha }}"
           HEAD="${{ github.event.pull_request.head.sha }}"
+
+          # Ensure both SHAs exist locally for diff.
+          git fetch --no-tags --prune --depth=1 origin "$BASE" "$HEAD" || true
+
           CHANGED="$(git diff --name-only "$BASE" "$HEAD" || true)"
 
           # Only run if index-related surface changed.
@@ -35,6 +43,12 @@ jobs:
           # Index changed but repo doesn't have required baseline index file yet -> bootstrap non-blocking.
           if [ ! -f index/truth.ndjson ]; then
             echo "EX-001: Index surface changed but index/truth.ndjson missing. Non-blocking."
+            exit 0
+          fi
+
+          # CI script missing -> bootstrap non-blocking (pre-freeze import).
+          if [ ! -f ci/verify-truth-index.mjs ]; then
+            echo "EX-001: ci/verify-truth-index.mjs missing. Non-blocking."
             exit 0
           fi
 
@@ -64,6 +78,7 @@ jobs:
 
       - name: Verify genesis hash anchor
         run: |
+          cd index
           if [ -f GENESIS_HASH.txt ]; then
             echo "✓ GENESIS_HASH.txt present"
             cat GENESIS_HASH.txt
