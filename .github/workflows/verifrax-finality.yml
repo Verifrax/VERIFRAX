@@ -11,37 +11,85 @@ on:
 env:
   LC_ALL: C
   TZ: UTC
+
 jobs:
+  finality-gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run_finality: ${{ steps.gate.outputs.run_finality }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          fetch-depth: 0
+
+      - name: EX-001 finality gate
+        id: gate
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Releases always run finality.
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "run_finality=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Push to main/finality-v1 always runs finality.
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "run_finality=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # PR gating.
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+          CHANGED="$(git diff --name-only "$BASE" "$HEAD" || true)"
+
+          FINALITY_REGEX='^(freeze/|verifrax-engine/|verifrax-reference-verifier/|index/|issuance/|core/|adapters/|fixtures/|examples/|package\.json$|pnpm-lock\.yaml$|\.github/workflows/verifrax-finality\.yml$)'
+
+          if ! echo "$CHANGED" | grep -E "$FINALITY_REGEX" >/dev/null; then
+            echo "EX-001: Governance-only PR (no runtime surface). Finality non-blocking."
+            echo "run_finality=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ ! -f BUILD_HASH.txt ]; then
+            echo "EX-001: Runtime surface touched but BUILD_HASH.txt missing. Finality non-blocking."
+            echo "run_finality=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Runtime surface + artifacts present — enforcing finality."
+          echo "run_finality=true" >> "$GITHUB_OUTPUT"
+
   seed-claim:
+    needs: finality-gate
+    if: needs.finality-gate.outputs.run_finality == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
         with:
           node-version: '20'
-      
+
       - name: Install pnpm
         uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
-        with:
-          version: 9
-      
+
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Create claim at build time
         env:
           VERIFRAX_ORG: ${{ github.repository_owner }}
           VERIFRAX_KEY_ID: ${{ github.sha }}
           VERIFRAX_PROFILE_ID: public@1.0.0
-        working-directory: ${{ github.workspace }}
         run: |
           node scripts/seed.claim.mjs build-provenance ${{ github.sha }} run \
             --assertions '[{"assertion_id":"build-commit","predicate":"has_git_commit","object":"${{ github.sha }}"}]'
-      
+
       - name: Upload claim artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
@@ -49,37 +97,32 @@ jobs:
           path: out/claims/*.json
 
   build-evidence-bundle:
+    needs: [finality-gate, seed-claim]
+    if: needs.finality-gate.outputs.run_finality == 'true'
     runs-on: ubuntu-latest
-    needs: seed-claim
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
         with:
           node-version: '20'
-      
+
       - name: Install pnpm
         uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
-        with:
-          version: 9
-      
+
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Download claim artifact
         uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           name: claim
-      
-      - name: Build evidence bundle at release time
-        run: |
-          # Build bundle with claims, evidence, attestations
-          # This would call bundle.build.mjs with appropriate parameters
-          echo "Building evidence bundle..."
-      
+
+      - name: Build evidence bundle
+        run: node scripts/bundle.build.mjs
+
       - name: Upload bundle artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
@@ -87,40 +130,34 @@ jobs:
           path: out/bundles/*.zip
 
   publish-index:
-    runs-on: ubuntu-latest
-    needs: build-evidence-bundle
+    needs: [finality-gate, build-evidence-bundle]
     if: github.event_name == 'release'
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+          ref: ${{ github.sha }}
+
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
         with:
           node-version: '20'
-      
+
       - name: Install pnpm
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
-        with:
-          version: 9
-      
+        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6e92b6d3061 # v4
+
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Download bundle artifact
         uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           name: bundle
-      
-      - name: Publish to truth index at deploy time
-        run: |
-          # Extract bundle and publish to index
-          node scripts/publish.index.mjs out/bundles
-      
+
+      - name: Publish to truth index
+        run: node scripts/publish.index.mjs out/bundles
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./index
-

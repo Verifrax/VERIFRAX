@@ -5,24 +5,52 @@ on: [push, pull_request]
 env:
   LC_ALL: C
   TZ: UTC
+
 jobs:
   reproduce:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-      
+        with:
+          fetch-depth: 0
+
+      - name: EX-001 gate (PR-only; governance/missing fixtures = non-blocking)
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+          CHANGED="$(git diff --name-only "$BASE" "$HEAD" || true)"
+
+          REPRO_REGEX='^(verifrax-reference-verifier/|verifrax-engine/|fixtures/|ci/verify-reproducibility\.mjs$|package\.json$|pnpm-lock\.yaml$|\.github/workflows/verifier-reproducibility\.yml$)'
+
+          if ! echo "$CHANGED" | grep -E "$REPRO_REGEX" >/dev/null; then
+            echo "EX-001: Governance-only PR (no reproducibility surface). Non-blocking."
+            exit 0
+          fi
+
+          if [ ! -f fixtures/bundles/minimal-valid/bundle.bin ] || \
+             [ ! -f fixtures/bundles/minimal-valid/manifest.json ] || \
+             [ ! -f fixtures/bundles/minimal-valid/EXPECTED_VERDICT.json ]; then
+            echo "EX-001: Repro surface changed but fixtures missing. Non-blocking."
+            exit 0
+          fi
+
+          echo "Repro surface changed and fixtures present — continuing."
+
       - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
         with:
           node-version: 20
-      
+
       - name: Run reproducibility test
         run: node ci/verify-reproducibility.mjs
-      
+
       - name: Verify fixture integrity
         run: |
-          echo "Checking fixture files..."
-          test -f fixtures/bundles/minimal-valid/bundle.bin || exit 1
-          test -f fixtures/bundles/minimal-valid/manifest.json || exit 1
-          test -f fixtures/bundles/minimal-valid/EXPECTED_VERDICT.json || exit 1
+          set -euo pipefail
+          test -f fixtures/bundles/minimal-valid/bundle.bin
+          test -f fixtures/bundles/minimal-valid/manifest.json
+          test -f fixtures/bundles/minimal-valid/EXPECTED_VERDICT.json
           echo "✓ All fixture files present"
-
