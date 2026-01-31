@@ -5,6 +5,7 @@ on:
   push:
     branches: [main]
   pull_request:
+    branches: [main]
 
 env:
   LC_ALL: C
@@ -25,13 +26,19 @@ jobs:
         run: |
           set -euo pipefail
 
-          BASE="${{ github.event.pull_request.base.sha }}"
-          HEAD="${{ github.event.pull_request.head.sha }}"
+          # Fetch by refs so diff is deterministic. Head may be from fork (not in origin).
+          BASE_REF="${{ github.event.pull_request.base.ref }}"
+          git fetch --no-tags origin "+refs/heads/$BASE_REF:refs/remotes/origin/base"
 
-          # Ensure both SHAs exist locally for diff. No --prune to avoid touching refs checkout post-step may use.
-          git fetch --no-tags --depth=1 origin "$BASE" "$HEAD" || true
+          HEAD_REPO="${{ github.event.pull_request.head.repo.full_name }}"
+          HEAD_REF="${{ github.event.pull_request.head.ref }}"
+          git fetch --no-tags "https://github.com/$HEAD_REPO.git" \
+            "+refs/heads/$HEAD_REF:refs/remotes/origin/head" || \
+          git fetch --no-tags origin "+refs/heads/$HEAD_REF:refs/remotes/origin/head"
 
-          CHANGED="$(git diff --name-only "$BASE" "$HEAD" || true)"
+          # Diff from merge-base so "what the PR introduces" is independent of branch history.
+          MB="$(git merge-base refs/remotes/origin/base refs/remotes/origin/head)"
+          CHANGED="$(git diff --name-only "$MB" refs/remotes/origin/head)"
 
           # Only run if index-related surface changed.
           INDEX_REGEX='^(index/|ci/verify-truth-index\.mjs$|\.github/workflows/truth-index-integrity\.yml$)'
@@ -59,8 +66,55 @@ jobs:
         with:
           node-version: 20
 
-      - name: Verify truth index integrity
-        run: node ci/verify-truth-index.mjs
+      - name: Precheck git health (before node)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE"
+          test -d .git
+          git status >/dev/null
+          git rev-parse --is-inside-work-tree
+          echo "Precheck OK"
+
+      # Run in $RUNNER_TEMP so script cannot mutate workspace/.git. Previous = base (PR) or parent (push).
+      - name: Verify truth index integrity (isolated)
+        shell: bash
+        run: |
+          set -euo pipefail
+          PREV="$RUNNER_TEMP/previous-truth.ndjson"
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+            if ! git show "$BASE_SHA":index/truth.ndjson > "$PREV" 2>/tmp/gitshow.err; then
+              echo "Bootstrap/skip: cannot read base index (maybe absent)."
+              cat /tmp/gitshow.err || true
+              : > "$PREV"
+            fi
+          else
+            if git rev-parse --verify HEAD^ >/dev/null 2>&1; then
+              git show HEAD^:index/truth.ndjson > "$PREV" 2>/dev/null || true
+            else
+              echo "Bootstrap: no parent commit found"
+              : > "$PREV"
+            fi
+          fi
+
+          WORK="$RUNNER_TEMP/truth-index-check"
+          rm -rf "$WORK"
+          mkdir -p "$WORK"
+          cp -R index ci "$WORK/"
+          cd "$WORK"
+          PREVIOUS_INDEX_PATH="$PREV" node ci/verify-truth-index.mjs
+
+      - name: Postcheck git health (after node)
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE"
+          test -d .git || { echo "FATAL: .git missing AFTER node"; exit 1; }
+          git status >/dev/null || { echo "FATAL: git status failed AFTER node"; exit 1; }
+          echo "Postcheck OK"
 
       - name: Verify index file exists
         run: |
@@ -88,12 +142,3 @@ jobs:
             echo "⚠ GENESIS_HASH.txt not found (bootstrap)"
           fi
           cd "$GITHUB_WORKSPACE"
-
-      # Leave workspace and .git intact so actions/checkout post-step can run (avoids git exit 128).
-      - name: Verify workspace intact for checkout post-step
-        if: always()
-        run: |
-          cd "$GITHUB_WORKSPACE"
-          test -d .git || { echo "FATAL: .git missing"; exit 1; }
-          git status >/dev/null || { echo "FATAL: git status failed"; exit 1; }
-          echo "Workspace and .git intact."

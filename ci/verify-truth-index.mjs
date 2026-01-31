@@ -60,12 +60,21 @@ function main() {
     }
   }
 
-  // Previous content from git (if exists). If missing, treat as first commit.
+  // Previous content: from file (isolated CI) or from git. If missing, treat as first commit.
   let previousContent = '';
-  try {
-    previousContent = sh(`git show HEAD:index/truth.ndjson 2>/dev/null || echo ""`);
-  } catch {
-    previousContent = '';
+  const previousPath = process.env.PREVIOUS_INDEX_PATH;
+  if (previousPath) {
+    try {
+      previousContent = readFileSync(previousPath, 'utf8');
+    } catch {
+      previousContent = '';
+    }
+  } else {
+    try {
+      previousContent = sh(`git show HEAD:index/truth.ndjson 2>/dev/null || echo ""`);
+    } catch {
+      previousContent = '';
+    }
   }
 
   const previousLines = previousContent
