@@ -5,16 +5,10 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    labels:
-      - "dependencies"
-      - "github-actions"
 
   # npm (if package.json exists)
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
-    labels:
-      - "dependencies"
-      - "npm"
     open-pull-requests-limit: 5
