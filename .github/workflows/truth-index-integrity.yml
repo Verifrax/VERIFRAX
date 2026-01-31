@@ -27,8 +27,8 @@ jobs:
           BASE="${{ github.event.pull_request.base.sha }}"
           HEAD="${{ github.event.pull_request.head.sha }}"
 
-          # Ensure both SHAs exist locally for diff.
-          git fetch --no-tags --prune --depth=1 origin "$BASE" "$HEAD" || true
+          # Ensure both SHAs exist locally for diff. No --prune to avoid touching refs checkout post-step may use.
+          git fetch --no-tags --depth=1 origin "$BASE" "$HEAD" || true
 
           CHANGED="$(git diff --name-only "$BASE" "$HEAD" || true)"
 
@@ -75,6 +75,7 @@ jobs:
           else
             echo "⚠ SHA256SUMS.txt not found (bootstrap)"
           fi
+          cd "$GITHUB_WORKSPACE"
 
       - name: Verify genesis hash anchor
         run: |
@@ -85,3 +86,13 @@ jobs:
           else
             echo "⚠ GENESIS_HASH.txt not found (bootstrap)"
           fi
+          cd "$GITHUB_WORKSPACE"
+
+      # Leave workspace and .git intact so actions/checkout post-step can run (avoids git exit 128).
+      - name: Verify workspace intact for checkout post-step
+        if: always()
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          test -d .git || { echo "FATAL: .git missing"; exit 1; }
+          git status >/dev/null || { echo "FATAL: git status failed"; exit 1; }
+          echo "Workspace and .git intact."
