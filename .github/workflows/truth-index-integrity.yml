@@ -22,6 +22,10 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Default PR mode = non-blocking until proven
+        if: github.event_name == 'pull_request'
+        run: echo "RUN_TRUTH_INDEX=false" >> "$GITHUB_ENV"
+
       - name: EX-001 gate (PR-only; governance/non-artifact = non-blocking)
         if: github.event_name == 'pull_request'
         shell: bash
@@ -34,13 +38,21 @@ jobs:
 
           HEAD_REPO="${{ github.event.pull_request.head.repo.full_name }}"
           HEAD_REF="${{ github.event.pull_request.head.ref }}"
-          git fetch --no-tags "https://github.com/$HEAD_REPO.git" \
+          git fetch --no-tags --depth=1 "https://github.com/$HEAD_REPO.git" \
             "+refs/heads/$HEAD_REF:refs/remotes/origin/head" || \
-          git fetch --no-tags origin "+refs/heads/$HEAD_REF:refs/remotes/origin/head"
+          git fetch --no-tags --depth=1 origin "+refs/heads/$HEAD_REF:refs/remotes/origin/head"
 
           # Diff from merge-base so "what the PR introduces" is independent of branch history.
-          MB="$(git merge-base refs/remotes/origin/base refs/remotes/origin/head)"
+          MB="$(git merge-base refs/remotes/origin/base refs/remotes/origin/head 2>/dev/null || true)"
+          if [ -z "$MB" ]; then
+            echo "EX-001: merge-base unavailable; defaulting to run verifier (conservative)."
+            echo "RUN_TRUTH_INDEX=true" >> "$GITHUB_ENV"
+            exit 0
+          fi
           CHANGED="$(git diff --name-only "$MB" refs/remotes/origin/head)"
+
+          echo "EX-001 changed files:"
+          echo "$CHANGED"
 
           # Only run if index-related surface changed.
           INDEX_REGEX='^(index/|ci/verify-truth-index\.mjs$|\.github/workflows/truth-index-integrity\.yml$)'
@@ -69,6 +81,7 @@ jobs:
           echo "Index surface changed and artifacts present — continuing."
 
       - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+        if: env.RUN_TRUTH_INDEX == 'true'
         with:
           node-version: 20
 
