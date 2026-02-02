@@ -8,10 +8,6 @@ on:
   release:
     types: [created]
 
-env:
-  LC_ALL: C
-  TZ: UTC
-
 jobs:
   finality-gate:
     runs-on: ubuntu-latest

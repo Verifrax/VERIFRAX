@@ -8,9 +8,6 @@ on:
   schedule:
     - cron: '0 6 * * 1'  # Weekly on Monday
 
-env:
-  LC_ALL: C
-  TZ: UTC
 jobs:
   analyze:
     name: Analyze

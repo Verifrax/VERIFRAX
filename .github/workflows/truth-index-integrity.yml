@@ -7,10 +7,6 @@ on:
   pull_request:
     branches: [main]
 
-env:
-  LC_ALL: C
-  TZ: UTC
-
 jobs:
   verify-integrity:
     runs-on: ubuntu-latest

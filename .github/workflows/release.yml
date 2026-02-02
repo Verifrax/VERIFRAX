@@ -9,9 +9,6 @@ permissions:
   contents: write
   id-token: write
 
-env:
-  LC_ALL: C
-  TZ: UTC
 jobs:
   build:
     name: Build release artifacts

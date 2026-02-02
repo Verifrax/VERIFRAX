@@ -12,9 +12,6 @@ on:
       - 'core/schemas/**'
       - 'core/contracts/**'
 
-env:
-  LC_ALL: C
-  TZ: UTC
 jobs:
   protect-freeze:
     runs-on: ubuntu-latest

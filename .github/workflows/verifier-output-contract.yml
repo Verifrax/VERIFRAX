@@ -12,9 +12,6 @@ on:
       - 'verification/**'
       - '.github/workflows/verifier-output-contract.yml'
 
-env:
-  LC_ALL: C
-  TZ: UTC
 jobs:
   enforce-binary-output:
     runs-on: ubuntu-latest

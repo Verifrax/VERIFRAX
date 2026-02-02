@@ -9,9 +9,6 @@ on:
 
 permissions: read-all
 
-env:
-  LC_ALL: C
-  TZ: UTC
 jobs:
   analysis:
     name: Scorecard analysis

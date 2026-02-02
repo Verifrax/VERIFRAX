@@ -4,9 +4,6 @@ on:
   pull_request:
   push:
 
-env:
-  LC_ALL: C
-  TZ: UTC
 jobs:
   freeze-protection:
     runs-on: ubuntu-latest

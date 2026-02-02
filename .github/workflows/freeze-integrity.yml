@@ -6,9 +6,6 @@ on:
     paths:
       - 'verifrax-freeze/**'
 
-env:
-  LC_ALL: C
-  TZ: UTC
 jobs:
   block-freeze-modification:
     runs-on: ubuntu-latest
