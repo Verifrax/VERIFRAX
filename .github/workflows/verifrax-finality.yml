@@ -4,6 +4,8 @@ on:
   push:
     branches: [main, finality-v1]
   pull_request:
+    paths-ignore:
+      - "freeze-archive/**"
     branches: [main]
   release:
     types: [created]
@@ -45,9 +47,13 @@ jobs:
           HEAD="${{ github.event.pull_request.head.sha }}"
           CHANGED="$(git diff --name-only "$BASE" "$HEAD" || true)"
 
-          FINALITY_REGEX='^(freeze/|verifrax-engine/|verifrax-reference-verifier/|index/|issuance/|core/|adapters/|fixtures/|examples/|package\.json$|pnpm-lock\.yaml$|\.github/workflows/verifrax-finality\.yml$)'
+          # Ignore non-runtime governance reshuffles.
+          GOV_IGNORE_REGEX='^(freeze-archive/|freeze/FREEZE_SURFACE_MANIFEST\.json$|\.github/workflows/freeze-surface-guard\.yml$)'
+          RUNTIME_REGEX='^(freeze/|verifrax-engine/|verifrax-reference-verifier/|index/|issuance/|core/|adapters/|fixtures/|examples/|package\.json$|pnpm-lock\.yaml$|\.github/workflows/verifrax-finality\.yml$)'
 
-          if ! echo "$CHANGED" | grep -E "$FINALITY_REGEX" >/dev/null; then
+          CHANGED_EFFECTIVE="$(echo "$CHANGED" | grep -vE "$GOV_IGNORE_REGEX" || true)"
+
+          if ! echo "$CHANGED_EFFECTIVE" | grep -E "$RUNTIME_REGEX" >/dev/null; then
             echo "EX-001: Governance-only PR (no runtime surface). Finality non-blocking."
             echo "run_finality=false" >> "$GITHUB_OUTPUT"
             exit 0
