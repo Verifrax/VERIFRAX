@@ -160,6 +160,10 @@ public/docs/.cache/
 # Allow intentional freeze artifacts (these are part of the system by design)
 !verifrax-freeze/**
 
+# Re-ignore macOS noise even inside allowed trees
+.DS_Store
+**/.DS_Store
+
 # If you generate local freeze builds, keep them ignored unless moved into verifrax-freeze/
 verifrax-freeze/**/build/*.map
 verifrax-freeze/**/build/.cache/
