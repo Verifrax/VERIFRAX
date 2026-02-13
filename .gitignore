@@ -1,17 +1,169 @@
+# -----------------------------------------------------------------------------
+# VERIFRAX — boundary-first .gitignore
+# Purpose: prevent accidental publication of ephemeral, local, secret, or build
+# artifacts. Anything that enters git becomes permanent public history.
+# -----------------------------------------------------------------------------
+
+# --- OS / editor / tooling noise ---
 .DS_Store
-node_modules
-dist
-build
-out
-.turbo
-.next
-coverage
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+.idea/
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# --- Logs / debugging ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+debug.log
+*.pid
+*.seed
+*.tgz
+
+# --- Node / package managers ---
+node_modules/
+.npm/
+.pnpm-store/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# --- TypeScript / build outputs (generic) ---
+dist/
+build/
+out/
+lib/
+bin/
+.tmp/
+temp/
+.cache/
+.parcel-cache/
+.turbo/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+
+# --- Vite / React / Next / Svelte / etc ---
+.vite/
+.next/
+.nuxt/
+.svelte-kit/
+storybook-static/
+vite.config.ts.timestamp-*
+
+# --- Wrangler / Cloudflare ---
+.wrangler/
+wrangler/vars/
+wrangler/secret*
+.dev.vars
+.dev.vars.*
+*.cf-worker.js
+*.cf-worker.mjs
+
+# --- Environment / secrets (hard block) ---
 .env
 .env.*
-*.log
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.jks
+*.asc.private
+*.age
+secrets/
+secret/
+private/
+priv/
+keys/
+keyrings/
+credentials/
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
 
-# GitHub Pages artifacts (disabled for v1 finality)
-docs/index.html
+# --- Runtime state / generated reports ---
+reports/
+report/
+artifacts/
+artifact/
+generated/
+gen/
+.tmp-run/
+run/
+runs/
+sessions/
+session/
+cache/
+caches/
+
+# --- Test outputs / binary fixtures that should not drift ---
+# Keep deterministic fixtures only if intentionally committed under test/fixtures.
+test-results/
+playwright-report/
+junit*.xml
+*.snap.new
+*.bin.tmp
+*.json.tmp
+
+# --- Python / misc (if any scripts create these) ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# --- Rust (verifrax-verifier-min) ---
+target/
+Cargo.lock.bak
+
+# --- GitHub Pages artifacts ---
 docs-site/
 _site/
 gh-pages/
+public/docs/.cache/
+
+# -----------------------------------------------------------------------------
+# VERIFRAX specific: prevent accidental committing of build outputs unless
+# explicitly placed in canonical public locations.
+# -----------------------------------------------------------------------------
+
+# Block generic worker builds unless intentionally committed
+**/worker-production-*.js
+**/worker-production-*.mjs
+**/build-test*-*.json
+
+# Allow canonical public surface artifacts (explicitly versioned + intentional)
+!public/**
+!product/**
+
+# Allow intentional freeze artifacts (these are part of the system by design)
+!verifrax-freeze/**
+
+# Re-ignore macOS noise even inside allowed trees
+.DS_Store
+**/.DS_Store
+
+# If you generate local freeze builds, keep them ignored unless moved into verifrax-freeze/
+verifrax-freeze/**/build/*.map
+verifrax-freeze/**/build/.cache/
