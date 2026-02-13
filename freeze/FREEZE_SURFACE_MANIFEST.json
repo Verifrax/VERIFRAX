@@ -2,13 +2,12 @@
   "version": "v2.8.0",
   "canonical_root": "freeze",
   "hash_bound_files": [
-    "ENGINE.json",
-    "certificate.v1.json",
-    "core.dist.hash",
-    "v2/releases/v2.8.0/worker.js",
-    "FREEZE_SURFACE_MANIFEST.json"
+    "freeze/ENGINE.json",
+    "freeze/certificate.v1.json",
+    "freeze/core.dist.hash",
+    "freeze/v2/releases/v2.8.0/worker.js"
   ],
   "hash_files": [
-    "v2/releases/v2.8.0/SHA256SUMS.txt"
+    "freeze/v2/releases/v2.8.0/SHA256SUMS.txt"
   ]
 }
