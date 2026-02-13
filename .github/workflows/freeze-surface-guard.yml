@@ -1,0 +1,77 @@
+name: Freeze Surface Guard
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Guard freeze surface changes against canonical manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          MANIFEST="verifrax-freeze/v2.8.0/source/VERIFRAX/freeze/FREEZE_SURFACE_MANIFEST.json"
+
+          test -f "$MANIFEST" || { echo "MISSING MANIFEST: $MANIFEST"; exit 1; }
+
+          CANONICAL_ROOT=$(node -p "require('./$MANIFEST').canonical_root")
+          test -n "$CANONICAL_ROOT" || { echo "canonical_root is empty"; exit 1; }
+
+          BASE_REF="${{ github.base_ref }}"
+          if [ -n "${BASE_REF}" ]; then
+            git fetch origin "${BASE_REF}:${BASE_REF}" >/dev/null 2>&1 || true
+            RANGE="origin/${BASE_REF}...HEAD"
+          else
+            RANGE="HEAD~1...HEAD"
+          fi
+
+          # List changed files under verifrax-freeze/*
+          CHANGED=$(git diff --name-only "$RANGE" | grep '^verifrax-freeze/' || true)
+
+          if [ -z "$CHANGED" ]; then
+            echo "OK: no changes under verifrax-freeze/"
+            exit 0
+          fi
+
+          echo "$CHANGED" | while read -r f; do
+            # Allow changes only inside canonical_root OR outside freeze tree entirely
+            if [[ "$f" == "$CANONICAL_ROOT/"* ]]; then
+              rel="${f#${CANONICAL_ROOT}/}"
+
+              # Allow the manifest itself
+              if [[ "$rel" == "FREEZE_SURFACE_MANIFEST.json" ]]; then
+                continue
+              fi
+
+              # Allow only files explicitly listed in manifest
+              node - <<'NODE'
+              const fs = require('fs');
+              const path = process.argv[1];
+              const manifestPath = process.argv[2];
+              const rel = process.argv[3];
+
+              const m = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+              const allowed = new Set([...(m.hash_bound_files||[]), ...(m.hash_files||[])]);
+              if (!allowed.has(rel)) {
+                console.error(`BLOCKED: changed file not in manifest: ${rel}`);
+                process.exit(1);
+              }
+NODE \
+              "$f" "$MANIFEST" "$rel"
+            else
+              # Any change under verifrax-freeze outside canonical_root is banned.
+              echo "BLOCKED: change outside canonical_root: $f"
+              echo "canonical_root = $CANONICAL_ROOT"
+              exit 1
+            fi
+          done
+
+          echo "OK: freeze changes conform to manifest"
