@@ -51,13 +51,6 @@ jobs:
           echo "3. Approved by v2+ versioning process"
           echo ""
           echo "To modify semantics, create a new major version (v2, v3, etc.)"
-          exit 1
-      
-      - name: Allow mechanical changes only
-        if: failure()
-        run: |
-          # Check if changes are only formatting (whitespace, indentation)
-          # This is a simplified check - in practice, use a proper diff tool
-          echo "⚠️  Checking if changes are mechanical only..."
+          exit 1echo "⚠️  Checking if changes are mechanical only..."
           echo "Manual review required for semantic changes"
 
