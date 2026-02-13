@@ -50,11 +50,12 @@ jobs:
             | grep -vE '^freeze-archive/' || true)
 
           echo "Changed under freeze/:"
-          printf "%s\n" "${CHANGED_CANON[@]:-}" | sed 's/^/  - /' || true
+          printf "%s\n" "${CHANGED_CANON[@]}" | sed 's/^/  - /' || true
 
           # Fail if any canonical-freeze path changes outside manifest allowlist.
           BAD=()
-          for f in "${CHANGED_CANON[@]:-}"; do
+          for f in "${CHANGED_CANON[@]}"; do
+            [[ -n "$f" ]] || continue
             OK=0
             for a in "${ALLOWED[@]}"; do
               [[ "$f" == "$a" ]] && OK=1 && break
