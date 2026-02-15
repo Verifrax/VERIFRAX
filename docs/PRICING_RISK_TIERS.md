@@ -181,7 +181,7 @@ All verifications require:
 **Excluded from all tiers:**
 - **Verdict Correctness:** No warranty on verdict accuracy
 - **Evidence Authenticity:** No guarantee evidence is authentic
-- **Legal Advice:** No legal interpretation or advice
+- **Legal interpretation:** none provided
 - **Court Representation:** No representation in legal proceedings
 - **Dispute Resolution:** No human adjudication or dispute resolution
 
