@@ -102,7 +102,7 @@ If verdict differs, this indicates:
 
 **Step 2: Check Invalidations**
 
-If verdict is `VERIFIED` but should be `INVALID`, check:
+If verdict is `VERIFIED` but the rule outcome is `INVALID`, check:
 - Truth index for matching invalidations
 - Invalidation signatures
 - Invalidation scope (bundle_hash, claim_id, profile_id)
