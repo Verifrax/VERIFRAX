@@ -1,0 +1,60 @@
+name: Evaluation Result
+description: Mandatory record after running CICULLIS
+title: "EVALUATION RESULT: "
+labels: ["evaluation"]
+body:
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Outcome
+      options:
+        - PASS
+        - FAIL
+    validations:
+      required: true
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repository URL
+      description: Repository where CICULLIS was evaluated
+    validations:
+      required: true
+
+  - type: input
+    id: workflow
+    attributes:
+      label: Workflow Run URL
+      description: Direct link to the CI run (or write PRIVATE and paste logs below)
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: CICULLIS Version
+      description: Tag or commit SHA
+    validations:
+      required: true
+
+  - type: input
+    id: runner
+    attributes:
+      label: Runner OS
+      placeholder: ubuntu-latest
+    validations:
+      required: true
+
+  - type: textarea
+    id: rules
+    attributes:
+      label: Observed Rule Code(s)
+      description: e.g. PROVENANCE.SEAL.MISSING
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Optional. Observations only. No speculation.

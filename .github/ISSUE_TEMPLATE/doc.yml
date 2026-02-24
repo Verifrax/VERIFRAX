@@ -1,0 +1,28 @@
+name: Documentation Issue
+description: Incorrect or unclear documentation
+title: "DOC: "
+labels: ["documentation"]
+body:
+  - type: textarea
+    id: location
+    attributes:
+      label: Location
+      description: File + section reference
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: Problem
+      description: What is incorrect or unclear
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Correction
+      description: Concrete wording change
+    validations:
+      required: true

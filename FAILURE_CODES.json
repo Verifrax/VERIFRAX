@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Machine-readable failure code contract for CICULLIS",
+  "codes": {
+    "0": {
+      "meaning": "PASS",
+      "description": "All checks passed"
+    },
+    "1": {
+      "meaning": "GENERIC_FAILURE",
+      "description": "Unspecified failure"
+    },
+    "2": {
+      "meaning": "PROFILE_LOAD_ERROR",
+      "description": "Failed to load or parse profile"
+    },
+    "3": {
+      "meaning": "INPUT_VALIDATION_ERROR",
+      "description": "Input does not meet requirements"
+    },
+    "4": {
+      "meaning": "RULE_VIOLATION",
+      "description": "One or more rules failed"
+    },
+    "5": {
+      "meaning": "EXECUTION_ERROR",
+      "description": "Runtime error during execution"
+    },
+    "6": {
+      "meaning": "TIMEOUT",
+      "description": "Execution exceeded time limit"
+    },
+    "7": {
+      "meaning": "DEPENDENCY_MISSING",
+      "description": "Required dependency not available"
+    }
+  },
+  "contract": {
+    "immutable": true,
+    "version_locked": "1.0.0",
+    "additions_allowed": false,
+    "removals_allowed": false,
+    "meaning_changes_allowed": false
+  }
+}

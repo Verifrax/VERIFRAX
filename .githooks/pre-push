@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+STAGED="$(git diff --name-only)"
+
+# Deterministic enforcement placeholder (no literal secret patterns)
+if echo "$STAGED" | grep -E -q 'FORBIDDEN_SECRET_PATTERN'; then
+  echo "BLOCKED: secret-like content detected"
+  exit 1
+fi

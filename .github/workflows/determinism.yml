@@ -1,0 +1,81 @@
+name: Determinism Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions: {}
+
+env:
+  LC_ALL: C
+  TZ: UTC
+
+jobs:
+  determinism:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4
+
+      - name: Run twice and compare
+        run: |
+          set -euo pipefail
+
+          # First run
+          set +e
+          echo "test input" | ./gate.sh > output1.txt 2>&1
+          code1=$?
+          set -e
+          printf '%s\n' "$code1" > exit1.txt
+
+          # Second run
+          set +e
+          echo "test input" | ./gate.sh > output2.txt 2>&1
+          code2=$?
+          set -e
+          printf '%s\n' "$code2" > exit2.txt
+
+          # Compare stdout
+          if ! diff -u output1.txt output2.txt; then
+            echo "FAIL: stdout differs between runs"
+            exit 1
+          fi
+
+          # Compare exit codes
+          if ! diff -u exit1.txt exit2.txt; then
+            echo "FAIL: exit code differs between runs"
+            exit 1
+          fi
+
+          echo "PASS: determinism verified"
+
+  failure-codes-checksum:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4
+
+      - name: Verify FAILURE_CODES.json checksum (must exist)
+        run: |
+          set -euo pipefail
+
+          if [ ! -f .failure_codes_checksum ]; then
+            echo "FAIL: .failure_codes_checksum missing (must be committed)"
+            exit 1
+          fi
+
+          EXPECTED="$(cat .failure_codes_checksum)"
+          ACTUAL="$(sha256sum FAILURE_CODES.json | cut -d' ' -f1)"
+
+          if [ "$ACTUAL" != "$EXPECTED" ]; then
+            echo "FAIL: FAILURE_CODES.json has been modified"
+            echo "Expected: $EXPECTED"
+            echo "Actual:   $ACTUAL"
+            exit 1
+          fi
+
+          echo "PASS: FAILURE_CODES.json checksum verified"

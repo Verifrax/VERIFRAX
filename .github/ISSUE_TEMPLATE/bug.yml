@@ -1,0 +1,44 @@
+name: Bug Report
+description: Deterministic defect with reproducible evidence
+title: "BUG: "
+labels: ["bug"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: CICULLIS Version
+      description: Tag or commit SHA
+    validations:
+      required: true
+
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed Behavior
+      description: What actually happened
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should have happened
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal Reproduction
+      description: Steps or link to minimal repository
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Relevant CICULLIS output
+    validations:
+      required: true

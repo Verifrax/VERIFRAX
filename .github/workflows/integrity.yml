@@ -1,0 +1,119 @@
+name: Integrity Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions: {}
+
+env:
+  LC_ALL: C
+  TZ: UTC
+
+jobs:
+  profile-checksum:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4
+
+      - name: Verify profile checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -f .profile_checksum || { echo "FAIL: .profile_checksum missing"; exit 1; }
+          test -f profiles/default.profile || { echo "FAIL: profiles/default.profile missing"; exit 1; }
+
+          expected="$(cut -d' ' -f1 < .profile_checksum)"
+          actual="$(sha256sum profiles/default.profile | cut -d' ' -f1)"
+
+          if [[ "$expected" != "$actual" ]]; then
+            echo "FAIL: profiles/default.profile has been modified"
+            echo "Expected: $expected"
+            echo "Actual:   $actual"
+            exit 1
+          fi
+
+          echo "PASS: Profile checksum verified"
+
+  failure-codes-checksum:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4
+
+      - name: Verify FAILURE_CODES.json checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -f .failure_codes_checksum || { echo "FAIL: .failure_codes_checksum missing"; exit 1; }
+          test -f FAILURE_CODES.json || { echo "FAIL: FAILURE_CODES.json missing"; exit 1; }
+
+          expected="$(tr -d ' \n\r\t' < .failure_codes_checksum)"
+          actual="$(sha256sum FAILURE_CODES.json | cut -d' ' -f1)"
+
+          if [[ "$expected" != "$actual" ]]; then
+            echo "FAIL: FAILURE_CODES.json has been modified"
+            echo "Expected: $expected"
+            echo "Actual:   $actual"
+            exit 1
+          fi
+
+          echo "PASS: Failure codes checksum verified"
+
+  profile-schema-checksum:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4
+
+      - name: Verify PROFILE_SCHEMA.json checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -f .profile_schema_checksum || { echo "FAIL: .profile_schema_checksum missing"; exit 1; }
+          test -f PROFILE_SCHEMA.json || { echo "FAIL: PROFILE_SCHEMA.json missing"; exit 1; }
+
+          expected="$(tr -d ' \n\r\t' < .profile_schema_checksum)"
+          actual="$(sha256sum PROFILE_SCHEMA.json | cut -d' ' -f1)"
+
+          if [[ "$expected" != "$actual" ]]; then
+            echo "FAIL: PROFILE_SCHEMA.json has been modified"
+            echo "Expected: $expected"
+            echo "Actual:   $actual"
+            exit 1
+          fi
+
+          echo "PASS: Profile schema checksum verified"
+
+  malformed-profile-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4
+
+      - name: Test malformed profile rejection
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          printf '%s\n' 'INVALID_SYNTAX{{{{' > /tmp/malformed.profile
+
+          exit_code=0
+          ./gate.sh --profile /tmp/malformed.profile < /dev/null || exit_code=$?
+
+          if [[ "$exit_code" != "2" ]]; then
+            echo "FAIL: Malformed profile should exit with code 2, got $exit_code"
+            exit 1
+          fi
+
+          echo "PASS: Malformed profile rejected with deterministic exit code"

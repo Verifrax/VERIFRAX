@@ -1,0 +1,102 @@
+name: Gates
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  statuses: write  # REQUIRED: publish legacy commit statuses for branch protection
+
+concurrency:
+  group: gates-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  cicullis:
+    name: cicullis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+      - name: Policy gate
+        run: |
+          echo "TODO: implement CICULLIS policy checks"
+          exit 0
+
+  hygiene:
+    name: hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+      - name: Repo hygiene
+        run: |
+          echo "TODO: implement hygiene checks (format, lint, docs, etc.)"
+          exit 0
+
+  selftest:
+    name: selftest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+      - name: Self-tests
+        run: |
+          echo "TODO: implement tests"
+          exit 0
+
+  publish-required-statuses:
+    name: Publish required legacy statuses
+    runs-on: ubuntu-latest
+    needs: [cicullis, hygiene, selftest]
+    if: ${{ always() }}
+    permissions:
+      statuses: write
+      contents: read
+    steps:
+      - name: Post required status contexts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          EVENT: ${{ github.event_name }}
+          SHA_PR: ${{ github.event.pull_request.head.sha }}
+          SHA_PUSH: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          # Select correct commit SHA for the event type
+          if [ "$EVENT" = "pull_request" ]; then
+            SHA="$SHA_PR"
+          else
+            SHA="$SHA_PUSH"
+          fi
+
+          # Compute state: success only if all needed jobs succeeded
+          state="success"
+          if [ "${{ needs.cicullis.result }}" != "success" ] || \
+             [ "${{ needs.hygiene.result }}" != "success" ] || \
+             [ "${{ needs.selftest.result }}" != "success" ]; then
+            state="failure"
+          fi
+
+          echo "Publishing legacy statuses on $REPO@$SHA => $state"
+
+          for ctx in \
+            "Gates / cicullis (pull_request)" \
+            "Gates / hygiene (pull_request)" \
+            "Gates / selftest (pull_request)"
+          do
+            echo "POST status: $ctx"
+            gh api -X POST "repos/$REPO/statuses/$SHA" \
+              -H "Accept: application/vnd.github+json" \
+              -f state="$state" \
+              -f context="$ctx" \
+              -f description="Published by Gates for branch protection (legacy status)"
+          done
