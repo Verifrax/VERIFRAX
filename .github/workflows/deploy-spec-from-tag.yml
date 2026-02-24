@@ -3,6 +3,12 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag ref to deploy (e.g. v2.8.0)'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -21,8 +27,11 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - name: Enforce tag-only
+        shell: bash
         run: |
           set -euo pipefail
+          echo "event=${GITHUB_EVENT_NAME} ref=${GITHUB_REF} ref_type=${GITHUB_REF_TYPE:-}"
+          [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]] && echo "input_tag=${{ inputs.tag }}"
           [[ "${GITHUB_REF}" == refs/tags/* ]] || { echo "not a tag ref"; exit 1; }
       - name: Prepare Pages artifact (public/)
         uses: actions/upload-pages-artifact@v3
