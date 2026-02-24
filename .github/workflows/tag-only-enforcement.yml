@@ -4,6 +4,11 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag ref to validate (e.g. v2.8.0)'
+        required: false
+        default: ''
 
 jobs:
   tag-only:
@@ -13,6 +18,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo "ref=${GITHUB_REF} ref_type=${GITHUB_REF_TYPE:-} event=${GITHUB_EVENT_NAME}"
+          echo "event=${GITHUB_EVENT_NAME} ref=${GITHUB_REF} ref_type=${GITHUB_REF_TYPE:-}"
+          [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]] && echo "input_tag=${{ inputs.tag }}"
           [[ "${GITHUB_REF}" == refs/tags/* ]] || { echo "not a tag ref"; exit 1; }
           echo "✅ Tag-only policy satisfied"
