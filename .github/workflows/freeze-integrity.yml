@@ -105,3 +105,4 @@ jobs:
             exit 1
           fi
           echo "PASS: Certificate schema checksum verified"
+# noop: retrigger spec status
