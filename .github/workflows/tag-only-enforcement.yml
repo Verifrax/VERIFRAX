@@ -1,0 +1,18 @@
+name: Tag-only enforcement
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  tag-only:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce tag-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "ref=${GITHUB_REF} ref_type=${GITHUB_REF_TYPE:-} event=${GITHUB_EVENT_NAME}"
+          [[ "${GITHUB_REF}" == refs/tags/* ]] || { echo "not a tag ref"; exit 1; }
+          echo "✅ Tag-only policy satisfied"
