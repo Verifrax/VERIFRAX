@@ -39,3 +39,4 @@ jobs:
               });
               core.info(`published spec=success on ${sha}`);
             }
+# noop: republish spec status
