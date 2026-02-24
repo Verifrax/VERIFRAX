@@ -1,0 +1,21 @@
+name: Tag-only enforcement
+on:
+  push:
+  pull_request:
+
+jobs:
+  reject-non-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reject non-tag release-grade runs
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "ref=${GITHUB_REF} ref_type=${GITHUB_REF_TYPE:-} event=${GITHUB_EVENT_NAME}"
+          if [[ "${GITHUB_EVENT_NAME}" == "push" ]]; then
+            if [[ "${GITHUB_REF}" != refs/tags/* && "${GITHUB_REF_TYPE:-}" != "tag" ]]; then
+              echo "❌ Tag-only policy: release-grade runs must be tag refs"
+              exit 1
+            fi
+          fi
+          echo "✅ Tag-only policy satisfied"
