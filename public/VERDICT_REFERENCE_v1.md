@@ -3,7 +3,7 @@
 This document defines the **normative, non-interpretive semantics**
 of VERIFRAX v1 verdict outputs.
 
-This document provides **no operational direction or actions**.
+This document provides **no guidance, recommendations, or actions**.
 It exists solely to define invariant meanings required for conformance.
 
 ## Verdict Enum
@@ -34,5 +34,5 @@ This rule is **normative** and applies to all current and future verifier implem
 
 ## Authority Disclaimer
 
-VERIFRAX v1 does not provide operational direction or actions.
+VERIFRAX v1 does not provide recommendations, actions, or guidance.
 Any interpretation of verdicts occurs outside the system.
