@@ -2,7 +2,7 @@
 set -euo pipefail
 tag="${1:?tag required (e.g. v2.8.0)}"
 ver="${tag#v}"
-dir="public/spec/${ver}"
+dir="public/spec/v"
 test -d "$dir" || { echo "missing $dir"; exit 1; }
 mkdir -p public/spec/latest
 cat > public/spec/latest/index.html <<HTML

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 ver="${1:?version required (e.g. 2.8.0)}"
-dir="public/spec/${ver}"
+dir="public/spec/v"
 cd "$dir"
 tmp="$(mktemp)"
 find . -type f ! -name 'MANIFEST.sha256' ! -name 'MANIFEST_SHA256.txt' -print0 \
