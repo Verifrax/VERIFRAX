@@ -167,3 +167,10 @@ public/docs/.cache/
 # If you generate local freeze builds, keep them ignored unless moved into verifrax-freeze/
 verifrax-freeze/**/build/*.map
 verifrax-freeze/**/build/.cache/
+node_modules/
+out/
+dist/
+build/
+coverage/
+.wrangler/
+.DS_Store
