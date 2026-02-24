@@ -2,15 +2,7 @@ name: Verifier Output Contract - Binary Only
 
 on:
   push:
-    paths:
-      - 'core/engine/verifier.ts'
-      - 'verification/**'
-      - '.github/workflows/verifier-output-contract.yml'
   pull_request:
-    paths:
-      - 'core/engine/verifier.ts'
-      - 'verification/**'
-      - '.github/workflows/verifier-output-contract.yml'
 
 env:
   LC_ALL: C

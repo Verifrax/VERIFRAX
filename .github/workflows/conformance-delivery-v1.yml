@@ -2,17 +2,7 @@ name: Conformance - Delivery v1 Determinism Gate
 
 on:
   push:
-    paths:
-      - 'public/conformance/golden/delivery_v1/**'
-      - 'core/engine/**'
-      - 'verification/reference-verifier/**'
-      - '.github/workflows/conformance-delivery-v1.yml'
   pull_request:
-    paths:
-      - 'public/conformance/golden/delivery_v1/**'
-      - 'core/engine/**'
-      - 'verification/reference-verifier/**'
-      - '.github/workflows/conformance-delivery-v1.yml'
 
 env:
   LC_ALL: C

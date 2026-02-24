@@ -2,17 +2,7 @@ name: Verifrax Finality
 
 on:
   push:
-    branches: [main, finality-v1]
   pull_request:
-    paths-ignore:
-      - "freeze-archive/**"
-    branches: [main]
-  release:
-    types: [created]
-
-env:
-  LC_ALL: C
-  TZ: UTC
 
 jobs:
   finality-gate:
