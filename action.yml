@@ -1,0 +1,19 @@
+name: cicullis
+description: >
+  Deterministic CI gate enforcing irreversible decisions.
+
+author: Midia Kiasat
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        chmod +x gate.sh
+        ./gate.sh
+
+branding:
+  icon: slash
+  color: red
+
+# reindex: 2026-02-23T11:23:53Z

@@ -1,0 +1,61 @@
+name: Spec immutability
+
+on:
+  pull_request:
+    paths:
+      - 'public/spec/**'
+  push:
+    branches: [ main ]
+    paths:
+      - 'public/spec/**'
+
+jobs:
+  spec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Block edits to frozen spec versions
+        if: github.event_name == 'pull_request'
+        run: |
+          set -euo pipefail
+
+          # Any change under an existing version dir is forbidden.
+          # Allow only NEW version dirs.
+          git fetch origin "${{ github.base_ref }}" --depth=1
+
+          BASE="origin/${{ github.base_ref }}"
+          CHANGED="$(git diff --name-only "$BASE"...HEAD -- 'public/spec/' || true)"
+
+          # Find version directories that already exist on base
+          EXISTING="$(git ls-tree -d --name-only "$BASE" public/spec | sed 's#^public/spec/##' || true)"
+
+          for v in $EXISTING; do
+            if echo "$CHANGED" | grep -q "^public/spec/$v/"; then
+              echo "ERROR: Frozen spec version modified: public/spec/$v/"
+              echo "Only new version directories may be added."
+              exit 1
+            fi
+          done
+
+      - name: Verify MANIFEST.sha256 for all spec versions
+        run: |
+          set -euo pipefail
+          for d in public/spec/*; do
+            [ -d "$d" ] || continue
+            [ -f "$d/MANIFEST.sha256" ] || { echo "Missing $d/MANIFEST.sha256"; exit 1; }
+            [ -f "$d/FREEZE.txt" ] || { echo "Missing $d/FREEZE.txt"; exit 1; }
+            [ -f "$d/SOURCE.txt" ] || { echo "Missing $d/SOURCE.txt"; exit 1; }
+
+            ( cd "$d"
+              tmp="$(mktemp)"
+              find . -type f ! -name 'MANIFEST.sha256' -print0 \
+                | LC_ALL=C sort -z \
+                | xargs -0 sha256sum \
+                | sed 's/  \.\//  /' \
+                > "$tmp"
+              diff -u MANIFEST.sha256 "$tmp"
+            )
+          done

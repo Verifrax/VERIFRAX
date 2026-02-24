@@ -37,7 +37,7 @@ dig _dmarc.verifrax.net TXT +noall +answer
 
 **Decision Required:** Choose one email posture:
 
-#### Option A: No Email (Recommended for v2)
+#### Option A: No Email (v2 default)
 
 - **MX:** No MX records
 - **SPF:** `v=spf1 -all` (reject all)
@@ -82,7 +82,7 @@ dig verifrax.net DS +noall +answer
 dig *.verifrax.net A +noall +answer
 ```
 
-**Requirement:** No wildcard record should route unknown subdomains to production.
+**Requirement:** Wildcard records must not route unknown subdomains to production.
 
 **Status:** No wildcard records present
 

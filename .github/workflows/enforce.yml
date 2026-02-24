@@ -1,0 +1,78 @@
+name: Enforcement
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Default-deny. Each job declares what it needs.
+permissions: {}
+
+jobs:
+  cicullis:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: midiakiasat/cicullis@569b496eb09e4df687c56fc0dceb4abdc8d5479d
+
+  hygiene:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - name: Deterministic tracked-artifact gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          TRACKED="$(git ls-files)"
+
+          fail() {
+            echo "CI-GATE FAILED"
+            echo "Rule: $1"
+            echo "Decision: BLOCKED"
+            exit 1
+          }
+
+          echo "$TRACKED" | grep -E -q '^internal/(ledger|state)/' && fail "REPO.TRACKED.RUNTIME_STATE"
+
+          echo "$TRACKED" | grep -E -q '(^|/)\.DS_Store$|(^|/)\.AppleDouble/|(^|/)__MACOSX/|(^|/)\.idea/|(^|/)\.vscode/' && fail "REPO.TRACKED.JUNK"
+
+          echo "$TRACKED" | grep -E -q '(^|/).*\.sqlite3?$|(^|/).*\.db$|(^|/).*\.log$|(^|/)\.cache/|(^|/)coverage/|(^|/)dist/|(^|/)build/' && fail "REPO.TRACKED.ARTIFACT"
+
+          echo "$TRACKED" | grep -E -q '(^|/)\.env(\..+)?$|(^|/)id_rsa|(^|/).*\.pem$|(^|/).*\.p12$|(^|/).*\.pfx$|(^|/).*\.key$' && fail "REPO.TRACKED.SECRET_FILE"
+
+          echo "OK: hygiene gate satisfied"
+
+  selftest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - name: Expect runtime-state failure
+        run: |
+          cd fixtures/fail-runtime
+          if git ls-files | grep -E -q '^internal/(ledger|state)/'; then
+            echo "OK"
+          else
+            exit 1
+          fi
+
+  selftest_pass:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - name: Expect clean pass fixture
+        run: |
+          cd fixtures/pass
+          if git ls-files | grep -E -q '^internal/(ledger|state)/'; then
+            exit 1
+          else
+            echo "OK"
+          fi

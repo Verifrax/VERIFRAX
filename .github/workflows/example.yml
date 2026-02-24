@@ -1,0 +1,23 @@
+name: CICULLIS
+
+on:
+  pull_request:
+
+permissions: {}
+
+env:
+  LC_ALL: C
+  TZ: UTC
+
+jobs:
+  cicullis:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4
+
+      - name: Run CICULLIS
+        uses: midiakiasat/cicullis@569b496eb09e4df687c56fc0dceb4abdc8d5479d
+        with:
+          profile: profiles/default.profile
