@@ -30,7 +30,7 @@
 - `build.provenance.json` - Build provenance data
 
 ### Freeze Directory
-- `freeze/v2.6.0/` - All files (frozen artifacts)
+- `freeze/v2.7.0/` - All files (frozen artifacts)
 - `freeze/v2.5.0/` - All files (frozen artifacts)
 - `freeze/v2.4.0/` - All files (frozen artifacts)
 - `freeze/v2.3.0/` - All files (frozen artifacts)
