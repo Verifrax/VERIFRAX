@@ -17,13 +17,17 @@ jobs:
     permissions:
       security-events: write
       contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
     steps:
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Initialize CodeQL
         uses: github/codeql-action/init@c4a7bc332abaec03596ff2803dd7f3ca3a238975 # v3
         with:
-          languages: javascript,python
+          languages: ${{ matrix.language }}
       - name: Autobuild
         uses: github/codeql-action/autobuild@c4a7bc332abaec03596ff2803dd7f3ca3a238975 # v3
       - name: Perform CodeQL Analysis
