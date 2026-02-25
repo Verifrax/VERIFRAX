@@ -12,25 +12,21 @@ permissions: read-all
 
 jobs:
   analysis:
-    name: Scorecard analysis
     runs-on: ubuntu-latest
     permissions:
       security-events: write
       id-token: write
       contents: read
-
     steps:
       - name: Checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
-
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Run Scorecard
-        uses: ossf/scorecard-action@dc50aaad58d3c125fc1a79f2f5a05d1f1e6a4c60 # v2.4.0
+        uses: ossf/scorecard-action@ff5dd8929f96a8a4dc67d13f32b8c75057829621 # v2.4.0
         with:
           results_file: results.sarif
           results_format: sarif
           publish_results: true
-
       - name: Upload SARIF
-        uses: github/codeql-action/upload-sarif@8b1d4b2241f89a111b8b29b45b63e3f4cb0f0b33 # v3
+        uses: github/codeql-action/upload-sarif@c4a7bc332abaec03596ff2803dd7f3ca3a238975 # v3
         with:
           sarif_file: results.sarif

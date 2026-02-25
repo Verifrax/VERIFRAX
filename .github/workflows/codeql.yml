@@ -13,23 +13,18 @@ permissions: read-all
 
 jobs:
   analyze:
-    name: Analyze
     runs-on: ubuntu-latest
     permissions:
       security-events: write
       contents: read
-
     steps:
       - name: Checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
-
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@8b1d4b2241f89a111b8b29b45b63e3f4cb0f0b33 # v3
+        uses: github/codeql-action/init@c4a7bc332abaec03596ff2803dd7f3ca3a238975 # v3
         with:
           languages: javascript,python
-
       - name: Autobuild
-        uses: github/codeql-action/autobuild@8b1d4b2241f89a111b8b29b45b63e3f4cb0f0b33 # v3
-
+        uses: github/codeql-action/autobuild@c4a7bc332abaec03596ff2803dd7f3ca3a238975 # v3
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@8b1d4b2241f89a111b8b29b45b63e3f4cb0f0b33 # v3
+        uses: github/codeql-action/analyze@c4a7bc332abaec03596ff2803dd7f3ca3a238975 # v3
