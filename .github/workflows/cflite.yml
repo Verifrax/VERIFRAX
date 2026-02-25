@@ -1,0 +1,31 @@
+name: ClusterFuzzLite PR fuzzing
+
+on:
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  fuzz:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+
+      - name: Build fuzzers
+        uses: google/clusterfuzzlite/actions/build_fuzzers@0d7b5f3c2b8c3d4b6a35cb2d1df7a8fb7a46f7b9 # v1
+        with:
+          language: python
+
+      - name: Run fuzzers
+        uses: google/clusterfuzzlite/actions/run_fuzzers@0d7b5f3c2b8c3d4b6a35cb2d1df7a8fb7a46f7b9 # v1
+        with:
+          language: python
+          fuzz_seeds: ./fuzzing/seeds
+          max_total_time: 300
