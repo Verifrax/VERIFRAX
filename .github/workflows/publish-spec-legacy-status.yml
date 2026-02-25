@@ -1,10 +1,10 @@
 name: Publish required legacy status: spec
-"on":
+on:
   push:
     branches:
       - main
   pull_request:
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -21,13 +21,11 @@ jobs:
           script: |
             const shas = new Set();
 
-            // PR: publish to head sha + merge sha (context.sha)
             if (context.payload?.pull_request) {
               shas.add(context.payload.pull_request.head.sha);
-              shas.add(context.sha);
+              shas.add(context.sha); // merge sha for PR context
             } else {
-              // push/workflow_dispatch: publish to triggering sha
-              shas.add(context.sha);
+              shas.add(context.sha); // push / workflow_dispatch sha
             }
 
             for (const sha of shas) {
