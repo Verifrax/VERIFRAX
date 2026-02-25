@@ -30,7 +30,7 @@ For scope limits and common misinterpretations, see:
 
 ## VERSION & AUTHORITY MODEL (NON-NEGOTIABLE)
 
-### AUTHORITATIVE ENGINE — **v2.7.0 (FROZEN)**
+### AUTHORITATIVE ENGINE — **v2.6.0 (FROZEN)**
 
 The verification *authority* of VERIFRAX is permanently anchored to the following immutable artifacts:
 
@@ -59,7 +59,7 @@ v2.8.0 introduces **runtime, discovery, and payment-layer evolution only**. It d
   * Pro / Legal: €650
   * Institutional: €1,500
 
-Authority remains **anchored to v2.7.0**.
+Authority remains **anchored to v2.6.0**.
 
 ---
 
@@ -89,7 +89,7 @@ See: public/genesis/certificate.json
 ### Production Freeze
 
 * **Freeze Version:** v2.8.0 (runtime)
-* **Authority Version:** v2.7.0 (engine)
+* **Authority Version:** v2.6.0 (engine)
 * **Freeze Tag:** `freeze-v2.8.0`
 * **Deployment Date:** 2026-01-24
 

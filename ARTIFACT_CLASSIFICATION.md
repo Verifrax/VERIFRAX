@@ -214,7 +214,7 @@
 - `VERIFRAX.code-workspace` - Workspace file (internal)
 
 ### Archives
-- `VERIFRAX_v2.7.0_SURVIVAL_ARCHIVE.tar.gz` - Survival archive (internal)
+- `VERIFRAX_v2.6.0_SURVIVAL_ARCHIVE.tar.gz` - Survival archive (internal)
 - `exhibit.tar.gz` - Exhibit archive (internal)
 
 ### Public (Internal Samples)
