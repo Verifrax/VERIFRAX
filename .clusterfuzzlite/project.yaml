@@ -1,2 +1,4 @@
 language: python
 main_repo: https://github.com/Verifrax/VERIFRAX
+sanitizers:
+  - address
