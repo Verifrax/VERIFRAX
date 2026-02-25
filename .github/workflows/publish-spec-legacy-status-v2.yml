@@ -1,8 +1,7 @@
 name: Publish required legacy status: spec
-"on":
+on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
   workflow_dispatch:
 
@@ -20,16 +19,12 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const shas = new Set();
-
-            // PR: publish to head sha + merge sha (context.sha)
             if (context.payload?.pull_request) {
               shas.add(context.payload.pull_request.head.sha);
               shas.add(context.sha);
             } else {
-              // push/workflow_dispatch: publish to triggering sha
               shas.add(context.sha);
             }
-
             for (const sha of shas) {
               await github.rest.repos.createCommitStatus({
                 owner: context.repo.owner,
@@ -40,5 +35,4 @@ jobs:
                 description: "spec status published (required legacy context)",
                 target_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions`
               });
-              core.info(`published spec=success on ${sha}`);
             }
