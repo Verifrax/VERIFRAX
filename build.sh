@@ -9,4 +9,4 @@ fi
 mkdir -p "$OUT"
 
 # always build at least one python fuzzer
-compile_python_fuzzer fuzzing/fuzz_dummy.py fuzz_dummy
+compile_python_fuzzer fuzzing/fuzz_dummy.py
