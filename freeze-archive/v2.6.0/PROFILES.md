@@ -1,4 +1,4 @@
-# VERIFRAX Profile Authority & Immutability — v2.6.0
+# VERIFRAX Profile Authority & Immutability — v2.7.0
 
 **Version:** 2.6.0  
 **Purpose:** Define profile authority, versioning, immutability, and dispute-prevention
@@ -107,7 +107,7 @@ Profile JSON must be serialized canonically:
 
 Profile hashes must be published in:
 
-- `freeze/v2.6.0/PROFILE_HASHES.txt`
+- `freeze/v2.7.0/PROFILE_HASHES.txt`
 - Format: `<hash>  <profile_id>.json`
 - One hash per profile version
 

@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /**
- * VERIFRAX Execution Engine v2.6.0
+ * VERIFRAX Execution Engine v2.7.0
  * 
  * Deterministic execution pipeline that produces certificates.
  * 
  * Usage:
- *   node execute_v2_6_0.js --bundle <path> --profile <profile_id> [--output <path>]
+ *   node execute_v2.7.0.js --bundle <path> --profile <profile_id> [--output <path>]
  * 
  * If --output is omitted, certificate is written to stdout.
  */
@@ -89,7 +89,7 @@ function generateTimestamp() {
  * Load published profile hashes
  */
 function loadProfileHashes() {
-  const hashesPath = path.join(__dirname, '..', 'freeze', 'v2.6.0', 'PROFILE_HASHES.txt');
+  const hashesPath = path.join(__dirname, '..', 'freeze', 'v2.7.0', 'PROFILE_HASHES.txt');
   
   if (!fs.existsSync(hashesPath)) {
     throw new Error('PROFILE_HASHES.txt not found');
@@ -114,7 +114,7 @@ function loadProfileHashes() {
 }
 
 /**
- * Load profile and verify hash (mandatory for v2.6.0)
+ * Load profile and verify hash (mandatory for v2.7.0)
  */
 function loadProfile(profileId) {
   // Profile file location: verifrax-reference-verifier/profiles/{profileId}.json
@@ -295,10 +295,10 @@ function parseArgs() {
       options.outputPath = args[++i];
     } else if (arg === '--help' || arg === '-h') {
       console.log(`
-VERIFRAX Execution Engine v2.6.0
+VERIFRAX Execution Engine v2.7.0
 
 Usage:
-  node execute_v2_6_0.js --bundle <path> --profile <profile_id> [--output <path>]
+  node execute_v2.7.0.js --bundle <path> --profile <profile_id> [--output <path>]
 
 Options:
   --bundle <path>    Path to evidence bundle binary file
@@ -307,7 +307,7 @@ Options:
   --help, -h         Show this help message
 
 Example:
-  node execute_v2_6_0.js --bundle test/bundle.bin --profile public@1.0.0
+  node execute_v2.7.0.js --bundle test/bundle.bin --profile public@1.0.0
       `);
       process.exit(0);
     }

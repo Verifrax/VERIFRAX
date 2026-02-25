@@ -1,4 +1,4 @@
-# VERIFRAX Execution Pipeline — v2.6.0
+# VERIFRAX Execution Pipeline — v2.7.0
 
 **Version:** 2.6.0  
 **Purpose:** Define the deterministic execution pipeline that produces certificates

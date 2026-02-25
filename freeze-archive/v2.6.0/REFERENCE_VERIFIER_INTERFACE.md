@@ -1,4 +1,4 @@
-# VERIFRAX Reference Verifier Interface — v2.6.0
+# VERIFRAX Reference Verifier Interface — v2.7.0
 
 **Version:** 2.6.0  
 **Purpose:** Define exact CLI interface for independent certificate verification

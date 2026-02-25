@@ -16,7 +16,7 @@ git clone --branch v2.8.0 https://github.com/Verifrax/VERIFRAX.git
 cd VERIFRAX
 
 # Verify engine hash
-sha256sum verifrax-engine/execute_v2_6_0.js
+sha256sum verifrax-engine/execute_v2_7_0.js
 
 # Verify frozen snapshot
 sha256sum verifrax-freeze/v2.8.0/source/VERIFRAX/freeze/v2.8.0/worker.js

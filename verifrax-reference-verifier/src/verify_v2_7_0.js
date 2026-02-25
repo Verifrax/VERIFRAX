@@ -1,7 +1,7 @@
 /**
- * VERIFRAX Reference Verifier v2.6.0
+ * VERIFRAX Reference Verifier v2.7.0
  * 
- * Implements verification for v2.6.0 certificate schema (8 fields, exact order).
+ * Implements verification for v2.7.0 certificate schema (8 fields, exact order).
  * 
  * Verification steps (order is law):
  * 1. Read certificate bytes as-is
@@ -32,7 +32,7 @@ function sha256(data) {
 /**
  * Canonical JSON serialization with exact field order
  * 
- * For v2.6.0, fields must be in this exact order:
+ * For v2.7.0, fields must be in this exact order:
  * verifrax_version, certificate_version, bundle_hash, profile_id,
  * verdict, reason_codes, executed_at
  */
@@ -74,7 +74,7 @@ function canonicalStringifyProfile(obj) {
  * Load published profile hashes
  */
 function loadProfileHashes() {
-  const hashesPath = path.join(__dirname, '..', '..', 'freeze', 'v2.6.0', 'PROFILE_HASHES.txt');
+  const hashesPath = path.join(__dirname, '..', '..', 'freeze', 'v2.7.0', 'PROFILE_HASHES.txt');
   
   if (!fs.existsSync(hashesPath)) {
     throw new Error('PROFILE_HASHES.txt not found');
@@ -99,7 +99,7 @@ function loadProfileHashes() {
 }
 
 /**
- * Load profile and verify hash (mandatory for v2.6.0)
+ * Load profile and verify hash (mandatory for v2.7.0)
  */
 function loadProfile(profileId) {
   const profilePath = path.join(__dirname, '..', 'profiles', `${profileId}.json`);
@@ -198,7 +198,7 @@ function executeVerificationRules(bundleData, profile) {
 }
 
 /**
- * Verify v2.6.0 certificate
+ * Verify v2.7.0 certificate
  */
 function verifyCertificateV2_6_0(options) {
   const { bundlePath, certificatePath, profileId } = options;
@@ -295,7 +295,7 @@ function verifyCertificateV2_6_0(options) {
       };
     }
 
-    // Step 4.5: Verify profile hash (mandatory for v2.6.0)
+    // Step 4.5: Verify profile hash (mandatory for v2.7.0)
     try {
       loadProfile(profileId);
     } catch (error) {

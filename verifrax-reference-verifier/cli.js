@@ -11,7 +11,7 @@
  */
 
 const { verifyCertificate, verifyCertificateV2_5_0 } = require('./src/verify');
-const { verifyCertificateV2_6_0 } = require('./src/verify_v2_6_0');
+const { verifyCertificateV2_6_0 } = require('./src/verify_v2.7.0');
 const fs = require('fs');
 const path = require('path');
 
@@ -114,10 +114,10 @@ function main() {
   // Use appropriate verifier
   let verifyFn;
   if (isV2_7_0 || isV2_6_0) {
-    // v2.7.0 and v2.6.0 use the same verifier logic
+    // v2.7.0 and v2.7.0 use the same verifier logic
     verifyFn = verifyCertificateV2_6_0;
   } else {
-    // For non-v2.6.0/v2.7.0, detect v2.5.0
+    // For non-v2.7.0/v2.7.0, detect v2.5.0
     const verifierVersion = certificate?.verifier_version || '2.4.0';
     const isV2_5_0 = verifierVersion.startsWith('2.5.0') || 
                      certificate?.classification || 
@@ -133,7 +133,7 @@ function main() {
     profileId: options.profileId
   });
 
-  // Output result (v2.7.0/v2.6.0: VALID/INVALID only, others: JSON)
+  // Output result (v2.7.0/v2.7.0: VALID/INVALID only, others: JSON)
   if (isV2_7_0 || isV2_6_0) {
     console.log(result.status);
   } else {

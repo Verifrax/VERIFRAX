@@ -12,7 +12,7 @@ VERIFRAX is the **authoritative source** for:
 
 | File | Authority |
 |------|-----------|
-| `verifrax-engine/execute_v2_6_0.js` | Execution engine |
+| `verifrax-engine/execute_v2.7.0.js` | Execution engine |
 | `verifrax-reference-verifier/` | Offline verification |
 | `verifrax-freeze/` | Frozen snapshots |
 | `CERTIFICATE_SCHEMA.json` | Certificate structure |

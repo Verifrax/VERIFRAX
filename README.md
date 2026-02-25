@@ -34,9 +34,9 @@ For scope limits and common misinterpretations, see:
 
 The verification *authority* of VERIFRAX is permanently anchored to the following immutable artifacts:
 
-* `freeze/v2.6.0/` — Immutable frozen release snapshot
-* `verifrax-engine/execute_v2_6_0.js` — Deterministic execution pipeline
-* `verifrax-reference-verifier/src/verify_v2_6_0.js` — Offline reference verifier
+* `freeze/v2.7.0/` — Immutable frozen release snapshot
+* `verifrax-engine/execute_v2.7.0.js` — Deterministic execution pipeline
+* `verifrax-reference-verifier/src/verify_v2.7.0.js` — Offline reference verifier
 * `SYSTEM_IDENTITY.*` — System identity declarations
 * `BUILD_HASH.txt` — Cryptographic build attestation
 

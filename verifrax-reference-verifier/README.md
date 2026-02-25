@@ -1,7 +1,7 @@
-# VERIFRAX Reference Verifier v2.6.0
+# VERIFRAX Reference Verifier v2.7.0
 
-**VERSION:** v2.6.0  
-**ROLE:** AUTHORITATIVE REFERENCE VERIFIER FOR v2.6.0  
+**VERSION:** v2.7.0  
+**ROLE:** AUTHORITATIVE REFERENCE VERIFIER FOR v2.7.0  
 **STATUS:** FROZEN
 
 **Independent certificate verification without VERIFRAX infrastructure.**
@@ -94,9 +94,9 @@ This verifier is **deterministic**:
 
 ## Version
 
-**v2.6.0** (frozen, immutable)
+**v2.7.0** (frozen, immutable)
 
-This verifier is authoritative for VERIFRAX v2.6.0 certificates.
+This verifier is authoritative for VERIFRAX v2.7.0 certificates.
 
 Historical verification of v2.4.0 and v2.5.0 certificates remains possible using historical verifier versions, which are preserved for reference but are not authoritative for new executions.
 

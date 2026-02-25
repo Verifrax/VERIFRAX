@@ -13,8 +13,8 @@ echo ""
 
 echo "Engine Hashes:"
 echo "--------------"
-if [ -f "verifrax-engine/execute_v2_6_0.js" ]; then
-    sha256sum verifrax-engine/execute_v2_6_0.js
+if [ -f "verifrax-engine/execute_v2.7.0.js" ]; then
+    sha256sum verifrax-engine/execute_v2.7.0.js
 else
     echo "Engine file not found"
 fi
@@ -51,7 +51,7 @@ echo ""
 echo "Combined Build Hash:"
 echo "--------------------"
 {
-    sha256sum verifrax-engine/execute_v2_6_0.js 2>/dev/null || true
+    sha256sum verifrax-engine/execute_v2.7.0.js 2>/dev/null || true
     find verifrax-reference-verifier -name "*.js" -exec sha256sum {} \; 2>/dev/null || true
     find verifrax-freeze -name "worker.js" -exec sha256sum {} \; 2>/dev/null || true
 } | sha256sum | cut -d' ' -f1 > BUILD_HASH.txt
