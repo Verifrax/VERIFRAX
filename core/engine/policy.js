@@ -7,7 +7,7 @@ const OPS = new Set(["eq","ne","in","nin","contains","not_contains","any","all",
 function loadPolicy(textOrObj) {
   let obj = textOrObj;
   if (typeof textOrObj === "string") {
-    try { obj = yaml.load(textOrObj, { schema: yaml.FAILSAFE_SCHEMA }); }
+    try { obj = yaml.load(textOrObj,{ schema: yaml.JSON_SCHEMA }); }
     catch (e) { die("E_POLICY_PARSE", "policy: invalid YAML"); }
   }
   if (!obj || typeof obj !== "object" || Array.isArray(obj)) die("E_POLICY_SCHEMA", "policy: required object");
