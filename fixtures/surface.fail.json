@@ -1,0 +1,10 @@
+{
+  "artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "builder_id": "builder-x",
+  "source_uri": "git+https://example/repo@sha",
+  "dependencies": ["pkg:pypi/requests@2.0.0"],
+  "vulnerabilities": [{"id":"CVE-1","severity":"CRITICAL"}],
+  "signature_valid": true,
+  "provenance_valid": false,
+  "metadata_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}
