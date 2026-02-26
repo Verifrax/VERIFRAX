@@ -2,6 +2,10 @@ name: VERIFRAX
 description: Deterministic evaluation + sealing layer for SBOM and supply-chain attestations.
 author: Verifrax
 inputs:
+  surface_path:
+    description: "Path to prebuilt evaluation surface JSON (bypasses sbom/provenance/sigstore ingestion)"
+    required: false
+    default: ""
   sbom_path:
     description: Path to SBOM (SPDX JSON or CycloneDX JSON)
     required: false
