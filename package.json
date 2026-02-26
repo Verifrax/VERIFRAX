@@ -13,5 +13,8 @@
   "devDependencies": {
     "@types/node": "25",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@sigstore/verify": "3.0.0"
   }
 }
