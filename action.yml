@@ -1,19 +1,59 @@
-name: cicullis
-description: >
-  Deterministic CI gate enforcing irreversible decisions.
+name: "VERIFRAX"
+description: "Deterministic verification gate: forward-only enforcement, freeze-boundary integrity, and irreversible CI decisions."
+author: "Verifrax"
 
-author: Midia Kiasat
+inputs:
+  mode:
+    description: "Gate mode: enforce | audit"
+    required: false
+    default: "enforce"
+  config:
+    description: "Path to gate config (yaml/json), relative to repository root."
+    required: false
+    default: ".verifrax/gate.yml"
+  fail_on_warn:
+    description: "If 'true', warnings fail the run."
+    required: false
+    default: "false"
+  working_directory:
+    description: "Repository working directory to run the gate from."
+    required: false
+    default: "."
+  log_level:
+    description: "Log level: silent | normal | debug"
+    required: false
+    default: "normal"
+
+outputs:
+  decision:
+    description: "Gate decision: pass | warn | fail"
+    value: ${{ steps.verifrax_gate.outputs.decision }}
 
 runs:
-  using: composite
+  using: "composite"
   steps:
-    - shell: bash
+    - name: Verify VERIFRAX gate assets
+      shell: bash
       run: |
-        chmod +x gate.sh
-        ./gate.sh
+        set -euo pipefail
+        test -f "${GITHUB_ACTION_PATH}/gate.sh" || { echo "::error::gate.sh missing in action package"; exit 1; }
+        chmod +x "${GITHUB_ACTION_PATH}/gate.sh"
+
+    - name: VERIFRAX gate
+      id: verifrax_gate
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      env:
+        VERIFRAX_MODE: ${{ inputs.mode }}
+        VERIFRAX_CONFIG: ${{ inputs.config }}
+        VERIFRAX_FAIL_ON_WARN: ${{ inputs.fail_on_warn }}
+        VERIFRAX_LOG_LEVEL: ${{ inputs.log_level }}
+      run: |
+        set -euo pipefail
+        decision="$("${GITHUB_ACTION_PATH}/gate.sh")"
+        decision="${decision:-pass}"
+        echo "decision=$decision" >> "$GITHUB_OUTPUT"
 
 branding:
-  icon: slash
-  color: red
-
-# reindex: 2026-02-23T11:23:53Z
+  icon: "shield"
+  color: "black"

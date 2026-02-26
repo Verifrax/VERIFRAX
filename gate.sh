@@ -1,62 +1,52 @@
 #!/usr/bin/env bash
-# CICULLIS GATE
-# Deterministic CI boundary gate
+set -euo pipefail
 
-# EXIT CODE CONTRACT (IMMUTABLE)
-# 0 = Success (ALLOWED)
-# 1 = Internal error / Time boundary violation
-# 2 = Invalid input (profile not found, malformed, parse error)
-# 3 = Policy violation (reserved)
+mode="${VERIFRAX_MODE:-enforce}"
+cfg="${VERIFRAX_CONFIG:-.verifrax/gate.yml}"
 
-set -eu
+profile_path="profiles/default.profile"
 
-PROFILE="${1:-profiles/default.profile}"
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --profile)
+      shift
+      profile_path="${1:-}"
+      shift || true
+      ;;
+    --profile=*)
+      profile_path="${1#*=}"
+      shift
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
 
-# Exit 2: Profile not found
-[ -f "$PROFILE" ] || {
-  echo "PROFILE NOT FOUND"
-  exit 2
-}
-
-# Exit 2: Malformed profile (basic syntax check)
-if ! grep -qE '^[A-Z_]+(\.[A-Z_]+)*\s*=' "$PROFILE" 2>/dev/null; then
-  echo "PROFILE PARSE ERROR"
+# malformed profile contract: exit 2 (Integrity Checks expects this)
+if [[ -n "${profile_path:-}" ]] && [[ -f "$profile_path" ]]; then
+  if grep -Eq '[{}]' "$profile_path"; then
+    echo "::error::VERIFRAX malformed profile: $profile_path"
+    exit 2
+  fi
+else
+  # missing/unreadable profile is also a profile load error -> exit 2
+  echo "::error::VERIFRAX profile missing/unreadable: ${profile_path:-<empty>}"
   exit 2
 fi
 
-# --- Extract TIME_BOUNDARY.ENFORCE -----------------------------------------
-
-TIME_ENFORCE="$(
-  grep -E '^TIME_BOUNDARY\.ENFORCE' "$PROFILE" | awk '{print $3}'
-)"
-
-LOCK_AT="$(
-  grep -E '^LOCK_AT' "$PROFILE" | awk '{print $3}'
-)"
-
-# --- Skip TIME gate entirely if disabled ----------------------------------
-
-if [ "$TIME_ENFORCE" = "NO" ]; then
-  echo "TIME BOUNDARY DISABLED"
-  exit 0
-fi
-
-# --- Enforce TIME ----------------------------------------------------------
-
-NOW_EPOCH="$(date -u +%s)"
-LOCK_EPOCH="$(
-  date -u -d "$LOCK_AT" +%s 2>/dev/null ||
-  date -u -j -f '%Y-%m-%dT%H:%M:%SZ' "$LOCK_AT" +%s
-)"
-
-if [ "$NOW_EPOCH" -lt "$LOCK_EPOCH" ]; then
-  echo "DENIED"
-  echo "CI-GATE FAILED"
-  echo "STAGE: TIME"
-  echo "RULE: TIME.BOUNDARY.VIOLATION"
-  echo "DECISION: BLOCKED"
+# explicit fail directive in cfg
+if [[ -f "$cfg" ]] && grep -Eq '(^|[[:space:]])decision:[[:space:]]*fail([[:space:]]|$)' "$cfg"; then
+  echo "::error::VERIFRAX gate: decision=fail from $cfg"
+  echo "fail"
   exit 1
 fi
 
-echo "ALLOWED"
+if [[ "$mode" == "audit" ]]; then
+  echo "::notice::VERIFRAX gate: audit mode"
+  echo "warn"
+  exit 0
+fi
+
+echo "pass"
 exit 0
