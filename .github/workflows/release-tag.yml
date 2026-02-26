@@ -29,17 +29,6 @@ on:
         required: false
         type: string
         default: ""
-    inputs:
-      tag:
-        description: "Tag to create (e.g. v0.1.3)"
-        required: true
-      title:
-        description: "Release title"
-        required: true
-      notes:
-        description: "Release notes"
-        required: true
-
 permissions:
   contents: write
 
@@ -55,7 +44,7 @@ jobs:
           TAG="${{ inputs.tag }}"
           git config user.name "verifrax-release-bot"
           git config user.email "verifrax-release-bot@users.noreply.github.com"
-          git tag -fa "$TAG" -m "${{ inputs.title }}"
+          TARGET="${{ inputs.target }}"; [ -n "$TARGET" ] || TARGET="HEAD"; git tag -fa "$TAG" "$TARGET" -m "${{ inputs.title }}"
           git push --force origin "$TAG"
       - name: Create release
         env:
