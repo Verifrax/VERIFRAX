@@ -17,5 +17,8 @@
   "dependencies": {
     "@sigstore/verify": "3.0.0",
     "js-yaml": "4.1.0"
+  },
+  "bin": {
+    "verifrax-seal": "bin/verifrax-seal.js"
   }
 }
