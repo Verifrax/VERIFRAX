@@ -1,5 +1,6 @@
 name: VERIFRAX
 description: Deterministic evaluation + sealing layer for SBOM and supply-chain attestations.
+author: Verifrax
 inputs:
   surface_path:
     description: "Path to prebuilt evaluation surface JSON (bypasses sbom/provenance/sigstore ingestion)"
@@ -28,6 +29,7 @@ inputs:
     description: Output path for deterministic seal JSON
     required: false
     default: verifrax.seal.json
+
 runs:
   using: node20
   main: action/index.js

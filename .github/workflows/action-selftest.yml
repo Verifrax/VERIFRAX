@@ -1,0 +1,25 @@
+name: action-selftest
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run VERIFRAX action (audit)
+        uses: ./
+        with:
+          surface_path: fixtures/surface.pass.json
+          policy_path: policy/v1.0.0/policy.yaml
+          sbom_path: ""
+          provenance_path: ""
+          sigstore_bundle_path: ""
+          policy_path: policy/v1.0.0/policy.yaml
+          mode: audit
+          out_path: verifrax.seal.json
+      - name: Show output
+        run: |
+          test -f verifrax.seal.json
+          head -c 200 verifrax.seal.json || true

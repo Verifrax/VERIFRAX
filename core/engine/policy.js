@@ -1,13 +1,19 @@
 "use strict";
-const { die, canonicalHash, stableStringify } = require("../canonical");
-const yaml = require("js-yaml");
 
+let __yaml = null;
+function getYaml() {
+  if (__yaml) return __yaml;
+  try { __yaml = require("js-yaml"); return __yaml; }
+  catch (e) { die("E_POLICY_UNSUPPORTED","js-yaml not available; pass parsed policy object or JSON text"); }
+}
+
+const { die, canonicalHash, stableStringify } = require("../canonical");
 const OPS = new Set(["eq","ne","in","nin","contains","not_contains","any","all","gt","gte","lt","lte","exists","not_exists"]);
 
 function loadPolicy(textOrObj) {
   let obj = textOrObj;
   if (typeof textOrObj === "string") {
-    try { obj = yaml.load(textOrObj,{ schema: yaml.JSON_SCHEMA }); }
+    try { obj = getYaml().load(textOrObj,{ schema: getYaml().JSON_SCHEMA }); }
     catch (e) { die("E_POLICY_PARSE", "policy: invalid YAML"); }
   }
   if (!obj || typeof obj !== "object" || Array.isArray(obj)) die("E_POLICY_SCHEMA", "policy: required object");
