@@ -19,6 +19,6 @@
     "js-yaml": "4.1.0"
   },
   "bin": {
-    "verifrax-seal": "bin/verifrax-seal.js"
+    "verifrax-seal": "scripts/verifrax-seal.js"
   }
 }
