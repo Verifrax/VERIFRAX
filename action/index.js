@@ -129,7 +129,7 @@ function main() {
   const built = buildEvaluationSurface(surfaceInput);
 
   const policyText = readFile(policyPath);
-  const loaded = loadPolicy(policyText);
+  const loaded = loadPolicy(policyObjOrText);
   const evalOut = evaluate(built.surface, policyText);
 
   const pkg = JSON.parse(fs.readFileSync("package.json","utf8"));
