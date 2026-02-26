@@ -1,0 +1,32 @@
+version: v1
+rules:
+  - id: SIG_VALID
+    level: fail
+    require:
+      - path: signature_valid
+        op: eq
+        value: true
+
+  - id: PROV_VALID
+    level: fail
+    require:
+      - path: provenance_valid
+        op: eq
+        value: true
+
+  - id: NO_CRITICAL
+    level: fail
+    require:
+      - path: vulnerabilities
+        op: all
+        value:
+          path: severity
+          op: ne
+          value: CRITICAL
+
+  - id: ALLOWED_BUILDERS
+    level: warn
+    require:
+      - path: builder_id
+        op: in
+        value: ["builder-a","builder-b"]
