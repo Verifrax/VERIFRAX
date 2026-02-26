@@ -1,0 +1,2 @@
+policy/*/policy.yaml -merge -diff
+policy/*/manifest.json -merge -diff
