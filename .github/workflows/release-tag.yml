@@ -17,6 +17,20 @@ on:
         default: ""
     inputs:
       tag:
+        required: true
+        type: string
+      title:
+        required: true
+        type: string
+      notes:
+        required: true
+        type: string
+      target:
+        required: false
+        type: string
+        default: ""
+    inputs:
+      tag:
         description: "Tag to create (e.g. v0.1.3)"
         required: true
       title:
