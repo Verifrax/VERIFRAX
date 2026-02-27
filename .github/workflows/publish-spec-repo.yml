@@ -3,38 +3,61 @@ name: publish-spec-repo
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'public/spec/**'
+      - '.github/workflows/publish-spec-repo.yml'
   workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout VERIFRAX
+        uses: actions/checkout@v4
 
       - name: Export spec
         run: |
-          set -e
+          set -euo pipefail
           bash scripts/spec-export.sh /tmp/spec-export
 
-      - name: Push to VERIFRAX-SPEC
+      - name: Push to VERIFRAX-SPEC via PR (protected main)
         env:
           PAT: ${{ vars.VERIFRAX_SPEC_PAT }}
+          GH_TOKEN: ${{ vars.VERIFRAX_SPEC_PAT }}
         run: |
-          set -e
-          test -n "$PAT"
+          set -euo pipefail
+          test -n "${PAT}"
 
           git config --global user.name "verifrax-systems"
           git config --global user.email "verifrax-systems@users.noreply.github.com"
 
-          git clone https://verifrax-systems:${PAT}@github.com/Verifrax/VERIFRAX-SPEC.git spec-repo
+          BR="autopublish-${GITHUB_SHA::7}"
+
+          rm -rf spec-repo
+          git clone "https://verifrax-systems:${PAT}@github.com/Verifrax/VERIFRAX-SPEC.git" spec-repo
           cd spec-repo
-          git checkout main
-          git pull --ff-only origin main
+
+          git checkout -b "$BR"
 
           rm -rf ./*
           cp -R /tmp/spec-export/. .
 
           git add -A
-          git commit -m "publish: spec from ${GITHUB_SHA}" || exit 0
-          git push origin main
+          if git diff --cached --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+
+          git commit -m "publish: spec from ${GITHUB_SHA}"
+          git push origin "$BR"
+
+          gh pr create \
+            --repo Verifrax/VERIFRAX-SPEC \
+            --title "publish: ${GITHUB_SHA::7}" \
+            --body "automated publish from Verifrax/VERIFRAX@${GITHUB_SHA}" \
+            --head "$BR" \
+            --base main || true
