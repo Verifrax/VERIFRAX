@@ -3,53 +3,38 @@ name: publish-spec-repo
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'public/spec/**'
-      - '.github/workflows/publish-spec-repo.yml'
   workflow_dispatch:
-
-permissions:
-  contents: read
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout VERIFRAX
-        uses: actions/checkout@v4
 
-      - name: Export spec directory
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Export spec
         run: |
-          set -euo pipefail
+          set -e
           bash scripts/spec-export.sh /tmp/spec-export
 
-      - name: Publish to VERIFRAX-SPEC (git basic header auth)
+      - name: Push to VERIFRAX-SPEC
         env:
-          GH_TOKEN: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
+          PAT: ${{ vars.VERIFRAX_SPEC_PAT }}
         run: |
-          set -euo pipefail
-          test -n "${GH_TOKEN}"
+          set -e
+          test -n "$PAT"
 
           git config --global user.name "verifrax-systems"
           git config --global user.email "verifrax-systems@users.noreply.github.com"
 
-          AUTH="AUTHORIZATION: basic $(printf 'x-access-token:%s' "${GH_TOKEN}" | base64 -w0)"
-
-          rm -rf /tmp/spec-repo
-          git -c http.extraheader="${AUTH}" clone https://github.com/Verifrax/VERIFRAX-SPEC.git /tmp/spec-repo
-
-          cd /tmp/spec-repo
+          git clone https://verifrax-systems:${PAT}@github.com/Verifrax/VERIFRAX-SPEC.git spec-repo
+          cd spec-repo
           git checkout main
-          git -c http.extraheader="${AUTH}" pull --ff-only origin main
+          git pull --ff-only origin main
 
           rm -rf ./*
           cp -R /tmp/spec-export/. .
 
           git add -A
-          if git diff --cached --quiet; then
-            echo "no changes"
-            exit 0
-          fi
-
-          git commit -m "publish: spec from VERIFRAX@${GITHUB_SHA}"
-          git -c http.extraheader="${AUTH}" push origin HEAD:main
+          git commit -m "publish: spec from ${GITHUB_SHA}" || exit 0
+          git push origin main
