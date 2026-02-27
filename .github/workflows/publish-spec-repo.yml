@@ -26,11 +26,12 @@ jobs:
 
       - name: Push to VERIFRAX-SPEC via PR (protected main)
         env:
-          PAT: ${{ vars.VERIFRAX_SPEC_PAT }}
-          GH_TOKEN: ${{ vars.VERIFRAX_SPEC_PAT }}
+          PAT: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
+          GH_TOKEN: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
         run: |
           set -euo pipefail
-          test -n "${PAT}"
+          test -n ""
+          test -n ""
 
           git config --global user.name "verifrax-systems"
           git config --global user.email "verifrax-systems@users.noreply.github.com"
@@ -41,7 +42,11 @@ jobs:
           git clone "https://verifrax-systems:${PAT}@github.com/Verifrax/VERIFRAX-SPEC.git" spec-repo
           cd spec-repo
 
-          git checkout -B ""
+          git fetch origin main
+
+          git fetch origin main
+
+          git checkout -B "" origin/main origin/main
 
           rm -rf ./*
           cp -R /tmp/spec-export/. .
@@ -53,7 +58,7 @@ jobs:
           fi
 
           git commit -m "publish: spec from ${GITHUB_SHA}"
-          git push origin "$BR"
+          git push --force-with-lease origin ""
 
           gh pr create \
             --repo Verifrax/VERIFRAX-SPEC \
