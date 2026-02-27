@@ -1,19 +1,12 @@
 name: publish-spec-repo
+
 on:
-  workflow_dispatch:
   push:
     branches: [ main ]
-    paths:
-      - public/spec/**
-      - scripts/spec-export.sh
-      - .github/workflows/publish-spec-repo.yml
+  workflow_dispatch:
 
 permissions:
   contents: read
-
-concurrency:
-  group: publish-spec-repo
-  cancel-in-progress: false
 
 jobs:
   publish:
@@ -30,11 +23,16 @@ jobs:
           GH_TOKEN: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
         run: |
           set -euo pipefail
+          test -n "${GH_TOKEN}"
+
           git config --global user.name "verifrax-systems"
           git config --global user.email "verifrax-systems@users.noreply.github.com"
 
           rm -rf /tmp/spec-repo
-          git clone "https://x-access-token:${GH_TOKEN}@github.com/Verifrax/VERIFRAX-SPEC.git" /tmp/spec-repo
+
+          git -c http.extraheader="AUTHORIZATION: bearer ${GH_TOKEN}" \
+            clone https://github.com/Verifrax/VERIFRAX-SPEC.git /tmp/spec-repo
+
           cd /tmp/spec-repo
 
           rm -rf ./*
@@ -47,4 +45,6 @@ jobs:
           fi
 
           git commit -m "publish: spec from VERIFRAX@${GITHUB_SHA}"
-          git push origin HEAD:main
+
+          git -c http.extraheader="AUTHORIZATION: bearer ${GH_TOKEN}" \
+            push origin HEAD:main
