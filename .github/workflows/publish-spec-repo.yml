@@ -3,37 +3,42 @@ name: publish-spec-repo
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'public/spec/**'
+      - '.github/workflows/publish-spec-repo.yml'
   workflow_dispatch:
-
-permissions:
-  contents: read
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout VERIFRAX
+        uses: actions/checkout@v4
 
       - name: Export spec directory
         run: |
+          set -euo pipefail
           bash scripts/spec-export.sh /tmp/spec-export
 
-      - name: Push to VERIFRAX-SPEC
-        env:
-          GH_TOKEN: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
+      - name: Checkout VERIFRAX-SPEC
+        uses: actions/checkout@v4
+        with:
+          repository: Verifrax/VERIFRAX-SPEC
+          token: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
+          path: spec-repo
+          fetch-depth: 0
+
+      - name: Publish to VERIFRAX-SPEC
         run: |
           set -euo pipefail
-          test -n "${GH_TOKEN}"
 
           git config --global user.name "verifrax-systems"
           git config --global user.email "verifrax-systems@users.noreply.github.com"
 
-          rm -rf /tmp/spec-repo
-
-          git -c http.extraheader="AUTHORIZATION: bearer ${GH_TOKEN}" \
-            clone https://github.com/Verifrax/VERIFRAX-SPEC.git /tmp/spec-repo
-
-          cd /tmp/spec-repo
+          cd spec-repo
+          git checkout main
+          git pull --ff-only origin main
 
           rm -rf ./*
           cp -R /tmp/spec-export/. .
@@ -45,6 +50,4 @@ jobs:
           fi
 
           git commit -m "publish: spec from VERIFRAX@${GITHUB_SHA}"
-
-          git -c http.extraheader="AUTHORIZATION: bearer ${GH_TOKEN}" \
-            push origin HEAD:main
+          git push origin HEAD:main
