@@ -41,7 +41,7 @@ export default {
     const p = normalize(url.pathname);
 
     // map URL path to embedded asset path
-    const assetPath = "/assets" + p; // internal ASSETS mount
+    const assetPath = "/assets/__spec" + p.replace("/spec", ""); // internal mount
 
     // Cloudflare Workers with assets binding (wrangler v4)
     const res = await env.ASSETS.fetch(new Request(new URL(assetPath, url.origin), request));
