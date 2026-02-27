@@ -11,7 +11,8 @@ jobs:
       run_finality: ${{ steps.gate.outputs.run_finality }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-          fetch-depth: 0
+          with:
+            fetch-depth: 0
 
       - name: EX-001 finality gate
         id: gate
@@ -63,10 +64,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          with:
+            ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
-          node-version: '20'
+          with:
+            node-version: '20'
 
       - name: Install pnpm
         uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
@@ -94,10 +97,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          with:
+            ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
-          node-version: '20'
+          with:
+            node-version: '20'
 
       - name: Install pnpm
         uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
@@ -123,10 +128,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-          ref: ${{ github.sha }}
+          with:
+            ref: ${{ github.sha }}
 
       - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
-          node-version: '20'
+          with:
+            node-version: '20'
 
       - name: Install pnpm
         uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6e92b6d3061 # v4
