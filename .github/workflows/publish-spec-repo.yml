@@ -26,8 +26,8 @@ jobs:
 
       - name: Push to VERIFRAX-SPEC via PR (protected main)
         env:
-          PAT: ${{ vars.VERIFRAX_SPEC_PAT }}
-          GH_TOKEN: ${{ vars.VERIFRAX_SPEC_PAT }}
+          PAT: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
+          GH_TOKEN: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
         run: |
           set -euo pipefail
           test -n ""
@@ -44,7 +44,9 @@ jobs:
 
           git fetch origin main
 
-          git checkout -B "" origin/main
+          git fetch origin main
+
+          git checkout -B "" origin/main origin/main
 
           rm -rf ./*
           cp -R /tmp/spec-export/. .
