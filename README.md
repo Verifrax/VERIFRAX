@@ -4,6 +4,7 @@
 [![Authority](https://img.shields.io/badge/authority-v2.7.0--frozen-black)](#version--authority-model-non-negotiable)
 [![Runtime](https://img.shields.io/badge/runtime-v2.8.0-blue)](#runtime--discovery-layer-v280-live)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Action](https://img.shields.io/badge/marketplace-github--action-6f42c1)](#github-action-marketplace)
 [![CodeQL](https://github.com/Verifrax/VERIFRAX/actions/workflows/codeql.yml/badge.svg)](https://github.com/Verifrax/VERIFRAX/actions)
 [![Scorecard](https://github.com/Verifrax/VERIFRAX/actions/workflows/scorecard.yml/badge.svg)](https://github.com/Verifrax/VERIFRAX/actions)
 [![Release](https://img.shields.io/github/v/release/Verifrax/VERIFRAX?sort=semver)](https://github.com/Verifrax/VERIFRAX/releases)
@@ -28,14 +29,22 @@ Registered system. Identity governed by SPEEDKIT registry.
 
 # VERIFRAX
 
-Deterministic verification system with irreversible governance enforcement.
+**Deterministic, forward-only policy evaluation + sealing layer** over supply-chain evidence.
 
-VERIFRAX operates as:
+VERIFRAX is a **publicly frozen authority engine** with **irreversible governance enforcement**:
 
-* A publicly frozen authority engine
-* A forward-only governance model
-* A GitHub-native deterministic CI gate
-* A publicly auditable verification surface
+* Deterministic verification (same inputs → same decision)
+* Forward-only governance (no retroactive mutation)
+* Audit-grade certificates (offline-verifiable)
+* GitHub-native gate (Action + CI hardening)
+
+---
+
+## TL;DR
+
+* **Input:** SBOM / provenance / Sigstore bundle (or a prebuilt `surface` containing `artifact_hash`)
+* **Eval:** deterministic policy execution under a frozen authority version
+* **Output:** a signed/structured decision + certificate you can verify offline
 
 ---
 
@@ -43,7 +52,7 @@ VERIFRAX operates as:
 
 Use VERIFRAX as a deterministic CI gate.
 
-## Usage
+## Minimal usage
 
 ```yaml
 name: verifrax
@@ -56,30 +65,78 @@ jobs:
   gate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout
-      - uses: Verifrax/VERIFRAX
+      - uses: actions/checkout@v4
+      - name: VERIFRAX gate
+        uses: Verifrax/VERIFRAX@v1
+        with:
+          mode: enforce
+          config: .verifrax/gate.yml
+```
+
+## Deterministic evidence inputs
+
+Pick **at least one** evidence source that produces an `artifact_hash`:
+
+* `sbom_path` (SPDX/CycloneDX)
+* `provenance_path` (e.g., SLSA provenance)
+* `sigstore_bundle_path` (Sigstore bundle)
+* `surface_path` (VERIFRAX surface JSON containing `artifact_hash`)
+
+> If you provide none, the action is fail-closed: **`E_INPUT need at least one input producing artifact_hash`**.
+
+## Full usage (recommended)
+
+```yaml
+name: verifrax
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: VERIFRAX gate
+        uses: Verifrax/VERIFRAX@v1
         with:
           mode: enforce
           config: .verifrax/gate.yml
           fail_on_warn: "false"
           working_directory: .
           log_level: normal
+
+          # Provide at least ONE of these:
+          sbom_path: "dist/sbom.spdx.json"
+          # provenance_path: "dist/provenance.json"
+          # sigstore_bundle_path: "dist/bundle.sigstore.json"
+          # surface_path: "dist/verifrax.surface.json"
+
+          out_path: "verifrax.seal.json"
 ```
 
 ## Inputs
 
-| name | default | meaning |
-|---|---|---|
-| `mode` | `enforce` | `enforce` = fail-closed, `audit` = non-blocking |
-| `config` | `.verifrax/gate.yml` | gate config path |
-| `fail_on_warn` | `false` | treat warnings as failure |
-| `working_directory` | `.` | run gate from this dir |
-| `log_level` | `normal` | `silent` | `normal` | `debug` |
+| name                   |              default | meaning                                          |
+| ---------------------- | -------------------: | ------------------------------------------------ |
+| `mode`                 |            `enforce` | `enforce` = fail-closed, `audit` = non-blocking  |
+| `config`               | `.verifrax/gate.yml` | gate config path                                 |
+| `fail_on_warn`         |              `false` | treat warnings as failure                        |
+| `working_directory`    |                  `.` | run gate from this dir                           |
+| `log_level`            |             `normal` | `silent` | `normal` | `debug`                    |
+| `sbom_path`            |            *(empty)* | SPDX/CycloneDX path (must exist)                 |
+| `provenance_path`      |            *(empty)* | provenance/attestation path                      |
+| `sigstore_bundle_path` |            *(empty)* | Sigstore bundle path                             |
+| `surface_path`         |            *(empty)* | VERIFRAX surface path containing `artifact_hash` |
+| `policy_path`          |     *(repo default)* | policy to apply (if using policy bundles)        |
+| `out_path`             |            *(empty)* | write decision/certificate output                |
 
 ## Outputs
 
-| name | values |
-|---|---|
+| name       | values                   |
+| ---------- | ------------------------ |
 | `decision` | `pass` | `warn` | `fail` |
 
 ---
@@ -91,11 +148,11 @@ jobs:
 
 VERIFRAX produces:
 
-> One execution → One certificate → Final.
+> **One execution → One certificate → Final.**
 
 Verification authority is immutable once frozen.
 
-See:
+Canonical references:
 
 * `CANONICAL.md`
 * `ADVERSARIAL_FAQ.md`
@@ -109,7 +166,7 @@ VERIFRAX enforces:
 
 * Deterministic execution
 * Immutable authority boundaries
-* Cryptographic build attestation
+* Cryptographic build attestation alignment
 * Forward-only governance
 * Independent certificate verification
 
@@ -133,8 +190,6 @@ These define all authoritative behavior.
 
 No runtime or infrastructure mutation can alter outcomes without a new freeze.
 
----
-
 ## RUNTIME / DISCOVERY LAYER — v2.8.0 (LIVE)
 
 Runtime evolves independently of authority.
@@ -155,7 +210,7 @@ Authority remains anchored to v2.7.0.
 Each verification request:
 
 1. Produces exactly one certificate
-2. Cannot be re-executed with altered outcome
+2. Cannot be re-executed with altered outcome under the same authority
 3. Is independently verifiable offline
 4. Does not require VERIFRAX infrastructure for validation
 
@@ -167,7 +222,7 @@ No silent mutation path exists.
 
 Certificates contain:
 
-* Evidence hash
+* Evidence hash (`artifact_hash`)
 * Execution trace
 * Deterministic output
 * Authority version reference
@@ -179,7 +234,7 @@ Validated via the reference verifier.
 
 # GENESIS CERTIFICATE
 
-First paid production verification: **2026‑01‑24**
+First paid production verification: **2026-01-24**
 
 ```
 d7c23b65887c0ef554555b231c59935f6e2717586b54a68da8dc49b0bc61731b
@@ -196,7 +251,7 @@ See: `public/genesis/certificate.json`
 * Freeze Tag: `freeze-v2.8.0`
 * Authority Version: v2.7.0
 * Runtime Version: v2.8.0
-* Deployment Date: 2026‑01‑24
+* Deployment Date: 2026-01-24
 
 Future authoritative changes require:
 
@@ -204,8 +259,6 @@ Future authoritative changes require:
 2. Updated authority declaration
 3. Public freeze publication
 4. Signed release
-
----
 
 ## Repository Hardening
 
@@ -218,7 +271,7 @@ Main branch:
 * CODEOWNERS enforced
 * Admin bypass disabled
 
-Required status contexts:
+Required status contexts (authoritative):
 
 * `spec`
 * `verify-integrity`
@@ -261,8 +314,6 @@ Offline verification supported.
 * Governance enforcement system
 * Immutable execution contract
 * GitHub Action surface
-
----
 
 # WHAT THIS REPOSITORY IS NOT
 
@@ -314,4 +365,4 @@ Any deviation without a new freeze declaration is invalid.
 
 ---
 
-© 2026 VERIFRAX · SYS‑003
+© 2026 VERIFRAX · SYS-003
