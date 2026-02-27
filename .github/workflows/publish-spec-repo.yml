@@ -46,7 +46,7 @@ jobs:
 
           git fetch origin main
 
-          git checkout -B "" origin/main origin/main
+          git checkout -B ""
 
           rm -rf ./*
           cp -R /tmp/spec-export/. .
