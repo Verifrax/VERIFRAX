@@ -1,0 +1,11 @@
+name = "verifrax-spec-edge"
+main = "edge-spec-worker/worker.js"
+compatibility_date = "2025-01-01"
+workers_dev = false
+
+routes = [
+  { pattern = "www.verifrax.net/spec*", zone_name = "verifrax.net" }
+]
+
+[vars]
+ENVIRONMENT = "production"

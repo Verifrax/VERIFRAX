@@ -1,6 +1,6 @@
-const TEXT = new TextDecoder();
+import { SPEC_B64 } from "./spec.bundle.js";
 
-function guessContentType(path) {
+function ct(path) {
   if (path.endsWith(".html")) return "text/html; charset=utf-8";
   if (path.endsWith(".txt")) return "text/plain; charset=utf-8";
   if (path.endsWith(".md")) return "text/markdown; charset=utf-8";
@@ -9,58 +9,48 @@ function guessContentType(path) {
   return "application/octet-stream";
 }
 
-function normalize(pathname) {
-  if (pathname === "/spec") return "/spec/";
-  if (pathname === "/spec/") return "/spec/index.html";
+function norm(p) {
+  if (p === "/spec") return "/spec/";
+  if (p === "/spec/") return "/spec/index.html";
 
-  if (pathname === "/spec/latest") return "/spec/latest/";
-  if (pathname === "/spec/latest/") return "/spec/latest/index.html";
+  if (p === "/spec/latest") return "/spec/latest/";
+  if (p === "/spec/latest/") return "/spec/latest/index.html";
 
-  if (pathname === "/spec/v2.8.0") return "/spec/v2.8.0/";
-  if (pathname === "/spec/v2.8.0/") return "/spec/v2.8.0/index.html";
+  if (p === "/spec/v2.8.0") return "/spec/v2.8.0/";
+  if (p === "/spec/v2.8.0/") return "/spec/v2.8.0/index.html";
 
-  // allow /spec/latest/* and /spec/v2.8.0/*
-  return pathname;
+  return p;
+}
+
+function getFile(specPath) {
+  // specPath is "/spec/...."
+  // bundle keys are relative to public/spec, i.e. "/latest/index.html" etc
+  const rel = specPath.replace(/^\/spec/, "") || "/";
+  return SPEC_B64[rel] || null;
 }
 
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request) {
     const url = new URL(request.url);
 
-    // DENY_ASSETS_PATH
-    if (url.pathname.startsWith("/assets/")) {
-      return new Response("Not Found", { status: 404 });
-    }
-
-
-    // hard scope: only serve /spec*
+    // hard boundary
     if (!url.pathname.startsWith("/spec")) {
       return new Response("Not Found", { status: 404 });
     }
 
-    const p = normalize(url.pathname);
+    const p = norm(url.pathname);
+    const b64 = getFile(p);
 
-    // map URL path to embedded asset path
-    const assetPath = "/assets/__spec" + p.replace("/spec", ""); // internal mount
+    if (!b64) return new Response("Not Found", { status: 404 });
 
-    // Cloudflare Workers with assets binding (wrangler v4)
-    const res = await env.ASSETS.fetch(new Request(new URL(assetPath, url.origin), request));
-    if (res.status === 404) {
-      return new Response("Not Found", { status: 404 });
-    }
+    const bin = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+    const headers = new Headers();
+    headers.set("content-type", ct(p));
 
-    const headers = new Headers(res.headers);
-    headers.set("content-type", guessContentType(p));
+    // caching: immutable for versioned, short for latest + index
+    if (p.startsWith("/spec/v2.8.0/")) headers.set("cache-control", "public, max-age=31536000, immutable");
+    else headers.set("cache-control", "public, max-age=300");
 
-    // caching: immutable for versioned, short for latest
-    if (p.startsWith("/spec/v2.8.0/")) {
-      headers.set("cache-control", "public, max-age=31536000, immutable");
-    } else if (p.startsWith("/spec/latest/")) {
-      headers.set("cache-control", "public, max-age=300");
-    } else {
-      headers.set("cache-control", "public, max-age=300");
-    }
-
-    return new Response(res.body, { status: res.status, headers });
+    return new Response(bin, { status: 200, headers });
   }
 };
