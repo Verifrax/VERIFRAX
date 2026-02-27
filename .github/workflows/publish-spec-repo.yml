@@ -30,23 +30,22 @@ jobs:
           GH_TOKEN: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
         run: |
           set -euo pipefail
-          test -n ""
-          test -n ""
+
+          test -n "${PAT}"
+          test -n "${GH_TOKEN}"
+
+          BR="autopublish-${GITHUB_SHA::7}-${GITHUB_RUN_ID}"
+          test -n "${BR}"
 
           git config --global user.name "verifrax-systems"
           git config --global user.email "verifrax-systems@users.noreply.github.com"
 
-          BR="autopublish--"
-
           rm -rf spec-repo
-          git clone "https://verifrax-systems:${PAT}@github.com/Verifrax/VERIFRAX-SPEC.git" spec-repo
+          git clone "https://x-access-token:${PAT}@github.com/Verifrax/VERIFRAX-SPEC.git" spec-repo
           cd spec-repo
 
           git fetch origin main
-
-          git fetch origin main
-
-          git checkout -B ""
+          git checkout -B "$BR" origin/main
 
           rm -rf ./*
           cp -R /tmp/spec-export/. .
@@ -58,7 +57,7 @@ jobs:
           fi
 
           git commit -m "publish: spec from ${GITHUB_SHA}"
-          git push --force-with-lease origin ""
+          git push --force-with-lease origin "$BR"
 
           gh pr create \
             --repo Verifrax/VERIFRAX-SPEC \
