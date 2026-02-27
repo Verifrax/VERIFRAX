@@ -20,19 +20,22 @@ jobs:
           set -euo pipefail
           bash scripts/spec-export.sh /tmp/spec-export
 
-      - name: Publish to VERIFRAX-SPEC (git)
-        env:
-          GH_TOKEN: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
+      - name: Checkout VERIFRAX-SPEC
+        uses: actions/checkout@v4
+        with:
+          repository: Verifrax/VERIFRAX-SPEC
+          token: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
+          path: spec-repo
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Publish to VERIFRAX-SPEC
         run: |
           set -euo pipefail
-          test -n "${GH_TOKEN}"
-
           git config --global user.name "verifrax-systems"
           git config --global user.email "verifrax-systems@users.noreply.github.com"
 
-          rm -rf /tmp/spec-repo
-          git clone https://github.com/Verifrax/VERIFRAX-SPEC.git /tmp/spec-repo
-          cd /tmp/spec-repo
+          cd spec-repo
           git checkout main
           git pull --ff-only origin main
 
@@ -46,6 +49,4 @@ jobs:
           fi
 
           git commit -m "publish: spec from VERIFRAX@${GITHUB_SHA}"
-
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/Verifrax/VERIFRAX-SPEC.git"
           git push origin HEAD:main
