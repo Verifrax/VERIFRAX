@@ -10,9 +10,7 @@ workers_dev = false
 
 # Production routes only
 routes = [
-  { pattern = "api.verifrax.net/*", zone_name = "verifrax.net" },
-  { pattern = "www.verifrax.net/spec", zone_name = "verifrax.net" },
-  { pattern = "www.verifrax.net/spec/*", zone_name = "verifrax.net" }
+  { pattern = "api.verifrax.net/*", zone_name = "verifrax.net" }
 ]
 
 # EXECUTION CONSTRAINTS (enforced by architecture)
