@@ -1,3 +1,0 @@
-VERIFRAX SPEC FREEZE
-Version: v2.8.0
-This directory is immutable. Any change requires a new version directory + new signed tag.

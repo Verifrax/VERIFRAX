@@ -4,6 +4,8 @@ compatibility_date = "2025-01-01"
 workers_dev = false
 
 routes = [
+  { pattern = "www.verifrax.net/spec", zone_name = "verifrax.net" },
+  { pattern = "www.verifrax.net/spec/*", zone_name = "verifrax.net" },
   { pattern = "www.verifrax.net/spec*", zone_name = "verifrax.net" }
 ]
 

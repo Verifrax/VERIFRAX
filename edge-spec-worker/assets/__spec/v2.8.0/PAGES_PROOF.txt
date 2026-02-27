@@ -1,5 +1,0 @@
-VERIFRAX pages proof (2026-02-25):
-latest==v2.8.0
-MANIFEST.sha256=6c95280ff4bf8f3b4caedb75d61410627c74dd586abf30e92dca88f698384d86
-root index=412da069cd963e36f07cda012a753d244279504588e2c13185db8cb82a164128
-site=https://verifrax.github.io/VERIFRAX/

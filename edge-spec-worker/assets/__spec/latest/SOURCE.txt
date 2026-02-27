@@ -1,3 +1,0 @@
-Tag: v2.8.0
-Commit: 5adb637779a46dc6b4bf835703d2372132ed335d
-Repo: https://github.com/Verifrax/VERIFRAX
