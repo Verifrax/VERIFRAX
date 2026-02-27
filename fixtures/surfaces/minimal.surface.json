@@ -1,0 +1,7 @@
+{
+  "schema": "verifrax.surface.v1",
+  "artifact_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "inputs": [],
+  "claims": [],
+  "meta": { "generator": "selftest" }
+}
