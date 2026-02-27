@@ -19,6 +19,7 @@ jobs:
           policy_path: policy/v1.0.0/policy.yaml
           mode: audit
           out_path: verifrax.seal.json
+          surface_path: "fixtures/surfaces/minimal.surface.json"
       - name: Show output
         run: |
           test -f verifrax.seal.json
