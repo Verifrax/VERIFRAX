@@ -26,7 +26,7 @@ jobs:
         with:
           repository: Verifrax/VERIFRAX-SPEC
           token: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
-          path: /tmp/spec-repo
+          path: spec-repo
           fetch-depth: 0
       - name: Publish to VERIFRAX-SPEC
         run: |
@@ -35,8 +35,7 @@ jobs:
           git config --global user.name "verifrax-systems"
           git config --global user.email "verifrax-systems@users.noreply.github.com"
 
-          cd /tmp/spec-repo
-          git checkout main          git pull --ff-only origin main
+          cd spec-repo          git checkout main          git pull --ff-only origin main
 
           rm -rf ./*
           cp -R /tmp/spec-export/. .
