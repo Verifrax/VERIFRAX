@@ -1,0 +1,44 @@
+name: publish-spec-repo
+on:
+  push:
+    branches: [ main ]
+permissions:
+  contents: read
+concurrency:
+  group: publish-spec-repo
+  cancel-in-progress: true
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Export spec directory
+        run: |
+          bash scripts/spec-export.sh /tmp/spec-export
+
+      - name: Push to VERIFRAX-SPEC
+        env:
+          GH_TOKEN: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config --global user.name "verifrax-systems"
+          git config --global user.email "verifrax-systems@users.noreply.github.com"
+
+          rm -rf /tmp/spec-repo
+          git clone "https://x-access-token:${GH_TOKEN}@github.com/Verifrax/VERIFRAX-SPEC.git" /tmp/spec-repo
+          cd /tmp/spec-repo
+
+          rm -rf ./*
+          cp -R /tmp/spec-export/. .
+
+          git add -A
+          if git diff --cached --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+
+          git commit -m "publish: spec from VERIFRAX@${GITHUB_SHA}"
+          git push origin HEAD:main

@@ -1,0 +1,29 @@
+name: verify-spec
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify manifest sha256 (latest + versioned)
+        run: |
+          set -euo pipefail
+          for d in latest v2.8.0; do
+            test -f "$d/MANIFEST.sha256"
+            (cd "$d" && sha256sum -c MANIFEST.sha256)
+          done
+
+      - name: Verify SOURCE.txt structure
+        run: |
+          set -euo pipefail
+          for f in latest/SOURCE.txt v2.8.0/SOURCE.txt; do
+            rg -n '^Tag:\s+v[0-9]+\.[0-9]+\.[0-9]+$' "$f"
+            rg -n '^Commit:\s+[0-9a-f]{40}$' "$f"
+            rg -n '^Repo:\s+https://github\.com/Verifrax/VERIFRAX$' "$f"
+          done
