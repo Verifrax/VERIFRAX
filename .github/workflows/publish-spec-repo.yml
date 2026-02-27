@@ -35,13 +35,13 @@ jobs:
           git config --global user.name "verifrax-systems"
           git config --global user.email "verifrax-systems@users.noreply.github.com"
 
-          BR="autopublish-${GITHUB_SHA::7}"
+          BR="autopublish--"
 
           rm -rf spec-repo
           git clone "https://verifrax-systems:${PAT}@github.com/Verifrax/VERIFRAX-SPEC.git" spec-repo
           cd spec-repo
 
-          git checkout -b "$BR"
+          git checkout -B ""
 
           rm -rf ./*
           cp -R /tmp/spec-export/. .
