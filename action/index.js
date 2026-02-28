@@ -129,6 +129,8 @@ function main() {
   const built = buildEvaluationSurface(surfaceInput);
 
   const policyText = readFile(policyPath);
+  // FIX: define policyObjOrText for loadPolicy()
+  const policyObjOrText = policyText;
   const loaded = loadPolicy(policyObjOrText);
   const evalOut = evaluate(built.surface, policyText);
 
