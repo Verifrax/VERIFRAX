@@ -13,21 +13,23 @@ const OPS = new Set(["eq","ne","in","nin","contains","not_contains","any","all",
 function loadPolicy(textOrObj) {
   if (!textOrObj) die("E_POLICY_PARSE", "policy: empty");
 
-  // object already
   if (typeof textOrObj === "object") return loadPolicyFromObject(textOrObj);
 
   const text = String(textOrObj).trim();
 
-  try {
-    // STRICT JSON detection
-    if (text.startsWith("{") || text.startsWith("[")) {
+  // STRICT JSON detection first
+  if (text.startsWith("{") || text.startsWith("[")) {
+    try {
       return loadPolicyFromObject(JSON.parse(text));
+    } catch (_) {
+      die("E_POLICY_PARSE", "policy: invalid JSON");
     }
+  }
 
-    // YAML
+  // YAML fallback
+  try {
     const YAML = require("yaml");
     return loadPolicyFromObject(YAML.parse(text));
-
   } catch (_) {
     die("E_POLICY_PARSE", "policy: invalid YAML");
   }
