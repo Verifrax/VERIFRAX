@@ -14,7 +14,10 @@ function loadPolicy(textOrObj) {
   let obj = textOrObj;
   if (typeof textOrObj === "string") {
     try { obj = getYaml().load(textOrObj,{ schema: getYaml().JSON_SCHEMA }); }
-    catch (e) { die("E_POLICY_PARSE", "policy: invalid YAML"); }
+    catch (e) { die("E_POLICY_PARSE", "policy: invalid YAML");
+    // JSON fallback
+    try { return loadPolicyFromObject(JSON.parse(text)); } catch (_) {}
+ }
   }
   if (!obj || typeof obj !== "object" || Array.isArray(obj)) die("E_POLICY_SCHEMA", "policy: required object");
   const version = typeof obj.version === "string" ? obj.version : "v1";
