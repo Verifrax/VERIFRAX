@@ -11,22 +11,26 @@ const { die, canonicalHash, stableStringify } = require("../canonical");
 const OPS = new Set(["eq","ne","in","nin","contains","not_contains","any","all","gt","gte","lt","lte","exists","not_exists"]);
 
 function loadPolicy(textOrObj) {
-  let obj = textOrObj;
-  if (typeof textOrObj === "string") {
-    try { obj = getYaml().load(textOrObj,{ schema: getYaml().JSON_SCHEMA }); }
-    catch (e) { die("E_POLICY_PARSE", "policy: invalid YAML");
-    // JSON fallback
-    try { return loadPolicyFromObject(JSON.parse(text)); } catch (_) {}
- }
+  if (!textOrObj) die("E_POLICY_PARSE", "policy: empty");
+
+  // object already
+  if (typeof textOrObj === "object") return loadPolicyFromObject(textOrObj);
+
+  const text = String(textOrObj).trim();
+
+  try {
+    // STRICT JSON detection
+    if (text.startsWith("{") || text.startsWith("[")) {
+      return loadPolicyFromObject(JSON.parse(text));
+    }
+
+    // YAML
+    const YAML = require("yaml");
+    return loadPolicyFromObject(YAML.parse(text));
+
+  } catch (_) {
+    die("E_POLICY_PARSE", "policy: invalid YAML");
   }
-  if (!obj || typeof obj !== "object" || Array.isArray(obj)) die("E_POLICY_SCHEMA", "policy: required object");
-  const version = typeof obj.version === "string" ? obj.version : "v1";
-  const rules = Array.isArray(obj.rules) ? obj.rules : null;
-  if (!rules) die("E_POLICY_SCHEMA", "policy.rules: required array");
-  const normalizedRules = rules.map((r, i) => normalizeRule(r, i));
-  const normalized = { version, rules: normalizedRules };
-  const policy_hash = canonicalHash(normalized);
-  return { policy: normalized, policy_hash };
 }
 
 function normalizeRule(r, i) {
