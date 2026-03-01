@@ -10,6 +10,29 @@ function getYaml() {
 const { die, canonicalHash, stableStringify } = require("../canonical");
 const OPS = new Set(["eq","ne","in","nin","contains","not_contains","any","all","gt","gte","lt","lte","exists","not_exists"]);
 
+function loadPolicyFromObject(obj) {
+  if (!obj || typeof obj !== "object" || Array.isArray(obj)) {
+    die("E_POLICY_SCHEMA", "policy: required object");
+  }
+
+  // allow either { policy: {...} } or { rules: [...] }
+  const policyIn = (obj.policy && typeof obj.policy === "object") ? obj.policy : obj;
+
+  const rulesIn = policyIn.rules;
+  if (!Array.isArray(rulesIn) || rulesIn.length === 0) {
+    die("E_POLICY_SCHEMA", "policy.rules: required non-empty array");
+  }
+
+  const rules = rulesIn.map((r, i) => normalizeRule(r, i));
+  const policy = { rules };
+
+  // determinism guard: canonical stringify must be stable
+  stableStringify(policy);
+
+  const policy_hash = canonicalHash({ policy });
+  return { policy, policy_hash };
+}
+
 function loadPolicy(textOrObj) {
   if (!textOrObj) die("E_POLICY_PARSE", "policy: empty");
 
