@@ -129,6 +129,20 @@ function main() {
   const built = buildEvaluationSurface(surfaceInput);
 
   const policyText = readFile(policyPath);
+
+  // === VERIFRAX PROBE (ACTION-SIDE): raw policy bytes + boundary JSON.parse ===
+  try {
+    const b = fs.readFileSync(policyPath);
+    console.log("VERIFRAX_PROBE_POLICY_PATH", policyPath);
+    console.log("VERIFRAX_PROBE_POLICY_BYTES", b.length);
+    console.log("VERIFRAX_PROBE_POLICY_HEAD_HEX", b.subarray(0,64).toString("hex"));
+    console.log("VERIFRAX_PROBE_POLICY_HEAD_UTF8", JSON.stringify(b.subarray(0,128).toString("utf8")));
+    JSON.parse(b.toString("utf8").trim());
+    console.log("VERIFRAX_PROBE_JSON_PARSE_OK");
+  } catch (e) {
+    console.log("VERIFRAX_PROBE_JSON_PARSE_FAIL", String(e && e.message ? e.message : e));
+  }
+  // === END PROBE ===
   // FIX: define policyObjOrText for loadPolicy()
   const policyObjOrText = policyText;
   const loaded = loadPolicy(policyObjOrText);
