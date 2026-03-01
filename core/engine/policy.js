@@ -21,20 +21,6 @@ function loadPolicy(textOrObj) {
   if (text.startsWith("{") || text.startsWith("[")) {
     try {
       return loadPolicyFromObject(
-// === VERIFRAX PROBE: raw policy bytes ===
-try {
-  const b = fs.readFileSync(policyPath);
-  console.log("VERIFRAX_PROBE_POLICY_PATH", policyPath);
-  console.log("VERIFRAX_PROBE_POLICY_BYTES", b.length);
-  console.log("VERIFRAX_PROBE_POLICY_HEAD_HEX", b.subarray(0,64).toString("hex"));
-  console.log("VERIFRAX_PROBE_POLICY_HEAD_UTF8", JSON.stringify(b.subarray(0,128).toString("utf8")));
-  // boundary parse (trim only)
-  JSON.parse(b.toString("utf8").trim());
-  console.log("VERIFRAX_PROBE_JSON_PARSE_OK");
-} catch (e) {
-  console.log("VERIFRAX_PROBE_JSON_PARSE_FAIL", String(e && e.message ? e.message : e));
-}
-// === END PROBE ===
 
 JSON.parse(text));
     } catch (_) {
