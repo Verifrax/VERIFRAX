@@ -127,25 +127,13 @@ function main() {
 
   const surfaceInput = coreInputsFromArtifacts(sbomNorm, provNorm, sigNorm);
   const built = buildEvaluationSurface(surfaceInput);
+  const policyObj = readJson(policyPath);
+  if (!policyObj) die("E_PARSE", `invalid JSON: ${policyPath}`);
 
-  const policyText = readFile(policyPath);
+  // canonicalize policy once; never re-parse differing strings
+  const policyText = stableStringify(policyObj);
 
-  // === VERIFRAX PROBE (ACTION-SIDE): raw policy bytes + boundary JSON.parse ===
-  try {
-    const b = fs.readFileSync(policyPath);
-    console.log("VERIFRAX_PROBE_POLICY_PATH", policyPath);
-    console.log("VERIFRAX_PROBE_POLICY_BYTES", b.length);
-    console.log("VERIFRAX_PROBE_POLICY_HEAD_HEX", b.subarray(0,64).toString("hex"));
-    console.log("VERIFRAX_PROBE_POLICY_HEAD_UTF8", JSON.stringify(b.subarray(0,128).toString("utf8")));
-    JSON.parse(b.toString("utf8").trim());
-    console.log("VERIFRAX_PROBE_JSON_PARSE_OK");
-  } catch (e) {
-    console.log("VERIFRAX_PROBE_JSON_PARSE_FAIL", String(e && e.message ? e.message : e));
-  }
-  // === END PROBE ===
-  // FIX: define policyObjOrText for loadPolicy()
-  const policyObjOrText = policyText;
-  const loaded = loadPolicy(policyObjOrText);
+  const loaded = loadPolicy(policyObj);
   const evalOut = evaluate(built.surface, policyText);
 
   const pkg = JSON.parse(fs.readFileSync("package.json","utf8"));
