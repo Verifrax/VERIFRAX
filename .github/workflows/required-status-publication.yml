@@ -1,0 +1,58 @@
+name: Required Status Publication
+
+on:
+  workflow_run:
+    workflows: ["Identity", "Determinism Check"]
+    types: [completed]
+
+permissions:
+  statuses: write
+  contents: read
+  pull-requests: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve head SHA (PR head if present, else workflow SHA)
+        id: ctx
+        run: |
+          set -euo pipefail
+          event="$GITHUB_EVENT_PATH"
+
+          wf_name="$(jq -r '.workflow_run.name' "$event")"
+          wf_sha="$(jq -r '.workflow_run.head_sha' "$event")"
+          concl="$(jq -r '.workflow_run.conclusion // "failure"' "$event")"
+
+          pr_sha="$(jq -r '.workflow_run.pull_requests[0].head.sha // empty' "$event")"
+          sha="$wf_sha"
+          if [ -n "${pr_sha:-}" ]; then
+            sha="$pr_sha"
+          fi
+
+          state="failure"
+          if [ "$concl" = "success" ]; then
+            state="success"
+          fi
+
+          echo "repo=${{ github.repository }}" >> "$GITHUB_OUTPUT"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "wf_name=$wf_name" >> "$GITHUB_OUTPUT"
+          echo "state=$state" >> "$GITHUB_OUTPUT"
+
+      - name: Publish required legacy status context
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO:  ${{ steps.ctx.outputs.repo }}
+          SHA:   ${{ steps.ctx.outputs.sha }}
+          WF:    ${{ steps.ctx.outputs.wf_name }}
+          STATE: ${{ steps.ctx.outputs.state }}
+        run: |
+          set -euo pipefail
+          echo "POST legacy status: repo=$REPO sha=$SHA context=$WF state=$STATE"
+          gh api -X POST "repos/$REPO/statuses/$SHA" \
+            -H "Accept: application/vnd.github+json" \
+            -f state="$STATE" \
+            -f context="$WF" \
+            -f description="Required context published from workflow_run" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
