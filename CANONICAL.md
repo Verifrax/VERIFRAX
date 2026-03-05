@@ -48,3 +48,8 @@ Or verify manually: recompute SHA-256 of canonical JSON, compare to `certificate
 - Continuous monitoring (this is one-shot)
 - Large-scale batch processing
 - Mutable or revisable claims
+
+## Authoritative references
+
+- AUTHORITATIVE_INDEX.md
+- AUTHORITATIVE_SCOPE.md
