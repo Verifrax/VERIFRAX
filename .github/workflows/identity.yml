@@ -2,12 +2,9 @@ name: Identity
 
 on:
   push:
-    paths:
-      - 'README.md'
+    branches: [main]
   pull_request:
-    paths:
-      - 'README.md'
-
+    branches: [main]
 permissions:
   contents: read
 
