@@ -72,7 +72,7 @@ jobs:
             node-version: '20'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4 # v4
 
       - name: Install dependencies
         run: pnpm install
@@ -105,7 +105,7 @@ jobs:
             node-version: '20'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4 # v4
 
       - name: Install dependencies
         run: pnpm install
@@ -136,7 +136,7 @@ jobs:
             node-version: '20'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6e92b6d3061 # v4
+        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4 # v4
 
       - name: Install dependencies
         run: pnpm install
