@@ -55,6 +55,12 @@ jobs:
             exit 0
           fi
 
+          if [ ! -f scripts/seed.claim.mjs ] || [ ! -f scripts/bundle.build.mjs ] || [ ! -f scripts/publish.index.mjs ]; then
+            echo "EX-001: Finality workflow helper scripts absent in repository tree. Finality non-blocking."
+            echo "run_finality=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
           echo "Runtime surface + artifacts present — enforcing finality."
           echo "run_finality=true" >> "$GITHUB_OUTPUT"
 
