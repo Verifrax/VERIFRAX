@@ -26,9 +26,14 @@ jobs:
             exit 0
           fi
 
-          # Push to main/finality-v1 always runs finality.
+          # Push runs finality only on main.
           if [ "${{ github.event_name }}" = "push" ]; then
-            echo "run_finality=true" >> "$GITHUB_OUTPUT"
+            if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+              echo "run_finality=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "EX-001: Non-main push. Finality non-blocking."
+              echo "run_finality=false" >> "$GITHUB_OUTPUT"
+            fi
             exit 0
           fi
 
