@@ -31,7 +31,7 @@ VERIFRAX is the **authoritative source** for:
 ## Non-authoritative
 
 - `docs/` (informational only)
-- UI/presentation layer
+- docs layer
 - Marketing text
 - README prose
 
