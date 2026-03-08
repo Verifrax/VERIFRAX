@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
-# ARCHICUSTOS v1.0.0
+#!/bin/sh
+# ARCHICUSTOS v0.1.0
 # Custody tracking utility
 # Records custody claims with continuity enforcement.
-# No execution. No remediation.
+# No execution. No mutation. No remediation.
 
 set -eu
 
@@ -12,10 +12,6 @@ git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
   printf '%s\n' "ARCHICUSTOS: not a git repository" >&2
   exit 2
 }
-
-LEDGER_DIR="${1:?LEDGER_PATH_REQUIRED}"
-[ -d "$LEDGER_DIR" ] || exit 2
-LOG="$LEDGER_DIR/archicustos.log"
 
 # --- Input ----------------------------------------------------------------
 
@@ -46,12 +42,12 @@ printf '%s' "$TEXT" | grep -Eq \
 
 # --- Continuity Enforcement -----------------------------------------------
 
-if [ -f "$LOG" ] && grep -q '^CUSTODY:' "$LOG"; then
+if [ -f ARCHICUSTOS.log ] && grep -q '^CUSTODY:' ARCHICUSTOS.log; then
   LAST_CUSTODY="$(awk '
     /^CUSTODY:/ {flag=1; next}
     /^---/ {flag=0}
     flag {print}
-  ' "$LOG" | tail -n 1)"
+  ' ARCHICUSTOS.log | tail -n 1)"
 
   printf '%s' "$TEXT" | grep -Fq "$LAST_CUSTODY" || {
     printf '%s\n' "DENIED"
@@ -70,8 +66,8 @@ REPO="$(git rev-parse --show-toplevel)"
   printf 'REPO: %s\n' "$REPO"
   printf 'COMMIT: %s\n' "$COMMIT"
   printf 'CUSTODY:\n%s\n' "$TEXT"
-  printf '%s\n' '---'
-} >> "$LOG"
+  printf '---\n'
+} >> ARCHICUSTOS.log
 
 # --- Verdict ---------------------------------------------------------------
 

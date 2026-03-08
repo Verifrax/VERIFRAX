@@ -1,48 +1,40 @@
-#!/usr/bin/env bash
-# ATTESTORIUM v1.0.0
+#!/bin/sh
+# ATTESTORIUM v0.1.0
 # Deterministic attestation utility
-# Witness only. No execution. No remediation. No mutation.
+# Witness only. No execution. No mutation. No remediation.
 
 set -eu
 
 # --- Preconditions ---------------------------------------------------------
 
 git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
-  printf '%s\n' "ATTESTORIUM: NOT_A_GIT_REPOSITORY" >&2
+  printf '%s\n' "ATTESTORIUM: not a git repository" >&2
   exit 2
 }
 
-LEDGER_DIR="${1:?LEDGER_PATH_REQUIRED}"
-[ -d "$LEDGER_DIR" ] || {
-  printf '%s\n' "ATTESTORIUM: LEDGER_DIR_INVALID" >&2
-  exit 2
-}
-
-LOG="$LEDGER_DIR/attestorium.log"
-
-# --- Input ----------------------------------------------------------------
+# --- Input Capture ----------------------------------------------------------
 
 INPUT="$(cat)"
 
 [ -z "$INPUT" ] && {
-  printf '%s\n' "ATTESTORIUM: EMPTY_INPUT"
+  printf '%s\n' "ATTESTORIUM: INVALID"
   exit 1
 }
 
-# --- Context --------------------------------------------------------------
+# --- Attestation Context ----------------------------------------------------
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 HEAD_COMMIT="$(git rev-parse --verify HEAD 2>/dev/null || printf '%s' UNCOMMITTED)"
 HEAD_TREE="$(git rev-parse --verify HEAD^{tree} 2>/dev/null || printf '%s' UNCOMMITTED)"
 
-STATUS="$(git status --porcelain=v1 -z | LC_ALL=C sort -z || true)"
-
 TIMESTAMP="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
 
-# --- Deterministic Digest --------------------------------------------------
+STATUS="$(git status --porcelain=v1 -z | LC_ALL=C sort -z || true)"
 
-PAYLOAD="$(printf '%s\n%s\n%s\n%s\n%s' \
+# --- Deterministic Digest ---------------------------------------------------
+
+ATTESTATION_PAYLOAD="$(printf '%s\n%s\n%s\n%s\n%s' \
   "$TIMESTAMP" \
   "$HEAD_COMMIT" \
   "$HEAD_TREE" \
@@ -50,21 +42,18 @@ PAYLOAD="$(printf '%s\n%s\n%s\n%s\n%s' \
   "$INPUT"
 )"
 
-DIGEST="$(printf '%s' "$PAYLOAD" | sha256sum | awk '{print $1}')"
+DIGEST="$(printf '%s' "$ATTESTATION_PAYLOAD" | sha256sum | awk '{print $1}')"
 
-# --- Ledger ---------------------------------------------------------------
+# --- Output ----------------------------------------------------------------
 
-{
-  printf 'TIME: %s\n' "$TIMESTAMP"
-  printf 'REPO: %s\n' "$REPO_ROOT"
-  printf 'COMMIT: %s\n' "$HEAD_COMMIT"
-  printf 'TREE: %s\n' "$HEAD_TREE"
-  printf 'DIGEST: %s\n' "$DIGEST"
-  printf 'INPUT:\n%s\n' "$INPUT"
-  printf '%s\n' '---'
-} >> "$LOG"
+printf '%s\n' "ATTESTATION"
+printf '%s\n' "----------"
+printf 'repo:      %s\n' "$REPO_ROOT"
+printf 'commit:    %s\n' "$HEAD_COMMIT"
+printf 'tree:      %s\n' "$HEAD_TREE"
+printf 'time:      %s\n' "$TIMESTAMP"
+printf 'digest:    %s\n\n' "$DIGEST"
+printf '%s\n' "stdin:"
+printf '%s\n' "$INPUT"
 
-# --- Verdict --------------------------------------------------------------
-
-printf '%s\n' "ATTESTED"
 exit 0
