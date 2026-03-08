@@ -61,7 +61,7 @@ COMMIT="$(git rev-parse --verify HEAD 2>/dev/null || printf '%s' UNCOMMITTED)"
   printf 'TIME: %s\n' "$TIMESTAMP"
   printf 'COMMIT: %s\n' "$COMMIT"
   printf 'INPUT:\n%s\n' "$TEXT"
-  printf '---\n'
+  printf '%s\n' '---'
 } >> LIMENWARD.log
 
 # --- Verdict --------------------------------------------------------------
