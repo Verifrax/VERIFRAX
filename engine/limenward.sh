@@ -1,25 +1,34 @@
-#!/usr/bin/env bash
-# LIMENWARD v1.0.0
+#!/bin/sh
+set -euo pipefail
+
+# determinism hardening (CI)
+: ${VF_DETERMINISTIC:=1}
+export VF_DETERMINISTIC
+export LC_ALL=C
+export LANG=C
+export TZ=UTC
+umask 022
+export PYTHONHASHSEED=0
+export SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH:-1709510400}
+# LIMENWARD v0.1.0
 # Boundary enforcement utility
-# Guards irreversible transitions. No execution. No remediation.
+# Guards transitions. No execution. No mutation. No remediation.
 
 set -eu
 
 # --- Preconditions ---------------------------------------------------------
 
+# Must be inside a git repository
 git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
   printf '%s\n' "LIMENWARD: not a git repository" >&2
   exit 2
 }
 
-LEDGER_DIR="${1:?LEDGER_PATH_REQUIRED}"
-[ -d "$LEDGER_DIR" ] || exit 2
-LOG="$LEDGER_DIR/limenward.log"
-
 # --- Input ----------------------------------------------------------------
 
 INPUT="$(cat)"
 
+# Silence is a blocked transition
 [ -z "$INPUT" ] && {
   printf '%s\n' "DENIED"
   exit 1
@@ -36,9 +45,9 @@ printf '%s' "$TEXT" | grep -Eiq \
   exit 1
 }
 
-# Require explicit, anchored marker of finality
+# Require explicit marker of intent or finality
 printf '%s' "$TEXT" | grep -Eq \
-  '(^|[^a-z])(FINAL|APPROVED|READY|COMMIT|PUBLISH|RELEASE|EXECUTE)([^a-z]|$)' || {
+  '(^|[^a-z])(final|approved|ready|commit|publish|release|execute)([^a-z]|$)' || {
   printf '%s\n' "DENIED"
   exit 1
 }
@@ -52,8 +61,8 @@ COMMIT="$(git rev-parse --verify HEAD 2>/dev/null || printf '%s' UNCOMMITTED)"
   printf 'TIME: %s\n' "$TIMESTAMP"
   printf 'COMMIT: %s\n' "$COMMIT"
   printf 'INPUT:\n%s\n' "$TEXT"
-  printf '%s\n' '---'
-} >> "$LOG"
+  printf '---\n'
+} >> LIMENWARD.log
 
 # --- Verdict --------------------------------------------------------------
 
