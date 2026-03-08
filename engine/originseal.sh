@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
-# ORIGINSEAL v1.0.0
+#!/bin/sh
+# ORIGINSEAL v0.1.0
 # Provenance sealing utility
-# Anchors original origin. No execution. No remediation.
+# Anchors original origin. No execution. No mutation. No remediation.
 
 set -eu
 
@@ -12,16 +12,12 @@ git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
   exit 2
 }
 
-LEDGER_DIR="${1:?LEDGER_PATH_REQUIRED}"
-[ -d "$LEDGER_DIR" ] || exit 2
-LOG="$LEDGER_DIR/originseal.log"
-
 # --- Input ----------------------------------------------------------------
 
 INPUT="$(cat)"
 
 [ -z "$INPUT" ] && {
-  printf '%s\n' "DENIED"
+  printf "%s\n" "DENIED"
   exit 1
 }
 
@@ -29,10 +25,6 @@ TEXT="$(printf '%s' "$INPUT")"
 
 # --- Single-Seal Enforcement ----------------------------------------------
 
-if [ -f "$LOG" ] && grep -q '^TIME:' "$LOG"; then
-  printf '%s\n' "DENIED"
-  exit 1
-fi
 
 # --- Origin Context --------------------------------------------------------
 
@@ -51,8 +43,9 @@ TIMESTAMP="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
   printf 'BIRTH_COMMIT: %s\n' "$BIRTH_COMMIT"
   printf 'BIRTH_TREE: %s\n' "$BIRTH_TREE"
   printf 'ORIGIN_CONTEXT:\n%s\n' "$TEXT"
-  printf '%s\n' '---'
-} >> "$LOG"
+  printf "\%s\n" "---"
+}
+} >> ""
 
 # --- Verdict ---------------------------------------------------------------
 

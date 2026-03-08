@@ -1,14 +1,14 @@
-#!/usr/bin/env bash
-# VALIDEXOR v1.0.0
+#!/bin/sh
+# VALIDEXOR v0.1.0
 # Deterministic verification utility
-# Verifies claims against observable state. No judgment. No execution.
+# Verifies claims against observable reality. No judgment. No execution.
 
 set -eu
 
 # --- Preconditions ---------------------------------------------------------
 
 git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
-  printf '%s\n' "VALIDEXOR: NOT_A_GIT_REPOSITORY" >&2
+  printf '%s\n' "VALIDEXOR: not a git repository" >&2
   exit 2
 }
 
@@ -17,7 +17,7 @@ git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
 INPUT="$(cat)"
 
 [ -z "$INPUT" ] && {
-  printf '%s\n' "VALIDEXOR: EMPTY_INPUT"
+  printf '%s\n' "INVALID"
   exit 1
 }
 
@@ -25,10 +25,10 @@ TEXT="$(printf '%s' "$INPUT")"
 
 # --- Rejection Rules -------------------------------------------------------
 
-# No speculation or hedging
+# No speculation, hedging, or approximation
 printf '%s' "$TEXT" | grep -Eiq \
   '(^|[^a-z])(maybe|might|could|should|approx|guess|probably|likely|unclear|unknown)([^a-z]|$)' && {
-  printf '%s\n' "RULE: VERIFICATION.SPECULATION"
+  printf '%s\n' "INVALID"
   exit 1
 }
 
@@ -37,7 +37,7 @@ printf '%s' "$TEXT" | grep -Eiq \
 # Must contain at least one falsifiable anchor
 printf '%s' "$TEXT" | grep -Eq \
   '([0-9]+|true|false|/[^[:space:]]+|[a-f0-9]{7,40}|==|!=|<=|>=|<|>)' || {
-  printf '%s\n' "RULE: VERIFICATION.UNVERIFIABLE"
+  printf '%s\n' "UNVERIFIABLE"
   exit 1
 }
 
@@ -47,12 +47,12 @@ printf '%s' "$TEXT" | grep -Eq \
 for h in $(printf '%s' "$TEXT" | grep -Eo '[a-f0-9]{7,40}' | sort -u); do
   git cat-file -e "$h^{commit}" 2>/dev/null ||
   git cat-file -e "$h^{tree}" 2>/dev/null || {
-    printf '%s\n' "RULE: VERIFICATION.INVALID_REFERENCE"
+    printf '%s\n' "INVALID"
     exit 1
   }
 done
 
-# --- Verdict --------------------------------------------------------------
+# --- Verdict ---------------------------------------------------------------
 
 printf '%s\n' "VERIFIED"
 exit 0
