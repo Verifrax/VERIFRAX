@@ -5,10 +5,26 @@
 
 set -eu
 
-git rev-parse --is-inside-work-tree >/dev/null 2>&1 || exit 2
+# --- Input -----------------------------------------------------------------
+
+INPUT="$(cat || true)"
+
+[ -z "$INPUT" ] && {
+  printf '%s\n' "INVALID"
+  exit 1
+}
+
+# --- Preconditions ---------------------------------------------------------
+
+git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
+  printf '%s\n' "GUILLOTINE: not a git repository" >&2
+  exit 2
+}
+
+# --- Termination -----------------------------------------------------------
 
 # Null-delimited, space-safe
-git status --porcelain=v1 -z | while IFS= read -r -d '' entry; do
+git status --porcelain=v1 -z | while IFS= read -r -d "" entry; do
   status=${entry%% *}
   path=${entry#?? }
 
@@ -18,4 +34,5 @@ git status --porcelain=v1 -z | while IFS= read -r -d '' entry; do
   rm -rf -- "$path"
 done
 
-exit 1
+printf '%s\n' "TERMINATED"
+exit 0
