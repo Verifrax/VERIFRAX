@@ -34,8 +34,7 @@ STATUS="$(git status --porcelain=v1 -z | LC_ALL=C sort -z || true)"
 
 # --- Deterministic Digest ---------------------------------------------------
 
-ATTESTATION_PAYLOAD="$(printf '%s\n%s\n%s\n%s\n%s' \
-  "$TIMESTAMP" \
+ATTESTATION_PAYLOAD="$(printf '%s\n%s\n%s\n%s' \
   "$HEAD_COMMIT" \
   "$HEAD_TREE" \
   "$STATUS" \
