@@ -46,7 +46,7 @@ LOCK_EPOCH="$(
 
 NOW_EPOCH="$(date -u +%s)"
 
-if [ "$NOW_EPOCH" -lt "$LOCK_EPOCH" ]; then
+if [ "$NOW_EPOCH" -gt "$LOCK_EPOCH" ]; then
   printf '%s\n' "DENIED"
   exit 1
 fi
@@ -61,7 +61,7 @@ REPO="$(git rev-parse --show-toplevel)"
   printf 'COMMIT: %s\n' "$COMMIT"
   printf 'LOCK_AT: %s\n' "$LOCK_TIME"
   printf 'NOW: %s\n' "$NOW"
-  printf '---\n'
+  printf '%s\n' '---'
 } >> KAIROCLASP.log
 
 printf '%s\n' "CLASPED"
