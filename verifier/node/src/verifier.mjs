@@ -19,8 +19,8 @@ function runSuite(root, suitePath) {
 
   const suite = JSON.parse(fs.readFileSync(suitePath));
 
-  const bundlePath = path.join(root, "bundles", suite.bundle, "bundle.json");
-  const expectedPath = path.join(root, "expected", suite.bundle, "verdict.json");
+  const bundlePath = path.join(root, "bundles", suite.bundle_id, "bundle.json");
+  const expectedPath = path.join(root, "expected", suite.bundle_id, "verdict.json");
 
   const bundle = JSON.parse(fs.readFileSync(bundlePath));
   const expected = JSON.parse(fs.readFileSync(expectedPath));
