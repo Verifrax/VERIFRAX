@@ -1,10 +1,12 @@
 # VERIFRAX
-SYS-003
 
-STATUS: REGISTERED  
-REGISTRY: https://speedkit.eu  
+```
+SYS-003
+STATUS: REGISTERED
+REGISTRY: https://speedkit.eu
 SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
----
+```
+
 
 **Deterministic verification for irreversible evidence, final judgments, and protocol‑grade trust boundaries.**
 
