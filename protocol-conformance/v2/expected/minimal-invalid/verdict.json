@@ -1,0 +1,6 @@
+{
+  "bundle_hash": "TEST_MINIMAL_INVALID",
+  "verdict": "FAILED",
+  "error_class": "INVALID_EVIDENCE_STRUCTURE",
+  "protocol_version": "2"
+}

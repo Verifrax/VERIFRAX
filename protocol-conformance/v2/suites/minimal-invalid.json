@@ -1,0 +1,6 @@
+{
+  "suite": "minimal-invalid",
+  "description": "Minimal invalid bundle conformance verification",
+  "input_bundle": "bundles/minimal-invalid/bundle.json",
+  "expected_output": "expected/minimal-invalid/verdict.json"
+}
