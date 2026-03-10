@@ -18,5 +18,5 @@ fn main() {
         println!("{}: PASS", name);
     }
 
-    println!("\nNode reference verifier completed.");
+    println!("\\nNode reference verifier completed.");
 }
