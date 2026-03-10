@@ -1,0 +1,11 @@
+{
+  "name": "verifrax-node-verifier",
+  "version": "0.1.0",
+  "description": "Reference deterministic verifier for the VERIFRAX protocol",
+  "type": "module",
+  "main": "src/verifier.mjs",
+  "scripts": {
+    "verify": "node src/verifier.mjs"
+  },
+  "license": "MIT"
+}
