@@ -1,0 +1,13 @@
+# Verification State Machine
+
+Deterministic evaluation pipeline:
+
+parse_bundle
+canonicalize
+schema_validation
+signature_verification
+policy_evaluation
+contradiction_detection
+invalidation_resolution
+verdict
+finality_lock
