@@ -5,10 +5,6 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-/*
-Deterministically resolve repository root regardless of execution cwd.
-verifier/node/src -> repo root
-*/
 const ROOT = path.resolve(__dirname, "../../../protocol-conformance/v2");
 
 function deepEqual(a, b) {
@@ -17,10 +13,10 @@ function deepEqual(a, b) {
 
 function runSuite(root, suitePath) {
 
-  const suite = JSON.parse(fs.readFileSync(suitePath));
+  const suiteName = path.basename(suitePath, ".json");
 
-  const bundlePath = path.join(root, "bundles", suite.bundle_id, "bundle.json");
-  const expectedPath = path.join(root, "expected", suite.bundle_id, "verdict.json");
+  const bundlePath = path.join(root, "bundles", suiteName, "bundle.json");
+  const expectedPath = path.join(root, "expected", suiteName, "verdict.json");
 
   const bundle = JSON.parse(fs.readFileSync(bundlePath));
   const expected = JSON.parse(fs.readFileSync(expectedPath));
@@ -30,11 +26,11 @@ function runSuite(root, suitePath) {
   };
 
   if (!deepEqual(result.verdict, expected.verdict)) {
-    throw new Error("Verdict mismatch");
+    throw new Error("Verdict mismatch: " + suiteName);
   }
 
   return {
-    suite: suite.suite,
+    suite: suiteName,
     result: "PASS"
   };
 }
@@ -45,15 +41,11 @@ function main() {
 
   const suites = fs.readdirSync(suitesDir).filter(f => f.endsWith(".json"));
 
-  const results = [];
-
   for (const s of suites) {
 
     const suitePath = path.join(suitesDir, s);
 
     const r = runSuite(ROOT, suitePath);
-
-    results.push(r);
 
     console.log(`${r.suite}: ${r.result}`);
   }
