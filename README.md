@@ -1,12 +1,10 @@
 # VERIFRAX
 
-SYS-003
-Deterministic verification protocol
+SYS-003 — Deterministic verification protocol
 
-STATUS: REGISTERED
-REGISTRY: [https://speedkit.eu](https://speedkit.eu)
-SNAPSHOT: [https://speedkit.eu/REGISTRY_SNAPSHOT.json](https://speedkit.eu/REGISTRY_SNAPSHOT.json)
-
+STATUS: REGISTERED  
+REGISTRY: https://speedkit.eu  
+SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
 ---
 
 **Deterministic verification for irreversible evidence, final judgments, and protocol‑grade trust boundaries.**
