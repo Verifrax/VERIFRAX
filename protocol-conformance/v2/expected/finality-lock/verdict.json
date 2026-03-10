@@ -1,0 +1,6 @@
+{
+  "bundle_hash": "TEST_FINALITY_LOCK",
+  "verdict": "VERIFIED",
+  "finality": "LOCKED",
+  "protocol_version": "2"
+}

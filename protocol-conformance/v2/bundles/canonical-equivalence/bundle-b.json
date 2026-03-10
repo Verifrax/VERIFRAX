@@ -1,0 +1,14 @@
+{
+  "claims":[
+    {
+      "timestamp":"2026-01-01T00:00:00Z",
+      "statement":"Canonical equivalence test",
+      "subject":"verifrax-conformance",
+      "claim_id":"claim-equivalence"
+    }
+  ],
+  "attestations":[],
+  "evidence":[],
+  "bundle_hash":"TEST_CANONICAL_EQUIV",
+  "protocol_version":"2"
+}

@@ -1,0 +1,18 @@
+{
+  "protocol_version": "2",
+  "bundle_hash": "TEST_FINALITY_LOCK",
+  "claims": [
+    {
+      "claim_id": "claim-final",
+      "subject": "verifrax-conformance",
+      "statement": "verification result is final",
+      "timestamp": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "evidence": [],
+  "attestations": [],
+  "finality": {
+    "locked": true,
+    "reason": "verification-complete"
+  }
+}

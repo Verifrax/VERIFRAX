@@ -1,0 +1,18 @@
+{
+  "protocol_version": "2",
+  "bundle_hash": "TEST_INVALIDATION",
+  "claims": [
+    {
+      "claim_id": "claim-original",
+      "subject": "verifrax-conformance",
+      "statement": "artifact valid",
+      "timestamp": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "invalidation": {
+    "target_claim_id": "claim-original",
+    "reason": "revoked-by-authority"
+  },
+  "evidence": [],
+  "attestations": []
+}

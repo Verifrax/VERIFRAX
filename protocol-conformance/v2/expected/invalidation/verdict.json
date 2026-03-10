@@ -1,0 +1,6 @@
+{
+  "bundle_hash": "TEST_INVALIDATION",
+  "verdict": "INVALIDATED",
+  "error_class": "CLAIM_INVALIDATED",
+  "protocol_version": "2"
+}
