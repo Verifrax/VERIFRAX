@@ -13,14 +13,10 @@ function deepEqual(a, b) {
 
 function runSuite(root, suitePath) {
 
-  const suite = JSON.parse(fs.readFileSync(suitePath));
+  const suiteName = path.basename(suitePath, ".json");
 
-  if (!suite.bundle) {
-    throw new Error("Invalid suite schema: missing bundle field");
-  }
-
-  const bundlePath = path.join(root, "bundles", suite.bundle, "bundle.json");
-  const expectedPath = path.join(root, "expected", suite.bundle, "verdict.json");
+  const bundlePath = path.join(root, "bundles", suiteName, "bundle.json");
+  const expectedPath = path.join(root, "expected", suiteName, "verdict.json");
 
   const bundle = JSON.parse(fs.readFileSync(bundlePath));
   const expected = JSON.parse(fs.readFileSync(expectedPath));
@@ -30,11 +26,11 @@ function runSuite(root, suitePath) {
   };
 
   if (!deepEqual(result.verdict, expected.verdict)) {
-    throw new Error("Verdict mismatch");
+    throw new Error("Verdict mismatch: " + suiteName);
   }
 
   return {
-    suite: suite.suite,
+    suite: suiteName,
     result: "PASS"
   };
 }
