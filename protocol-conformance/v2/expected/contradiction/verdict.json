@@ -1,0 +1,6 @@
+{
+  "bundle_hash": "TEST_CONTRADICTION",
+  "verdict": "INVALIDATED",
+  "error_class": "CONTRADICTION_DETECTED",
+  "protocol_version": "2"
+}

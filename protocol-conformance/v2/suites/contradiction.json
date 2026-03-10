@@ -1,0 +1,6 @@
+{
+  "suite": "contradiction",
+  "description": "Contradictory claims detection verification",
+  "input_bundle": "bundles/contradiction/bundle.json",
+  "expected_output": "expected/contradiction/verdict.json"
+}
