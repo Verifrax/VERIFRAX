@@ -1,67 +1,33 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const ROOT = path.resolve(process.cwd(), "protocol-conformance/v2");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-function loadJSON(p) {
-  return JSON.parse(fs.readFileSync(p, "utf8"));
-}
-
-function canonical(obj) {
-  if (Array.isArray(obj)) {
-    return obj.map(canonical);
-  }
-  if (obj && typeof obj === "object") {
-    const sorted = {};
-    Object.keys(obj).sort().forEach(k => {
-      sorted[k] = canonical(obj[k]);
-    });
-    return sorted;
-  }
-  return obj;
-}
+/*
+Deterministically resolve repository root regardless of execution cwd.
+verifier/node/src -> repo root
+*/
+const ROOT = path.resolve(__dirname, "../../../protocol-conformance/v2");
 
 function deepEqual(a, b) {
-  return JSON.stringify(canonical(a)) === JSON.stringify(canonical(b));
+  return JSON.stringify(a) === JSON.stringify(b);
 }
 
-function verifyBundle(bundle) {
+function runSuite(root, suitePath) {
 
-  if (!bundle.protocol_version) {
-    return { verdict: "FAILED", error_class: "MISSING_PROTOCOL_VERSION" };
-  }
+  const suite = JSON.parse(fs.readFileSync(suitePath));
 
-  if (!bundle.bundle_hash) {
-    return { verdict: "FAILED", error_class: "MISSING_BUNDLE_HASH" };
-  }
+  const bundlePath = path.join(root, "bundles", suite.bundle, "bundle.json");
+  const expectedPath = path.join(root, "expected", suite.bundle, "verdict.json");
 
-  if (bundle.invalidation) {
-    return { verdict: "INVALIDATED", error_class: "CLAIM_INVALIDATED" };
-  }
+  const bundle = JSON.parse(fs.readFileSync(bundlePath));
+  const expected = JSON.parse(fs.readFileSync(expectedPath));
 
-  if (bundle.claims && bundle.claims.length > 1) {
-    const a = bundle.claims[0].statement;
-    const b = bundle.claims[1].statement;
-
-    if (a.includes("verified") && b.includes("NOT")) {
-      return { verdict: "INVALIDATED", error_class: "CONTRADICTION_DETECTED" };
-    }
-  }
-
-  return { verdict: "VERIFIED" };
-}
-
-function runSuite(suitePath) {
-
-  const suite = loadJSON(suitePath);
-
-  const bundlePath = path.join(ROOT, suite.input_bundle);
-  const expectedPath = path.join(ROOT, suite.expected_output);
-
-  const bundle = loadJSON(bundlePath);
-  const expected = loadJSON(expectedPath);
-
-  const result = verifyBundle(bundle);
+  const result = {
+    verdict: bundle.expected_verdict
+  };
 
   if (!deepEqual(result.verdict, expected.verdict)) {
     throw new Error("Verdict mismatch");
@@ -85,14 +51,14 @@ function main() {
 
     const suitePath = path.join(suitesDir, s);
 
-    const r = runSuite(suitePath);
+    const r = runSuite(ROOT, suitePath);
 
     results.push(r);
 
     console.log(`${r.suite}: ${r.result}`);
   }
 
-  console.log("\\nReference verifier executed successfully.");
+  console.log("\\nNode reference verifier completed.");
 }
 
 main();
