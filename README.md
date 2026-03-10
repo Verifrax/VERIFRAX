@@ -1,6 +1,5 @@
 # VERIFRAX
 SYS-003
-SYS-003
 
 STATUS: REGISTERED  
 REGISTRY: https://speedkit.eu  
