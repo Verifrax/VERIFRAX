@@ -1,6 +1,6 @@
 # VERIFRAX
 
-SYS-003 — Deterministic verification protocol
+SYS-003
 
 STATUS: REGISTERED  
 REGISTRY: https://speedkit.eu  
