@@ -16,13 +16,17 @@ It enforces strict boundaries between authority, verification logic, and enforce
 
 ---
 
-![Determinism](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/determinism.yml?branch=main\&label=determinism)
-![Integrity](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/integrity.yml?branch=main\&label=integrity)
-![Reproducibility](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/verifier-reproducibility.yml?branch=main\&label=reproducibility)
-![Fuzzing](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/cflite.yml?branch=main\&label=fuzzing)
+![Marketplace](https://img.shields.io/badge/github-marketplace-blue)
+![Determinism](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/determinism.yml?branch=main&label=determinism)
+![Integrity](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/integrity.yml?branch=main&label=integrity)
+![Reproducibility](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/verifier-reproducibility.yml?branch=main&label=reproducibility)
+![Fuzzing](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/cflite.yml?branch=main&label=fuzzing)
+![Security Scorecard](https://img.shields.io/ossf-scorecard/github.com/Verifrax/VERIFRAX)
+![Dependencies](https://img.shields.io/librariesio/github/Verifrax/VERIFRAX)
 ![License](https://img.shields.io/github/license/Verifrax/VERIFRAX)
-![Release](https://img.shields.io/github/v/tag/Verifrax/VERIFRAX?label=release)
+![Release](https://img.shields.io/github/v/tag/Verifrax/VERIFRAX?sort=semver)
 ![Protocol Baseline](https://img.shields.io/badge/protocol%20baseline-v1-blue)
+![Protocol Spec](https://img.shields.io/badge/spec-VERIFRAX--SPEC-black)
 ![Engine Parity](https://img.shields.io/badge/engine%20parity-verified-success)
 
 ---
