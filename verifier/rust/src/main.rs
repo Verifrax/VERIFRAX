@@ -1,5 +1,4 @@
 use std::fs;
-use std::path::Path;
 
 fn main() {
 
@@ -19,5 +18,5 @@ fn main() {
         println!("{}: PASS", name);
     }
 
-    println!("\nRust reference verifier completed.");
+    println!("\nNode reference verifier completed.");
 }
