@@ -3,41 +3,34 @@ name: Truth Index Integrity
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  verify-integrity:
+  truth-index:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
-        with:
-          fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Resolve refs safely
+      - name: Verify integrity manifests
         run: |
-          set -euo pipefail
+          node -e "
+          const fs=require(fs);
+          const crypto=require(crypto);
 
-          git remote set-url origin "https://github.com/${{ github.repository }}.git"
+          function sha256(p){
+            return crypto.createHash(sha256).update(fs.readFileSync(p)).digest(hex)
+          }
 
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            BASE="${{ github.base_ref }}"
-            PR="${{ github.event.pull_request.number }}"
+          const files=[
+            release-integrity/reference-verifier-hashes.json,
+            release-integrity/release-sha256-manifest.json,
+            release-integrity/genesis-lineage.json,
+            release-integrity/freeze-surfaces.json
+          ];
 
-            git fetch --no-tags --prune origin \
-              "+refs/heads/${BASE}:refs/remotes/origin/base" \
-              "+refs/pull/${PR}/head:refs/remotes/origin/pr"
-
-            MB="$(git merge-base refs/remotes/origin/base refs/remotes/origin/pr)"
-            CHANGED="$(git diff --name-only "$MB" refs/remotes/origin/pr)"
-          else
-            BRANCH="${{ github.ref_name }}"
-            git fetch --no-tags --prune origin \
-              "+refs/heads/${BRANCH}:refs/remotes/origin/base"
-
-            CHANGED="$(git diff --name-only HEAD~1 HEAD)"
-          fi
-
-          echo "Changed files:"
-          echo "$CHANGED"
-
-          # keep existing integrity logic here
+          for(const f of files){
+            if(!fs.existsSync(f)){
+              console.error(Missing
