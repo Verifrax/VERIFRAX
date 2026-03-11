@@ -1,0 +1,9 @@
+{
+  "protocol": "VERIFRAX",
+  "release": "v1",
+  "transcripts": {
+    "release-integrity/transcripts/node-verifier-v1.txt": "104c8055cb586b70f27742e9e617cfa44170b037fe0c2b1ae124c964a505079b",
+    "release-integrity/transcripts/rust-verifier-v1.txt": "104c8055cb586b70f27742e9e617cfa44170b037fe0c2b1ae124c964a505079b"
+  },
+  "guarantee": "Independent verifier executions must reproduce identical transcript outputs."
+}
