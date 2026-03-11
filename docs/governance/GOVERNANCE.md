@@ -46,3 +46,19 @@ Any temporary policy relaxation must be:
 - explicitly time-bounded
 - documented in the PR description
 - reverted immediately after use
+
+## Repository Authority Resolution
+
+Active repository authority resolution is defined by `AUTHORITY.md`.
+
+Within the governance surface, active repository interpretation resolves through the following canonical surfaces:
+
+- normative specification: `docs/spec/`
+- conformance authority: `protocol-conformance/`
+- active maintained verifier surfaces: `verifier/node`, `verifier/rust`
+- active release freeze authority: `release-integrity/freeze-surfaces.json`
+- maintained registry surface: `registry/`
+- maintained index surface: `index/`
+
+Historical materials under `archive/` and `release-history/` do not define active protocol authority unless explicitly re-designated by a canonical active surface.
+
