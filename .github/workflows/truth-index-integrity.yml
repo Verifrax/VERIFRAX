@@ -16,21 +16,24 @@ jobs:
 
       - name: Verify integrity manifests
         run: |
-          node -e "
-          const fs=require(fs);
-          const crypto=require(crypto);
+          node -e '
 
-          function sha256(p){
-            return crypto.createHash(sha256).update(fs.readFileSync(p)).digest(hex)
-          }
+          const fs = require("fs");
 
-          const files=[
-            release-integrity/reference-verifier-hashes.json,
-            release-integrity/release-sha256-manifest.json,
-            release-integrity/genesis-lineage.json,
-            release-integrity/freeze-surfaces.json
+          const files = [
+            "release-integrity/reference-verifier-hashes.json",
+            "release-integrity/release-sha256-manifest.json",
+            "release-integrity/genesis-lineage.json",
+            "release-integrity/freeze-surfaces.json"
           ];
 
-          for(const f of files){
-            if(!fs.existsSync(f)){
-              console.error(Missing
+          for (const f of files) {
+            if (!fs.existsSync(f)) {
+              console.error("Missing required truth index artifact:", f);
+              process.exit(1);
+            }
+          }
+
+          console.log("Truth index artifacts verified present.");
+
+          '
