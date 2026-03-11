@@ -26,6 +26,29 @@ This implementation is the primary Node.js execution surface for:
 - validating conformance against canonical versioned suites
 - serving as an auditable maintained reference for downstream implementations
 
+## Installation
+
+### Local repository usage
+
+From the repository root:
+
+cd verifier/node
+npm install
+
+### Package publication target
+
+This verifier is the maintained Node package publication surface for VERIFRAX.
+
+When published, installation must resolve from the package defined by `verifier/node/package.json`.
+
+### Expected operator workflow
+
+Typical local execution flow:
+
+cd verifier/node
+npm install
+node src/verifier.mjs
+
 ## Conformance alignment
 
 Active conformance suites are maintained under:
@@ -41,6 +64,10 @@ Consumers and implementers should treat this directory as an execution surface, 
 Normative semantics are defined by the specification under `docs/spec/`.
 Executable conformance targets are defined under `protocol-conformance/`.
 Release freeze authority is defined under `release-integrity/`.
+
+## Publication rule
+
+Any package publication from this surface must preserve deterministic behavior, remain traceable to the repository release-integrity material, and stay aligned with the maintained conformance suites.
 
 ## Maintenance rule
 
