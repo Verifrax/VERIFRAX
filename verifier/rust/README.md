@@ -26,6 +26,28 @@ This implementation exists to provide:
 - deterministic verifier behavior suitable for conformance execution
 - an auditable compiled-language implementation aligned with current repository authority
 
+## Installation
+
+### Local repository usage
+
+From the repository root:
+
+cd verifier/rust
+cargo build --release
+
+### Package publication target
+
+This verifier is the maintained Rust crate publication surface for VERIFRAX.
+
+When published, crate metadata must resolve from `verifier/rust/Cargo.toml`.
+
+### Expected operator workflow
+
+Typical local execution flow:
+
+cd verifier/rust
+cargo run --release
+
 ## Conformance alignment
 
 Active conformance suites are maintained under:
@@ -41,6 +63,10 @@ This directory is an implementation surface, not the normative definition of the
 Normative semantics are defined under `docs/spec/`.
 Conformance targets are defined under `protocol-conformance/`.
 Release freeze authority is defined under `release-integrity/`.
+
+## Publication rule
+
+Any crate publication from this surface must preserve deterministic behavior, remain traceable to the repository release-integrity material, and stay aligned with the maintained conformance suites.
 
 ## Maintenance rule
 
