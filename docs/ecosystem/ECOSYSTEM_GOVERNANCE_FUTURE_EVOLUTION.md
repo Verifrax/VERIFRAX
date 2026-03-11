@@ -147,3 +147,35 @@ or historical permanence.
 
 
 Active repository authority is defined by `AUTHORITY.md`. Maintained conformance suites are under `protocol-conformance/`, with the active suite root at `protocol-conformance/v2/`. Active maintained verifier implementations are `verifier/node` and `verifier/rust`. Active release freeze authority is defined by `release-integrity/freeze-surfaces.json`.
+
+## Protocol Legitimacy Signals
+
+A mature protocol ecosystem requires observable legitimacy signals in addition to correct internal structure.
+
+VERIFRAX legitimacy is therefore communicated through repository-visible signals that allow downstream observers to distinguish active protocol authority from historical, archival, explanatory, or superseded material.
+
+### Active legitimacy signals
+
+Observers should treat the following as core legitimacy signals for the maintained protocol surface:
+
+- explicit repository authority declaration in `AUTHORITY.md`
+- normative root anchored at `docs/spec/INDEX.md`
+- maintained conformance root at `protocol-conformance/`
+- active maintained verifier surfaces at `verifier/node` and `verifier/rust`
+- active release-freeze declaration at `release-integrity/freeze-surfaces.json`
+- explicit historical demotion of `archive/` and `release-history/`
+- maintained registry alignment at `registry/VERIFIED_IMPLEMENTATIONS.json`
+- maintained artifact indexing at `index/VERIFICATION_ARTIFACTS.json`
+
+### Ecosystem interpretation rule
+
+Legitimacy claims should not be inferred from branding, naming, age, or repository volume alone.
+
+They should be inferred from whether the repository preserves deterministic authority resolution, explicit surface boundaries, auditable release integrity, maintained conformance roots, and historical demotion of superseded material.
+
+### Long-horizon consequence
+
+As the ecosystem grows, legitimacy depends on preserving visible alignment between governance, specification, verifier surfaces, conformance suites, registry declarations, release-integrity manifests, and historical archives.
+
+That alignment is a protocol property, not a documentation ornament.
+

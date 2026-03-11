@@ -137,3 +137,35 @@ An implementation is considered VERIFRAX-compatible only if it:
 • satisfies the reference implementation contract  
 • passes the official conformance suites  
 • preserves deterministic verification behavior
+
+## Adversarial Integrity Considerations
+
+VERIFRAX verification surfaces must be interpreted under adversarial conditions.
+
+The protocol therefore assumes that ambiguity, silent drift, shadow authority, path confusion, unverifiable historical substitution, and verifier-surface impersonation are live failure modes rather than theoretical edge cases.
+
+### Required adversarial posture
+
+Maintained implementations and auditors must defend against at least the following repository-level threats:
+
+- substitution of historical material for active authority surfaces
+- presentation of archived verifier material as maintained verifier authority
+- freeze-surface ambiguity between historical and active release declarations
+- conformance drift through unofficial or superseded suite roots
+- path-level confusion between explanatory documentation and normative protocol semantics
+- release verification claims that do not resolve through maintained verifier and release-integrity surfaces
+
+### Protocol consequence
+
+Deterministic verification is not sufficient unless authority resolution is also deterministic.
+
+For that reason, active verification interpretation must resolve through:
+
+- normative semantics: `docs/spec/`
+- conformance authority: `protocol-conformance/`
+- maintained verifier surfaces: `verifier/node`, `verifier/rust`
+- active freeze authority: `release-integrity/freeze-surfaces.json`
+- repository authority boundary: `AUTHORITY.md`
+
+Any verification result that depends on superseded, archived, or historically preserved material outside those surfaces is outside the maintained active repository contract.
+
