@@ -1,165 +1,422 @@
 # VERIFRAX
 
-Deterministic verification protocol for irreversible evidence, auditable judgments, and stable protocol trust boundaries.
+```
+SYS-003
+STATUS: REGISTERED
+REGISTRY: https://speedkit.eu
+SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
+```
 
-VERIFRAX is structured so that protocol semantics, conformance targets, maintained verifier implementations, release integrity material, and historical archives are separated into explicit repository authority surfaces.
+Deterministic verification for irreversible evidence, final judgments, and protocol-grade trust boundaries.
 
-This repository is intended to support deterministic verification outcomes that remain reproducible, inspectable, and resistant to silent semantic drift.
+VERIFRAX is a protocol and maintained implementation surface designed to produce deterministic, auditable verification outcomes from structured evidence while preserving explicit authority boundaries between specification, conformance, execution, release integrity, and historical material.
 
 ---
 
-## Repository entry map
+![Determinism](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/determinism.yml?branch=main\&label=determinism)
+![Integrity](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/integrity.yml?branch=main\&label=integrity)
+![Reproducibility](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/verifier-reproducibility.yml?branch=main\&label=reproducibility)
+![Fuzzing](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/clusterfuzzlite.yml?branch=main\&label=fuzzing)
+![Protocol Baseline](https://img.shields.io/badge/protocol%20baseline-v1-blue)
+![Spec](https://img.shields.io/badge/spec-VERIFRAX--SPEC-black)
+![Engine Parity](https://img.shields.io/badge/engine%20parity-verified-green)
 
-### Normative specification
+![Protocol](https://img.shields.io/badge/protocol-VERIFRAX-black)
+![System ID](https://img.shields.io/badge/system-SYS--003-0A0A0A)
+![Status](https://img.shields.io/badge/status-registered-brightgreen)
+![Registry](https://img.shields.io/badge/registry-speedkit.eu-1f2328)
+![Snapshot](https://img.shields.io/badge/snapshot-REGISTRY__SNAPSHOT.json-1f6feb)
+![Branch](https://img.shields.io/badge/branch-main-2da44e)
+![Tag](https://img.shields.io/badge/tag-v2.8.1-1f6feb)
+![Specification](https://img.shields.io/badge/specification-normative-111111)
+![Spec Root](https://img.shields.io/badge/spec%20root-docs%2Fspec-111111)
+![Conformance](https://img.shields.io/badge/conformance-versioned-005cc5)
+![Conformance Root](https://img.shields.io/badge/conformance%20root-protocol--conformance-005cc5)
+![Verifier Surface](https://img.shields.io/badge/verifier-maintained-2da44e)
+![Node Verifier](https://img.shields.io/badge/verifier%2Fnode-active-2da44e)
+![Rust Verifier](https://img.shields.io/badge/verifier%2Frust-active-f0883e)
+![Release Integrity](https://img.shields.io/badge/release%20integrity-active-2da44e)
+![Freeze Surface](https://img.shields.io/badge/freeze%20surface-declared-0969da)
+![Freeze Authority](https://img.shields.io/badge/freeze%20authority-release--integrity%2Ffreeze--surfaces.json-0969da)
+![Authority Map](https://img.shields.io/badge/authority-AUTHORITY.md-critical)
+![Registry Surface](https://img.shields.io/badge/registry%20surface-maintained-8250df)
+![Index Surface](https://img.shields.io/badge/index%20surface-maintained-8250df)
+![Ecosystem Docs](https://img.shields.io/badge/ecosystem%20docs-aligned-8250df)
+![Historical Archives](https://img.shields.io/badge/history-preserved-lightgrey)
+![Archive Boundary](https://img.shields.io/badge/archive-non--authoritative-lightgrey)
+![Determinism Required](https://img.shields.io/badge/determinism-required-2da44e)
+![Canonicalization](https://img.shields.io/badge/canonicalization-defined-2da44e)
+![Bundle Hashing](https://img.shields.io/badge/bundle%20hashing-defined-2da44e)
+![Contradiction Detection](https://img.shields.io/badge/contradiction%20detection-defined-2da44e)
+![Invalidation](https://img.shields.io/badge/invalidation-defined-2da44e)
+![Finality](https://img.shields.io/badge/finality-enforced-2da44e)
+![Verdict Model](https://img.shields.io/badge/verdict%20model-deterministic-2da44e)
+![Failure Semantics](https://img.shields.io/badge/failure%20semantics-explicit-2da44e)
+![Implementation Neutrality](https://img.shields.io/badge/implementation-neutral-1f6feb)
+![Interoperability](https://img.shields.io/badge/interoperability-targeted-1f6feb)
+![Auditability](https://img.shields.io/badge/auditability-protocol--grade-1f6feb)
+![Reproducibility Required](https://img.shields.io/badge/reproducibility-required-1f6feb)
+![Governance](https://img.shields.io/badge/governance-defined-1f6feb)
+![Contribution Discipline](https://img.shields.io/badge/contributions-authority--aware-1f6feb)
+![Adversarial Posture](https://img.shields.io/badge/adversarial%20posture-explicit-d73a49)
+![Legitimacy Signals](https://img.shields.io/badge/legitimacy%20signals-documented-d73a49)
 
-- `docs/spec/`
+## What VERIFRAX is
 
-This is the canonical specification root for protocol semantics, invariants, state-machine behavior, deterministic algorithms, failure semantics, and finality rules.
+VERIFRAX is a deterministic verification protocol and repository architecture for:
 
-Primary entrypoint:
+* irreversible evidence evaluation
+* canonical bundle verification
+* explicit contradiction and invalidation handling
+* reproducible final judgments
+* auditable maintained verifier execution
+* stable release-integrity boundaries
+* long-horizon historical traceability
 
-- `docs/spec/INDEX.md`
+It is built so that independent implementations can converge on the same verification outputs without requiring hidden repository knowledge or ad hoc interpretation.
 
-### Protocol conformance
+## Core protocol objective
 
-- `protocol-conformance/`
+VERIFRAX separates:
 
-This is the canonical conformance surface for maintained suites, expected verdicts, runners, and versioned implementation-alignment targets.
+* normative semantics
+* conformance targets
+* maintained verifier execution
+* release-integrity authority
+* registry and index surfaces
+* historical archives
 
-Active versioned suite root:
+This separation exists so that verification outcomes remain reproducible and resistant to silent drift, path confusion, archival substitution, and shadow-authority failure modes.
 
-- `protocol-conformance/v2/`
+## Repository authority map
 
-### Maintained verifier implementations
+Active repository authority resolves through the following canonical surfaces:
 
-- `verifier/`
+* normative specification: `docs/spec/`
+* conformance authority: `protocol-conformance/`
+* maintained verifier surfaces: `verifier/node`, `verifier/rust`
+* release-integrity surface: `release-integrity/`
+* maintained registry surface: `registry/`
+* maintained index surface: `index/`
+* ecosystem documentation surface: `docs/ecosystem/`
+* repository authority boundary: `AUTHORITY.md`
 
-This directory contains the active maintained verifier surfaces:
+Historical materials remain preserved under:
 
-- `verifier/node`
-- `verifier/rust`
+* `archive/`
+* `release-history/`
 
-These are the only active maintained verifier directories in the repository.
+Those directories do not define active protocol authority unless explicitly re-designated by a canonical active surface.
+
+## Repository entrypoints
+
+### Specification
+
+Primary normative entrypoint:
+
+* `docs/spec/INDEX.md`
+
+This surface defines:
+
+* protocol invariants
+* deterministic algorithms
+* state-machine behavior
+* failure semantics
+* finality and termination rules
+* verification contracts
+
+### Conformance
+
+Primary conformance entrypoints:
+
+* `protocol-conformance/README.md`
+* `protocol-conformance/v2/README.md`
+
+This surface defines:
+
+* maintained suites
+* expected verdict outputs
+* runner material
+* implementation-alignment targets
+
+### Maintained verifier surfaces
+
+Execution entrypoints:
+
+* `verifier/node/README.md`
+* `verifier/rust/README.md`
+
+These are the only maintained active verifier surfaces in the repository.
 
 ### Release integrity
 
-- `release-integrity/`
+Primary release-integrity entrypoint:
 
-This surface contains active release-integrity material, including freeze-bound release authority, manifests, and release verification metadata.
+* `release-integrity/README.md`
 
-The active frozen release-surface declaration is:
+Canonical active release metadata:
 
-- `release-integrity/freeze-surfaces.json`
+* `release-integrity/freeze-surfaces.json`
+* `release-integrity/reference-verifier-hashes.json`
+* `release-integrity/release-sha256-manifest.json`
+* `release-integrity/genesis-lineage.json`
 
-### Registry
+### Registry and index
 
-- `registry/`
+Primary maintained records:
 
-This directory contains maintained registry material used by the repository authority model, including verified implementation registration and related protocol metadata.
+* `registry/VERIFIED_IMPLEMENTATIONS.json`
+* `index/VERIFICATION_ARTIFACTS.json`
 
-### Index
+## Protocol architecture
 
-- `index/`
+VERIFRAX operates across five repository-level control layers.
 
-This directory contains maintained repository index material pointing to active artifacts and authority-relevant references.
+### 1. Normative definition layer
 
-### Ecosystem and supporting documentation
+`docs/spec/` defines what the protocol means.
 
-- `docs/ecosystem/`
+This layer governs:
 
-This surface contains ecosystem-facing and explanatory documentation aligned with the active repository structure.
+* bundle structure
+* canonicalization
+* contradiction detection
+* invalidation
+* signature verification semantics
+* finality behavior
+* deterministic failure classes
 
-### Repository authority map
+### 2. Conformance layer
 
-- `AUTHORITY.md`
+`protocol-conformance/` defines what maintained implementations must match.
 
-This document defines which repository surfaces are canonical and which are historical, archival, or otherwise non-authoritative.
+This layer governs:
 
----
+* suite structure
+* expected verdict outputs
+* versioned compatibility targets
+* execution alignment
 
-## Interpretation rules
+### 3. Execution layer
 
-- `docs/spec/` defines normative protocol semantics.
-- `protocol-conformance/` defines maintained conformance targets.
-- `verifier/` contains the maintained active verifier implementations.
-- `release-integrity/` defines active release-bound integrity and freeze-surface authority.
-- `registry/` contains maintained registry declarations.
-- `index/` contains maintained active index material.
-- `docs/ecosystem/` provides supporting ecosystem documentation aligned with the canonical surfaces.
+`verifier/node` and `verifier/rust` define how maintained execution surfaces realize the protocol in practice.
 
-If material outside those surfaces appears to overlap with active protocol content, the canonical surfaces above prevail.
+This layer provides:
 
----
+* maintained Node reference execution
+* maintained Rust verifier execution
+* auditable implementation surfaces
+* reproducible verifier operation
 
-## Historical material
+### 4. Release-integrity layer
 
-The following locations are historical and must not be interpreted as active protocol authority:
+`release-integrity/` defines how active releases are frozen, hashed, traced, and verified.
 
-- `archive/`
-- `release-history/`
+This layer governs:
 
-`archive/` preserves superseded verifier or repository surfaces for historical continuity.
+* release-freeze declarations
+* verifier hash registries
+* release manifests
+* lineage continuity
+* release evidence
+* verification transcripts
 
-`release-history/` preserves earlier freeze-era and historical release material for audit lineage and repository traceability.
+### 5. Historical lineage layer
 
-Historical material is retained for continuity, not for active protocol root resolution.
+`archive/` and `release-history/` preserve superseded or historical material.
 
----
+This layer exists for:
 
-## Intended reader paths
+* audit continuity
+* reconstruction
+* lineage inspection
+* long-horizon repository traceability
 
-### For specification and protocol review
+It is historical only.
 
-Start with:
+## Deterministic verification model
 
-- `docs/spec/INDEX.md`
+A maintained VERIFRAX verification flow is expected to preserve the canonical order of operations:
 
-### For implementation conformance
+1. evidence bundle validation
+2. canonical normalization
+3. profile compatibility evaluation
+4. signature verification
+5. contradiction detection
+6. invalidation processing
+7. verdict generation
+8. finality enforcement
 
-Start with:
+The repository is organized so that these semantics resolve first through `docs/spec/` and then through `protocol-conformance/`, with maintained verifier execution checked against those surfaces.
 
-- `protocol-conformance/README.md`
-- `protocol-conformance/v2/README.md`
+## Verification profiles
 
-### For maintained execution surfaces
+VERIFRAX supports profile-governed interpretation of evidence evaluation while preserving deterministic output rules.
 
-Start with:
+Profile-sensitive behavior must still remain aligned with:
 
-- `verifier/node/README.md`
-- `verifier/rust/README.md`
+* normative specification
+* canonical conformance suites
+* maintained verifier execution
+* release-integrity declarations
 
-### For release-bound integrity review
+Profile variation must never become semantic ambiguity.
 
-Start with:
+## Contracts and schemas
 
-- `release-integrity/`
+Protocol contract material includes:
 
-### For repository authority resolution
+* evidence bundle structures
+* verifier verdict format expectations
+* maintained release-integrity manifests
+* implementation registry entries
+* versioned conformance suite records
 
-Start with:
+Contributors and implementers should treat schemas and manifests as boundary-defining protocol support surfaces, not as informal examples.
 
-- `AUTHORITY.md`
+## Using VERIFRAX
 
----
+### Review the protocol
 
-## Repository design objective
+Start here:
 
-VERIFRAX separates normative definition, executable verification, conformance enforcement, release-integrity declaration, and historical preservation so that the protocol can evolve without collapsing authority boundaries.
+```
+sed -n "1,220p" docs/spec/INDEX.md
+```
 
-That separation is intentional and is part of the protocol-grade auditability model of the repository.
+### Review maintained conformance
 
----
+Start here:
 
-## Status model
+```
+find protocol-conformance -maxdepth 2 -type f | LC_ALL=C sort
+```
 
-This repository contains:
+### Run the maintained Node verifier
 
-- normative protocol specification
-- maintained conformance suites
-- maintained Node and Rust verifier surfaces
-- release-integrity and freeze-surface authority material
-- registry and index support surfaces
-- preserved historical archives
+```
+cd verifier/node
+npm install
+node src/verifier.mjs
+```
 
-It does not treat archived or historical directories as active protocol authority unless explicitly re-designated by a canonical active surface.
+### Run the maintained Rust verifier
 
+```
+cd verifier/rust
+cargo build --release
+cargo run --release
+```
+
+### Review active release-integrity metadata
+
+```
+find release-integrity -maxdepth 2 -type f | LC_ALL=C sort
+```
+
+## Protocol guarantees
+
+### Deterministic outputs
+
+Identical maintained implementations given identical valid protocol inputs must converge on identical maintained outputs.
+
+### Explicit authority boundaries
+
+VERIFRAX prevents active authority from being inferred from historical or superseded surfaces.
+
+### Reproducible release verification
+
+Release integrity resolves through machine-readable manifests and verifier identity material.
+
+### Historical continuity without historical authority
+
+Historical material remains preserved without remaining ambiguously active.
+
+## Adversarial posture
+
+VERIFRAX assumes adversarial repository interpretation conditions, including:
+
+* archived-material substitution
+* path confusion
+* shadow verifier authority
+* unofficial conformance drift
+* release-freeze ambiguity
+* explanatory-document overreach
+* historical surface impersonation
+
+For that reason, deterministic verification is treated as insufficient unless authority resolution is also deterministic.
+
+## Freeze record
+
+Active freeze authority:
+
+```
+release-integrity/freeze-surfaces.json
+```
+
+Compatibility mirror retained for legacy workflow expectations:
+
+```
+freeze/FREEZE_SURFACE_MANIFEST.json
+```
+
+Historical freeze-era material:
+
+```
+release-history/v1/freeze/
+release-history/v1/freeze-archive/
+```
+
+## Documentation index
+
+### Specification
+
+* `docs/spec/INDEX.md`
+
+### Governance
+
+* `docs/governance/AUTHORITY.md`
+* `docs/governance/AUTHORITY_BOUNDARY.md`
+* `docs/governance/GOVERNANCE.md`
+
+### Ecosystem
+
+* `docs/ecosystem/CONFORMANCE_CERTIFICATION_PROCESS.md`
+* `docs/ecosystem/ECOSYSTEM_GOVERNANCE_FUTURE_EVOLUTION.md`
+* `docs/ecosystem/VERIFIED_IMPLEMENTATION_REGISTRY.md`
+* `docs/ecosystem/VERIFICATION_ARTIFACTS_INDEX.md`
+
+### Operations and reproducibility
+
+* `docs/REPRODUCIBLE_BUILD.md`
+* `docs/PROTOCOL_SURFACE_FREEZE.md`
+
+## Security and trust model
+
+Repository trust depends on maintained alignment between:
+
+* normative semantics
+* conformance authority
+* verifier execution
+* release-integrity manifests
+* registry declarations
+* index references
+* governance boundaries
+
+A protocol claim is not trusted merely because it is present in the repository. It must resolve through the maintained canonical surfaces.
+
+## Contributing
+
+Contribution discipline is defined in:
+
+* `CONTRIBUTING.md`
+
+A valid change improves VERIFRAX without making protocol authority harder to resolve.
+
+## License
+
+See repository license metadata and associated licensing records in the repository.
+
+## Maintained by
+
+VERIFRAX is maintained as a protocol-first repository with explicit authority boundaries, deterministic execution discipline, and preserved historical continuity.

@@ -1,0 +1,38 @@
+{
+"protocol": "VERIFRAX",
+"system_id": "SYS-003",
+"manifest_role": "freeze-surface-compatibility-manifest",
+"status": "compatibility",
+"canonical_freeze_authority": "release-integrity/freeze-surfaces.json",
+"repository_authority_document": "AUTHORITY.md",
+"non_authoritative": true,
+"purpose": "Compatibility mirror for legacy repository freeze-surface expectations",
+"description": "This manifest exists so that historical CI checks, audit tooling, and earlier repository layouts that referenced the freeze/ directory continue to resolve a freeze surface path without reintroducing legacy authority.",
+"active_resolution": {
+"freeze_authority": "release-integrity/freeze-surfaces.json",
+"authority_rules": "AUTHORITY.md",
+"release_integrity_root": "release-integrity/"
+},
+"interpretation_rules": [
+"This file must not be interpreted as the canonical freeze authority",
+"The canonical freeze declaration lives in release-integrity/freeze-surfaces.json",
+"Repository authority resolution is defined by AUTHORITY.md",
+"Historical freeze artifacts remain preserved under release-history/"
+],
+"historical_lineage": {
+"historical_root": "release-history/",
+"freeze_history_examples": [
+"release-history/v1/freeze/",
+"release-history/v1/freeze-archive/"
+]
+},
+"security_model": {
+"goal": "Prevent legacy path resurrection from becoming an implicit protocol authority surface",
+"threats": [
+"archive substitution",
+"path confusion",
+"shadow authority through historical directories"
+],
+"mitigation": "Explicit compatibility classification and canonical authority declaration"
+}
+}
