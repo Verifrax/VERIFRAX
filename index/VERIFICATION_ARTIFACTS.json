@@ -1,0 +1,71 @@
+{
+  "protocol": "VERIFRAX",
+  "purpose": "Canonical index of deterministic verification artifacts",
+  "artifacts": [
+    {
+      "id": "protocol-conformance",
+      "path": "protocol-conformance",
+      "type": "conformance-suite",
+      "role": "Official deterministic protocol conformance corpus"
+    },
+    {
+      "id": "node-reference-verifier",
+      "path": "verifier/node",
+      "type": "reference-verifier",
+      "role": "Canonical Node reference verifier"
+    },
+    {
+      "id": "rust-minimal-verifier",
+      "path": "verifier/rust",
+      "type": "independent-verifier",
+      "role": "Independent Rust minimal verifier"
+    },
+    {
+      "id": "reference-verifier-hashes",
+      "path": "release-integrity/reference-verifier-hashes.json",
+      "type": "integrity-manifest",
+      "role": "Canonical verifier hash registry"
+    },
+    {
+      "id": "release-sha256-manifest",
+      "path": "release-integrity/release-sha256-manifest.json",
+      "type": "integrity-manifest",
+      "role": "Canonical SHA256 release manifest"
+    },
+    {
+      "id": "genesis-lineage",
+      "path": "release-integrity/genesis-lineage.json",
+      "type": "lineage-manifest",
+      "role": "Genesis release lineage anchor"
+    },
+    {
+      "id": "freeze-surfaces",
+      "path": "release-integrity/freeze-surfaces.json",
+      "type": "freeze-manifest",
+      "role": "Machine-readable freeze surface definition"
+    },
+    {
+      "id": "release-evidence-v1",
+      "path": "release-integrity/evidence/v1-evidence.json",
+      "type": "evidence-bundle",
+      "role": "Release evidence bundle for protocol v1"
+    },
+    {
+      "id": "verification-transcripts",
+      "path": "release-integrity/transcripts",
+      "type": "verification-transcripts",
+      "role": "Canonical verifier execution transcripts"
+    },
+    {
+      "id": "historical-snapshot-v1",
+      "path": "release-history/v1",
+      "type": "historical-snapshot",
+      "role": "Immutable historical protocol snapshot"
+    }
+  ],
+  "index_rules": {
+    "determinism": "Indexed artifacts must remain traceable to deterministic protocol verification.",
+    "scope": "The index records canonical verification artifacts, not arbitrary repository files.",
+    "non_authority_clause": "Index inclusion documents artifact role and location without changing protocol semantics."
+  }
+}
