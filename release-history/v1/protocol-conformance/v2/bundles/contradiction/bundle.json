@@ -1,0 +1,20 @@
+{
+  "protocol_version": "2",
+  "bundle_hash": "TEST_CONTRADICTION",
+  "claims": [
+    {
+      "claim_id": "claim-a",
+      "subject": "verifrax-conformance",
+      "statement": "artifact verified",
+      "timestamp": "2026-01-01T00:00:00Z"
+    },
+    {
+      "claim_id": "claim-b",
+      "subject": "verifrax-conformance",
+      "statement": "artifact NOT verified",
+      "timestamp": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "evidence": [],
+  "attestations": []
+}

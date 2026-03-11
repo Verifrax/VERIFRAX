@@ -1,0 +1,6 @@
+{
+  "suite": "invalidation",
+  "description": "Protocol invalidation semantics verification",
+  "input_bundle": "bundles/invalidation/bundle.json",
+  "expected_output": "expected/invalidation/verdict.json"
+}

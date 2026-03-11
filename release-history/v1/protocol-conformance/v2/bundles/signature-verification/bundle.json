@@ -1,0 +1,20 @@
+{
+  "protocol_version": "2",
+  "bundle_hash": "TEST_SIGNATURE_VALID",
+  "claims": [
+    {
+      "claim_id": "claim-signature-test",
+      "subject": "verifrax-conformance",
+      "statement": "Signature verification conformance test",
+      "timestamp": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "evidence": [],
+  "attestations": [
+    {
+      "attestor": "verifrax-test-key",
+      "signature": "TEST_SIGNATURE_VALID",
+      "algorithm": "ed25519"
+    }
+  ]
+}

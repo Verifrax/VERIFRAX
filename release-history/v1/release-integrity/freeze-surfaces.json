@@ -1,0 +1,23 @@
+{
+  "protocol": "VERIFRAX",
+  "purpose": "Deterministic protocol surface freeze definition",
+  "frozen_surfaces": [
+    "protocol-conformance",
+    "verifier/node",
+    "verifier/rust",
+    "release-integrity/reference-verifier-hashes.json",
+    "release-integrity/release-sha256-manifest.json",
+    "release-integrity/genesis-lineage.json"
+  ],
+  "rules": {
+    "immutability": "All frozen surfaces must remain byte-identical for the lifetime of the protocol release.",
+    "verification_requirement": "Independent implementations verifying artifacts against frozen surfaces must produce identical outcomes.",
+    "release_boundary": "Any modification to frozen surfaces requires a new protocol release version.",
+    "determinism_scope": [
+      "artifact canonicalization",
+      "verification semantics",
+      "reference verifier implementations",
+      "release integrity manifests"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "suite": "canonical-equivalence",
+  "description": "Canonical serialization equivalence verification",
+  "inputs": [
+    "bundles/canonical-equivalence/bundle-a.json",
+    "bundles/canonical-equivalence/bundle-b.json"
+  ],
+  "expected_output": "expected/canonical-equivalence/verdict.json",
+  "require_identical_results": true
+}
