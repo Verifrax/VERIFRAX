@@ -1,0 +1,6 @@
+{
+  "suite": "finality-lock",
+  "description": "Verification finality lock behavior",
+  "input_bundle": "bundles/finality-lock/bundle.json",
+  "expected_output": "expected/finality-lock/verdict.json"
+}

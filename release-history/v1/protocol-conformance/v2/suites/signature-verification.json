@@ -1,0 +1,6 @@
+{
+  "suite": "signature-verification",
+  "description": "Cryptographic signature verification conformance",
+  "input_bundle": "bundles/signature-verification/bundle.json",
+  "expected_output": "expected/signature-verification/verdict.json"
+}

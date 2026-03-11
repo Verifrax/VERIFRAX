@@ -1,0 +1,6 @@
+{
+  "suite": "profile-compatibility",
+  "description": "Protocol profile compatibility verification",
+  "input_bundle": "bundles/profile-compatibility/bundle.json",
+  "expected_output": "expected/profile-compatibility/verdict.json"
+}

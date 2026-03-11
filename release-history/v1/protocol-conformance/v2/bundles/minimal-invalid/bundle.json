@@ -1,0 +1,18 @@
+{
+  "protocol_version": "2",
+  "bundle_hash": "TEST_MINIMAL_INVALID",
+  "claims": [
+    {
+      "claim_id": "claim-invalid",
+      "subject": "verifrax-conformance",
+      "statement": "Invalid deterministic conformance bundle",
+      "timestamp": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "missing-required-fields"
+    }
+  ],
+  "attestations": []
+}

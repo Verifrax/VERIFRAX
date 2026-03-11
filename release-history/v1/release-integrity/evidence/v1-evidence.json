@@ -1,0 +1,24 @@
+{
+  "protocol": "VERIFRAX",
+  "release": "v1",
+  "generated_at": "2026-03-11T08:56:02.267Z",
+  "artifacts": {
+    "release_manifest": {
+      "path": "release-integrity/release-sha256-manifest.json",
+      "sha256": "b127b0978728f41d81e53cdb2019de1fab73ad83401142cec1df19566435ce7b"
+    },
+    "verifier_hash_registry": {
+      "path": "release-integrity/reference-verifier-hashes.json",
+      "sha256": "5f5f6be0cc05185071c2aff4d9e36af61acf68756612510657664c9292699cbe"
+    },
+    "genesis_lineage": {
+      "path": "release-integrity/genesis-lineage.json",
+      "sha256": "456af33067c4bb6e87d27a7a42c19752a79dfa3ccd388747aacd328c400cdc0f"
+    },
+    "freeze_surface_manifest": {
+      "path": "release-integrity/freeze-surfaces.json",
+      "sha256": "affdf631ca71d75596e0a6ca30eff3a3ae4b751093bdfeda209de7bbfea473b2"
+    }
+  },
+  "verification_guarantee": "All listed artifacts must remain byte-identical for the lifetime of the protocol release."
+}
