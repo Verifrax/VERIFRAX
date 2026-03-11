@@ -69,10 +69,12 @@ This surface defines active release-bound integrity material and freeze-bound re
 
 It is the canonical source for active release verification artifacts such as:
 
-- freeze-surface declarations
-- release manifests
-- reference-verifier hash registries
-- lineage or release-integrity metadata maintained for active release verification
+- `release-integrity/freeze-surfaces.json`
+- `release-integrity/reference-verifier-hashes.json`
+- `release-integrity/release-sha256-manifest.json`
+- `release-integrity/genesis-lineage.json`
+
+These files are the maintained canonical release metadata surfaces for active repository release verification and lineage resolution.
 
 Where historical freeze-era directories differ from this surface, the active `release-integrity/` surface prevails.
 
