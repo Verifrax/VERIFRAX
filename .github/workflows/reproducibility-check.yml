@@ -1,0 +1,35 @@
+name: Verifier Reproducibility
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  reproducibility:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run Node verifier
+        run: |
+          node verifier/node/src/verifier.mjs > node.txt
+
+      - name: Run Rust verifier
+        run: |
+          cargo run --manifest-path verifier/rust/Cargo.toml --bin verifrax-rust-verifier > rust.txt
+
+      - name: Compare outputs
+        run: |
+          diff node.txt rust.txt
