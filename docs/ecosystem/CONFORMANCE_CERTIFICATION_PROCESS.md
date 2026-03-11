@@ -107,3 +107,6 @@ verified implementation registry.
 Registry entry is a publication consequence of certification,
 not a substitute for certification.
 
+
+
+Active repository authority is defined by `AUTHORITY.md`. Maintained conformance suites are under `protocol-conformance/`, with the active suite root at `protocol-conformance/v2/`. Active maintained verifier implementations are `verifier/node` and `verifier/rust`. Active release freeze authority is defined by `release-integrity/freeze-surfaces.json`.
