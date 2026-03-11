@@ -1,0 +1,31 @@
+{
+  "protocol": "VERIFRAX",
+  "purpose": "Registry of certified deterministic implementations",
+  "entries": [
+    {
+      "implementation_id": "verifrax-node-reference",
+      "name": "VERIFRAX Node Reference Verifier",
+      "language": "Node.js",
+      "status": "verified",
+      "protocol_release": "v1",
+      "conformance_status": "certified",
+      "source_path": "verifier/node",
+      "notes": "Reference implementation defining canonical deterministic verifier behavior."
+    },
+    {
+      "implementation_id": "verifrax-rust-minimal",
+      "name": "VERIFRAX Rust Minimal Verifier",
+      "language": "Rust",
+      "status": "verified",
+      "protocol_release": "v1",
+      "conformance_status": "certified",
+      "source_path": "verifier/rust",
+      "notes": "Independent minimal verifier demonstrating cross-implementation deterministic reproducibility."
+    }
+  ],
+  "registry_rules": {
+    "entry_requirement": "Implementations must complete the formal conformance certification process before registry inclusion.",
+    "scope": "Registry inclusion is version-specific and protocol-release-specific.",
+    "non_authority_clause": "Registry inclusion records verified conformance status and does not alter protocol semantics."
+  }
+}
