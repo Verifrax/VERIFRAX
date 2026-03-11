@@ -1,0 +1,31 @@
+name: Deterministic Verification
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  verification:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run protocol conformance suite (Node)
+        run: |
+          node protocol-conformance/runner/run_conformance.mjs
+
+      - name: Run protocol conformance suite (Rust)
+        run: |
+          cargo run --manifest-path verifier/rust/Cargo.toml --bin verifrax-rust-verifier
