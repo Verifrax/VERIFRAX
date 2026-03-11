@@ -47,3 +47,6 @@ Any change in implementation state requires re-evaluation.
 The compliance badge system provides the public signaling layer
 for deterministic protocol conformance in the VERIFRAX ecosystem.
 
+
+
+Active repository authority is defined by `AUTHORITY.md`. Maintained conformance suites are under `protocol-conformance/`, with the active suite root at `protocol-conformance/v2/`. Active maintained verifier implementations are `verifier/node` and `verifier/rust`. Active release freeze authority is defined by `release-integrity/freeze-surfaces.json`.

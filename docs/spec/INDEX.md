@@ -110,13 +110,16 @@ The protocol evolves through versioned releases.
 
 Frozen protocol surfaces are recorded in:
 
-freeze/
-freeze-archive/
+- release-integrity/freeze-surfaces.json
+
+Historical freeze-era and archival release material is preserved under:
+
+- release-history/
 
 Each protocol version contains:
 
 - canonical specification
-- reference verifier
+- maintained verifier alignment
 - reproducible verification artifacts
 
 ---
@@ -130,11 +133,28 @@ Implementations claiming VERIFRAX compatibility MUST implement:
 - protocol state machine
 - failure classification rules
 
-Future protocol conformance suites will verify implementation compliance.
+Implementation compliance is defined by the maintained versioned conformance suites under `protocol-conformance/`, including the active suite root at `protocol-conformance/v2/`.
 
 ---
 
-## 7. Authority
+## 7. Canonical Repository Surfaces
+
+The canonical repository surfaces for active VERIFRAX protocol interpretation are:
+
+- Specification root: `docs/spec/`
+- Conformance root: `protocol-conformance/`
+- Maintained verifier surfaces: `verifier/node`, `verifier/rust`
+- Release-integrity root: `release-integrity/`
+- Registry root: `registry/`
+- Index root: `index/`
+- Ecosystem documentation root: `docs/ecosystem/`
+- Repository authority map: `AUTHORITY.md`
+
+Historical directories such as `archive/` and `release-history/` are preserved for lineage and audit continuity but are not active protocol authority surfaces.
+
+---
+
+## 8. Authority
 
 Protocol authority and governance are defined in:
 
@@ -142,4 +162,3 @@ docs/governance/
 
 No specification document outside the normative specification root may
 override protocol semantics.
-

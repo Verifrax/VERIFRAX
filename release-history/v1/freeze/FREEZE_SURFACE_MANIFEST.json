@@ -1,0 +1,10 @@
+{
+  "version": "v2-current",
+  "canonical_root": "freeze",
+  "hash_bound_files": [
+    "freeze/ENGINE.json",
+    "freeze/certificate.v1.json",
+    "freeze/core.dist.hash"
+  ],
+  "hash_files": []
+}
