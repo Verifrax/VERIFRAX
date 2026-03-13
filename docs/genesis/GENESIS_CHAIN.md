@@ -259,14 +259,14 @@ index/GENESIS_HASH.txt
 
 # Current Repository Publication State
 
-The repository currently publishes:
+The repository currently publishes the active genesis authority surface, including:
 
 * the canonical genesis root
 * the public genesis certificate
 * lineage records
 * release-integrity declarations
 
-However, the repository currently **does not publish the exact genesis evidence bundle** whose SHA‑256 equals the recorded bundle hash.
+However, the repository currently **does not publish the exact genesis evidence bundle** whose SHA-256 equals the recorded bundle hash.
 
 Recorded bundle hash:
 
@@ -276,14 +276,14 @@ Recorded bundle hash:
 
 As a consequence:
 
+* the genesis root is authoritative
 * the certificate structure is verifiable
 * the certificate hash is reproducible
-* the genesis root is authoritative
+* the active genesis authority chain is published and hash-anchored
 
-But the bundle-to-certificate chain cannot yet be recomputed from repository artifacts alone.
+But the exact bundle bytes used for the first paid production execution cannot yet be recomputed from repository-published bundle artifacts alone.
 
-This condition reflects an incomplete public publication of the genesis evidence bundle.
-
+This condition narrows only the independent reproduction of bundle bytes. It does not mean that historical mirrors must be rewritten, and it does not weaken the active genesis authority surface.
 ---
 
 # Interpretation Boundary
