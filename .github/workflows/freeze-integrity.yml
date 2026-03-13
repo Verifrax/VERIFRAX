@@ -99,7 +99,7 @@ jobs:
 
       - name: Verify certificate schema checksum
         run: |
-          EXPECTED=$(cat .certificate_schema_checksum)
+          EXPECTED=$(awk '{print $1}' .certificate_schema_checksum)
           ACTUAL=$(sha256sum docs/spec/CERTIFICATE_SCHEMA.json | cut -d' ' -f1)
           
           if [ "$EXPECTED" != "$ACTUAL" ]; then
