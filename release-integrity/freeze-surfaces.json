@@ -7,7 +7,11 @@
     "verifier/rust",
     "release-integrity/reference-verifier-hashes.json",
     "release-integrity/release-sha256-manifest.json",
-    "release-integrity/genesis-lineage.json"
+    "release-integrity/genesis-lineage.json",
+    "index/GENESIS_HASH.txt",
+    "public/genesis/certificate.json",
+    "public/genesis/README.md",
+    "release-integrity/freeze-surfaces.json"
   ],
   "rules": {
     "immutability": "All frozen surfaces must remain byte-identical for the lifetime of the protocol release.",
