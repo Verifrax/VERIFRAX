@@ -9,7 +9,7 @@ SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
 
 Deterministic verification for irreversible evidence, final judgments, and protocol-grade trust boundaries.
 
-VERIFRAX is a protocol and maintained implementation surface designed to produce deterministic, auditable verification outcomes from structured evidence while preserving explicit authority boundaries between specification, conformance, execution, release integrity, and historical material.
+VERIFRAX is a protocol and maintained implementation surface designed to produce deterministic, auditable verification outcomes from structured evidence while preserving explicit authority boundaries between specification, conformance, execution, release integrity, genesis authority, and historical material.
 
 ---
 
@@ -41,6 +41,9 @@ VERIFRAX is a protocol and maintained implementation surface designed to produce
 ![Authority Map](https://img.shields.io/badge/authority-AUTHORITY.md-critical)
 ![Registry Surface](https://img.shields.io/badge/registry%20surface-maintained-8250df)
 ![Index Surface](https://img.shields.io/badge/index%20surface-maintained-8250df)
+![Genesis Root](https://img.shields.io/badge/genesis-root%20anchored-2da44e)
+![Genesis Certificate](https://img.shields.io/badge/genesis%20certificate-published-2da44e)
+![Genesis Lineage](https://img.shields.io/badge/genesis%20lineage-tracked-2da44e)
 ![Ecosystem Docs](https://img.shields.io/badge/ecosystem%20docs-aligned-8250df)
 ![Historical Archives](https://img.shields.io/badge/history-preserved-lightgrey)
 ![Archive Boundary](https://img.shields.io/badge/archive-non--authoritative-lightgrey)
@@ -61,6 +64,8 @@ VERIFRAX is a protocol and maintained implementation surface designed to produce
 ![Adversarial Posture](https://img.shields.io/badge/adversarial%20posture-explicit-d73a49)
 ![Legitimacy Signals](https://img.shields.io/badge/legitimacy%20signals-documented-d73a49)
 
+---
+
 ## What VERIFRAX is
 
 VERIFRAX is a deterministic verification protocol and repository architecture for:
@@ -71,22 +76,44 @@ VERIFRAX is a deterministic verification protocol and repository architecture fo
 * reproducible final judgments
 * auditable maintained verifier execution
 * stable release-integrity boundaries
+* explicit genesis authority anchoring
 * long-horizon historical traceability
 
-It is built so that independent implementations can converge on the same verification outputs without requiring hidden repository knowledge or ad hoc interpretation.
+Independent implementations can converge on identical outputs without requiring hidden repository knowledge or ad hoc interpretation.
 
-## Core protocol objective
+---
 
-VERIFRAX separates:
+## Genesis anchor
 
-* normative semantics
-* conformance targets
-* maintained verifier execution
-* release-integrity authority
-* registry and index surfaces
-* historical archives
+The VERIFRAX protocol lineage begins from a single immutable genesis root.
 
-This separation exists so that verification outcomes remain reproducible and resistant to silent drift, path confusion, archival substitution, and shadow-authority failure modes.
+Canonical genesis root:
+
+```
+index/GENESIS_HASH.txt
+```
+
+Public genesis certificate:
+
+```
+public/genesis/certificate.json
+```
+
+Genesis lineage record:
+
+```
+release-integrity/genesis-lineage.json
+```
+
+Human-readable genesis documentation:
+
+```
+docs/genesis/GENESIS_CHAIN.md
+```
+
+The genesis root defines the immutable origin of the protocol lineage and must never change.
+
+---
 
 ## Repository authority map
 
@@ -106,7 +133,9 @@ Historical materials remain preserved under:
 * `archive/`
 * `release-history/`
 
-Those directories do not define active protocol authority unless explicitly re-designated by a canonical active surface.
+These directories never define active protocol authority.
+
+---
 
 ## Repository entrypoints
 
@@ -114,185 +143,127 @@ Those directories do not define active protocol authority unless explicitly re-d
 
 Primary normative entrypoint:
 
-* `docs/spec/INDEX.md`
-
-This surface defines:
-
-* protocol invariants
-* deterministic algorithms
-* state-machine behavior
-* failure semantics
-* finality and termination rules
-* verification contracts
+```
+docs/spec/INDEX.md
+```
 
 ### Conformance
 
 Primary conformance entrypoints:
 
-* `protocol-conformance/README.md`
-* `protocol-conformance/v2/README.md`
-
-This surface defines:
-
-* maintained suites
-* expected verdict outputs
-* runner material
-* implementation-alignment targets
+```
+protocol-conformance/README.md
+protocol-conformance/v2/README.md
+```
 
 ### Maintained verifier surfaces
 
-Execution entrypoints:
-
-* `verifier/node/README.md`
-* `verifier/rust/README.md`
-
-These are the only maintained active verifier surfaces in the repository.
+```
+verifier/node/README.md
+verifier/rust/README.md
+```
 
 ### Release integrity
 
-Primary release-integrity entrypoint:
+```
+release-integrity/README.md
+```
 
-* `release-integrity/README.md`
+Canonical active metadata:
 
-Canonical active release metadata:
+```
+release-integrity/freeze-surfaces.json
+release-integrity/reference-verifier-hashes.json
+release-integrity/release-sha256-manifest.json
+release-integrity/genesis-lineage.json
+```
 
-* `release-integrity/freeze-surfaces.json`
-* `release-integrity/reference-verifier-hashes.json`
-* `release-integrity/release-sha256-manifest.json`
-* `release-integrity/genesis-lineage.json`
-
-### Registry and index
-
-Primary maintained records:
-
-* `registry/VERIFIED_IMPLEMENTATIONS.json`
-* `index/VERIFICATION_ARTIFACTS.json`
+---
 
 ## Protocol architecture
 
 VERIFRAX operates across five repository-level control layers.
 
-### 1. Normative definition layer
+### Normative layer
 
-`docs/spec/` defines what the protocol means.
+`docs/spec/`
 
-This layer governs:
+Defines protocol semantics.
 
-* bundle structure
-* canonicalization
-* contradiction detection
-* invalidation
-* signature verification semantics
-* finality behavior
-* deterministic failure classes
+### Conformance layer
 
-### 2. Conformance layer
+`protocol-conformance/`
 
-`protocol-conformance/` defines what maintained implementations must match.
+Defines implementation alignment targets.
 
-This layer governs:
+### Execution layer
 
-* suite structure
-* expected verdict outputs
-* versioned compatibility targets
-* execution alignment
+`verifier/node`
 
-### 3. Execution layer
+`verifier/rust`
 
-`verifier/node` and `verifier/rust` define how maintained execution surfaces realize the protocol in practice.
+Defines maintained execution surfaces.
 
-This layer provides:
+### Release-integrity layer
 
-* maintained Node reference execution
-* maintained Rust verifier execution
-* auditable implementation surfaces
-* reproducible verifier operation
+`release-integrity/`
 
-### 4. Release-integrity layer
+Defines frozen release surfaces and manifests.
 
-`release-integrity/` defines how active releases are frozen, hashed, traced, and verified.
+### Historical lineage layer
 
-This layer governs:
+`archive/`
 
-* release-freeze declarations
-* verifier hash registries
-* release manifests
-* lineage continuity
-* release evidence
-* verification transcripts
+`release-history/`
 
-### 5. Historical lineage layer
+Preserves historical material only.
 
-`archive/` and `release-history/` preserve superseded or historical material.
-
-This layer exists for:
-
-* audit continuity
-* reconstruction
-* lineage inspection
-* long-horizon repository traceability
-
-It is historical only.
+---
 
 ## Deterministic verification model
 
-A maintained VERIFRAX verification flow is expected to preserve the canonical order of operations:
+Canonical execution order:
 
-1. evidence bundle validation
+1. bundle validation
 2. canonical normalization
-3. profile compatibility evaluation
+3. profile compatibility
 4. signature verification
 5. contradiction detection
 6. invalidation processing
 7. verdict generation
 8. finality enforcement
 
-The repository is organized so that these semantics resolve first through `docs/spec/` and then through `protocol-conformance/`, with maintained verifier execution checked against those surfaces.
+---
 
-## Verification profiles
+## Protocol guarantees
 
-VERIFRAX supports profile-governed interpretation of evidence evaluation while preserving deterministic output rules.
+### Deterministic outputs
 
-Profile-sensitive behavior must still remain aligned with:
+Identical implementations must converge on identical outputs.
 
-* normative specification
-* canonical conformance suites
-* maintained verifier execution
-* release-integrity declarations
+### Explicit authority boundaries
 
-Profile variation must never become semantic ambiguity.
+Authority cannot be inferred from historical or archived surfaces.
 
-## Contracts and schemas
+### Reproducible release verification
 
-Protocol contract material includes:
+Release integrity resolves through deterministic manifests and verifier identity records.
 
-* evidence bundle structures
-* verifier verdict format expectations
-* maintained release-integrity manifests
-* implementation registry entries
-* versioned conformance suite records
+### Historical continuity without historical authority
 
-Contributors and implementers should treat schemas and manifests as boundary-defining protocol support surfaces, not as informal examples.
+Historical records remain preserved without remaining authoritative.
+
+---
 
 ## Using VERIFRAX
 
-### Review the protocol
-
-Start here:
+Review protocol:
 
 ```
 sed -n "1,220p" docs/spec/INDEX.md
 ```
 
-### Review maintained conformance
-
-Start here:
-
-```
-find protocol-conformance -maxdepth 2 -type f | LC_ALL=C sort
-```
-
-### Run the maintained Node verifier
+Run Node verifier:
 
 ```
 cd verifier/node
@@ -300,123 +271,35 @@ npm install
 node src/verifier.mjs
 ```
 
-### Run the maintained Rust verifier
+Run Rust verifier:
 
 ```
 cd verifier/rust
-cargo build --release
 cargo run --release
 ```
 
-### Review active release-integrity metadata
+Inspect release metadata:
 
 ```
 find release-integrity -maxdepth 2 -type f | LC_ALL=C sort
 ```
 
-## Protocol guarantees
-
-### Deterministic outputs
-
-Identical maintained implementations given identical valid protocol inputs must converge on identical maintained outputs.
-
-### Explicit authority boundaries
-
-VERIFRAX prevents active authority from being inferred from historical or superseded surfaces.
-
-### Reproducible release verification
-
-Release integrity resolves through machine-readable manifests and verifier identity material.
-
-### Historical continuity without historical authority
-
-Historical material remains preserved without remaining ambiguously active.
-
-## Adversarial posture
-
-VERIFRAX assumes adversarial repository interpretation conditions, including:
-
-* archived-material substitution
-* path confusion
-* shadow verifier authority
-* unofficial conformance drift
-* release-freeze ambiguity
-* explanatory-document overreach
-* historical surface impersonation
-
-For that reason, deterministic verification is treated as insufficient unless authority resolution is also deterministic.
-
-## Freeze record
-
-Active freeze authority:
-
-```
-release-integrity/freeze-surfaces.json
-```
-
-Compatibility mirror retained for legacy workflow expectations:
-
-```
-freeze/FREEZE_SURFACE_MANIFEST.json
-```
-
-Historical freeze-era material:
-
-```
-release-history/v1/freeze/
-release-history/v1/freeze-archive/
-```
-
-## Documentation index
-
-### Specification
-
-* `docs/spec/INDEX.md`
-
-### Governance
-
-* `docs/governance/AUTHORITY.md`
-* `docs/governance/AUTHORITY_BOUNDARY.md`
-* `docs/governance/GOVERNANCE.md`
-
-### Ecosystem
-
-* `docs/ecosystem/CONFORMANCE_CERTIFICATION_PROCESS.md`
-* `docs/ecosystem/ECOSYSTEM_GOVERNANCE_FUTURE_EVOLUTION.md`
-* `docs/ecosystem/VERIFIED_IMPLEMENTATION_REGISTRY.md`
-* `docs/ecosystem/VERIFICATION_ARTIFACTS_INDEX.md`
-
-### Operations and reproducibility
-
-* `docs/REPRODUCIBLE_BUILD.md`
-* `docs/PROTOCOL_SURFACE_FREEZE.md`
-
-## Security and trust model
-
-Repository trust depends on maintained alignment between:
-
-* normative semantics
-* conformance authority
-* verifier execution
-* release-integrity manifests
-* registry declarations
-* index references
-* governance boundaries
-
-A protocol claim is not trusted merely because it is present in the repository. It must resolve through the maintained canonical surfaces.
+---
 
 ## Contributing
 
-Contribution discipline is defined in:
+Contribution discipline is defined in `CONTRIBUTING.md`.
 
-* `CONTRIBUTING.md`
+Valid contributions must preserve deterministic protocol authority resolution.
 
-A valid change improves VERIFRAX without making protocol authority harder to resolve.
+---
 
 ## License
 
-See repository license metadata and associated licensing records in the repository.
+See repository licensing metadata.
+
+---
 
 ## Maintained by
 
-VERIFRAX is maintained as a protocol-first repository with explicit authority boundaries, deterministic execution discipline, and preserved historical continuity.
+VERIFRAX is maintained as a protocol-first repository with deterministic verification discipline and explicit authority boundaries.
