@@ -1074,5 +1074,12 @@
     "verifier/rust/target/debug/incremental/verifrax_rust_verifier-1jz5fc0x6imv4/s-hgjgxiqfuu-1xtqpx4.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "verifier/rust/target/debug/verifrax-rust-verifier": "3ea3ab49cea83b9e7b07e2714b9291c463a92bc075d1343cfcddebe41ba68ae2",
     "verifier/rust/target/debug/verifrax-rust-verifier.d": "51be24812826c8a410f061e7c2f10e06d6a5be87c44b22369ffbe6d30d6e5c5d"
+  },
+  "genesis-authority": {
+    "index/GENESIS_HASH.txt": "0fe943525e4f3a81678d8405f3aed981e4ab2c0af6cdc3e76248a979a1c45a44",
+    "public/genesis/certificate.json": "a0c2f2a6d7dbc434b6a6d189872e0af38c488e3e76a915b939a2a82cc8e4289a",
+    "public/genesis/README.md": "41bbd37754a3b68e32505841941c015cb413ea9185f2634807fba0994d52bcf6",
+    "release-integrity/genesis-lineage.json": "1638886865087705747600cfd70de523b3a29436c3da353061e8ad57bdc61f4c",
+    "release-integrity/freeze-surfaces.json": "379f437de85b1b2c02073d5f6555e4b9209c1be67e48577c4ad6a57d5a323c3f"
   }
 }

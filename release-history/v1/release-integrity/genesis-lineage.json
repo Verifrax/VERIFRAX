@@ -2,5 +2,13 @@
   "genesis_release": {
     "version": "v1",
     "release_manifest_sha256": "b127b0978728f41d81e53cdb2019de1fab73ad83401142cec1df19566435ce7b"
-  }
+  },
+  "genesis_root": "sha256:bc0fcaa6ebc886345e1cc222aafcbfbf7bcbbe369e36431bab026238839626cb",
+  "authority_chain": [
+    "index/GENESIS_HASH.txt",
+    "public/genesis/",
+    "release-integrity/genesis-lineage.json",
+    "release-integrity/freeze-surfaces.json",
+    "release-integrity/release-sha256-manifest.json"
+  ]
 }
