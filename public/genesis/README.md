@@ -113,20 +113,29 @@ Canonical field order for hash derivation:
 
 ## Current repository publication boundary
 
-The repository currently publishes:
+The active genesis authority surface published by this repository currently includes:
 
 * the canonical genesis root
 * the public genesis certificate
-* the human‑readable genesis documentation
+* the active genesis lineage record
+* the active freeze declaration
+* the active release SHA-256 manifest
+* the human-readable genesis documentation
 
 The repository does **not** currently publish the exact genesis bundle bytes corresponding to:
 
 `bundle_hash = 6844deb82bb6806be4b70db7e97ef8c0e6a52d689e2dc51ee77fe810c34e21a8`
 
-That means the certificate can be checked for canonical certificate‑hash integrity from repository contents, but the recorded bundle hash cannot yet be recomputed from a canonical bundle artifact published in `public/genesis/`.
+That means:
 
-Until that exact bundle artifact is published, the repository genesis publication remains incomplete as a fully self‑contained bundle‑to‑certificate chain.
+* the genesis root is authoritative
+* the certificate object is published
+* the certificate-hash derivation is reproducible
+* the active genesis authority surface is internally hash-anchored
 
+However, the recorded `bundle_hash` cannot yet be recomputed from a canonical bundle artifact published in `public/genesis/`.
+
+This is a publication-boundary limitation for independent bundle-byte reproduction, not a gap in the active genesis authority chain.
 ---
 
 ## Verification
