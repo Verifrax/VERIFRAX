@@ -1,0 +1,20 @@
+{
+  "artifact_id": "artifact-0002",
+  "commit": "e8680ab7629627ef169d1727aa7adab4af758cf3",
+  "notes": [
+    "semantic readiness conditions were evaluated from declared evidence"
+  ],
+  "observations": {
+    "ledger_presence": "ABSENT",
+    "seal_presence": "ABSENT"
+  },
+  "reason_codes": [
+    "AUTHORITY_LEDGER_ABSENT",
+    "DECLARED_EVIDENCE_PRESENT",
+    "GENESIS_SEAL_ABSENT",
+    "SEMANTIC_READINESS_UNSATISFIED"
+  ],
+  "status": "EXECUTED",
+  "subject_ref": "github.com/Verifrax/AUCTORISEAL",
+  "verdict": "FAILED"
+}

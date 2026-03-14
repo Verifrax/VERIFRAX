@@ -1,0 +1,72 @@
+{
+  "protocol": "VERIFRAX",
+  "surface": "artifact-semantic-execution",
+  "version": "1.0.0",
+  "purpose": "Canonical machine-stable reason code registry for semantic artifact verdict execution",
+  "codes": {
+    "GENESIS_SEAL_PRESENT": {
+      "class": "observation",
+      "meaning": "the canonical genesis seal object was observed at the declared path"
+    },
+    "GENESIS_SEAL_ABSENT": {
+      "class": "observation",
+      "meaning": "the canonical genesis seal object was not observed at the declared path"
+    },
+    "AUTHORITY_LEDGER_PRESENT": {
+      "class": "observation",
+      "meaning": "the authoritative ledger object was observed at the declared path"
+    },
+    "AUTHORITY_LEDGER_ABSENT": {
+      "class": "observation",
+      "meaning": "the authoritative ledger object was not observed at the declared path"
+    },
+    "SUBJECT_COMMIT_MATCHED": {
+      "class": "observation",
+      "meaning": "the evaluated repository head matched the subject commit declared by the artifact"
+    },
+    "SUBJECT_COMMIT_MISMATCH": {
+      "class": "failure",
+      "meaning": "the evaluated repository head did not match the subject commit declared by the artifact"
+    },
+    "DECLARED_EVIDENCE_PRESENT": {
+      "class": "observation",
+      "meaning": "all declared mandatory evidence files required for execution were present"
+    },
+    "DECLARED_EVIDENCE_MISSING": {
+      "class": "failure",
+      "meaning": "one or more declared mandatory evidence files required for execution were missing"
+    },
+    "SEMANTIC_READINESS_UNSATISFIED": {
+      "class": "failure",
+      "meaning": "the artifact claim was executable and evaluated, but readiness conditions were not satisfied"
+    },
+    "SEMANTIC_VALIDATION_SUCCEEDED": {
+      "class": "success",
+      "meaning": "the artifact claim was executable and all required semantic checks succeeded"
+    },
+    "SUBJECT_ABSENT_NOT_EXECUTABLE": {
+      "class": "terminal",
+      "meaning": "execution could not begin because the claimed subject was absent"
+    },
+    "EXECUTION_PREREQUISITE_MISSING": {
+      "class": "terminal",
+      "meaning": "execution could not begin because an indispensable prerequisite was absent"
+    }
+  },
+  "rules": [
+    "reason code selection must be deterministic",
+    "reason code ordering must be stable across implementations",
+    "implementations must emit only codes defined in this registry",
+    "terminal reason codes must only appear with verdict NOT_EXECUTABLE",
+    "failure reason codes must not be used as a substitute for terminal non-executability"
+  ],
+  "artifact_0002_expected_minimum": [
+    "GENESIS_SEAL_ABSENT",
+    "AUTHORITY_LEDGER_ABSENT"
+  ],
+  "artifact_0003_expected_minimum_when_absent": [
+    "SUBJECT_ABSENT_NOT_EXECUTABLE",
+    "GENESIS_SEAL_ABSENT",
+    "AUTHORITY_LEDGER_ABSENT"
+  ]
+}
