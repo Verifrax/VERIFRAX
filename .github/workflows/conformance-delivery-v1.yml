@@ -7,67 +7,70 @@ on:
 env:
   LC_ALL: C
   TZ: UTC
+
 jobs:
   conformance-delivery-v1:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
-          with:
-            node-version: '20'
-      
+        with:
+          node-version: "20"
+
       - name: Install pnpm
         uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
-          with:
-            version: 9
-      
+        with:
+
+      - name: Install jq
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y jq
+
       - name: Install dependencies
         run: |
           set -euo pipefail
           pnpm install
-      
+
       - name: Build verifier
         run: |
           set -euo pipefail
           pnpm build
-      
+
       - name: Run delivery CLI on golden bundle
         id: run-verifier
         run: |
           set -euo pipefail
           BUNDLE_PATH="public/conformance/golden/delivery_v1/input"
           OUTPUT_DIR="/tmp/delivery-output"
-          
-          # Run delivery command
+
           node engines/cinelint/apps/cli/bin/verifrax.js delivery run \
             --in "$BUNDLE_PATH" \
             --out "$OUTPUT_DIR" \
             --profile delivery_v1@1.0.0
-      
+
       - name: Verify bundle hash matches expected
         run: |
           set -euo pipefail
           OUTPUT_DIR="/tmp/delivery-output"
           EXPECTED_DIR="public/conformance/golden/delivery_v1/expected"
-          
+
           if [ ! -f "$OUTPUT_DIR/verdict.json" ]; then
             echo "❌ Verdict output not found"
             exit 1
           fi
-          
-          # Extract bundle_hash from output
-          BUNDLE_HASH=$(jq -r '.bundle_hash' "$OUTPUT_DIR/verdict.json")
-          
+
+          BUNDLE_HASH=$(jq -r ".bundle_hash" "$OUTPUT_DIR/verdict.json")
+
           if [ -z "$BUNDLE_HASH" ] || [ "$BUNDLE_HASH" = "null" ]; then
             echo "❌ bundle_hash missing from verdict output"
             exit 1
           fi
-          
-          # Check expected bundle_hash if it exists
+
           if [ -f "$EXPECTED_DIR/bundle_hash.txt" ]; then
-            EXPECTED_HASH=$(cat "$EXPECTED_DIR/bundle_hash.txt" | tr -d '\n')
+            EXPECTED_HASH=$(tr -d "\n" < "$EXPECTED_DIR/bundle_hash.txt")
             if [ "$BUNDLE_HASH" != "$EXPECTED_HASH" ]; then
               echo "❌ Bundle hash mismatch"
               echo "Expected: $EXPECTED_HASH"
@@ -80,37 +83,31 @@ jobs:
             mkdir -p "$EXPECTED_DIR"
             echo "$BUNDLE_HASH" > "$EXPECTED_DIR/bundle_hash.txt"
           fi
-      
+
       - name: Verify verdict_id format
         run: |
           set -euo pipefail
           OUTPUT_DIR="/tmp/delivery-output"
-          VERDICT_ID=$(jq -r '.verdict_id' "$OUTPUT_DIR/verdict.json")
-          
+          VERDICT_ID=$(jq -r ".verdict_id" "$OUTPUT_DIR/verdict.json")
+
           if [[ ! "$VERDICT_ID" =~ ^VFXV1:sha256:[a-f0-9]{64}:sha256:[a-f0-9]{64}$ ]]; then
             echo "❌ Invalid verdict_id format: $VERDICT_ID"
             echo "Expected format: VFXV1:sha256:<64-hex>:sha256:<64-hex>"
             exit 1
           fi
-          
+
           echo "✅ Verdict ID format valid: $VERDICT_ID"
-      
+
       - name: Verify binary-only output
         run: |
           set -euo pipefail
           OUTPUT_DIR="/tmp/delivery-output"
-          KEYS=$(jq -r 'keys | sort | join(",")' "$OUTPUT_DIR/verdict.json")
-          
+          KEYS=$(jq -r "keys | sort | join(\",\")" "$OUTPUT_DIR/verdict.json")
+
           if [ "$KEYS" != "bundle_hash,verdict_id" ]; then
             echo "❌ Output contains extra keys: $KEYS"
             echo "Expected only: bundle_hash,verdict_id"
             exit 1
           fi
-          
-          echo "✅ Binary-only output verified"
-      
-      - name: Install jq
-        run: |
-          set -euo pipefail
-          sudo apt-get update && sudo apt-get install -y jq
 
+          echo "✅ Binary-only output verified"

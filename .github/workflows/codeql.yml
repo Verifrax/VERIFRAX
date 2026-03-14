@@ -1,16 +1,19 @@
 name: CodeQL
+
 on:
   workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   schedule:
-    - cron: '0 3 * * 1'
+    - cron: "0 3 * * 1"
+
 permissions:
   contents: read
   security-events: write
   actions: read
+
 jobs:
   analyze:
     name: analyze (javascript)
@@ -18,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-      language: [ "javascript" ]
+        language: ["javascript"]
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
       - uses: github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e

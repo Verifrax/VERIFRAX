@@ -7,67 +7,72 @@ on:
 env:
   LC_ALL: C
   TZ: UTC
+
 jobs:
   enforce-binary-output:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
-          with:
-            node-version: '20'
-      
+        with:
+          node-version: "20"
+
       - name: Install pnpm
         uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
-          with:
-            with:
-              version: 9
-      
+        with:
+
+      - name: Install jq
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y jq
+
       - name: Install dependencies
-        run: pnpm install
-      
+        run: |
+          set -euo pipefail
+          pnpm install
+
       - name: Find golden bundle
         id: find-bundle
         run: |
           set -euo pipefail
-          # Find first available golden bundle
+          BUNDLE_PATH=""
           if [ -d "public/conformance/golden/delivery_v1/input" ]; then
             BUNDLE_PATH="public/conformance/golden/delivery_v1/input"
           elif [ -d "tests/bundles/valid" ]; then
-            # Use first valid bundle
-            BUNDLE_DIR=$(find tests/bundles/valid -mindepth 1 -maxdepth 1 -type d | head -1)
-            if [ -n "$BUNDLE_DIR" ]; then
+            BUNDLE_DIR=$(find tests/bundles/valid -mindepth 1 -maxdepth 1 -type d | head -1 || true)
+            if [ -n "${BUNDLE_DIR:-}" ]; then
               BUNDLE_PATH="$BUNDLE_DIR"
             fi
           fi
-          
+
           if [ -z "$BUNDLE_PATH" ]; then
             echo "❌ No golden bundle found"
             exit 1
           fi
-          
-          echo "bundle_path=$BUNDLE_PATH" >> $GITHUB_OUTPUT
-      
+
+          echo "bundle_path=$BUNDLE_PATH" >> "$GITHUB_OUTPUT"
+
       - name: Build verifier
         run: |
           set -euo pipefail
           pnpm build
-      
+
       - name: Run verifier on golden bundle
         id: run-verifier
         run: |
           set -euo pipefail
           BUNDLE_PATH="${{ steps.find-bundle.outputs.bundle_path }}"
-          
-          # Run delivery CLI
+
           node engines/cinelint/apps/cli/bin/verifrax.js delivery run \
             --in "$BUNDLE_PATH" \
             --out /tmp/verifier-output \
             --profile delivery_v1@1.0.0
-          
+
           cp /tmp/verifier-output/verdict.json verdict.json
-      
+
       - name: Assert binary-only output contract
         run: |
           set -euo pipefail
@@ -75,15 +80,13 @@ jobs:
             echo "❌ Verdict output not found"
             exit 1
           fi
-          
-          # Use jq to check keys
-          KEYS=$(jq -r 'keys | sort | join(",")' verdict.json)
+
+          KEYS=$(jq -r "keys | sort | join(\",\")" verdict.json)
           EXPECTED_KEYS="bundle_hash,verdict_id"
-          
+
           echo "Found keys: $KEYS"
           echo "Expected keys: $EXPECTED_KEYS"
-          
-          # Check exact match
+
           if [ "$KEYS" != "$EXPECTED_KEYS" ]; then
             echo "❌ VERIFIER OUTPUT CONTRACT VIOLATION"
             echo "Verifier output must contain EXACTLY: verdict_id, bundle_hash"
@@ -93,27 +96,19 @@ jobs:
             cat verdict.json
             exit 1
           fi
-          
-          # Verify verdict_id format
-          VERDICT_ID=$(jq -r '.verdict_id' verdict.json)
+
+          VERDICT_ID=$(jq -r ".verdict_id" verdict.json)
           if [[ ! "$VERDICT_ID" =~ ^VFXV1:sha256:[a-f0-9]{64}:sha256:[a-f0-9]{64}$ ]]; then
             echo "❌ Invalid verdict_id format: $VERDICT_ID"
             echo "Expected format: VFXV1:sha256:<64-hex>:sha256:<64-hex>"
             exit 1
           fi
-          
-          # Verify bundle_hash format
-          BUNDLE_HASH=$(jq -r '.bundle_hash' verdict.json)
+
+          BUNDLE_HASH=$(jq -r ".bundle_hash" verdict.json)
           if [[ ! "$BUNDLE_HASH" =~ ^sha256:[a-f0-9]{64}$ ]]; then
             echo "❌ Invalid bundle_hash format: $BUNDLE_HASH"
             echo "Expected format: sha256:<64-hex>"
             exit 1
           fi
-          
-          echo "✅ Verifier output contract satisfied: binary-only output"
-      
-      - name: Install jq
-        run: |
-          set -euo pipefail
-          sudo apt-get update && sudo apt-get install -y jq
 
+          echo "✅ Verifier output contract satisfied: binary-only output"
