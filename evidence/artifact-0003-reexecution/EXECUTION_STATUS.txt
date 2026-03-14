@@ -1,0 +1,11 @@
+STATUS: EXECUTABLE
+REASON: claimed subject is present
+CANONICAL_SEAL_PATH: public/genesis/SEAL-0001.json
+CANONICAL_LEDGER_PATH: authority-ledger.json
+SEAL_STATUS: PRESENT
+LEDGER_STATUS: PRESENT
+SEAL_SHA256: 05b27a196325282ba71f17d6ef0d5bf5eda5875e1bf55a13615f60e2121c448e
+LEDGER_SHA256: cfad469b5957ff7e847694cf9f370ec28f052b5f8e93e09504462f716548a6b9
+SCHEMA_SHA256: f4e8f482c3f1fffb353f68a15afb066a36d891b311028291a91a61566449e60d
+CONSEQUENCE: Artifact-0003 may now proceed to semantic validation
+NEXT_REQUIRED_WORK: rerun VERIFRAX semantic artifact execution against the published genesis seal and authoritative ledger

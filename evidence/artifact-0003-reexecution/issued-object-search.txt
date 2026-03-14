@@ -1,0 +1,3 @@
+./authority-ledger.json
+./protocol/seal.schema.json
+./public/genesis/SEAL-0001.json

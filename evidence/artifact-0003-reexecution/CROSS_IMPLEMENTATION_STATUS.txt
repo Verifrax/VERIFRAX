@@ -1,0 +1,6 @@
+ARTIFACT-0003: CANONICAL_MATCH
+ARTIFACT-0003-NODE-CANONICAL-SHA256: fbd10b5a90730f9076c0d0fed63eee02a93ee3550bf627fd4e271282870195df
+ARTIFACT-0003-RUST-CANONICAL-SHA256: fbd10b5a90730f9076c0d0fed63eee02a93ee3550bf627fd4e271282870195df
+VERDICT: VERIFIED
+STATUS: EXECUTED
+MEANING: node and rust semantic evaluators produced canonically identical VERIFIED outputs for artifact-0003 after reexecution against the published genesis seal and authoritative ledger
