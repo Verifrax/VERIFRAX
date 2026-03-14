@@ -1,0 +1,2 @@
+3e5071d90a97c272209da2503d23fb3d56f0f86f1680d35bbd23bee0643b8b6b  protocol/authority.schema.json
+f4e8f482c3f1fffb353f68a15afb066a36d891b311028291a91a61566449e60d  protocol/seal.schema.json

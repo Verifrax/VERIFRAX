@@ -1,0 +1,180 @@
+./verifrax-freeze/v2.8.0/source/VERIFRAX/core/engine/verifier.ts:42:  // Check bundle.json manifest
+./verifrax-freeze/v2.8.0/source/VERIFRAX/core/engine/verifier.ts:43:  const bundleManifestPath = path.join(bundlePath, 'bundle.json');
+./verifrax-freeze/v2.8.0/source/VERIFRAX/core/engine/verifier.ts:135:  const bundleManifestPath = path.join(bundlePath, 'bundle.json');
+./verifrax-freeze/v2.8.0/source/VERIFRAX/core/engine/profile.ts:105:  // Check bundle.json manifest
+./verifrax-freeze/v2.8.0/source/VERIFRAX/core/engine/bundle_hash.ts:106: * - Excludes created_at from bundle.json if present
+./verifrax-freeze/v2.8.0/source/VERIFRAX/core/engine/bundle_hash.ts:117:  // Filter created_at from bundle.json if it exists
+./verifrax-freeze/v2.8.0/source/VERIFRAX/core/engine/bundle_hash.ts:118:  const bundleJsonPath = path.join(bundleDir, 'bundle.json');
+./verifrax-freeze/v2.8.0/source/VERIFRAX/core/engine/bundle_hash.ts:135:    // If bundle.json was modified, we need to recompute its hash
+./verifrax-freeze/v2.8.0/source/VERIFRAX/core/engine/bundle_hash.ts:142:  // But we need to filter created_at from bundle.json content before hashing
+./verifrax-freeze/v2.8.0/source/VERIFRAX/core/engine/bundle_hash.ts:144:    if (f.relativePath === 'bundle.json') {
+./verifrax-freeze/v2.8.0/source/VERIFRAX/docs/ecosystem/ECOSYSTEM_GOVERNANCE_FUTURE_EVOLUTION.md:168:- maintained artifact indexing at `index/VERIFICATION_ARTIFACTS.json`
+./verifrax-freeze/v2.8.0/source/VERIFRAX/docs/ecosystem/VERIFICATION_ARTIFACTS_INDEX.md:26:- index/VERIFICATION_ARTIFACTS.json
+./verifrax-freeze/v2.8.0/source/VERIFRAX/docs/examples/DETERMINISTIC_EXAMPLE_BUNDLES.md:27:- examples/bundles/minimal-valid/bundle.json
+./verifrax-freeze/v2.8.0/source/VERIFRAX/docs/examples/DETERMINISTIC_EXAMPLE_BUNDLES.md:28:- examples/bundles/minimal-invalid/bundle.json
+./verifrax-freeze/v2.8.0/source/VERIFRAX/docs/DETERMINISTIC_RELEASE_MANIFEST.md:42:- bundle.json
+./verifrax-freeze/v2.8.0/source/VERIFRAX/docs/GOVERNANCE_DISPUTE_FINALITY.md:42:- `bundle.json` manifest
+./verifrax-freeze/v2.8.0/source/VERIFRAX/docs/GOVERNANCE_DISPUTE_FINALITY.md:43:- `evidence/` directory with evidence files
+./verifrax-freeze/v2.8.0/source/VERIFRAX/docs/PROTOCOL_SURFACE_FREEZE.md:46:- bundle.json
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/freeze/v2/releases/v2.0.0/GOVERNANCE_DISPUTE_FINALITY.md:39:- `bundle.json` manifest
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/freeze/v2/releases/v2.0.0/GOVERNANCE_DISPUTE_FINALITY.md:40:- `evidence/` directory with evidence files
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:13:├── bundle.json              # Manifest (REQUIRED)
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:17:├── evidence/                # Evidence files (REQUIRED)
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:47:## bundle.json Manifest
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:71:      "file": "evidence/evidence-001.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:140:- `created_at` field in `bundle.json` (metadata only)
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:184:1. Read `bundle.json`
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:216:1. Read all evidence files from `evidence/` directory
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/protocol-conformance/v2/suites/minimal-invalid.json:4:  "input_bundle": "bundles/minimal-invalid/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/protocol-conformance/v2/suites/contradiction.json:4:  "input_bundle": "bundles/contradiction/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/protocol-conformance/v2/suites/signature-verification.json:4:  "input_bundle": "bundles/signature-verification/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/protocol-conformance/v2/suites/minimal-valid.json:4:  "input_bundle": "bundles/minimal-valid/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/protocol-conformance/v2/suites/profile-compatibility.json:4:  "input_bundle": "bundles/profile-compatibility/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/protocol-conformance/v2/suites/finality-lock.json:4:  "input_bundle": "bundles/finality-lock/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/protocol-conformance/v2/suites/invalidation.json:4:  "input_bundle": "bundles/invalidation/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/verifier/node/src/verifier.mjs:12:  const single = path.join(bundleDir,"bundle.json");
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/freeze-archive/v2.5.0/UNIVERSAL_PUBLIC_SURFACE_SPEC_v2.5.0.md:249:zip -r evidence_bundle.zip ./evidence/
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/release-integrity/release-sha256-manifest.json:10:    "protocol-conformance/v2/bundles/contradiction/bundle.json": "edef3ab0d73b1121d8fc358e3313ea018d9e183e374708e8061494b212c522a5",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/release-integrity/release-sha256-manifest.json:11:    "protocol-conformance/v2/bundles/finality-lock/bundle.json": "32b12866be4d690a9d710eab2090fdb4fa81608fab4ea24dace2133b12f6e94a",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/release-integrity/release-sha256-manifest.json:12:    "protocol-conformance/v2/bundles/invalidation/bundle.json": "97ee6f0092c0fbb259c423d1c64cbd4e17740377c98164594ed09b45b93d2c8c",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/release-integrity/release-sha256-manifest.json:13:    "protocol-conformance/v2/bundles/minimal-invalid/bundle.json": "811bd74cc2288977e3f20b09ecb384a2c1b3feca0d8eb52b365ba59b72229a14",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/release-integrity/release-sha256-manifest.json:14:    "protocol-conformance/v2/bundles/minimal-valid/bundle.json": "169b5646f0c0d17b4c6f6b2835efa999b791e47b91e12df37ed3cacbf295dc10",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/release-integrity/release-sha256-manifest.json:15:    "protocol-conformance/v2/bundles/profile-compatibility/bundle.json": "4954927a483961e863b4b0311f0369bbfe33f1945666eeb45b5a630eaefa15f8",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/release-integrity/release-sha256-manifest.json:16:    "protocol-conformance/v2/bundles/signature-verification/bundle.json": "eb9690e8ffd7f05da06b57f6865966b8ad1e86d159cc301f20dde433af84a30e",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/snapshot-manifest.json:13:    "release-history/v1/protocol-conformance/v2/bundles/contradiction/bundle.json": "edef3ab0d73b1121d8fc358e3313ea018d9e183e374708e8061494b212c522a5",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/snapshot-manifest.json:14:    "release-history/v1/protocol-conformance/v2/bundles/finality-lock/bundle.json": "32b12866be4d690a9d710eab2090fdb4fa81608fab4ea24dace2133b12f6e94a",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/snapshot-manifest.json:15:    "release-history/v1/protocol-conformance/v2/bundles/invalidation/bundle.json": "97ee6f0092c0fbb259c423d1c64cbd4e17740377c98164594ed09b45b93d2c8c",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/snapshot-manifest.json:16:    "release-history/v1/protocol-conformance/v2/bundles/minimal-invalid/bundle.json": "811bd74cc2288977e3f20b09ecb384a2c1b3feca0d8eb52b365ba59b72229a14",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/snapshot-manifest.json:17:    "release-history/v1/protocol-conformance/v2/bundles/minimal-valid/bundle.json": "169b5646f0c0d17b4c6f6b2835efa999b791e47b91e12df37ed3cacbf295dc10",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/snapshot-manifest.json:18:    "release-history/v1/protocol-conformance/v2/bundles/profile-compatibility/bundle.json": "4954927a483961e863b4b0311f0369bbfe33f1945666eeb45b5a630eaefa15f8",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/snapshot-manifest.json:19:    "release-history/v1/protocol-conformance/v2/bundles/signature-verification/bundle.json": "eb9690e8ffd7f05da06b57f6865966b8ad1e86d159cc301f20dde433af84a30e",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-history/v1/snapshot-manifest.json:36:    "release-history/v1/release-integrity/evidence/v1-evidence.json": "3d9faec01989e1d3bf70b2d02f329ce5954d4947ca987837ccc27bbcd41bbdda",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/action/index.js:6:const adapters = require("../adapters");
+./verifrax-freeze/v2.8.0/source/VERIFRAX/action/index.js:107:    if (t === "spdx") return adapters.spdx.normalize(sbomObj);
+./verifrax-freeze/v2.8.0/source/VERIFRAX/action/index.js:108:    if (t === "cyclonedx") return adapters.cyclonedx.normalize(sbomObj);
+./verifrax-freeze/v2.8.0/source/VERIFRAX/action/index.js:115:    if (t === "slsa") return adapters.slsa.normalize(provObj);
+./verifrax-freeze/v2.8.0/source/VERIFRAX/action/index.js:116:    if (t === "intoto") return adapters.intoto.normalize(provObj);
+./verifrax-freeze/v2.8.0/source/VERIFRAX/action/index.js:118:    if (typeof provObj.predicateType === "string") return adapters.slsa.normalize(provObj);
+./verifrax-freeze/v2.8.0/source/VERIFRAX/action/index.js:125:    return adapters.sigstore.normalizeAndVerify(sigObj, null, null);
+./verifrax-freeze/v2.8.0/source/VERIFRAX/public/VERDICT_REFERENCE_v1.md:27:When computing a VERIFRAX v1 bundle hash, `bundle.json` **MUST** be canonicalized prior to hashing.
+./verifrax-freeze/v2.8.0/source/VERIFRAX/public/VERDICT_REFERENCE_v1.md:31:Any implementation that hashes `bundle.json` without canonicalization is **non-conformant** with VERIFRAX v1 and produces invalid bundle hashes.
+./verifrax-freeze/v2.8.0/source/VERIFRAX/public/CANONICAL_HASHES_v1.txt:25:valid/full-evidence/verdict.json: sha256:c9eacbf5abc1ca908144ec0ab011e5425b0820e2f2df5f68f6804ef9800b3838
+./verifrax-freeze/v2.8.0/source/VERIFRAX/public/conformance/golden/README.md:13:- `valid/full-evidence/` - Complete evidence bundle
+./verifrax-freeze/v2.8.0/source/VERIFRAX/public/conformance/golden/delivery_v1/input/bundle.json:10:      "path": "evidence/delivery-manifest.txt",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/.github/workflows/verifrax-finality.yml:47:          RUNTIME_REGEX="^(freeze/|verifrax-engine/|verifrax-reference-verifier/|index/|issuance/|core/|adapters/|fixtures/|examples/|package\\.json$|pnpm-lock\\.yaml$|\\.github/workflows/verifrax-finality\\.yml$)"
+./verifrax-freeze/v2.8.0/source/VERIFRAX/protocol-conformance/v2/suites/minimal-invalid.json:4:  "input_bundle": "bundles/minimal-invalid/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/protocol-conformance/v2/suites/contradiction.json:4:  "input_bundle": "bundles/contradiction/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/protocol-conformance/v2/suites/signature-verification.json:4:  "input_bundle": "bundles/signature-verification/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/protocol-conformance/v2/suites/minimal-valid.json:4:  "input_bundle": "bundles/minimal-valid/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/protocol-conformance/v2/suites/profile-compatibility.json:4:  "input_bundle": "bundles/profile-compatibility/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/protocol-conformance/v2/suites/finality-lock.json:4:  "input_bundle": "bundles/finality-lock/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/protocol-conformance/v2/suites/invalidation.json:4:  "input_bundle": "bundles/invalidation/bundle.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/index/VERIFICATION_ARTIFACTS.json:49:      "path": "release-integrity/evidence/v1-evidence.json",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/verifier/node/src/verifier.mjs:12:  const single = path.join(bundleDir,"bundle.json");
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-integrity/README.md:47:- `evidence/`
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-integrity/README.md:85:5. inspect evidence and transcript support under `evidence/` and `transcripts/`
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-integrity/release-sha256-manifest.json:10:    "protocol-conformance/v2/bundles/contradiction/bundle.json": "edef3ab0d73b1121d8fc358e3313ea018d9e183e374708e8061494b212c522a5",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-integrity/release-sha256-manifest.json:11:    "protocol-conformance/v2/bundles/finality-lock/bundle.json": "32b12866be4d690a9d710eab2090fdb4fa81608fab4ea24dace2133b12f6e94a",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-integrity/release-sha256-manifest.json:12:    "protocol-conformance/v2/bundles/invalidation/bundle.json": "97ee6f0092c0fbb259c423d1c64cbd4e17740377c98164594ed09b45b93d2c8c",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-integrity/release-sha256-manifest.json:13:    "protocol-conformance/v2/bundles/minimal-invalid/bundle.json": "811bd74cc2288977e3f20b09ecb384a2c1b3feca0d8eb52b365ba59b72229a14",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-integrity/release-sha256-manifest.json:14:    "protocol-conformance/v2/bundles/minimal-valid/bundle.json": "169b5646f0c0d17b4c6f6b2835efa999b791e47b91e12df37ed3cacbf295dc10",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-integrity/release-sha256-manifest.json:15:    "protocol-conformance/v2/bundles/profile-compatibility/bundle.json": "4954927a483961e863b4b0311f0369bbfe33f1945666eeb45b5a630eaefa15f8",
+./verifrax-freeze/v2.8.0/source/VERIFRAX/release-integrity/release-sha256-manifest.json:16:    "protocol-conformance/v2/bundles/signature-verification/bundle.json": "eb9690e8ffd7f05da06b57f6865966b8ad1e86d159cc301f20dde433af84a30e",
+./core/engine/verifier.ts:42:  // Check bundle.json manifest
+./core/engine/verifier.ts:43:  const bundleManifestPath = path.join(bundlePath, 'bundle.json');
+./core/engine/verifier.ts:135:  const bundleManifestPath = path.join(bundlePath, 'bundle.json');
+./core/engine/profile.ts:105:  // Check bundle.json manifest
+./core/engine/bundle_hash.ts:106: * - Excludes created_at from bundle.json if present
+./core/engine/bundle_hash.ts:117:  // Filter created_at from bundle.json if it exists
+./core/engine/bundle_hash.ts:118:  const bundleJsonPath = path.join(bundleDir, 'bundle.json');
+./core/engine/bundle_hash.ts:135:    // If bundle.json was modified, we need to recompute its hash
+./core/engine/bundle_hash.ts:142:  // But we need to filter created_at from bundle.json content before hashing
+./core/engine/bundle_hash.ts:144:    if (f.relativePath === 'bundle.json') {
+./evidence/artifact-0002/EXECUTION_STATUS.txt:2:REASON: current maintained verifiers do not accept artifact json input
+./evidence/artifact-0002/EXECUTION_STATUS.txt:5:NEXT_REQUIRED_WORK: add a first-class artifact execution path or adapter layer before assigning a verifier-backed verdict
+./evidence/artifact-0003/EXECUTION_STATUS.txt:2:REASON: current maintained verifiers do not accept artifact json input
+./evidence/artifact-0003/EXECUTION_STATUS.txt:5:NEXT_REQUIRED_WORK: add a first-class artifact execution path or adapter layer before assigning a verifier-backed verdict
+./evidence/artifact-0001/rust-verifier-hash.txt:1:104c8055cb586b70f27742e9e617cfa44170b037fe0c2b1ae124c964a505079b  evidence/artifact-0001/rust-verifier.txt
+./evidence/artifact-0001/node-verifier-hash.txt:1:104c8055cb586b70f27742e9e617cfa44170b037fe0c2b1ae124c964a505079b  evidence/artifact-0001/node-verifier.txt
+./evidence/artifact-0001/artifact-0001.json:2:  "artifact_id": "artifact-0001",
+./evidence/artifact-0001/artifact-0001.json:50:      "path": "index/VERIFICATION_ARTIFACTS.json",
+./evidence/artifact-0001/artifact-0001.json:56:    "git_fsck_log": "evidence/artifact-0001/git-fsck.txt",
+./evidence/artifact-0001/artifact-0001.json:57:    "submodule_status_log": "evidence/artifact-0001/submodule-status.txt",
+./evidence/artifact-0001/artifact-0001.json:58:    "file_hash_log": "evidence/artifact-0001/file-hashes.txt"
+./evidence/artifact-0001/artifact-0001.json:64:  "execution_evidence": {
+./evidence/artifact-0001/artifact-0001.json:65:    "verifier_runs": [
+./evidence/artifact-0001/artifact-0001.json:68:        "output_log": "evidence/artifact-0001/node-verifier.txt",
+./evidence/artifact-0001/artifact-0001.json:74:        "output_log": "evidence/artifact-0001/rust-verifier.txt",
+./evidence/artifact-0001/file-hashes.txt:7:47aab506e888834658a3cde714b339f1efdb4b42e5263d850f22844904ae2854  index/VERIFICATION_ARTIFACTS.json
+./docs/ecosystem/ECOSYSTEM_GOVERNANCE_FUTURE_EVOLUTION.md:168:- maintained artifact indexing at `index/VERIFICATION_ARTIFACTS.json`
+./docs/ecosystem/VERIFICATION_ARTIFACTS_INDEX.md:26:- index/VERIFICATION_ARTIFACTS.json
+./docs/examples/DETERMINISTIC_EXAMPLE_BUNDLES.md:27:- examples/bundles/minimal-valid/bundle.json
+./docs/examples/DETERMINISTIC_EXAMPLE_BUNDLES.md:28:- examples/bundles/minimal-invalid/bundle.json
+./docs/DETERMINISTIC_RELEASE_MANIFEST.md:42:- bundle.json
+./docs/GOVERNANCE_DISPUTE_FINALITY.md:42:- `bundle.json` manifest
+./docs/GOVERNANCE_DISPUTE_FINALITY.md:43:- `evidence/` directory with evidence files
+./docs/PROTOCOL_SURFACE_FREEZE.md:46:- bundle.json
+./release-history/v1/freeze/v2/releases/v2.0.0/GOVERNANCE_DISPUTE_FINALITY.md:39:- `bundle.json` manifest
+./release-history/v1/freeze/v2/releases/v2.0.0/GOVERNANCE_DISPUTE_FINALITY.md:40:- `evidence/` directory with evidence files
+./release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:13:├── bundle.json              # Manifest (REQUIRED)
+./release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:17:├── evidence/                # Evidence files (REQUIRED)
+./release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:47:## bundle.json Manifest
+./release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:71:      "file": "evidence/evidence-001.json",
+./release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:140:- `created_at` field in `bundle.json` (metadata only)
+./release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:184:1. Read `bundle.json`
+./release-history/v1/freeze/v2/releases/v2.0.0/EVIDENCE_BUNDLE_SPEC_v1.md:216:1. Read all evidence files from `evidence/` directory
+./release-history/v1/protocol-conformance/v2/suites/minimal-invalid.json:4:  "input_bundle": "bundles/minimal-invalid/bundle.json",
+./release-history/v1/protocol-conformance/v2/suites/contradiction.json:4:  "input_bundle": "bundles/contradiction/bundle.json",
+./release-history/v1/protocol-conformance/v2/suites/signature-verification.json:4:  "input_bundle": "bundles/signature-verification/bundle.json",
+./release-history/v1/protocol-conformance/v2/suites/minimal-valid.json:4:  "input_bundle": "bundles/minimal-valid/bundle.json",
+./release-history/v1/protocol-conformance/v2/suites/profile-compatibility.json:4:  "input_bundle": "bundles/profile-compatibility/bundle.json",
+./release-history/v1/protocol-conformance/v2/suites/finality-lock.json:4:  "input_bundle": "bundles/finality-lock/bundle.json",
+./release-history/v1/protocol-conformance/v2/suites/invalidation.json:4:  "input_bundle": "bundles/invalidation/bundle.json",
+./release-history/v1/verifier/node/src/verifier.mjs:12:  const single = path.join(bundleDir,"bundle.json");
+./release-history/v1/freeze-archive/v2.5.0/UNIVERSAL_PUBLIC_SURFACE_SPEC_v2.5.0.md:249:zip -r evidence_bundle.zip ./evidence/
+./release-history/v1/release-integrity/release-sha256-manifest.json:10:    "protocol-conformance/v2/bundles/contradiction/bundle.json": "edef3ab0d73b1121d8fc358e3313ea018d9e183e374708e8061494b212c522a5",
+./release-history/v1/release-integrity/release-sha256-manifest.json:11:    "protocol-conformance/v2/bundles/finality-lock/bundle.json": "32b12866be4d690a9d710eab2090fdb4fa81608fab4ea24dace2133b12f6e94a",
+./release-history/v1/release-integrity/release-sha256-manifest.json:12:    "protocol-conformance/v2/bundles/invalidation/bundle.json": "97ee6f0092c0fbb259c423d1c64cbd4e17740377c98164594ed09b45b93d2c8c",
+./release-history/v1/release-integrity/release-sha256-manifest.json:13:    "protocol-conformance/v2/bundles/minimal-invalid/bundle.json": "811bd74cc2288977e3f20b09ecb384a2c1b3feca0d8eb52b365ba59b72229a14",
+./release-history/v1/release-integrity/release-sha256-manifest.json:14:    "protocol-conformance/v2/bundles/minimal-valid/bundle.json": "169b5646f0c0d17b4c6f6b2835efa999b791e47b91e12df37ed3cacbf295dc10",
+./release-history/v1/release-integrity/release-sha256-manifest.json:15:    "protocol-conformance/v2/bundles/profile-compatibility/bundle.json": "4954927a483961e863b4b0311f0369bbfe33f1945666eeb45b5a630eaefa15f8",
+./release-history/v1/release-integrity/release-sha256-manifest.json:16:    "protocol-conformance/v2/bundles/signature-verification/bundle.json": "eb9690e8ffd7f05da06b57f6865966b8ad1e86d159cc301f20dde433af84a30e",
+./release-history/v1/snapshot-manifest.json:13:    "release-history/v1/protocol-conformance/v2/bundles/contradiction/bundle.json": "edef3ab0d73b1121d8fc358e3313ea018d9e183e374708e8061494b212c522a5",
+./release-history/v1/snapshot-manifest.json:14:    "release-history/v1/protocol-conformance/v2/bundles/finality-lock/bundle.json": "32b12866be4d690a9d710eab2090fdb4fa81608fab4ea24dace2133b12f6e94a",
+./release-history/v1/snapshot-manifest.json:15:    "release-history/v1/protocol-conformance/v2/bundles/invalidation/bundle.json": "97ee6f0092c0fbb259c423d1c64cbd4e17740377c98164594ed09b45b93d2c8c",
+./release-history/v1/snapshot-manifest.json:16:    "release-history/v1/protocol-conformance/v2/bundles/minimal-invalid/bundle.json": "811bd74cc2288977e3f20b09ecb384a2c1b3feca0d8eb52b365ba59b72229a14",
+./release-history/v1/snapshot-manifest.json:17:    "release-history/v1/protocol-conformance/v2/bundles/minimal-valid/bundle.json": "169b5646f0c0d17b4c6f6b2835efa999b791e47b91e12df37ed3cacbf295dc10",
+./release-history/v1/snapshot-manifest.json:18:    "release-history/v1/protocol-conformance/v2/bundles/profile-compatibility/bundle.json": "4954927a483961e863b4b0311f0369bbfe33f1945666eeb45b5a630eaefa15f8",
+./release-history/v1/snapshot-manifest.json:19:    "release-history/v1/protocol-conformance/v2/bundles/signature-verification/bundle.json": "eb9690e8ffd7f05da06b57f6865966b8ad1e86d159cc301f20dde433af84a30e",
+./release-history/v1/snapshot-manifest.json:36:    "release-history/v1/release-integrity/evidence/v1-evidence.json": "3d9faec01989e1d3bf70b2d02f329ce5954d4947ca987837ccc27bbcd41bbdda",
+./action/index.js:6:const adapters = require("../adapters");
+./action/index.js:107:    if (t === "spdx") return adapters.spdx.normalize(sbomObj);
+./action/index.js:108:    if (t === "cyclonedx") return adapters.cyclonedx.normalize(sbomObj);
+./action/index.js:115:    if (t === "slsa") return adapters.slsa.normalize(provObj);
+./action/index.js:116:    if (t === "intoto") return adapters.intoto.normalize(provObj);
+./action/index.js:118:    if (typeof provObj.predicateType === "string") return adapters.slsa.normalize(provObj);
+./action/index.js:125:    return adapters.sigstore.normalizeAndVerify(sigObj, null, null);
+./public/VERDICT_REFERENCE_v1.md:27:When computing a VERIFRAX v1 bundle hash, `bundle.json` **MUST** be canonicalized prior to hashing.
+./public/VERDICT_REFERENCE_v1.md:31:Any implementation that hashes `bundle.json` without canonicalization is **non-conformant** with VERIFRAX v1 and produces invalid bundle hashes.
+./public/CANONICAL_HASHES_v1.txt:25:valid/full-evidence/verdict.json: sha256:c9eacbf5abc1ca908144ec0ab011e5425b0820e2f2df5f68f6804ef9800b3838
+./public/conformance/golden/README.md:13:- `valid/full-evidence/` - Complete evidence bundle
+./public/conformance/golden/delivery_v1/input/bundle.json:10:      "path": "evidence/delivery-manifest.txt",
+./.github/workflows/verifrax-finality.yml:47:          RUNTIME_REGEX="^(freeze/|verifrax-engine/|verifrax-reference-verifier/|index/|issuance/|core/|adapters/|fixtures/|examples/|package\\.json$|pnpm-lock\\.yaml$|\\.github/workflows/verifrax-finality\\.yml$)"
+./protocol-conformance/v2/suites/minimal-invalid.json:4:  "input_bundle": "bundles/minimal-invalid/bundle.json",
+./protocol-conformance/v2/suites/contradiction.json:4:  "input_bundle": "bundles/contradiction/bundle.json",
+./protocol-conformance/v2/suites/signature-verification.json:4:  "input_bundle": "bundles/signature-verification/bundle.json",
+./protocol-conformance/v2/suites/minimal-valid.json:4:  "input_bundle": "bundles/minimal-valid/bundle.json",
+./protocol-conformance/v2/suites/profile-compatibility.json:4:  "input_bundle": "bundles/profile-compatibility/bundle.json",
+./protocol-conformance/v2/suites/finality-lock.json:4:  "input_bundle": "bundles/finality-lock/bundle.json",
+./protocol-conformance/v2/suites/invalidation.json:4:  "input_bundle": "bundles/invalidation/bundle.json",
+./index/VERIFICATION_ARTIFACTS.json:49:      "path": "release-integrity/evidence/v1-evidence.json",
+./verifier/node/src/verifier.mjs:12:  const single = path.join(bundleDir,"bundle.json");
+./release-integrity/README.md:47:- `evidence/`
+./release-integrity/README.md:85:5. inspect evidence and transcript support under `evidence/` and `transcripts/`
+./release-integrity/release-sha256-manifest.json:10:    "protocol-conformance/v2/bundles/contradiction/bundle.json": "edef3ab0d73b1121d8fc358e3313ea018d9e183e374708e8061494b212c522a5",
+./release-integrity/release-sha256-manifest.json:11:    "protocol-conformance/v2/bundles/finality-lock/bundle.json": "32b12866be4d690a9d710eab2090fdb4fa81608fab4ea24dace2133b12f6e94a",
+./release-integrity/release-sha256-manifest.json:12:    "protocol-conformance/v2/bundles/invalidation/bundle.json": "97ee6f0092c0fbb259c423d1c64cbd4e17740377c98164594ed09b45b93d2c8c",
+./release-integrity/release-sha256-manifest.json:13:    "protocol-conformance/v2/bundles/minimal-invalid/bundle.json": "811bd74cc2288977e3f20b09ecb384a2c1b3feca0d8eb52b365ba59b72229a14",
+./release-integrity/release-sha256-manifest.json:14:    "protocol-conformance/v2/bundles/minimal-valid/bundle.json": "169b5646f0c0d17b4c6f6b2835efa999b791e47b91e12df37ed3cacbf295dc10",
+./release-integrity/release-sha256-manifest.json:15:    "protocol-conformance/v2/bundles/profile-compatibility/bundle.json": "4954927a483961e863b4b0311f0369bbfe33f1945666eeb45b5a630eaefa15f8",
+./release-integrity/release-sha256-manifest.json:16:    "protocol-conformance/v2/bundles/signature-verification/bundle.json": "eb9690e8ffd7f05da06b57f6865966b8ad1e86d159cc301f20dde433af84a30e",

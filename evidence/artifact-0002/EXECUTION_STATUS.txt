@@ -1,0 +1,5 @@
+STATUS: NOT EXECUTED
+REASON: current maintained verifiers do not accept artifact json input
+NODE_SCOPE: protocol-conformance/v2 only
+RUST_SCOPE: protocol-conformance/v2 only
+NEXT_REQUIRED_WORK: add a first-class artifact execution path or adapter layer before assigning a verifier-backed verdict

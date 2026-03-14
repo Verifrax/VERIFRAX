@@ -1,0 +1,1 @@
+./protocol/seal.schema.json

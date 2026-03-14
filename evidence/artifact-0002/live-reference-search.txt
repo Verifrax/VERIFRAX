@@ -1,0 +1,4 @@
+./ledger/migrations/0001_init.sql:3:-- This migration establishes the append-only authority ledger.
+./ledger/schema.sql:2:-- Append-only authority ledger
+./seals/validator.py:131:    # Deterministic selection: choose the most recently issued seal.
+./authority/roots.yaml:20:  - explicit_activation_required

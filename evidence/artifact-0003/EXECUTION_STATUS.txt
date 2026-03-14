@@ -1,0 +1,8 @@
+STATUS: NOT_EXECUTABLE
+REASON: claimed subject is absent
+CANONICAL_SEAL_PATH: public/genesis/SEAL-0001.json
+CANONICAL_LEDGER_PATH: authority-ledger.json
+SEAL_STATUS: ABSENT
+LEDGER_STATUS: ABSENT
+CONSEQUENCE: Artifact-0003 cannot be executed or published as VERIFIED
+NEXT_REQUIRED_WORK: issue and publish the first genesis seal and authoritative ledger before re-attempting execution
