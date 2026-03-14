@@ -1,0 +1,20 @@
+{
+  "artifact_id": "artifact-0003",
+  "commit": "e8680ab7629627ef169d1727aa7adab4af758cf3",
+  "notes": [
+    "claimed external issuance subject was absent at execution time"
+  ],
+  "observations": {
+    "ledger_presence": "ABSENT",
+    "seal_presence": "ABSENT"
+  },
+  "reason_codes": [
+    "AUTHORITY_LEDGER_ABSENT",
+    "DECLARED_EVIDENCE_PRESENT",
+    "GENESIS_SEAL_ABSENT",
+    "SUBJECT_ABSENT_NOT_EXECUTABLE"
+  ],
+  "status": "NOT_EXECUTED",
+  "subject_ref": "github.com/Verifrax/AUCTORISEAL",
+  "verdict": "NOT_EXECUTABLE"
+}
