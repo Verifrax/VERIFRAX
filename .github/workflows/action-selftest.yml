@@ -15,7 +15,7 @@ jobs:
         with:
           surface_path: fixtures/surfaces/minimal.surface.json
           policy_path: policy/v1.0.0/policy.yaml
-          sbom_path: ""
+          sbom_path: "fixtures/sbom/minimal.cdx.json"
           provenance_path: ""
           sigstore_bundle_path: ""
           mode: audit
