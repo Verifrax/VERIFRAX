@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 permissions: read-all
 
@@ -14,6 +14,7 @@ jobs:
     permissions:
       contents: write
       id-token: write
+      attestations: write
 
     steps:
       - name: Checkout
@@ -25,9 +26,9 @@ jobs:
           tar -czf dist/verifrax-src.tar.gz .
 
       - name: Generate provenance
-        uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.0.0
+        uses: actions/attest-build-provenance@v2
         with:
-          base64-subjects: $(printf "dist/verifrax-src.tar.gz" | base64 -w0)
+          subject-path: dist/verifrax-src.tar.gz
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@9d7e5d1ffb1dd2a7f6b1a552c43e8648bb2a5db3 # v2
