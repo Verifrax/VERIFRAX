@@ -1,0 +1,45 @@
+{
+  "protocol": "VERIFRAX",
+  "surface": "artifact-semantic-execution",
+  "version": "1.0.0",
+  "purpose": "Canonical output contract for first-class semantic artifact verdict execution",
+  "required_fields": {
+    "artifact_id": "string",
+    "verdict": "VERIFIED | FAILED | INVALIDATED | INCOMPLETE | NOT_EXECUTABLE",
+    "status": "EXECUTED | NOT_EXECUTED",
+    "reason_codes": "string[]",
+    "observations": "object"
+  },
+  "optional_fields": {
+    "subject_ref": "string",
+    "commit": "string",
+    "evidence_hashes": "object",
+    "notes": "string[]"
+  },
+  "rules": [
+    "verdict output must be deterministic for the same artifact input and declared evidence",
+    "reason_codes must be machine-stable and order-stable",
+    "observations must contain only execution-derived facts",
+    "NOT_EXECUTABLE must be used when the claimed subject or indispensable execution prerequisite is absent",
+    "FAILED must be used only when semantic execution did occur and claim conditions were not satisfied",
+    "adapter acceptance alone must not be promoted into a semantic verdict"
+  ],
+  "example": {
+    "artifact_id": "artifact-0002",
+    "subject_ref": "github.com/Verifrax/AUCTORISEAL",
+    "commit": "e8680ab7629627ef169d1727aa7adab4af758cf3",
+    "verdict": "FAILED",
+    "status": "EXECUTED",
+    "reason_codes": [
+      "GENESIS_SEAL_ABSENT",
+      "AUTHORITY_LEDGER_ABSENT"
+    ],
+    "observations": {
+      "seal_presence": "ABSENT",
+      "ledger_presence": "ABSENT"
+    },
+    "notes": [
+      "semantic readiness conditions were evaluated from declared evidence"
+    ]
+  }
+}
