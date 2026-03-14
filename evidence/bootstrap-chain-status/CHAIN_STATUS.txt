@@ -3,5 +3,5 @@ ARTIFACT-0002: FAILED
 ARTIFACT-0002-NOTE: semantic readiness was executed from declared evidence and failed because no issued genesis seal or standalone authority ledger artifact was present at evaluation time
 ARTIFACT-0003: VERIFIED
 ARTIFACT-0003-NOTE: published genesis seal and authoritative ledger are present; node and rust semantic evaluators produced canonically identical VERIFIED outputs
-CURRENT_BOUNDARY: bootstrap chain is now semantically resolved for artifacts 0001-0003
-NEXT_REQUIRED_WORK: publish canonical artifact index entries for artifact-0001, artifact-0002, and artifact-0003
+CURRENT_BOUNDARY: bootstrap chain is semantically resolved and canonically indexed for artifacts 0001-0003
+NEXT_REQUIRED_WORK: none for bootstrap-chain publication
