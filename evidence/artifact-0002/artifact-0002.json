@@ -1,0 +1,67 @@
+{
+  "artifact_id": "artifact-0002",
+  "title": "AUCTORISEAL Activation Readiness Evaluation",
+  "subject": {
+    "subject": "AUCTORISEAL activation readiness",
+    "subject_ref": "github.com/Verifrax/AUCTORISEAL",
+    "commit": "e8680ab7629627ef169d1727aa7adab4af758cf3",
+    "branch": "main",
+    "event": "protocol readiness verification"
+  },
+  "claim_set": [
+    "no issued genesis authority seal artifact is present",
+    "no standalone authority ledger artifact is present",
+    "authority, ledger, and seals implementation surfaces exist as code",
+    "schema surfaces exist, but no issued live authority object was found"
+  ],
+  "evidence_objects": [
+    {
+      "path": "protocol/authority.schema.json",
+      "sha256": "3e5071d90a97c272209da2503d23fb3d56f0f86f1680d35bbd23bee0643b8b6b",
+      "role": "authority schema"
+    },
+    {
+      "path": "protocol/seal.schema.json",
+      "sha256": "f4e8f482c3f1fffb353f68a15afb066a36d891b311028291a91a61566449e60d",
+      "role": "seal schema"
+    }
+  ],
+  "supporting_evidence": {
+    "commit_log": "evidence/artifact-0002/commit.txt",
+    "seal_presence_log": "evidence/artifact-0002/seal-presence.txt",
+    "ledger_presence_log": "evidence/artifact-0002/ledger-presence.txt",
+    "authority_surface_files": "evidence/artifact-0002/authority-surface-files.txt",
+    "ledger_tree": "evidence/artifact-0002/ledger-tree.txt",
+    "seals_tree": "evidence/artifact-0002/seals-tree.txt",
+    "issued_object_search": "evidence/artifact-0002/issued-object-search.txt",
+    "live_reference_search": "evidence/artifact-0002/live-reference-search.txt"
+  },
+  "observed_results": {
+    "seal_presence": "ABSENT",
+    "ledger_presence": "ABSENT",
+    "issued_object_search_summary": "no issued SEAL-0001 json, no authority-ledger json, no persisted ledger db/sqlite artifact found",
+    "classification_note": "implementation code exists, but repository-published issued authority objects were not observed"
+  },
+  "execution_evidence": {
+    "verifier_runs": [
+      {
+        "implementation": "verifier/node",
+        "output_log": "evidence/artifact-0002-execution/node-run.txt",
+        "artifact_line_log": "evidence/artifact-0002-execution/node-artifact-0002-line.txt",
+        "result_line": "artifact-0002: PASS",
+        "run_output_sha256": "a271a8cb4aaf1e24bb43ba673f300dec1007b9e4b145db73919c769d05239bfb"
+      },
+      {
+        "implementation": "verifier/rust",
+        "output_log": "evidence/artifact-0002-execution/rust-run.txt",
+        "artifact_line_log": "evidence/artifact-0002-execution/rust-artifact-0002-line.txt",
+        "result_line": "artifact-0002: PASS",
+        "run_output_sha256": "a271a8cb4aaf1e24bb43ba673f300dec1007b9e4b145db73919c769d05239bfb"
+      }
+    ],
+    "cross_implementation_match": true,
+    "interpretation_boundary": "evidence/artifact-0002-execution/INTERPRETATION_BOUNDARY.txt"
+  },
+  "verdict": "ADAPTER_EXECUTED",
+  "verdict_note": "adapter suite executed successfully and matched across maintained verifiers; semantic FAILED classification remains unproven by the current verifier model"
+}

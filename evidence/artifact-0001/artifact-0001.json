@@ -1,0 +1,82 @@
+{
+  "artifact_id": "artifact-0001",
+  "title": "VERIFRAX Repository Deterministic Integrity Baseline",
+  "subject": {
+    "subject": "VERIFRAX repository deterministic state",
+    "subject_ref": "github.com/Verifrax/VERIFRAX",
+    "commit": "2997e8828eccf42fefc3679a87f40e9e257612e5",
+    "branch": "main",
+    "event": "repository stabilization merge"
+  },
+  "claim_set": [
+    "repository checks out cleanly at the recorded commit",
+    "frozen source boundary points to a reachable commit",
+    "freeze integrity workflow enforces forbidden modification detection, build hash verification, and certificate schema verification",
+    "repository working tree is clean and deterministic",
+    "repository integrity checks complete without structural corruption"
+  ],
+  "evidence_objects": [
+    {
+      "path": "AUTHORITY.md",
+      "sha256": "ce40378c351a76d976413874acd2a2f486145486bc4305715c91107ff7aea28d",
+      "role": "authority surface declaration"
+    },
+    {
+      "path": "README.md",
+      "sha256": "241db2fb1630d432002a822bf2d608c4d769f848c71f492b1fdcc21657f4eec4",
+      "role": "repository surface map"
+    },
+    {
+      "path": "docs/spec/INDEX.md",
+      "sha256": "84fdbf5bc100c6576dd60d3933260af098dd3d7b3fb9b3aad83d0ed1920eea53",
+      "role": "specification index and freeze reference"
+    },
+    {
+      "path": ".github/workflows/freeze-integrity.yml",
+      "sha256": "99f05ac8446aa2b74fb06f9758aac303f365c09f7fa3859a97b41db8af6f9f10",
+      "role": "freeze integrity enforcement workflow"
+    },
+    {
+      "path": "release-integrity/freeze-surfaces.json",
+      "sha256": "379f437de85b1b2c02073d5f6555e4b9209c1be67e48577c4ad6a57d5a323c3f",
+      "role": "active freeze declaration"
+    },
+    {
+      "path": "registry/VERIFIED_IMPLEMENTATIONS.json",
+      "sha256": "e158c38ddeab916586ea0d8b880a3ad5fb1fa9d02538e84aa2d274a4d424e48f",
+      "role": "maintained verifier registry"
+    },
+    {
+      "path": "index/VERIFICATION_ARTIFACTS.json",
+      "sha256": "47aab506e888834658a3cde714b339f1efdb4b42e5263d850f22844904ae2854",
+      "role": "canonical verification artifact index"
+    }
+  ],
+  "supporting_evidence": {
+    "git_fsck_log": "evidence/artifact-0001/git-fsck.txt",
+    "submodule_status_log": "evidence/artifact-0001/submodule-status.txt",
+    "file_hash_log": "evidence/artifact-0001/file-hashes.txt"
+  },
+  "observed_results": {
+    "submodule_status": "0314f16222cf695b44343bd8bc0f7d757bef7d69 verifrax-freeze/v2.8.0/source/VERIFRAX",
+    "git_fsck_note": "fsck completed; only dangling trees were reported"
+  },
+  "execution_evidence": {
+    "verifier_runs": [
+      {
+        "implementation": "verifier/node",
+        "output_log": "evidence/artifact-0001/node-verifier.txt",
+        "output_sha256": "104c8055cb586b70f27742e9e617cfa44170b037fe0c2b1ae124c964a505079b",
+        "verdict": "VERIFIED"
+      },
+      {
+        "implementation": "verifier/rust",
+        "output_log": "evidence/artifact-0001/rust-verifier.txt",
+        "output_sha256": "104c8055cb586b70f27742e9e617cfa44170b037fe0c2b1ae124c964a505079b",
+        "verdict": "VERIFIED"
+      }
+    ],
+    "cross_implementation_match": true
+  },
+  "verdict": "VERIFIED"
+}

@@ -1,0 +1,34 @@
+{
+  "artifact_id": "artifact-0003",
+  "title": "AUCTORISEAL Genesis Authority Seal Validation",
+  "subject": {
+    "subject": "AUCTORISEAL genesis authority seal",
+    "subject_ref": "github.com/Verifrax/AUCTORISEAL",
+    "seal_id": "SEAL-0001",
+    "commit": "e8680ab7629627ef169d1727aa7adab4af758cf3",
+    "branch": "main",
+    "event": "genesis seal issuance"
+  },
+  "claim_set": [
+    "public/genesis/SEAL-0001.json exists",
+    "authority-ledger.json exists",
+    "the first genesis seal can be evaluated against the published schema",
+    "the first genesis seal can be validated against an authoritative published ledger"
+  ],
+  "supporting_evidence": {
+    "commit_log": "evidence/artifact-0003/commit.txt",
+    "issued_object_search": "evidence/artifact-0003/issued-object-search.txt",
+    "seal_presence_log": "evidence/artifact-0003/seal-0001-presence.txt",
+    "ledger_presence_log": "evidence/artifact-0003/authority-ledger-presence.txt",
+    "execution_status": "evidence/artifact-0003/EXECUTION_STATUS.txt"
+  },
+  "observed_results": {
+    "seal_0001_status": "ABSENT",
+    "authority_ledger_status": "ABSENT"
+  },
+  "execution_evidence": {
+    "verifier_runs": []
+  },
+  "verdict": "NOT_EXECUTABLE",
+  "verdict_note": "claimed subject is absent, so verifier-backed execution cannot begin"
+}

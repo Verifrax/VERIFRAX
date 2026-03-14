@@ -1,0 +1,8 @@
+STATUS: ADAPTER_EXECUTED
+NODE_RESULT: artifact-0002: PASS
+RUST_RESULT: artifact-0002: PASS
+CROSS_IMPLEMENTATION_MATCH: YES
+MEANING: the maintained verifiers accepted the adapter suite and matched each other
+NON-MEANING: this does not yet prove the external readiness claim is semantically FAILED
+REASON: current maintained verifiers are conformance-suite runners, not artifact-claim evaluators
+NEXT_REQUIRED_WORK: define and implement semantic artifact verdict mapping before publishing Artifact-0002 as FAILED
