@@ -1,7 +1,7 @@
 ARTIFACT-0001: VERIFIED
-ARTIFACT-0002: ADAPTER_EXECUTED
-ARTIFACT-0002-NOTE: semantic FAILED verdict not yet proven by the current verifier model
-ARTIFACT-0003: NOT_EXECUTABLE
-ARTIFACT-0003-NOTE: claimed subject is absent in AUCTORISEAL
-CURRENT_BOUNDARY: do not publish artifact-0002 as FAILED or artifact-0003 as VERIFIED
-NEXT_REQUIRED_WORK: implement first-class semantic artifact verdict execution before any publication into the canonical artifact index
+ARTIFACT-0002: FAILED
+ARTIFACT-0002-NOTE: semantic readiness was executed from declared evidence and failed because no issued genesis seal or standalone authority ledger artifact was present at evaluation time
+ARTIFACT-0003: VERIFIED
+ARTIFACT-0003-NOTE: published genesis seal and authoritative ledger are present; node and rust semantic evaluators produced canonically identical VERIFIED outputs
+CURRENT_BOUNDARY: bootstrap chain is now semantically resolved for artifacts 0001-0003
+NEXT_REQUIRED_WORK: publish canonical artifact index entries for artifact-0001, artifact-0002, and artifact-0003

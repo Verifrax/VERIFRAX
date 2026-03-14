@@ -61,6 +61,30 @@
       "path": "release-history/v1",
       "type": "historical-snapshot",
       "role": "Immutable historical protocol snapshot"
+    },
+    {
+      "id": "bootstrap-chain-status",
+      "path": "evidence/bootstrap-chain-status/CHAIN_STATUS.txt",
+      "type": "bootstrap-status",
+      "role": "Canonical semantic status of the initial VERIFRAX bootstrap artifact chain"
+    },
+    {
+      "id": "artifact-0001",
+      "path": "evidence/artifact-0001/artifact-0001.json",
+      "type": "verification-artifact",
+      "role": "Repository deterministic integrity baseline artifact"
+    },
+    {
+      "id": "artifact-0002",
+      "path": "evidence/artifact-0002/artifact-0002.json",
+      "type": "verification-artifact",
+      "role": "External readiness evaluation artifact"
+    },
+    {
+      "id": "artifact-0003",
+      "path": "evidence/artifact-0003/artifact-0003.json",
+      "type": "verification-artifact",
+      "role": "External genesis authority seal validation artifact"
     }
   ],
   "index_rules": {
