@@ -1,0 +1,20 @@
+{
+  "artifact_id": "artifact-0003",
+  "commit": "e8680ab7629627ef169d1727aa7adab4af758cf3",
+  "notes": [
+    "claimed external issuance subject was present and executable"
+  ],
+  "observations": {
+    "ledger_presence": "PRESENT",
+    "seal_presence": "PRESENT"
+  },
+  "reason_codes": [
+    "AUTHORITY_LEDGER_PRESENT",
+    "DECLARED_EVIDENCE_PRESENT",
+    "GENESIS_SEAL_PRESENT",
+    "SEMANTIC_VALIDATION_SUCCEEDED"
+  ],
+  "status": "EXECUTED",
+  "subject_ref": "github.com/Verifrax/AUCTORISEAL",
+  "verdict": "VERIFIED"
+}

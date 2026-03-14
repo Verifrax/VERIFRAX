@@ -17,18 +17,31 @@
   ],
   "supporting_evidence": {
     "commit_log": "evidence/artifact-0003/commit.txt",
-    "issued_object_search": "evidence/artifact-0003/issued-object-search.txt",
-    "seal_presence_log": "evidence/artifact-0003/seal-0001-presence.txt",
-    "ledger_presence_log": "evidence/artifact-0003/authority-ledger-presence.txt",
-    "execution_status": "evidence/artifact-0003/EXECUTION_STATUS.txt"
+    "issued_object_search": "evidence/artifact-0003-reexecution/issued-object-search.txt",
+    "seal_presence_log": "evidence/artifact-0003-reexecution/seal-0001-presence.txt",
+    "ledger_presence_log": "evidence/artifact-0003-reexecution/authority-ledger-presence.txt",
+    "execution_status": "evidence/artifact-0003-reexecution/EXECUTION_STATUS.txt"
   },
   "observed_results": {
-    "seal_0001_status": "ABSENT",
-    "authority_ledger_status": "ABSENT"
+    "seal_0001_status": "PRESENT",
+    "authority_ledger_status": "PRESENT"
   },
   "execution_evidence": {
-    "verifier_runs": []
+    "verifier_runs": [
+      {
+        "implementation": "verifier/node",
+        "verdict": "VERIFIED",
+        "status": "EXECUTED",
+        "evidence": "evidence/artifact-0003-reexecution/artifact-0003.node.reexecution.json"
+      },
+      {
+        "implementation": "verifier/rust",
+        "verdict": "VERIFIED",
+        "status": "EXECUTED",
+        "evidence": "evidence/artifact-0003-reexecution/artifact-0003.rust.reexecution.json"
+      }
+    ]
   },
-  "verdict": "NOT_EXECUTABLE",
-  "verdict_note": "claimed subject is absent, so verifier-backed execution cannot begin"
+  "verdict": "VERIFIED",
+  "verdict_note": "published genesis seal and authoritative ledger are present; node and rust semantic evaluators produced canonically identical VERIFIED outputs"
 }
