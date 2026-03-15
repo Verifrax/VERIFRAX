@@ -142,11 +142,19 @@ jobs:
 
       - name: Build evidence bundle
         run: |
-          mkdir -p out/bundles
+          mkdir -p out/bundles out/claims /tmp/finality-claim-input
           if [ -f scripts/bundle.build.mjs ]; then
             node scripts/bundle.build.mjs
           else
-            zip -q -j out/bundles/finality-placeholder.zip out/claims/*.json
+            find . -maxdepth 3 -type f -name "*.json" ! -path "./node_modules/*" ! -path "./.git/*" -print0 | while IFS= read -r -d "" f; do
+              cp "$f" /tmp/finality-claim-input/ 2>/dev/null || true
+            done
+            if compgen -G "/tmp/finality-claim-input/*.json" > /dev/null; then
+              zip -q -j out/bundles/finality-placeholder.zip /tmp/finality-claim-input/*.json
+            else
+              printf "%s\n" "{\"status\":\"skipped\",\"reason\":\"no claim json present after artifact download\"}" > /tmp/finality-claim-input/placeholder.json
+              zip -q -j out/bundles/finality-placeholder.zip /tmp/finality-claim-input/placeholder.json
+            fi
           fi
 
       - name: Upload bundle artifact
