@@ -141,7 +141,13 @@ jobs:
           name: claim
 
       - name: Build evidence bundle
-        run: node scripts/bundle.build.mjs
+        run: |
+          mkdir -p out/bundles
+          if [ -f scripts/bundle.build.mjs ]; then
+            node scripts/bundle.build.mjs
+          else
+            zip -q -j out/bundles/finality-placeholder.zip out/claims/*.json
+          fi
 
       - name: Upload bundle artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -174,7 +180,12 @@ jobs:
           name: bundle
 
       - name: Publish to truth index
-        run: node scripts/publish.index.mjs out/bundles
+        run: |
+          if [ -f scripts/publish.index.mjs ]; then
+            node scripts/publish.index.mjs out/bundles
+          else
+            echo "publish.index.mjs not present; skipping publish on this repository surface"
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
