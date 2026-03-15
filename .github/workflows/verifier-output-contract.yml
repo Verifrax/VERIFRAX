@@ -18,10 +18,8 @@ jobs:
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
         with:
           node-version: "20"
-
       - name: Install pnpm
         uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
-        with:
 
       - name: Install jq
         run: |
@@ -66,7 +64,7 @@ jobs:
           set -euo pipefail
           BUNDLE_PATH="${{ steps.find-bundle.outputs.bundle_path }}"
 
-          node engines/cinelint/apps/cli/bin/verifrax.js delivery run \
+          node scripts/delivery_v1_runner.mjs \
             --in "$BUNDLE_PATH" \
             --out /tmp/verifier-output \
             --profile delivery_v1@1.0.0

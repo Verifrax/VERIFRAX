@@ -94,8 +94,12 @@ jobs:
           VERIFRAX_KEY_ID: ${{ github.sha }}
           VERIFRAX_PROFILE_ID: public@1.0.0
         run: |
-          node scripts/seed.claim.mjs build-provenance ${{ github.sha }} run \
-            --assertions '[{"assertion_id":"build-commit","predicate":"has_git_commit","object":"${{ github.sha }}"}]'
+          if [ -f scripts/seed.claim.mjs ]; then
+            node scripts/seed.claim.mjs build-provenance ${{ github.sha }} run \
+              --assertions '[{"assertion_id":"build-commit","predicate":"has_git_commit","object":"${{ github.sha }}"}]'
+          else
+            echo "seed.claim.mjs not present; skipping claim generation on this surface"
+          fi
 
       - name: Upload claim artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
