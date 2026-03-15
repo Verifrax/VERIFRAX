@@ -64,7 +64,7 @@ jobs:
           set -euo pipefail
           BUNDLE_PATH="${{ steps.find-bundle.outputs.bundle_path }}"
 
-          node engines/cinelint/apps/cli/bin/verifrax.js delivery run \
+          node scripts/delivery_v1_runner.mjs \
             --in "$BUNDLE_PATH" \
             --out /tmp/verifier-output \
             --profile delivery_v1@1.0.0

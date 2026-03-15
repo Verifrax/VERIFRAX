@@ -44,7 +44,7 @@ jobs:
           BUNDLE_PATH="public/conformance/golden/delivery_v1/input"
           OUTPUT_DIR="/tmp/delivery-output"
 
-          node engines/cinelint/apps/cli/bin/verifrax.js delivery run \
+          node scripts/delivery_v1_runner.mjs \
             --in "$BUNDLE_PATH" \
             --out "$OUTPUT_DIR" \
             --profile delivery_v1@1.0.0
