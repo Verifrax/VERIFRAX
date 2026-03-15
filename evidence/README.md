@@ -22,7 +22,7 @@ Bootstrap-chain status file:
 
 Published npm package evidence currently recorded here:
 
-- `package-surface/auctoriseal-0.1.1/`
+- `package-surface/auctoriseal-0.1.2/`
 
 That means the currently indexed public boundary is:
 
@@ -30,7 +30,7 @@ That means the currently indexed public boundary is:
 2. authority readiness evidence for AUCTORISEAL
 3. authority issuance presence and re-execution evidence
 4. semantic cross-implementation execution evidence
-5. package publication evidence for `@verifrax/auctoriseal`
+5. package publication evidence for `@verifrax/auctoriseal`, including the current v0.1.2 publication surface
 
 ---
 
@@ -80,9 +80,11 @@ These surfaces are intentionally retained because protocol trust requires visibi
 
 Read this if you want to inspect whether an externally distributed package surface was actually published and recorded.
 
-- `package-surface/auctoriseal-0.1.1/`
+- `package-surface/auctoriseal-0.1.2/`
 
 This records package name, version, latest tag, repository head, and publication status for the current recorded npm boundary.
+
+Earlier recorded package surfaces remain part of the evidence history and are not superseded as historical records.
 
 ---
 
@@ -246,7 +248,7 @@ Primary file:
 
 This is the shortest route to the current accepted state, but it should be read as a summary layer, not the whole proof surface.
 
-### `package-surface/auctoriseal-0.1.1/`
+### `package-surface/auctoriseal-0.1.2/`
 
 Purpose:
 
@@ -260,11 +262,11 @@ Use this when checking:
 
 Files:
 
-- `package-surface/auctoriseal-0.1.1/PUBLICATION_STATUS.txt`
-- `package-surface/auctoriseal-0.1.1/package-name.txt`
-- `package-surface/auctoriseal-0.1.1/npm-version.txt`
-- `package-surface/auctoriseal-0.1.1/npm-dist-tag-latest.txt`
-- `package-surface/auctoriseal-0.1.1/repo-head.txt`
+- `package-surface/auctoriseal-0.1.2/PUBLICATION_STATUS.txt`
+- `package-surface/auctoriseal-0.1.2/package-name.txt`
+- `package-surface/auctoriseal-0.1.2/npm-version.txt`
+- `package-surface/auctoriseal-0.1.2/npm-dist-tag-latest.txt`
+- `package-surface/auctoriseal-0.1.2/repo-head.txt`
 
 ---
 
@@ -342,7 +344,7 @@ If you are entering this tree for the first time, start here:
 - authority readiness object: `artifact-0002/artifact-0002.json`
 - issuance object: `artifact-0003/artifact-0003.json`
 - semantic cross-implementation result: `artifact-semantic-execution/CROSS_IMPLEMENTATION_STATUS.txt`
-- external package publication status: `package-surface/auctoriseal-0.1.1/PUBLICATION_STATUS.txt`
+- external package publication status: `package-surface/auctoriseal-0.1.2/PUBLICATION_STATUS.txt`
 
 ---
 
