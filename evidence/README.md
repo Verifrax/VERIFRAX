@@ -1,0 +1,355 @@
+# VERIFRAX Evidence Index
+
+This directory is the public evidence surface for VERIFRAX.
+
+It exists so that any reviewer, claimant, challenger, auditor, or adversarial reader can inspect what was asserted, what was executed, what was observed, what was not executable, and what boundary the current evidence actually proves.
+
+This index is not a substitute for the evidence objects themselves. It is the canonical navigation surface for those objects.
+
+---
+
+## Current boundary
+
+Current bootstrap-chain status:
+
+- **ARTIFACT-0001:** VERIFIED
+- **ARTIFACT-0002:** VERIFIED
+- **ARTIFACT-0003:** VERIFIED
+
+Bootstrap-chain status file:
+
+- `bootstrap-chain-status/CHAIN_STATUS.txt`
+
+Published npm package evidence currently recorded here:
+
+- `package-surface/auctoriseal-0.1.1/`
+
+That means the currently indexed public boundary is:
+
+1. repository integrity evidence for the initial protocol object
+2. authority readiness evidence for AUCTORISEAL
+3. authority issuance presence and re-execution evidence
+4. semantic cross-implementation execution evidence
+5. package publication evidence for `@verifrax/auctoriseal`
+
+---
+
+## How to read this evidence
+
+The evidence tree is intentionally separated by function.
+
+Read it in this order:
+
+### 1. Bootstrap status
+
+Start here if you want the shortest current state summary.
+
+- `bootstrap-chain-status/CHAIN_STATUS.txt`
+
+This tells you what the currently accepted boundary is for the bootstrap chain.
+
+### 2. Artifact-level source evidence
+
+Read the artifact directories if you want to inspect the declared subject, claim set, and collected evidence objects for each protocol artifact.
+
+- `artifact-0001/`
+- `artifact-0002/`
+- `artifact-0003/`
+
+These directories define what each artifact claims and what files were collected in support of that claim.
+
+### 3. Execution evidence
+
+Read execution directories if you want to inspect whether maintained implementations actually executed those claims.
+
+- `artifact-0002-execution/`
+- `artifact-0003-reexecution/`
+- `artifact-semantic-execution/`
+
+These surfaces matter because a claim without execution is weaker than a claim that survives execution across maintained implementations.
+
+### 4. Gaps and boundary failures
+
+Read these if you want to inspect where evidence or execution was previously incomplete, absent, or boundary-limited.
+
+- `artifact-execution-gap/`
+
+These surfaces are intentionally retained because protocol trust requires visibility into failure conditions, not only successful outcomes.
+
+### 5. External publication evidence
+
+Read this if you want to inspect whether an externally distributed package surface was actually published and recorded.
+
+- `package-surface/auctoriseal-0.1.1/`
+
+This records package name, version, latest tag, repository head, and publication status for the current recorded npm boundary.
+
+---
+
+## Evidence map
+
+### `artifact-0001/`
+
+Purpose:
+
+- repository integrity and initial protocol object evidence
+
+Use this when checking:
+
+- whether the initial repository state was captured
+- whether cross-verifier integrity evidence exists
+- whether the first object was materially grounded
+
+Primary file:
+
+- `artifact-0001/artifact-0001.json`
+
+Supporting examples:
+
+- `artifact-0001/file-hashes.txt`
+- `artifact-0001/git-fsck.txt`
+- `artifact-0001/node-verifier.txt`
+- `artifact-0001/rust-verifier.txt`
+
+### `artifact-0002/`
+
+Purpose:
+
+- authority readiness evidence for AUCTORISEAL
+
+Use this when checking:
+
+- whether authority ledger publication exists
+- whether genesis seal publication exists
+- whether authority surfaces were merely implementation code or real published objects
+- whether declared evidence now supports readiness
+
+Primary file:
+
+- `artifact-0002/artifact-0002.json`
+
+Supporting examples:
+
+- `artifact-0002/authority-surface-files.txt`
+- `artifact-0002/ledger-presence.txt`
+- `artifact-0002/seal-presence.txt`
+- `artifact-0002/issued-object-search.txt`
+- `artifact-0002/live-reference-search.txt`
+
+### `artifact-0002-execution/`
+
+Purpose:
+
+- original maintained-verifier execution logs associated with artifact-0002
+
+Use this when checking:
+
+- whether maintained verifiers executed the artifact line
+- what the original execution boundary was before semantic refresh
+- how execution output was separated from later semantic interpretation
+
+Key files:
+
+- `artifact-0002-execution/INTERPRETATION_BOUNDARY.txt`
+- `artifact-0002-execution/node-run.txt`
+- `artifact-0002-execution/rust-run.txt`
+- `artifact-0002-execution/output-hashes.txt`
+
+### `artifact-0003/`
+
+Purpose:
+
+- issued-subject evidence for the authority publication boundary
+
+Use this when checking:
+
+- whether published authority ledger presence exists
+- whether published genesis seal presence exists
+- whether the claimed issuance subject exists as a public inspectable subject
+
+Primary file:
+
+- `artifact-0003/artifact-0003.json`
+
+Supporting examples:
+
+- `artifact-0003/authority-ledger-presence.txt`
+- `artifact-0003/seal-0001-presence.txt`
+- `artifact-0003/issued-object-search.txt`
+
+### `artifact-0003-reexecution/`
+
+Purpose:
+
+- cross-implementation re-execution evidence after the authority subject became present
+
+Use this when checking:
+
+- whether node and rust re-execution matched
+- whether canonicalized outputs matched
+- whether the subject changed from absent/not executable to present/verifiable
+
+Key files:
+
+- `artifact-0003-reexecution/CROSS_IMPLEMENTATION_STATUS.txt`
+- `artifact-0003-reexecution/artifact-0003.node.reexecution.json`
+- `artifact-0003-reexecution/artifact-0003.rust.reexecution.json`
+- `artifact-0003-reexecution/output-hashes.txt`
+
+### `artifact-semantic-execution/`
+
+Purpose:
+
+- semantic evaluator outputs for artifact-0002 and artifact-0003 across maintained implementations
+
+Use this when checking:
+
+- whether semantic readiness was actually satisfied
+- whether node and rust semantic outputs aligned
+- whether the chain is semantically resolved rather than merely structurally present
+
+Key files:
+
+- `artifact-semantic-execution/CROSS_IMPLEMENTATION_STATUS.txt`
+- `artifact-semantic-execution/artifact-0002.node.semantic.json`
+- `artifact-semantic-execution/artifact-0002.rust.semantic.json`
+- `artifact-semantic-execution/artifact-0003.node.semantic.json`
+- `artifact-semantic-execution/artifact-0003.rust.semantic.json`
+- `artifact-semantic-execution/output-hashes.txt`
+
+### `artifact-execution-gap/`
+
+Purpose:
+
+- retained visibility into earlier execution and publication gaps
+
+Use this when checking:
+
+- whether anything important was missing at prior execution time
+- whether the protocol preserves evidence of absence rather than rewriting history
+- whether a challenger can inspect failure-state surfaces directly
+
+Key files:
+
+- `artifact-execution-gap/repo-artifact-search.txt`
+- `artifact-execution-gap/tooling-surface-files.txt`
+
+### `bootstrap-chain-status/`
+
+Purpose:
+
+- concise current chain summary
+
+Primary file:
+
+- `bootstrap-chain-status/CHAIN_STATUS.txt`
+
+This is the shortest route to the current accepted state, but it should be read as a summary layer, not the whole proof surface.
+
+### `package-surface/auctoriseal-0.1.1/`
+
+Purpose:
+
+- external package publication evidence for the AUCTORISEAL npm surface
+
+Use this when checking:
+
+- whether `@verifrax/auctoriseal` was published
+- whether the latest tag matches the recorded version
+- whether the recorded package boundary points back to a specific repository head
+
+Files:
+
+- `package-surface/auctoriseal-0.1.1/PUBLICATION_STATUS.txt`
+- `package-surface/auctoriseal-0.1.1/package-name.txt`
+- `package-surface/auctoriseal-0.1.1/npm-version.txt`
+- `package-surface/auctoriseal-0.1.1/npm-dist-tag-latest.txt`
+- `package-surface/auctoriseal-0.1.1/repo-head.txt`
+
+---
+
+## Adversarial reading guide
+
+This directory is designed to remain useful even for hostile review.
+
+A challenger should ask, in order:
+
+1. What exactly is being claimed?
+2. What files support that claim?
+3. Was the subject present at execution time?
+4. Did more than one maintained implementation execute the same claim?
+5. Did outputs match after canonicalization?
+6. Is the current summary hiding an earlier failure state?
+7. Is there a public artifact surface, or only implementation code?
+8. Is there a publication boundary outside GitHub, and is it recorded here?
+
+The evidence tree is intentionally structured so those questions can be answered from published files rather than informal explanation.
+
+---
+
+## Claimant guidance
+
+If you want to challenge a conclusion, do not start with rhetoric.
+
+Start by identifying one of these failure classes:
+
+- claim/object mismatch
+- evidence/object absence
+- execution prerequisite failure
+- cross-implementation divergence
+- canonicalization mismatch
+- summary overstating underlying evidence
+- stale publication boundary
+- unverifiable external reference
+
+Then point to the exact file that creates the contradiction.
+
+A valid challenge in this system is file-anchored.
+
+---
+
+## Transparency rule
+
+This directory keeps both successful and adverse surfaces visible.
+
+That includes:
+
+- prior absence states
+- execution-gap surfaces
+- not-executable boundaries
+- cross-implementation outputs
+- canonicalized output derivatives
+- publication evidence outside the repository itself
+
+The objective is not to look clean.
+The objective is to remain inspectable under adversarial review.
+
+---
+
+## Interpretation rule
+
+When a summary file and a lower-level evidence file appear to conflict, the lower-level evidence file wins unless a later execution boundary explicitly supersedes it and that supersession is itself recorded in evidence.
+
+That prevents silent narrative overwrite.
+
+---
+
+## Search starting points
+
+If you are entering this tree for the first time, start here:
+
+- current state summary: `bootstrap-chain-status/CHAIN_STATUS.txt`
+- authority readiness object: `artifact-0002/artifact-0002.json`
+- issuance object: `artifact-0003/artifact-0003.json`
+- semantic cross-implementation result: `artifact-semantic-execution/CROSS_IMPLEMENTATION_STATUS.txt`
+- external package publication status: `package-surface/auctoriseal-0.1.1/PUBLICATION_STATUS.txt`
+
+---
+
+## Scope boundary
+
+This index covers the evidence currently published under `VERIFRAX/evidence`.
+
+It does not claim that every possible future artifact already exists.
+It claims that the evidence that does exist is now navigable from a single public root.
+
