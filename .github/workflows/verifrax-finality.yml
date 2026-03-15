@@ -94,11 +94,20 @@ jobs:
           VERIFRAX_KEY_ID: ${{ github.sha }}
           VERIFRAX_PROFILE_ID: public@1.0.0
         run: |
+          mkdir -p out/claims
           if [ -f scripts/seed.claim.mjs ]; then
             node scripts/seed.claim.mjs build-provenance ${{ github.sha }} run \
               --assertions '[{"assertion_id":"build-commit","predicate":"has_git_commit","object":"${{ github.sha }}"}]'
           else
-            echo "seed.claim.mjs not present; skipping claim generation on this surface"
+            cat > out/claims/build-provenance.placeholder.json <<EOF
+{
+  "claim_id": "build-provenance-placeholder-$VERIFRAX_KEY_ID",
+  "type": "build-provenance-placeholder",
+  "status": "skipped",
+  "reason": "seed.claim.mjs not present on this repository surface",
+  "commit": "$VERIFRAX_KEY_ID"
+}
+EOF
           fi
 
       - name: Upload claim artifact
