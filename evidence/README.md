@@ -76,7 +76,15 @@ Read these if you want to inspect where evidence or execution was previously inc
 
 These surfaces are intentionally retained because protocol trust requires visibility into failure conditions, not only successful outcomes.
 
-### 5. External publication evidence
+### 5. Component surfaces
+
+Read this if you want to inspect stack components that are now publicly legible and recorded as canonical surfaces.
+
+- `component-surface/corpiform/`
+
+This records CORPIFORM as an execution component surface connected to AUCTORISEAL authority inputs and VERIFRAX verification-facing boundaries.
+
+### 6. External publication evidence
 
 Read this if you want to inspect whether an externally distributed package surface was actually published and recorded.
 
@@ -219,6 +227,27 @@ Key files:
 - `artifact-semantic-execution/artifact-0003.rust.semantic.json`
 - `artifact-semantic-execution/output-hashes.txt`
 
+### `component-surface/corpiform/`
+
+Purpose:
+
+- recorded public component surface for CORPIFORM
+
+Use this when checking:
+
+- whether CORPIFORM is now recorded as a legible execution component in the stack
+- which repository head is associated with the recorded surface
+- whether evidence-index presence and runtime verification presence were recorded at the VERIFRAX layer
+
+Key files:
+
+- `component-surface/corpiform/COMPONENT_STATUS.txt`
+- `component-surface/corpiform/component-name.txt`
+- `component-surface/corpiform/component-repository.txt`
+- `component-surface/corpiform/component-head.txt`
+- `component-surface/corpiform/evidence-index.txt`
+- `component-surface/corpiform/runtime-verification.txt`
+
 ### `artifact-execution-gap/`
 
 Purpose:
@@ -344,6 +373,7 @@ If you are entering this tree for the first time, start here:
 - authority readiness object: `artifact-0002/artifact-0002.json`
 - issuance object: `artifact-0003/artifact-0003.json`
 - semantic cross-implementation result: `artifact-semantic-execution/CROSS_IMPLEMENTATION_STATUS.txt`
+- recorded execution component surface: `component-surface/corpiform/COMPONENT_STATUS.txt`
 - external package publication status: `package-surface/auctoriseal-0.1.2/PUBLICATION_STATUS.txt`
 
 ---
