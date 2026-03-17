@@ -1,0 +1,3 @@
+COMPONENT: AUCTORISEAL
+ROLE: authority component
+STACK_ALIGNMENT: connected to VERIFRAX verification surfaces and CORPIFORM execution surfaces
