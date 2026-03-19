@@ -1,0 +1,78 @@
+{
+  "artifact_id": "artifact-0004",
+  "title": "CORPIFORM Authority-Governed Execution Receipt Validation",
+  "subject": {
+    "subject": "CORPIFORM authority-governed execution receipt",
+    "subject_ref": "github.com/Verifrax/CORPIFORM",
+    "receipt_id": "EE07B689-F1BF-4518-B49C-C973CB178029",
+    "command_id": "cmd-valid-001",
+    "authority_seal_id": "seal-valid-001",
+    "commit": "f257493",
+    "branch": "main",
+    "event": "receipt authority identity binding correction and first recorded governed execution receipt"
+  },
+  "claim_set": [
+    "CORPIFORM main at commit f257493 emits a success receipt that binds the consumed authority_seal_id",
+    "the recorded receipt preserves command_id cmd-valid-001 and authority_seal_id seal-valid-001",
+    "the consumed command, consumed seal, and emitted receipt are identifier-consistent",
+    "VERIFRAX preserves the execution receipt and its integrity digests as immutable evidence"
+  ],
+  "evidence_objects": [
+    {
+      "path": "evidence/artifact-0004/command.json",
+      "sha256": "9857083f2f91ad9b4b0d26c7fb9f3193b54a9c07d9002f31bf591cf118740414",
+      "role": "consumed command object"
+    },
+    {
+      "path": "evidence/artifact-0004/seal.json",
+      "sha256": "f0fca33166af3854a2ce5c1a27ae80091927902a70a8b47baf386963f30cb03e",
+      "role": "consumed authority object"
+    },
+    {
+      "path": "evidence/artifact-0004/receipt.json",
+      "sha256": "344392fb7630aafaf3cc9a974a6c02e938cccdc09266b7f1cf8874452f855c48",
+      "role": "emitted CORPIFORM receipt"
+    },
+    {
+      "path": "evidence/artifact-0004/receipt.sha256",
+      "sha256": "9dc0166fb49ddd77aa74c4bd06324062c701d17cc99bad4dce710c782f97612c",
+      "role": "raw receipt file digest record"
+    },
+    {
+      "path": "evidence/artifact-0004/receipt.canonical.sha256",
+      "sha256": "bb2e5d6eb4cba080b0b2680c2ede84194bbcd502a128493b084630f3b12a62c8",
+      "role": "canonical receipt object digest record"
+    },
+    {
+      "path": "evidence/artifact-0004/context.md",
+      "sha256": "08a7034ddb65d6bd995c18e338371da58ac7e5fc1ad5f881e167a345cb67d992",
+      "role": "artifact interpretation and boundary document"
+    }
+  ],
+  "supporting_evidence": {
+    "context_document": "evidence/artifact-0004/context.md",
+    "raw_receipt_digest": "evidence/artifact-0004/receipt.sha256",
+    "canonical_receipt_digest": "evidence/artifact-0004/receipt.canonical.sha256"
+  },
+  "observed_results": {
+    "receipt_status": "PRESENT",
+    "command_status": "PRESENT",
+    "seal_status": "PRESENT",
+    "raw_receipt_sha256": "344392fb7630aafaf3cc9a974a6c02e938cccdc09266b7f1cf8874452f855c48",
+    "canonical_receipt_sha256": "2ec13a623cd9fca11601f1df8b186007e74ecab316354d296660511453cff456",
+    "execution_outcome": "EXECUTED",
+    "claim_boundary_note": "artifact records a governed execution under the consumed fixture authority object preserved in evidence"
+  },
+  "execution_evidence": {
+    "receipt_fields": {
+      "receipt_id": "EE07B689-F1BF-4518-B49C-C973CB178029",
+      "command_id": "cmd-valid-001",
+      "authority_seal_id": "seal-valid-001",
+      "timestamp": "2026-03-19T12:39:16Z",
+      "outcome": "EXECUTED"
+    },
+    "cross_object_consistency": true
+  },
+  "verdict": "RECORDED",
+  "verdict_note": "VERIFRAX now records the first identifier-consistent CORPIFORM authority-governed execution receipt on corrected mainline receipt semantics"
+}

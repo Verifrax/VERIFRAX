@@ -1,0 +1,15 @@
+{
+  "receipt_id": "EE07B689-F1BF-4518-B49C-C973CB178029",
+  "system": "CORPIFORM",
+  "system_fingerprint": "test-fingerprint",
+  "build_hash": "test-build-hash",
+  "version": "v0.test",
+  "command_id": "cmd-valid-001",
+  "authority_seal_id": "seal-valid-001",
+  "body": "mail",
+  "action": "MAIL_DISPATCH",
+  "adapter": "smtp",
+  "timestamp": "2026-03-19T12:39:16Z",
+  "outcome": "EXECUTED",
+  "signature": "c8WbjyJJow+6TOsrtt7UkQH68guOYkvzyGXPbi3igz30RdNoE12lRIAZ2jxJ38u37G5SVGEdtg5WekKHofwEjMxbZNHbKlbnAewsgh3konNQ79rfH2kexPgBNbINYjpVRKME4MUKosD9o5bMr6Mkjb8YUIdARQIbwVovx97m2EVvTvqes90MjnIkzR7nydopSt5+J5IvQyoIPY3tQA863UGsBYZiIdX3uZcxqGp91up1KmQdfrltVR9LAfhAEE71UmuNXfk4zSYjFJ/D7ZX0MaheNsVr4WfmXy32YMgRNsjPRDNeENUR0TW+pYJCCmU+5lEYdO2T+nwWb2uWWJuEsw=="
+}
