@@ -1,0 +1,14 @@
+{
+  "issuer": "root.primary",
+  "authority_seal_id": "seal-valid-001",
+  "custodian": "test-custodian",
+  "scope": {
+    "body": "mail",
+    "action": "MAIL_DISPATCH",
+    "adapter": "smtp"
+  },
+  "valid_from": "2025-01-01T00:00:00Z",
+  "valid_until": "2030-01-01T00:00:00Z",
+  "single_use": true,
+  "signature": "TEST_SIGNATURE_NOT_CRYPTOGRAPHICALLY_VALID"
+}

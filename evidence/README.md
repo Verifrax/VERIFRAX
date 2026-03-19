@@ -15,6 +15,7 @@ Current bootstrap-chain status:
 - **ARTIFACT-0001:** VERIFIED
 - **ARTIFACT-0002:** VERIFIED
 - **ARTIFACT-0003:** VERIFIED
+- **ARTIFACT-0004:** RECORDED
 
 Bootstrap-chain status file:
 
@@ -29,8 +30,9 @@ That means the currently indexed public boundary is:
 1. repository integrity evidence for the initial protocol object
 2. authority readiness evidence for AUCTORISEAL
 3. authority issuance presence and re-execution evidence
-4. semantic cross-implementation execution evidence
-5. package publication evidence for `@verifrax/auctoriseal`, including the current v0.1.2 publication surface
+4. first recorded CORPIFORM authority-governed execution receipt evidence
+5. semantic cross-implementation execution evidence
+6. package publication evidence for `@verifrax/auctoriseal`, including the current v0.1.2 publication surface
 
 ---
 
@@ -55,6 +57,7 @@ Read the artifact directories if you want to inspect the declared subject, claim
 - `artifact-0001/`
 - `artifact-0002/`
 - `artifact-0003/`
+- `artifact-0004/`
 
 These directories define what each artifact claims and what files were collected in support of that claim.
 
@@ -186,6 +189,31 @@ Supporting examples:
 - `artifact-0003/authority-ledger-presence.txt`
 - `artifact-0003/seal-0001-presence.txt`
 - `artifact-0003/issued-object-search.txt`
+
+
+### `artifact-0004/`
+
+Purpose:
+
+- first recorded CORPIFORM authority-governed execution receipt evidence
+
+Use this when checking:
+
+- whether CORPIFORM emitted a success receipt on corrected authority-binding semantics
+- whether consumed command, consumed seal, and emitted receipt are identifier-consistent
+- whether VERIFRAX preserves the first recorded end-to-end execution receipt as immutable evidence
+
+Primary file:
+
+- `artifact-0004/artifact-0004.json`
+
+Supporting examples:
+
+- `artifact-0004/context.md`
+- `artifact-0004/receipt.json`
+- `artifact-0004/receipt.sha256`
+- `artifact-0004/receipt.canonical.sha256`
+- `artifact-0004/EXECUTION_STATUS.txt`
 
 ### `artifact-0003-reexecution/`
 

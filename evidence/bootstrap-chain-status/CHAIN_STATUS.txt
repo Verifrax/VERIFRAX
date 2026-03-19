@@ -3,5 +3,7 @@ ARTIFACT-0002: VERIFIED
 ARTIFACT-0002-NOTE: authority ledger and genesis seal are now present in declared evidence; node and rust semantic evaluators produced VERIFIED outputs
 ARTIFACT-0003: VERIFIED
 ARTIFACT-0003-NOTE: published genesis seal and authoritative ledger are present; node and rust semantic evaluators produced canonically identical VERIFIED outputs
-CURRENT_BOUNDARY: bootstrap chain is semantically resolved and canonically indexed for artifacts 0001-0003
-NEXT_REQUIRED_WORK: release and package publication remain outside bootstrap-chain publication
+ARTIFACT-0004: RECORDED
+ARTIFACT-0004-NOTE: CORPIFORM main at f257493 emitted receipt EE07B689-F1BF-4518-B49C-C973CB178029 with command_id cmd-valid-001 and authority_seal_id seal-valid-001; VERIFRAX preserves command, seal, receipt, and integrity digests as immutable evidence
+CURRENT_BOUNDARY: bootstrap chain is semantically resolved for artifacts 0001-0003 and extended by a recorded CORPIFORM authority-governed execution receipt in artifact-0004
+NEXT_REQUIRED_WORK: publish and record a canonical public CORPIFORM package surface after this recorded execution boundary
