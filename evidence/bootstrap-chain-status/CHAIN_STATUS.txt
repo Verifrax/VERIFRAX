@@ -8,6 +8,6 @@ ARTIFACT-0004-NOTE: CORPIFORM main at f257493 emitted receipt EE07B689-F1BF-4518
 PACKAGE-SURFACE-AUCTORISEAL: RECORDED
 PACKAGE-SURFACE-AUCTORISEAL-NOTE: @verifrax/auctoriseal package publication surface is recorded in evidence/package-surface/auctoriseal-0.1.2
 PACKAGE-SURFACE-CORPIFORM: RECORDED
-PACKAGE-SURFACE-CORPIFORM-NOTE: @verifrax/corpiform@0.1.3 is published with dist-tag latest and public access; VERIFRAX preserves package identity, packument, access status, and install help evidence
+PACKAGE-SURFACE-CORPIFORM-NOTE: @verifrax/corpiform@0.1.4 is published with dist-tag latest and public access; VERIFRAX preserves package identity, packument, access status, and install help evidence
 CURRENT_BOUNDARY: bootstrap chain is semantically resolved for artifacts 0001-0003, extended by recorded CORPIFORM execution evidence in artifact-0004, and indexed with recorded AUCTORISEAL and CORPIFORM package publication surfaces
 NEXT_REQUIRED_WORK: record the next package or protocol publication boundary only after a materially new public surface exists

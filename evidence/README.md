@@ -24,7 +24,7 @@ Bootstrap-chain status file:
 Published npm package evidence currently recorded here:
 
 - `package-surface/auctoriseal-0.1.2/`
-- `package-surface/corpiform-0.1.3/`
+- `package-surface/corpiform-0.1.4/`
 
 That means the currently indexed public boundary is:
 
@@ -34,7 +34,7 @@ That means the currently indexed public boundary is:
 4. first recorded CORPIFORM authority-governed execution receipt evidence
 5. semantic cross-implementation execution evidence
 6. package publication evidence for `@verifrax/auctoriseal`, including the current v0.1.2 publication surface
-7. package publication evidence for `@verifrax/corpiform`, including the current v0.1.3 publication surface
+7. package publication evidence for `@verifrax/corpiform`, including the current v0.1.4 publication surface
 
 ---
 
@@ -94,7 +94,7 @@ This records CORPIFORM as an execution component surface connected to AUCTORISEA
 Read this if you want to inspect whether an externally distributed package surface was actually published and recorded.
 
 - `package-surface/auctoriseal-0.1.2/`
-- `package-surface/corpiform-0.1.3/`
+- `package-surface/corpiform-0.1.4/`
 
 This records package name, version, latest tag, repository head, and publication status for the current recorded npm boundary.
 
@@ -258,7 +258,7 @@ Key files:
 - `artifact-semantic-execution/artifact-0003.rust.semantic.json`
 - `artifact-semantic-execution/output-hashes.txt`
 
-### `package-surface/corpiform-0.1.3/`
+### `package-surface/corpiform-0.1.4/`
 
 Purpose:
 
@@ -266,22 +266,22 @@ Purpose:
 
 Use this when checking:
 
-- whether `@verifrax/corpiform@0.1.3` was published
+- whether `@verifrax/corpiform@0.1.4` was published
 - whether the package is tagged `latest`
 - whether the package is public and installable
 - whether the published package surface is bound to repository head `289b977`
 
 Primary files:
 
-- `package-surface/corpiform-0.1.3/PACKAGE_IDENTITY.txt`
-- `package-surface/corpiform-0.1.3/npm-view.json`
+- `package-surface/corpiform-0.1.4/PACKAGE_IDENTITY.txt`
+- `package-surface/corpiform-0.1.4/npm-view.json`
 
 Supporting examples:
 
-- `package-surface/corpiform-0.1.3/dist-tags.txt`
-- `package-surface/corpiform-0.1.3/access-status.txt`
-- `package-surface/corpiform-0.1.3/npm-packument.json`
-- `package-surface/corpiform-0.1.3/install-help.txt`
+- `package-surface/corpiform-0.1.4/dist-tags.txt`
+- `package-surface/corpiform-0.1.4/access-status.txt`
+- `package-surface/corpiform-0.1.4/npm-packument.json`
+- `package-surface/corpiform-0.1.4/install-help.txt`
 
 ### `component-surface/corpiform/`
 
