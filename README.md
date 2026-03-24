@@ -117,9 +117,14 @@ The genesis root defines the immutable origin of the protocol lineage and must n
 
 ## Repository authority map
 
-Active repository authority resolves through the following canonical surfaces:
+Active repository authority resolves through the following repository surfaces:
 
 * normative specification: `docs/spec/`
+
+VERIFRAX authors normative source material.
+VERIFRAX-SPEC publishes derived specification artifacts from VERIFRAX.
+Derived artifacts are not upstream repository authority.
+Governance authority is external and bound through AUCTORISEAL plus the governed repo set in `.github`.
 * conformance authority: `protocol-conformance/`
 * maintained verifier surfaces: `verifier/node`, `verifier/rust`
 * release-integrity surface: `release-integrity/`
@@ -141,7 +146,7 @@ These directories never define active protocol authority.
 
 ### Specification
 
-Primary normative entrypoint:
+Primary normative entrypoint in VERIFRAX authoring source:
 
 ```
 docs/spec/INDEX.md

@@ -14,7 +14,12 @@ All other paths are mutable runtime.
 
 Active repository authority resolution is defined by `AUTHORITY.md`.
 
-Within the governance surface, active repository interpretation resolves through the following canonical surfaces:
+Within the governance surface, active repository interpretation resolves through the following repository surfaces:
+
+- VERIFRAX authors normative source material.
+- VERIFRAX-SPEC publishes derived specification artifacts from VERIFRAX.
+- Derived specification artifacts are not upstream repository authority.
+- Governance authority is external and bound through AUCTORISEAL plus the governed repo set in `.github`.
 
 - normative specification: `docs/spec/`
 - conformance authority: `protocol-conformance/`
@@ -23,5 +28,7 @@ Within the governance surface, active repository interpretation resolves through
 - maintained registry surface: `registry/`
 - maintained index surface: `index/`
 
-Historical materials under `archive/` and `release-history/` do not define active protocol authority unless explicitly re-designated by a canonical active surface.
+Historical materials under `archive/` and `release-history/` do not define active protocol authority unless explicitly re-designated by a repository surface.
+
+Derived publication surfaces, including VERIFRAX-SPEC, do not define active upstream repository authority.
 
