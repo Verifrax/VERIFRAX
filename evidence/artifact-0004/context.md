@@ -30,7 +30,7 @@ It does claim that:
 It does not claim that:
 
 - the recorded authority seal is a production cryptographic authority proof
-- AUCTORISEAL main currently publishes this exact fixture seal as a canonical public authority object
+- the recorded fixture seal is historical artifact input and is not the current canonical public authority object
 - this single execution proves full production readiness of the complete stack
 
 Those stronger claims are outside the evidence presently frozen in this artifact.
