@@ -1,6 +1,11 @@
 # VERIFRAX Repository Authority Map
 
-This document defines the active canonical repository surfaces for VERIFRAX and the interpretation boundary between normative, executable, registry, release-integrity, genesis, and historical material.
+This document defines the active repository surfaces for VERIFRAX and the interpretation boundary between normative, executable, registry, release-integrity, genesis, and historical material.
+
+VERIFRAX authors normative source material.
+VERIFRAX-SPEC publishes derived specification artifacts from VERIFRAX.
+Derived specification artifacts are not upstream repository authority.
+Governance authority is external and bound through AUCTORISEAL plus the governed repo set in `.github`.
 
 Its purpose is to remove ambiguity about which directories define protocol semantics, which directories execute maintained verifier logic, which directories record release authority, which directories anchor the protocol genesis lineage, and which directories are historical only.
 
@@ -10,7 +15,7 @@ The authority map is intended for maintainers, auditors, implementers, and ecosy
 
 # Core rule
 
-Only the canonical surfaces listed in this document define active repository authority.
+Only the repository surfaces listed in this document define active repository authority.
 
 No other directory defines protocol semantics, maintained verifier authority, active release freeze authority, or current conformance authority.
 
@@ -46,7 +51,7 @@ Historical mirrors of the genesis root may exist under `release-history/`, but t
 
 * `docs/spec/`
 
-This surface defines the normative protocol semantics.
+This surface defines the normative protocol semantics authored in VERIFRAX.
 
 It is the canonical source for:
 
@@ -146,7 +151,9 @@ It is informative unless a document explicitly states otherwise and is anchored 
 
 # Explicit non-authority surfaces
 
-The following categories are not active protocol authority unless explicitly re-designated by the canonical surfaces above:
+The following categories are not active protocol authority unless explicitly re-designated by the repository surfaces above:
+
+* derived publication surfaces, including VERIFRAX-SPEC
 
 * `archive/`
 * `release-history/`
