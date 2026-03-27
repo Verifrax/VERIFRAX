@@ -1,0 +1,62 @@
+VERIFRAX STATUS AUTHORITY MAP
+STATUS: ROOT AUTHORITY MAPPING RECORDED
+
+PURPOSE:
+- This file binds the current evidence-root status surfaces to the authority identifiers and execution identifiers they rely on.
+- This file exists so current status claims can be checked against one explicit authority map.
+- This file states current truth only.
+- This file does not add any seal-state line.
+
+ROOT_STATUS_SURFACES:
+- EVIDENCE_INDEX = evidence/README.md
+- CHAIN_STATUS = evidence/bootstrap-chain-status/CHAIN_STATUS.txt
+- CURRENT_STATE_INDEX = evidence/CURRENT_STATE_INDEX.txt
+- CONSISTENCY_AUDIT = evidence/CONSISTENCY_AUDIT.txt
+
+CURRENT_AUTHORITY_ROOT:
+- GOVERNANCE_ROOT = github.com/Verifrax/.github
+- CURRENT_AUTHORITY_ID = AUTHORITY-0001-VERIFRAX
+- CURRENT_AUTHORITY_DIGEST = 91e02d4e6bb73aa8f434b8baa072bac15ae31447d9e06a526ecb0e2a42315808
+- GOVERNANCE_BINDING_RULE = Governance authority is external and bound through AUCTORISEAL plus .github governed repo set.
+
+ARTIFACT_STATUS_BINDINGS:
+- ARTIFACT-0001 = VERIFIED
+- ARTIFACT-0002 = VERIFIED
+- ARTIFACT-0003 = VERIFIED
+- ARTIFACT-0004 = RECORDED
+- ARTIFACT-0005 = VERIFIED
+
+ARTIFACT-0004 AUTHORITY BOUNDARY:
+- AUTHORITY_TYPE = CONSUMED FIXTURE AUTHORITY EVIDENCE
+- AUTHORITY_SEAL_ID = seal-valid-001
+- RECEIPT_ID = EE07B689-F1BF-4518-B49C-C973CB178029
+- STATUS = RECORDED
+- LIMIT = artifact-0004 is not the public canonical authority basis
+
+ARTIFACT-0005 AUTHORITY BOUNDARY:
+- AUTHORITY_TYPE = PUBLIC CANONICAL AUTHORITY EVIDENCE
+- AUTHORITY_SEAL_ID = seal_9c1568bb9ef7423283ca56ecdb7dc278
+- AUTHORITY_REF = github.com/Verifrax/AUCTORISEAL/public/seals/seal_9c1568bb9ef7423283ca56ecdb7dc278.json
+- RECEIPT_ID = 8F88E46F-625B-4682-BF9A-D68ADD241FFF
+- NODE_VERDICT = VERIFIED
+- RUST_VERDICT = VERIFIED
+- CROSS_IMPLEMENTATION_MATCH = MATCH
+- CANONICAL_SEMANTIC_SHA256 = 801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b
+- STATUS = VERIFIED
+
+MAPPING RULES:
+- artifact-0004 must remain bounded by consumed fixture authority evidence only.
+- artifact-0005 must remain the current highest root-registered authority-governed execution boundary.
+- no root status surface may describe artifact-0004 as the public canonical authority basis.
+- no root status surface may describe artifact-0005 as sealed until release-gate conditions are fully satisfied and explicit seal-state lines are added.
+- current authority identifiers and current artifact-0005 identifiers must remain identical across the root status surfaces.
+
+KNOWN OPEN WORK:
+- remaining repo and docs truth surfaces outside the root evidence map still require alignment
+- domain deployment separation and public-host liveness are not certified here
+- no seal-state line is added by this file
+
+BOUNDARY:
+- This file maps root status surfaces to authority and execution identifiers only.
+- This file does not replace artifact-level inspection.
+- This file does not claim seal completion.
