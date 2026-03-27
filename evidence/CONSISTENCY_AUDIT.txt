@@ -1,0 +1,37 @@
+VERIFRAX ROOT CONSISTENCY AUDIT
+STATUS: CURRENT-STATE CONSISTENCY RECORDED
+
+AUDIT_SCOPE:
+- evidence/README.md
+- evidence/bootstrap-chain-status/CHAIN_STATUS.txt
+- evidence/CURRENT_STATE_INDEX.txt
+- evidence/artifact-0004/EXECUTION_STATUS.txt
+- evidence/artifact-0005/artifact-0005.json
+- evidence/artifact-0005/EXECUTION_STATUS.txt
+- evidence/artifact-0005/CROSS_IMPLEMENTATION_STATUS.txt
+
+CURRENT_TRUTH_RESULTS:
+- ARTIFACT-0004 remains RECORDED and bounded by consumed fixture authority evidence only.
+- ARTIFACT-0004 stale registration instruction has been removed from EXECUTION_STATUS.txt.
+- ARTIFACT-0005 is registered in the evidence root as VERIFIED.
+- ARTIFACT-0005 authority seal id is recorded as seal_9c1568bb9ef7423283ca56ecdb7dc278 across root current-state surfaces.
+- ARTIFACT-0005 receipt id is recorded as 8F88E46F-625B-4682-BF9A-D68ADD241FFF across root current-state surfaces.
+- ARTIFACT-0005 Node and Rust verdicts are both VERIFIED and cross-implementation match is recorded.
+- No root evidence file currently claims seal completion.
+- CURRENT_STATE_INDEX.txt, evidence/README.md, and bootstrap-chain-status/CHAIN_STATUS.txt now tell the same current artifact-chain story.
+
+AUDIT_FINDINGS:
+- NO CURRENT ROOT CONTRADICTION FOUND FOR ARTIFACT-0005 REGISTRATION STATUS.
+- NO CURRENT ROOT CONTRADICTION FOUND FOR ARTIFACT-0005 VERDICT STATUS.
+- NO CURRENT ROOT CONTRADICTION FOUND FOR ARTIFACT-0004 BOUNDARY LIMIT.
+- NO CURRENT ROOT SEAL-STATE OVERCLAIM FOUND.
+
+KNOWN OPEN WORK:
+- STATUS_AUTHORITY_MAP.txt remains to be written.
+- Remaining repo and docs truth surfaces outside this root audit remain to be aligned before any seal-state line.
+- This audit does not certify domain deployment separation or public-host liveness.
+
+BOUNDARY:
+- This file audits current truth across the root evidence navigation surfaces only.
+- This file does not replace artifact-level inspection.
+- This file does not claim seal completion.
