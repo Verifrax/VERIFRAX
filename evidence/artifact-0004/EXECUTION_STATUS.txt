@@ -7,4 +7,3 @@ COMMAND_ID: cmd-valid-001
 AUTHORITY_SEAL_ID: seal-valid-001
 EXECUTION_OUTCOME: EXECUTED
 BOUNDARY: preserved authority object is a consumed fixture authority surface recorded in evidence; this artifact does not claim production public issuance
-NEXT_REQUIRED_WORK: register artifact-0004 in evidence/README.md and bootstrap-chain-status/CHAIN_STATUS.txt
