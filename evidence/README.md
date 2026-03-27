@@ -16,6 +16,7 @@ Current bootstrap-chain status:
 - **ARTIFACT-0002:** VERIFIED
 - **ARTIFACT-0003:** VERIFIED
 - **ARTIFACT-0004:** RECORDED
+- **ARTIFACT-0005:** VERIFIED
 
 Bootstrap-chain status file:
 
@@ -32,9 +33,10 @@ That means the currently indexed public boundary is:
 2. authority readiness evidence for AUCTORISEAL
 3. authority issuance presence and re-execution evidence
 4. first recorded CORPIFORM authority-governed execution receipt evidence
-5. semantic cross-implementation execution evidence
-6. package publication evidence for `@verifrax/auctoriseal`, including the current v0.1.2 publication surface
-7. package publication evidence for `@verifrax/corpiform`, including the current v0.1.4 publication surface
+5. public canonical authority-governed execution and semantic cross-implementation verification evidence in `artifact-0005`
+6. semantic cross-implementation execution evidence for earlier chain artifacts
+7. package publication evidence for `@verifrax/auctoriseal`, including the current v0.1.2 publication surface
+8. package publication evidence for `@verifrax/corpiform`, including the current v0.1.4 publication surface
 
 ---
 
@@ -60,6 +62,7 @@ Read the artifact directories if you want to inspect the declared subject, claim
 - `artifact-0002/`
 - `artifact-0003/`
 - `artifact-0004/`
+- `artifact-0005/`
 
 These directories define what each artifact claims and what files were collected in support of that claim.
 
@@ -217,6 +220,31 @@ Supporting examples:
 - `artifact-0004/receipt.sha256`
 - `artifact-0004/receipt.canonical.sha256`
 - `artifact-0004/EXECUTION_STATUS.txt`
+
+### `artifact-0005/`
+
+Purpose:
+
+- public canonical authority-governed execution and semantic cross-implementation verification evidence
+
+Use this when checking:
+
+- whether a public canonical AUCTORISEAL seal was used for the governed execution boundary
+- whether CORPIFORM recorded the governed execution receipt under that published seal
+- whether the receipt authority binding matched the declared canonical seal id
+- whether maintained Node and Rust semantic evaluators produced canonically identical VERIFIED outputs for the same artifact boundary
+
+Primary file:
+
+- `artifact-0005/artifact-0005.json`
+
+Supporting examples:
+
+- `artifact-0005/EXECUTION_STATUS.txt`
+- `artifact-0005/CROSS_IMPLEMENTATION_STATUS.txt`
+- `artifact-0005/receipt/receipt.json`
+- `artifact-0005/receipt/receipt.digest.txt`
+- `artifact-0005/reexecution/COMPARISON.txt`
 
 ### `artifact-0003-reexecution/`
 
