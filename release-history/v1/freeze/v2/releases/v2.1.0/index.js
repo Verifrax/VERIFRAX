@@ -1,8 +1,68 @@
+const WORKER_VERIFIER_VERSION = "2.1.0";
+
+function withExecutionHeaders(init = {}) {
+  const headers = new Headers(init.headers || {});
+  if (!headers.has("Content-Type")) headers.set("Content-Type", "text/plain; charset=UTF-8");
+  headers.set("X-Payment-Status", "enabled");
+  headers.set("X-Verifrax-Version", WORKER_VERIFIER_VERSION);
+  return { ...init, headers };
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const path = url.pathname;
     const method = request.method;
+
+    if (path === "/healthz" && method === "GET") {
+      return new Response("ok
+", withExecutionHeaders({ status: 200 }));
+    }
+
+    if (path === "/readyz" && method === "GET") {
+      return new Response("ready
+", withExecutionHeaders({ status: 200 }));
+    }
+
+    if (path === "/version" && method === "GET") {
+      return new Response(
+        JSON.stringify({
+          runtime: "verifrax-edge",
+          verifier_version: WORKER_VERIFIER_VERSION,
+          payment_status: "enabled"
+        }),
+        withExecutionHeaders({
+          status: 200,
+          headers: { "Content-Type": "application/json; charset=UTF-8" }
+        })
+      );
+    }
+
+    if (path === "/openapi.json" && method === "GET") {
+      return new Response(
+        JSON.stringify({
+          openapi: "3.1.0",
+          info: {
+            title: "VERIFRAX Execution API",
+            version: WORKER_VERIFIER_VERSION
+          },
+          servers: [{ url: "https://api.verifrax.net" }],
+          paths: {
+            "/healthz": { get: { responses: { "200": { description: "Healthy" } } } },
+            "/readyz": { get: { responses: { "200": { description: "Ready" } } } },
+            "/version": { get: { responses: { "200": { description: "Runtime version" } } } },
+            "/api/create-payment-intent": { post: { responses: { "200": { description: "Payment intent created" } } } },
+            "/api/upload": { post: { responses: { "201": { description: "Bundle uploaded" } } } },
+            "/api/verify": { post: { responses: { "201": { description: "Verification executed" } } } },
+            "/api/verify-authorized": { post: { responses: { "501": { description: "Authorization acknowledged but not enabled" } } } }
+          }
+        }, null, 2),
+        withExecutionHeaders({
+          status: 200,
+          headers: { "Content-Type": "application/json; charset=UTF-8" }
+        })
+      );
+    }
 
     // Create payment intent endpoint
     if (path === "/api/create-payment-intent" && method === "POST") {
@@ -11,7 +71,7 @@ export default {
       if (!STRIPE_SECRET_KEY) {
         return new Response(
           JSON.stringify({ error: "Service configuration error" }),
-          { status: 500, headers: { "Content-Type": "application/json" } }
+          withExecutionHeaders({ status: 500, headers: { "Content-Type": "application/json; charset=UTF-8" } })
         );
       }
       try {
@@ -33,19 +93,19 @@ export default {
           const error = await response.text();
           return new Response(
             JSON.stringify({ error: "Failed to create payment intent" }),
-            { status: 500, headers: { "Content-Type": "application/json" } }
+            withExecutionHeaders({ status: 500, headers: { "Content-Type": "application/json; charset=UTF-8" } })
           );
         }
 
         const data = await response.json();
         return new Response(
           JSON.stringify({ client_secret: data.client_secret }),
-          { status: 200, headers: { "Content-Type": "application/json" } }
+          withExecutionHeaders({ status: 200, headers: { "Content-Type": "application/json; charset=UTF-8" } })
         );
       } catch (error) {
         return new Response(
           JSON.stringify({ error: "Internal server error" }),
-          { status: 500, headers: { "Content-Type": "application/json" } }
+          withExecutionHeaders({ status: 500, headers: { "Content-Type": "application/json; charset=UTF-8" } })
         );
       }
     }
@@ -56,7 +116,7 @@ export default {
       if (!env.EVIDENCE_BUCKET) {
         return new Response(
           JSON.stringify({ error: "Service configuration error" }),
-          { status: 500, headers: { "Content-Type": "application/json" } }
+          withExecutionHeaders({ status: 500, headers: { "Content-Type": "application/json; charset=UTF-8" } })
         );
       }
 
@@ -99,7 +159,7 @@ export default {
         if (!obj) {
           return new Response(
             JSON.stringify({ error: "Failed to retrieve uploaded object" }),
-            { status: 500, headers: { "Content-Type": "application/json" } }
+            withExecutionHeaders({ status: 500, headers: { "Content-Type": "application/json; charset=UTF-8" } })
           );
         }
 
@@ -139,7 +199,7 @@ export default {
       } catch (error) {
         return new Response(
           JSON.stringify({ error: "Internal server error", message: error.message }),
-          { status: 500, headers: { "Content-Type": "application/json" } }
+          withExecutionHeaders({ status: 500, headers: { "Content-Type": "application/json; charset=UTF-8" } })
         );
       }
     }
@@ -152,12 +212,9 @@ export default {
       if (!env.EVIDENCE_BUCKET) {
         return new Response(
           JSON.stringify({ error: "Service configuration error" }),
-          { status: 500, headers: { "Content-Type": "application/json" } }
+          withExecutionHeaders({ status: 500, headers: { "Content-Type": "application/json; charset=UTF-8" } })
         );
       }
-
-      // Hard-pin verifier version (enforces version finality)
-      const WORKER_VERIFIER_VERSION = "2.1.0";
 
       try {
         const body = await request.json();
@@ -167,7 +224,7 @@ export default {
         if (verifier_version && verifier_version !== WORKER_VERIFIER_VERSION) {
           return new Response(
             JSON.stringify({ error: "Unsupported verifier_version", supported_version: WORKER_VERIFIER_VERSION }),
-            { status: 400, headers: { "Content-Type": "application/json" } }
+            withExecutionHeaders({ status: 400, headers: { "Content-Type": "application/json; charset=UTF-8" } })
           );
         }
         // Default to worker version if not specified
@@ -176,7 +233,7 @@ export default {
         if (!upload_id) {
           return new Response(
             JSON.stringify({ error: "Missing upload_id" }),
-            { status: 400, headers: { "Content-Type": "application/json" } }
+            withExecutionHeaders({ status: 400, headers: { "Content-Type": "application/json; charset=UTF-8" } })
           );
         }
 
@@ -187,7 +244,7 @@ export default {
         if (!bundleObj) {
           return new Response(
             JSON.stringify({ error: "Bundle not found" }),
-            { status: 404, headers: { "Content-Type": "application/json" } }
+            withExecutionHeaders({ status: 404, headers: { "Content-Type": "application/json; charset=UTF-8" } })
           );
         }
 
@@ -198,7 +255,7 @@ export default {
         if (!manifestObj) {
           return new Response(
             JSON.stringify({ error: "Manifest not found" }),
-            { status: 404, headers: { "Content-Type": "application/json" } }
+            withExecutionHeaders({ status: 404, headers: { "Content-Type": "application/json; charset=UTF-8" } })
           );
         }
 
@@ -225,7 +282,7 @@ export default {
               reason_codes: ["VFX-EVIDENCE-0100"],
               executed_at: new Date().toISOString()
             }),
-            { status: 200, headers: { "Content-Type": "application/json" } }
+            withExecutionHeaders({ status: 200, headers: { "Content-Type": "application/json; charset=UTF-8" } })
           );
         }
 
@@ -284,12 +341,12 @@ export default {
 
         return new Response(
           JSON.stringify(response),
-          { status: 201, headers: { "Content-Type": "application/json" } }
+          withExecutionHeaders({ status: 201, headers: { "Content-Type": "application/json; charset=UTF-8" } })
         );
       } catch (error) {
         return new Response(
           JSON.stringify({ error: "Internal server error", message: error.message }),
-          { status: 500, headers: { "Content-Type": "application/json" } }
+          withExecutionHeaders({ status: 500, headers: { "Content-Type": "application/json; charset=UTF-8" } })
         );
       }
     }
@@ -301,19 +358,19 @@ export default {
         if (!body.payment_intent_id) {
           return new Response(
             "Missing payment_intent_id",
-            { status: 400 }
+            withExecutionHeaders({ status: 400 })
           );
         }
         
         return new Response(
           "Verification authorized.\n" +
           "Evidence submission not yet enabled.\n",
-          { status: 501 }
+          withExecutionHeaders({ status: 501 })
         );
       } catch (error) {
         return new Response(
           "Invalid request body",
-          { status: 400 }
+          withExecutionHeaders({ status: 400 })
         );
       }
     }
@@ -322,7 +379,7 @@ export default {
     if (path.startsWith("/api/")) {
       return new Response(
         "VERIFRAX API: not implemented",
-        { status: 501 }
+        withExecutionHeaders({ status: 501 })
       );
     }
 
@@ -332,7 +389,7 @@ export default {
         "VERIFRAX verification endpoint.\n" +
         "This endpoint accepts an evidence bundle and produces a final verdict.\n" +
         "Payment is required before execution.\n",
-        { status: 501 }
+        withExecutionHeaders({ status: 501 })
       );
     }
 
@@ -340,7 +397,7 @@ export default {
     if (path === "/what-is-verifrax") {
       return new Response(
         "VERIFRAX is a deterministic verification system that produces a final, reproducible verdict for an evidence bundle.\n",
-        { status: 200 }
+        withExecutionHeaders({ status: 200 })
       );
     }
 
@@ -353,7 +410,7 @@ export default {
         "VERIFRAX does not modify evidence.\n" +
         "VERIFRAX does not provide opinions.\n\n" +
         "VERIFRAX only verifies whether a submitted evidence bundle satisfies a declared verification standard.\n",
-        { status: 200 }
+        withExecutionHeaders({ status: 200 })
       );
     }
 
@@ -383,7 +440,7 @@ export default {
         "- Evidence bundles up to 2GB\n" +
         "- Hashing performed post-upload\n" +
         "- Larger bundles require v2 streaming hash verification\n",
-        { status: 200 }
+        withExecutionHeaders({ status: 200 })
       );
     }
 
@@ -403,7 +460,7 @@ export default {
         "Capable of being re-evaluated with identical results.\n\n" +
         "Finality:\n" +
         "A state where further dispute is rendered unnecessary by verification.\n",
-        { status: 200 }
+        withExecutionHeaders({ status: 200 })
       );
     }
 
@@ -415,7 +472,7 @@ export default {
         "Type: Verification system\n" +
         "Category: Evidence verification\n" +
         "Properties: deterministic, reproducible, stateless\n",
-        { status: 200 }
+        withExecutionHeaders({ status: 200 })
       );
     }
 
