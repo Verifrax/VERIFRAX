@@ -1,6 +1,7 @@
 name = "verifrax-spec-edge"
 main = "edge-spec-worker/worker.js"
 compatibility_date = "2025-01-01"
+account_id = "cdc2afb98b3dd0a01a57d30ce5c24b73"
 workers_dev = false
 
 routes = [

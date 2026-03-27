@@ -4,15 +4,14 @@
 name = "verifrax-edge"
 main = "verifrax-freeze/v2.8.0/source/VERIFRAX/freeze/v2.8.0/worker.js"
 compatibility_date = "2025-01-01"
+account_id = "cdc2afb98b3dd0a01a57d30ce5c24b73"
 
 # HARD RULE: No dev endpoint exposure
 workers_dev = false
 
 # Production routes only
 routes = [
-  { pattern = "api.verifrax.net/*", zone_name = "verifrax.net" },
-  { pattern = "www.verifrax.net/spec", zone_name = "verifrax.net" },
-  { pattern = "www.verifrax.net/spec/*", zone_name = "verifrax.net" }
+  { pattern = "api.verifrax.net/*", zone_name = "verifrax.net" }
 ]
 
 # EXECUTION CONSTRAINTS (enforced by architecture)
