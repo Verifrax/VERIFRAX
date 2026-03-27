@@ -1,0 +1,24 @@
+{
+  "artifact_id": "artifact-0005",
+  "subject_ref": "github.com/Verifrax/CORPIFORM",
+  "commit": "67c2816",
+  "verdict": "VERIFIED",
+  "status": "EXECUTED",
+  "reason_codes": [
+    "DECLARED_EVIDENCE_PRESENT",
+    "EXIT_CODE_ZERO",
+    "GOVERNED_EXECUTION_RECORDED",
+    "RECEIPT_AUTHORITY_MATCHED",
+    "RECEIPT_PRESENT",
+    "SEMANTIC_VALIDATION_SUCCEEDED"
+  ],
+  "observations": {
+    "execution_status": "RECORDED",
+    "receipt_status": "PRESENT",
+    "receipt_authority_binding": "MATCHED",
+    "exit_code": "0"
+  },
+  "notes": [
+    "governed execution evidence, receipt presence, authority binding, and exit code all satisfied validation"
+  ]
+}

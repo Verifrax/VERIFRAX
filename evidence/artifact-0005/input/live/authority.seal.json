@@ -1,0 +1,25 @@
+{
+  "seal_id": "seal_9c1568bb9ef7423283ca56ecdb7dc278",
+  "issued_by": "root.primary",
+  "issued_to": "corpiform-artifact-0005",
+  "scope": [
+    "action:MAIL_DISPATCH",
+    "adapter:smtp",
+    "body:mail"
+  ],
+  "constraints": {
+    "artifact": "artifact-0005",
+    "boundary": "governed-execution",
+    "single_use": "true"
+  },
+  "issued_at": 1774600914344,
+  "expires_at": null,
+  "protocol": 1,
+  "status": "active",
+  "metadata": {
+    "notes": "artifact-0005 live non-fixture issuance candidate",
+    "source_repo": "Verifrax/AUCTORISEAL",
+    "source_event_hash": "8d3081a080e0a0b66a18d85730e9d74091c045e872950318f76a09496382c3d6",
+    "source_fingerprint": "3e2ca2bdfb96a2312c28086cf52bc658a90e67edd8397bdcc769ad46a5049a65"
+  }
+}

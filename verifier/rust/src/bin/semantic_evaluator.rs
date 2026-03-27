@@ -213,6 +213,110 @@ fn evaluate_artifact_0003(repo_root: &Path, artifact: &Value, artifact_path: &Pa
     }
 }
 
+
+fn evaluate_artifact_0005(repo_root: &Path, artifact: &Value, artifact_path: &Path) -> Value {
+    let execution_status_path = resolve_evidence_path(repo_root, artifact_path, support_path(artifact, "execution_status"));
+    let receipt_path = resolve_evidence_path(repo_root, artifact_path, support_path(artifact, "receipt_json"));
+    let receipt_digest_path = resolve_evidence_path(repo_root, artifact_path, support_path(artifact, "receipt_digest"));
+    let output_digests_path = resolve_evidence_path(repo_root, artifact_path, support_path(artifact, "output_digests"));
+    let exit_code_path = resolve_evidence_path(repo_root, artifact_path, support_path(artifact, "exit_code_log"));
+
+    if !execution_status_path.as_ref().map(|p| p.exists()).unwrap_or(false)
+        || !receipt_path.as_ref().map(|p| p.exists()).unwrap_or(false)
+        || !receipt_digest_path.as_ref().map(|p| p.exists()).unwrap_or(false)
+        || !output_digests_path.as_ref().map(|p| p.exists()).unwrap_or(false)
+        || !exit_code_path.as_ref().map(|p| p.exists()).unwrap_or(false)
+    {
+        return json!({
+            "artifact_id": artifact["artifact_id"],
+            "subject_ref": subject_field(artifact, "subject_ref").unwrap_or(""),
+            "commit": subject_field(artifact, "commit").unwrap_or(""),
+            "verdict": "NOT_EXECUTABLE",
+            "status": "NOT_EXECUTED",
+            "reason_codes": sorted_codes(vec![
+                "DECLARED_EVIDENCE_MISSING",
+                "EXECUTION_PREREQUISITE_MISSING"
+            ]),
+            "observations": {
+                "execution_status": "UNKNOWN",
+                "receipt_status": "UNKNOWN",
+                "receipt_authority_binding": "UNKNOWN",
+                "exit_code": "UNKNOWN"
+            },
+            "notes": [
+                "declared mandatory evidence for governed execution validation was missing"
+            ]
+        });
+    }
+
+    let execution_status = read_text_if_exists(&execution_status_path.unwrap()).unwrap_or_else(|| "".to_string());
+    let receipt = read_json(&receipt_path.unwrap());
+    let exit_code = read_text_if_exists(&exit_code_path.unwrap()).unwrap_or_else(|| "UNKNOWN".to_string());
+
+    let expected_seal_id = artifact["subject"]["authority_seal_id"].as_str().unwrap_or("UNKNOWN");
+    let actual_seal_id = receipt["authority_seal_id"].as_str().unwrap_or("UNKNOWN");
+    let binding_matched = actual_seal_id == expected_seal_id;
+
+    let receipt_present = receipt.get("receipt_id").is_some() && !receipt["receipt_id"].is_null();
+
+    let mut codes = vec!["DECLARED_EVIDENCE_PRESENT"];
+    if execution_status.contains("STATUS: GOVERNED EXECUTION RECORDED") {
+        codes.push("GOVERNED_EXECUTION_RECORDED");
+    }
+    if receipt_present {
+        codes.push("RECEIPT_PRESENT");
+    }
+    if binding_matched {
+        codes.push("RECEIPT_AUTHORITY_MATCHED");
+    }
+    if exit_code == "0" {
+        codes.push("EXIT_CODE_ZERO");
+    }
+
+    let observations = json!({
+        "execution_status": if execution_status.contains("STATUS: GOVERNED EXECUTION RECORDED") { "RECORDED" } else { "UNKNOWN" },
+        "receipt_status": if receipt_present { "PRESENT" } else { "ABSENT" },
+        "receipt_authority_binding": if binding_matched { "MATCHED" } else { "MISMATCH" },
+        "exit_code": exit_code
+    });
+
+    let failed =
+        !execution_status.contains("STATUS: GOVERNED EXECUTION RECORDED") ||
+        !receipt_present ||
+        !binding_matched ||
+        exit_code != "0";
+
+    if failed {
+        codes.push("SEMANTIC_VALIDATION_UNSATISFIED");
+        json!({
+            "artifact_id": artifact["artifact_id"],
+            "subject_ref": subject_field(artifact, "subject_ref").unwrap_or(""),
+            "commit": subject_field(artifact, "commit").unwrap_or(""),
+            "verdict": "FAILED",
+            "status": "EXECUTED",
+            "reason_codes": sorted_codes(codes),
+            "observations": observations,
+            "notes": [
+                "governed execution evidence was present but one or more required validation conditions failed"
+            ]
+        })
+    } else {
+        codes.push("SEMANTIC_VALIDATION_SUCCEEDED");
+        json!({
+            "artifact_id": artifact["artifact_id"],
+            "subject_ref": subject_field(artifact, "subject_ref").unwrap_or(""),
+            "commit": subject_field(artifact, "commit").unwrap_or(""),
+            "verdict": "VERIFIED",
+            "status": "EXECUTED",
+            "reason_codes": sorted_codes(codes),
+            "observations": observations,
+            "notes": [
+                "governed execution evidence, receipt presence, authority binding, and exit code all satisfied validation"
+            ]
+        })
+    }
+}
+
 fn main() {
     let repo_root = env::current_dir().expect("failed to get cwd");
     let artifact_arg = env::args().nth(1).expect("usage: semantic_evaluator <artifact-json-path>");
@@ -223,6 +327,7 @@ fn main() {
     let output = match artifact_id {
         "artifact-0002" => evaluate_artifact_0002(&repo_root, &artifact, &artifact_path),
         "artifact-0003" => evaluate_artifact_0003(&repo_root, &artifact, &artifact_path),
+        "artifact-0005" => evaluate_artifact_0005(&repo_root, &artifact, &artifact_path),
         _ => panic!("unsupported artifact id"),
     };
 

@@ -1,0 +1,25 @@
+ARTIFACT: artifact-0005
+STATUS: INPUT BOUNDARY FROZEN / EXECUTION NOT YET RUN
+
+CURRENT_INPUT_TRUTH:
+- COMMAND_SURFACE: bin/corpiform execute
+- ENVIRONMENT_SURFACE: runtime/env/env.example
+- ENVIRONMENT_VERSION: CORPIFORM_VERSION=v0.1.4
+- AUTHORITY_CANDIDATE: evidence/artifact-0005/input/AUTHORITY_SEAL_CANDIDATE.json
+- LIVE_AUTHORITY_FILE: evidence/artifact-0005/input/live/authority.seal.json
+- COMMAND_CANDIDATE: evidence/artifact-0005/input/EXECUTION_COMMAND_CANDIDATE.json
+- LIVE_COMMAND_FILE: evidence/artifact-0005/input/live/execution.command.json
+- LIVE_SIGNING_PATHS: evidence/artifact-0005/input/live/SIGNING_MATERIAL_PATHS.txt
+
+BOUNDARY_RULES:
+- No file under fixtures/ is admissible as artifact-0005 live authority input.
+- No file under fixtures/ is admissible as artifact-0005 live command input.
+- No fixture key is admissible for artifact-0005 receipt or denial signing.
+- The live command and live authority seal must be substituted only by issued non-fixture material.
+- Execution remains blocked until authority seal identifier, live authority file, live command file, and live signing material are all frozen together.
+
+OPEN_BLOCKERS:
+
+NEXT_REQUIRED_WORK:
+- execute the frozen governed command under the frozen live authority and frozen signing paths
+- capture stdout, stderr, exit code, and receipt outputs into artifact-0005

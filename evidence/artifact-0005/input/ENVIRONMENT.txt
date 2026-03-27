@@ -1,0 +1,20 @@
+STATUS: UNFROZEN
+
+REQUIRED_ENVIRONMENT:
+- EXECUTION_COMMAND_PATH
+- AUTHORITY_SEAL_PATH
+- EXECUTION_CUSTODIAN
+- SYSTEM_FINGERPRINT
+- BUILD_HASH
+- CORPIFORM_VERSION
+- RECEIPT_SIGNING_KEY
+- DENIAL_SIGNING_KEY
+
+RUNTIME_RULES:
+- TZ=UTC
+- LANG=C
+- LC_ALL=C
+
+BLOCKERS:
+- CORPIFORM_VERSION in runtime/env/env.example is stale and must be aligned to current runtime truth before artifact-0005 execution freeze.
+- Receipt and denial signing keys for artifact-0005 must not come from fixtures/.
