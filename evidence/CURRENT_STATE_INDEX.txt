@@ -1,0 +1,63 @@
+VERIFRAX CURRENT STATE INDEX
+STATUS: ACTIVE CURRENT-TRUTH MAP
+
+RULES:
+- This file is the compressed current-state navigation surface for the VERIFRAX evidence root.
+- This file states current truth only.
+- Historical artifacts remain valid evidence but do not override this file as the root current-state map.
+- No seal-state line is made here.
+- No claim beyond the recorded artifact boundary is made here.
+
+CURRENT_ARTIFACT_CHAIN:
+- ARTIFACT-0001 = VERIFIED
+- ARTIFACT-0002 = VERIFIED
+- ARTIFACT-0003 = VERIFIED
+- ARTIFACT-0004 = RECORDED
+- ARTIFACT-0005 = VERIFIED
+
+CURRENT_ARTIFACT_MEANING:
+- ARTIFACT-0001 records repository integrity and initial protocol object grounding.
+- ARTIFACT-0002 records authority readiness evidence and now-resolved semantic validation.
+- ARTIFACT-0003 records public issuance-subject presence with matching Node and Rust semantic validation.
+- ARTIFACT-0004 records the first CORPIFORM authority-governed execution receipt boundary under consumed fixture authority evidence.
+- ARTIFACT-0005 records public canonical authority-governed execution, recorded CORPIFORM receipt material, and matching Node and Rust semantic verification outputs.
+
+CURRENT_BOUNDARY:
+- The bootstrap chain is semantically resolved through artifact-0003.
+- The execution boundary is extended by artifact-0004 recorded receipt evidence.
+- The public canonical authority-governed execution boundary is extended by artifact-0005.
+- Artifact-0005 is the current highest registered artifact in the evidence root.
+- Package publication evidence for @verifrax/auctoriseal and @verifrax/corpiform is also recorded in the evidence root.
+
+CURRENT_AUTHORITY_BINDING:
+- GOVERNANCE ROOT: Verifrax/.github
+- CURRENT_AUTHORITY_ID: AUTHORITY-0001-VERIFRAX
+- CURRENT_AUTHORITY_DIGEST: 91e02d4e6bb73aa8f434b8baa072bac15ae31447d9e06a526ecb0e2a42315808
+- GOVERNANCE_BINDING_RULE: Governance authority is external and bound through AUCTORISEAL plus .github governed repo set.
+
+CURRENT_ARTIFACT_0005_BINDING:
+- AUTHORITY_SEAL_ID: seal_9c1568bb9ef7423283ca56ecdb7dc278
+- RECEIPT_ID: 8F88E46F-625B-4682-BF9A-D68ADD241FFF
+- NODE_VERDICT: VERIFIED
+- RUST_VERDICT: VERIFIED
+- CROSS_IMPLEMENTATION_MATCH: MATCH
+- CANONICAL_SEMANTIC_SHA256: 801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b
+
+CURRENT_ROOT_SURFACES:
+- EVIDENCE_INDEX: evidence/README.md
+- CHAIN_STATUS: evidence/bootstrap-chain-status/CHAIN_STATUS.txt
+- ARTIFACT_0005_PRIMARY: evidence/artifact-0005/artifact-0005.json
+- ARTIFACT_0005_EXECUTION_STATUS: evidence/artifact-0005/EXECUTION_STATUS.txt
+- ARTIFACT_0005_CROSS_IMPLEMENTATION_STATUS: evidence/artifact-0005/CROSS_IMPLEMENTATION_STATUS.txt
+
+CURRENT_LIMITS:
+- This file does not claim seal completion.
+- This file does not claim universal proof beyond the recorded artifact boundaries.
+- This file does not replace artifact-level evidence inspection.
+- Artifact-0004 remains bounded by consumed fixture authority evidence and is not the public canonical authority basis.
+- Artifact-0005 is recorded and verified in the evidence root, but no seal-state line has been added.
+
+NEXT_REQUIRED_WORK:
+- write consistency and authority audit surfaces
+- align remaining current-truth surfaces across repos and docs
+- verify final release-gate conditions before any seal-state statement is added
