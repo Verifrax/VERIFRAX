@@ -2,7 +2,7 @@
 # Stateless execution only — no storage, no sessions, no logs after execution
 
 name = "verifrax-edge"
-main = "verifrax-freeze/v2.8.0/source/VERIFRAX/freeze/v2.8.0/worker.js"
+main = "release-history/v1/freeze/v2/releases/v2.1.0/index.js"
 compatibility_date = "2025-01-01"
 account_id = "cdc2afb98b3dd0a01a57d30ce5c24b73"
 
