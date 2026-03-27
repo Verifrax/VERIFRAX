@@ -1,0 +1,41 @@
+{
+  "artifact": "artifact-0005",
+  "status": "CANDIDATE / NOT YET ISSUED",
+  "purpose": "Canonical non-fixture authority seal input placeholder for governed execution freeze.",
+  "requirements": {
+    "issuer_system": "AUCTORISEAL",
+    "authority_basis": "public canonical authority object",
+    "authority_object_id": "AUTHORITY-0001-VERIFRAX",
+    "governance_binding": "AUCTORISEAL plus .github governed repo set",
+    "fixture_forbidden": true,
+    "test_only_forbidden": true,
+    "historical_material_forbidden": true
+  },
+  "required_fields": [
+    "issuer",
+    "authority_seal_id",
+    "custodian",
+    "scope",
+    "valid_from",
+    "valid_until",
+    "single_use",
+    "signature"
+  ],
+  "scope_rules": {
+    "body": "mail",
+    "action": "MAIL_DISPATCH",
+    "adapter": "smtp"
+  },
+  "admissibility_rules": [
+    "Must be issued from the canonical public authority basis, not from fixture material.",
+    "Must be cryptographically valid under the trusted AUCTORISEAL root surface used by CORPIFORM.",
+    "Must be single-use.",
+    "Must bind exactly to the governed command frozen for artifact-0005.",
+    "Must remain inside the artifact-0005 execution boundary only."
+  ],
+  "blockers": [
+    "No live issued non-fixture seal recorded yet.",
+    "No live cryptographic signature recorded yet.",
+    "Seal is unfit for execution until replaced by issued authority material."
+  ]
+}

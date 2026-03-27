@@ -1,0 +1,13 @@
+{
+  "command_id": "artifact-0005-cmd-mail-dispatch-001",
+  "body": "mail",
+  "action": "MAIL_DISPATCH",
+  "adapter": "smtp",
+  "parameters": {
+    "to": "artifact-0005@verifrax.net",
+    "from": "authority-execution@verifrax.net",
+    "subject": "artifact-0005 governed execution candidate",
+    "body": "Governed execution candidate frozen for artifact-0005 boundary definition."
+  },
+  "authority_seal_id": "seal_9c1568bb9ef7423283ca56ecdb7dc278"
+}

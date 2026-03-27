@@ -1,0 +1,13 @@
+ARTIFACT: artifact-0005
+STATUS: NODE AND RUST SEMANTIC OUTPUTS MATCH
+
+NODE_RAW_OUTPUT: evidence/artifact-0005/reexecution/node/raw-output.txt
+RUST_RAW_OUTPUT: evidence/artifact-0005/reexecution/rust/raw-output.txt
+NODE_CANONICAL: evidence/artifact-0005/reexecution/node/semantic.canonical.json
+RUST_CANONICAL: evidence/artifact-0005/reexecution/rust/semantic.canonical.json
+CANONICAL_SHA256: 801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b
+
+RULES:
+- Node and Rust semantic outputs matched byte-for-byte after canonicalization.
+- This file records cross-implementation agreement only.
+- This file does not register artifact-0005 in the root evidence index.

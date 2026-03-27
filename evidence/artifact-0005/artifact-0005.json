@@ -1,0 +1,83 @@
+{
+  "artifact_id": "artifact-0005",
+  "title": "Public Canonical Authority-Governed Execution Boundary",
+  "subject": {
+    "subject": "CORPIFORM governed execution under a public canonical AUCTORISEAL seal",
+    "subject_ref": "github.com/Verifrax/CORPIFORM",
+    "authority_ref": "github.com/Verifrax/AUCTORISEAL/public/seals/seal_9c1568bb9ef7423283ca56ecdb7dc278.json",
+    "authority_seal_id": "seal_9c1568bb9ef7423283ca56ecdb7dc278",
+    "receipt_id": "8F88E46F-625B-4682-BF9A-D68ADD241FFF",
+    "commit": "67c2816",
+    "branch": "main",
+    "event": "governed execution receipt recording"
+  },
+  "claim_set": [
+    "a public canonical AUCTORISEAL seal exists for artifact-0005",
+    "the governed CORPIFORM execution completed under that seal",
+    "the governed execution produced a recorded CORPIFORM receipt",
+    "the receipt authority_seal_id matches the published canonical seal id",
+    "the recorded execution outputs and receipt digests are present inside the artifact boundary"
+  ],
+  "evidence_objects": [
+    {
+      "path": "evidence/artifact-0005/input/live/authority.seal.json",
+      "sha256": "ee54494af3ff1896d95db9397b2105e2291b798c10ee84e8e7c94f341f10fc15",
+      "role": "live authority seal object"
+    },
+    {
+      "path": "evidence/artifact-0005/input/live/execution.command.json",
+      "sha256": "6f23820957b8db611058a54533724dbb550b149cc9b5f6dcfa00e09e07ba865b",
+      "role": "live governed execution command"
+    },
+    {
+      "path": "evidence/artifact-0005/output/OUTPUT_DIGESTS.txt",
+      "sha256": "f8da92b31b00cbe958cf9fb6eec31ac1dda731caa80448025f554fbeaa24c34e",
+      "role": "execution output digest record"
+    },
+    {
+      "path": "evidence/artifact-0005/receipt/receipt.digest.txt",
+      "sha256": "50254cf04bb38b234e503eb24903320466f2de94e7485bff9c7018d27427f530",
+      "role": "receipt digest record"
+    }
+  ],
+  "supporting_evidence": {
+    "execution_status": "evidence/artifact-0005/EXECUTION_STATUS.txt",
+    "stdout_log": "evidence/artifact-0005/output/stdout.txt",
+    "stderr_log": "evidence/artifact-0005/output/stderr.txt",
+    "exit_code_log": "evidence/artifact-0005/output/EXIT_CODE.txt",
+    "output_digests": "evidence/artifact-0005/output/OUTPUT_DIGESTS.txt",
+    "receipt_json": "evidence/artifact-0005/receipt/receipt.json",
+    "receipt_canonical": "evidence/artifact-0005/receipt/receipt.canonical.txt",
+    "receipt_digest": "evidence/artifact-0005/receipt/receipt.digest.txt",
+    "input_digests": "evidence/artifact-0005/input/INPUT_DIGESTS.txt",
+    "input_index": "evidence/artifact-0005/input/INPUT_INDEX.txt"
+  },
+  "observed_results": {
+    "authority_seal_status": "PRESENT",
+    "execution_status": "EXECUTED",
+    "receipt_status": "PRESENT",
+    "receipt_authority_binding": "MATCHED",
+    "exit_code": "0"
+  },
+  "execution_evidence": {
+    "verifier_runs": [
+      {
+        "implementation": "verifier/node",
+        "verdict": "VERIFIED",
+        "status": "EXECUTED",
+        "evidence": "evidence/artifact-0005/reexecution/node/raw-output.txt"
+      },
+      {
+        "implementation": "verifier/rust",
+        "verdict": "VERIFIED",
+        "status": "EXECUTED",
+        "evidence": "evidence/artifact-0005/reexecution/rust/raw-output.txt"
+      }
+    ],
+    "cross_implementation_match": true,
+    "comparison_record": "evidence/artifact-0005/reexecution/COMPARISON.txt",
+    "canonical_sha256": "801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b"
+  },
+  "verdict": "VERIFIED",
+  "verdict_note": "governed execution evidence was evaluated by the maintained node and rust semantic evaluators, both produced VERIFIED, and the canonical outputs matched byte-for-byte"
+}

@@ -1,0 +1,22 @@
+ARTIFACT: artifact-0005
+STATUS: INPUT BOUNDARY DEFINED / EXECUTION NOT YET RUN
+
+RULES:
+- This directory defines the non-fixture execution input boundary for artifact-0005.
+- No file under fixtures/ is an admissible artifact-0005 authority or command input.
+- Artifact-0005 must not rely on test-only signatures, test-only keys, or fixture-only command material.
+- The execution boundary remains unregistered until the canonical authority object, governed command input, and runtime environment are frozen together.
+
+REQUIRED_NON_FIXTURE_INPUTS:
+- authority seal issued from the canonical public authority basis
+- execution command bound to that authority seal
+- runtime identity values aligned with current repository truth
+- trusted-root surface aligned with canonical AUCTORISEAL issuer identifiers
+- receipt signing material supplied outside repository fixtures
+
+EXCLUDED_INPUTS:
+- fixtures/valid_authority/seal.json
+- fixtures/valid_authority/command.json
+- fixtures/keys/receipt.key
+- fixtures/keys/denial.key
+- any file under fixtures/ used as a live artifact-0005 authority basis

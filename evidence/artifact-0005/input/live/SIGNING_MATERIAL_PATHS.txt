@@ -1,0 +1,24 @@
+ARTIFACT: artifact-0005
+STATUS: PATHS FROZEN / MATERIAL NOT COMMITTED
+
+RULES:
+- Signing material for artifact-0005 must exist outside fixtures/.
+- Signing material for artifact-0005 must not be committed to the repository.
+- Only path references are frozen here.
+- Receipt signing material and denial signing material must be frozen before execution.
+- Execution is forbidden if these paths resolve to fixture keys or missing files.
+
+LIVE_SIGNING_PATHS:
+RECEIPT_SIGNING_KEY=/Users/midiakiasat/.verifrax/artifact-0005/keys/receipt_private.pem
+DENIAL_SIGNING_KEY=/Users/midiakiasat/.verifrax/artifact-0005/keys/denial_private.pem
+
+ADMISSIBILITY:
+- both files must exist at execution time
+- both files must be non-fixture material
+- both files must be readable by the execution environment
+- both files must be used only inside the artifact-0005 execution boundary
+
+FORBIDDEN:
+- fixtures/keys/receipt.key
+- fixtures/keys/denial.key
+- any repository-committed private key
