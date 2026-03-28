@@ -13,14 +13,14 @@ CURRENT_ARTIFACT_CHAIN:
 - ARTIFACT-0002 = VERIFIED
 - ARTIFACT-0003 = VERIFIED
 - ARTIFACT-0004 = RECORDED
-- ARTIFACT-0005 = BLOCKED
+- ARTIFACT-0005 = READY
 
 CURRENT_ARTIFACT_MEANING:
 - ARTIFACT-0001 records repository integrity and initial protocol object grounding.
 - ARTIFACT-0002 records authority readiness evidence and now-resolved semantic validation.
 - ARTIFACT-0003 records public issuance-subject presence with matching Node and Rust semantic validation.
 - ARTIFACT-0004 records the first CORPIFORM authority-governed execution receipt boundary under consumed fixture authority evidence.
-- ARTIFACT-0005 records a defined but still blocked non-fixture execution boundary and must not be treated as executed, verified, registered, or sealed.
+- ARTIFACT-0005 records a frozen admissible non-fixture execution boundary and must not be treated as executed, verified, registered, or sealed.
 
 CURRENT_BOUNDARY:
 - The bootstrap chain is semantically resolved through artifact-0003.

@@ -1,5 +1,5 @@
 ARTIFACT: artifact-0005
-STATUS: CROSS-IMPLEMENTATION VERIFICATION NOT ADMISSIBLE
+STATUS: CROSS-IMPLEMENTATION VERIFICATION UNRECORDED
 
 NODE_VERDICT: UNRECORDED
 RUST_VERDICT: UNRECORDED
@@ -7,6 +7,6 @@ MATCH_STATUS: UNRECORDED
 CANONICAL_SHA256: UNRECORDED
 
 BOUNDARY:
-- artifact-0005 input surfaces still state EXECUTION NOT YET RUN / BLOCKED
+- artifact-0005 governed execution and receipt remain unrecorded
 - no maintained-verifier execution may be treated as current truth here
 - registration and seal completion are not claimed here

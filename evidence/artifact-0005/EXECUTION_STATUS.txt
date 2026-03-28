@@ -1,7 +1,7 @@
 ARTIFACT: artifact-0005
-STATUS: EXECUTION BLOCKED
+STATUS: READY FOR GOVERNED EXECUTION
 
-COMMAND_ID: UNREGISTERED
+COMMAND_ID: artifact-0005-cmd-mail-dispatch-001
 AUTHORITY_SEAL_ID: seal_9c1568bb9ef7423283ca56ecdb7dc278
 RECEIPT_ID: UNRECORDED
 EXIT_CODE: UNRECORDED
@@ -13,7 +13,7 @@ EXIT_CODE_DIGEST_SHA256: UNRECORDED
 
 RULES:
 - This file states current truth only.
-- Artifact-0005 execution is not yet admissible as recorded execution.
+- Artifact-0005 execution inputs are admissible, but execution itself is not yet recorded.
 - No governed execution outcome is registered here.
 - No cross-implementation verification is claimed here.
 - No registration or seal completion is claimed here.
