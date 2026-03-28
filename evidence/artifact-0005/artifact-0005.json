@@ -1,6 +1,6 @@
 {
   "artifact_id": "artifact-0005",
-  "title": "Artifact-0005 Execution Boundary Pending Registration",
+  "title": "Artifact-0005 Governed Execution Boundary Ready for Execution",
   "subject": {
     "subject": "CORPIFORM governed execution under a public canonical AUCTORISEAL seal",
     "subject_ref": "github.com/Verifrax/CORPIFORM",
@@ -13,9 +13,9 @@
   },
   "claim_set": [
     "a public canonical AUCTORISEAL seal candidate is referenced for artifact-0005",
-    "the artifact-0005 input boundary contains live-path candidates outside fixtures",
-    "artifact-0005 input surfaces still describe execution as blocked and unregistered",
-    "artifact-0005 must not be treated as executed, verified, registered, or sealed until those blockers are removed"
+    "the artifact-0005 input boundary contains frozen admissible non-fixture live material",
+    "artifact-0005 governed execution, receipt recording, and maintained-verifier execution remain unrecorded as current truth",
+    "artifact-0005 must not be treated as executed, verified, registered, or sealed until those later boundaries are actually recorded"
   ],
   "evidence_objects": [
     {
@@ -53,9 +53,9 @@
   },
   "observed_results": {
     "authority_seal_status": "CANDIDATE_PRESENT",
-    "execution_status": "BLOCKED",
-    "receipt_status": "UNREGISTERED",
-    "receipt_authority_binding": "UNCONFIRMED",
+    "execution_status": "READY_FOR_GOVERNED_EXECUTION",
+    "receipt_status": "UNRECORDED",
+    "receipt_authority_binding": "UNRECORDED",
     "exit_code": "UNRECORDED"
   },
   "execution_evidence": {
@@ -64,6 +64,6 @@
     "comparison_record": "UNRECORDED",
     "canonical_sha256": "UNRECORDED"
   },
-  "verdict": "BLOCKED",
-  "verdict_note": "artifact-0005 input surfaces still state EXECUTION NOT YET RUN / BLOCKED, so artifact-0005 cannot be treated as executed, verified, registered, or sealed"
+  "verdict": "READY",
+  "verdict_note": "artifact-0005 input and environment surfaces are frozen and admissible, but governed execution, receipt recording, verifier execution, registration, and seal completion remain unrecorded"
 }
