@@ -1,11 +1,11 @@
 ARTIFACT: artifact-0005
-STATUS: INPUT BOUNDARY DEFINED / EXECUTION NOT YET RUN
+STATUS: INPUT BOUNDARY DEFINED / READY FOR GOVERNED EXECUTION
 
 RULES:
 - This directory defines the non-fixture execution input boundary for artifact-0005.
 - No file under fixtures/ is an admissible artifact-0005 authority or command input.
 - Artifact-0005 must not rely on test-only signatures, test-only keys, or fixture-only command material.
-- The execution boundary remains unregistered until the canonical authority object, governed command input, and runtime environment are frozen together.
+- The execution boundary is frozen at input level but not yet recorded as executed in this file.
 
 REQUIRED_NON_FIXTURE_INPUTS:
 - authority seal issued from the canonical public authority basis

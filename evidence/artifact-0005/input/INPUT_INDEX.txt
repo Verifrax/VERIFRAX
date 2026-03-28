@@ -1,5 +1,5 @@
 ARTIFACT: artifact-0005
-STATUS: INPUT BOUNDARY FROZEN / EXECUTION NOT YET RUN
+STATUS: INPUT BOUNDARY FROZEN / READY FOR GOVERNED EXECUTION
 
 CURRENT_INPUT_TRUTH:
 - COMMAND_SURFACE: bin/corpiform execute
@@ -15,8 +15,8 @@ BOUNDARY_RULES:
 - No file under fixtures/ is admissible as artifact-0005 live authority input.
 - No file under fixtures/ is admissible as artifact-0005 live command input.
 - No fixture key is admissible for artifact-0005 receipt or denial signing.
-- The live command and live authority seal must be substituted only by issued non-fixture material.
-- Execution remains blocked until authority seal identifier, live authority file, live command file, and live signing material are all frozen together.
+- The live command, live authority seal, and live signing paths are frozen together as the admissible non-fixture execution input boundary.
+- Execution is not yet recorded in this file.
 
 OPEN_BLOCKERS:
 

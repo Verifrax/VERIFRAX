@@ -1,13 +1,19 @@
-STATUS: FIXTURE INPUTS REJECTED
+STATUS: LIVE NON-FIXTURE INPUTS FROZEN
 
 FINDINGS:
-- Current valid_authority input set is test-only.
-- Current fixture signature is non-cryptographic and inadmissible.
-- Current fixture command is inadmissible as artifact-0005 governed command input.
-- Current environment example is not yet aligned with current CORPIFORM version truth.
+- Live authority seal file is present at evidence/artifact-0005/input/live/authority.seal.json.
+- Live governed execution command file is present at evidence/artifact-0005/input/live/execution.command.json.
+- Live receipt signing key path resolves to non-fixture material outside the repository.
+- Live denial signing key path resolves to non-fixture material outside the repository.
+- Authority seal identifier and command authority_seal_id match exactly.
+- CORPIFORM runtime environment example is aligned to current package version truth.
+
+BOUNDARY:
+- These findings establish admissible non-fixture execution inputs for artifact-0005.
+- This file does not claim that governed execution has already run.
+- This file does not claim that a CORPIFORM receipt has already been recorded.
+- This file does not claim registration, verifier execution, or seal completion.
 
 NEXT_REQUIRED_WORK:
-- align runtime environment version surface to current CORPIFORM truth
-- define the non-fixture execution command file
-- define the non-fixture authority seal file
-- freeze the exact environment values used for artifact-0005 execution
+- execute the frozen governed command under the frozen live authority and frozen signing material
+- capture stdout, stderr, exit code, and receipt outputs into artifact-0005
