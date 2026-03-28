@@ -5,8 +5,8 @@ ARTIFACT-0003: VERIFIED
 ARTIFACT-0003-NOTE: published genesis seal and authoritative ledger are present; node and rust semantic evaluators produced canonically identical VERIFIED outputs
 ARTIFACT-0004: RECORDED
 ARTIFACT-0004-NOTE: CORPIFORM main at f257493 emitted receipt EE07B689-F1BF-4518-B49C-C973CB178029 with command_id cmd-valid-001 and authority_seal_id seal-valid-001; VERIFRAX preserves command, seal, receipt, and integrity digests as immutable evidence
-ARTIFACT-0005: READY
-ARTIFACT-0005-NOTE: public canonical seal candidate is referenced and the frozen live non-fixture execution boundary is admissible, but governed receipt material and maintained-verifier execution remain unrecorded as current truth here
+ARTIFACT-0005: VERIFIED
+ARTIFACT-0005-NOTE: public canonical seal seal_9c1568bb9ef7423283ca56ecdb7dc278 governed recorded CORPIFORM receipt 8F88E46F-625B-4682-BF9A-D68ADD241FFF; maintained node and rust semantic evaluators both produced VERIFIED and matched canonically
 PACKAGE-SURFACE-AUCTORISEAL: RECORDED
 PACKAGE-SURFACE-AUCTORISEAL-NOTE: @verifrax/auctoriseal package publication surface is recorded in evidence/package-surface/auctoriseal-0.1.2
 PACKAGE-SURFACE-CORPIFORM: RECORDED

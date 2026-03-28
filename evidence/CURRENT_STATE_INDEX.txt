@@ -3,7 +3,7 @@ STATUS: ACTIVE CURRENT-TRUTH MAP
 
 RULES:
 - This file is the compressed current-state navigation surface for the VERIFRAX evidence root.
-- This file states current truth only.
+- This file records the exact governed execution outcome captured under artifact-0005.
 - Historical artifacts remain valid evidence but do not override this file as the root current-state map.
 - No seal-state line is made here.
 - No claim beyond the recorded artifact boundary is made here.
@@ -13,14 +13,14 @@ CURRENT_ARTIFACT_CHAIN:
 - ARTIFACT-0002 = VERIFIED
 - ARTIFACT-0003 = VERIFIED
 - ARTIFACT-0004 = RECORDED
-- ARTIFACT-0005 = READY
+- ARTIFACT-0005 = VERIFIED
 
 CURRENT_ARTIFACT_MEANING:
 - ARTIFACT-0001 records repository integrity and initial protocol object grounding.
 - ARTIFACT-0002 records authority readiness evidence and now-resolved semantic validation.
 - ARTIFACT-0003 records public issuance-subject presence with matching Node and Rust semantic validation.
 - ARTIFACT-0004 records the first CORPIFORM authority-governed execution receipt boundary under consumed fixture authority evidence.
-- ARTIFACT-0005 records a frozen admissible non-fixture execution boundary and must not be treated as executed, verified, registered, or sealed.
+- ARTIFACT-0005 records public canonical authority-governed execution, recorded CORPIFORM receipt material, and matching Node and Rust semantic verification outputs.
 
 CURRENT_BOUNDARY:
 - The bootstrap chain is semantically resolved through artifact-0003.
@@ -37,11 +37,11 @@ CURRENT_AUTHORITY_BINDING:
 
 CURRENT_ARTIFACT_0005_BINDING:
 - AUTHORITY_SEAL_ID: seal_9c1568bb9ef7423283ca56ecdb7dc278
-- RECEIPT_ID: UNRECORDED
-- NODE_VERDICT: UNRECORDED
-- RUST_VERDICT: UNRECORDED
-- CROSS_IMPLEMENTATION_MATCH: UNRECORDED
-- CANONICAL_SEMANTIC_SHA256: UNRECORDED
+- RECEIPT_ID: 8F88E46F-625B-4682-BF9A-D68ADD241FFF
+- NODE_VERDICT: VERIFIED
+- RUST_VERDICT: VERIFIED
+- CROSS_IMPLEMENTATION_MATCH: MATCH
+- CANONICAL_SEMANTIC_SHA256: 801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b
 
 CURRENT_ROOT_SURFACES:
 - EVIDENCE_INDEX: evidence/README.md

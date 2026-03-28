@@ -16,7 +16,7 @@ Current bootstrap-chain status:
 - **ARTIFACT-0002:** VERIFIED
 - **ARTIFACT-0003:** VERIFIED
 - **ARTIFACT-0004:** RECORDED
-- **ARTIFACT-0005:** READY
+- **ARTIFACT-0005:** VERIFIED
 
 Bootstrap-chain status file:
 
