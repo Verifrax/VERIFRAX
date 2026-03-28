@@ -1,0 +1,44 @@
+VERIFRAX CANONICAL HOST OWNERSHIP
+OWNERSHIP_BASIS=HARD_SIGNALS_ONLY
+SIGNALS=CNAME|PAGES_WORKFLOW|WRANGLER_ROUTE
+STATUS=LIVE_SURFACES_CONFIRMED
+
+HOST=api.verifrax.net
+OWNER_REPO=Verifrax/VERIFRAX
+OWNER_SIGNAL=wrangler.toml route pattern api.verifrax.net/*
+OWNER_ROLE=execution
+
+HOST=proof.verifrax.net
+OWNER_REPO=Verifrax/proof
+OWNER_SIGNAL=CNAME + .github/workflows/pages.yml
+OWNER_ROLE=proof publication
+
+HOST=auctoriseal.verifrax.net
+OWNER_REPO=Verifrax/AUCTORISEAL
+OWNER_SIGNAL=public/CNAME + .github/workflows/pages-deploy.yml
+OWNER_ROLE=authority issuance/reference
+
+HOST=corpiform.verifrax.net
+OWNER_REPO=Verifrax/CORPIFORM
+OWNER_SIGNAL=CNAME + .github/workflows/pages.yml
+OWNER_ROLE=runtime reference
+
+HOST=cicullis.verifrax.net
+OWNER_REPO=Verifrax/cicullis
+OWNER_SIGNAL=CNAME + .github/workflows/pages.yml
+OWNER_ROLE=enforcement reference
+
+HOST=verify.verifrax.net
+OWNER_REPO=Verifrax/VERIFRAX-verify
+OWNER_SIGNAL=public/CNAME + .github/workflows/pages.yml
+OWNER_ROLE=verification surface
+
+HOST=sigillarium.verifrax.net
+OWNER_REPO=Verifrax/SIGILLARIUM
+OWNER_SIGNAL=CNAME + .github/workflows/pages.yml
+OWNER_ROLE=seal archive
+
+HOST=apply.verifrax.net
+OWNER_REPO=Verifrax/apply
+OWNER_SIGNAL=CNAME + .github/workflows/pages.yml
+OWNER_ROLE=intake
