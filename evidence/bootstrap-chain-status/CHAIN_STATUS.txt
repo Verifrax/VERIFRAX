@@ -5,11 +5,11 @@ ARTIFACT-0003: VERIFIED
 ARTIFACT-0003-NOTE: published genesis seal and authoritative ledger are present; node and rust semantic evaluators produced canonically identical VERIFIED outputs
 ARTIFACT-0004: RECORDED
 ARTIFACT-0004-NOTE: CORPIFORM main at f257493 emitted receipt EE07B689-F1BF-4518-B49C-C973CB178029 with command_id cmd-valid-001 and authority_seal_id seal-valid-001; VERIFRAX preserves command, seal, receipt, and integrity digests as immutable evidence
-ARTIFACT-0005: VERIFIED
-ARTIFACT-0005-NOTE: public canonical seal seal_9c1568bb9ef7423283ca56ecdb7dc278 governed recorded CORPIFORM receipt 8F88E46F-625B-4682-BF9A-D68ADD241FFF; maintained node and rust semantic evaluators both produced VERIFIED and matched canonically
+ARTIFACT-0005: BLOCKED
+ARTIFACT-0005-NOTE: public canonical seal candidate is referenced, but artifact-0005 input surfaces still state EXECUTION NOT YET RUN / BLOCKED; no governed receipt or maintained-verifier execution is admissible as current truth here
 PACKAGE-SURFACE-AUCTORISEAL: RECORDED
 PACKAGE-SURFACE-AUCTORISEAL-NOTE: @verifrax/auctoriseal package publication surface is recorded in evidence/package-surface/auctoriseal-0.1.2
 PACKAGE-SURFACE-CORPIFORM: RECORDED
 PACKAGE-SURFACE-CORPIFORM-NOTE: @verifrax/corpiform@0.1.4 is published with dist-tag latest and public access; VERIFRAX preserves package identity, packument, access status, and install help evidence
-CURRENT_BOUNDARY: bootstrap chain is semantically resolved for artifacts 0001-0003, extended by recorded CORPIFORM execution evidence in artifact-0004, extended again by public canonical authority-governed execution and matching node/rust semantic verification evidence in artifact-0005, and indexed with recorded AUCTORISEAL and CORPIFORM package publication surfaces
+CURRENT_BOUNDARY: bootstrap chain is semantically resolved for artifacts 0001-0003, extended by recorded CORPIFORM execution evidence in artifact-0004, indexed with recorded AUCTORISEAL and CORPIFORM package publication surfaces, and still blocked from extending through artifact-0005 until the artifact-0005 input boundary contradiction is removed
 NEXT_REQUIRED_WORK: align current-state indexes, contradiction audits, and remaining public truth surfaces before any seal-state line is added
