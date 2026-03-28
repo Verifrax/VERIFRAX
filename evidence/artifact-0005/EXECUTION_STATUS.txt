@@ -1,19 +1,19 @@
 ARTIFACT: artifact-0005
-STATUS: READY FOR GOVERNED EXECUTION
+STATUS: GOVERNED EXECUTION RECORDED
 
 COMMAND_ID: artifact-0005-cmd-mail-dispatch-001
 AUTHORITY_SEAL_ID: seal_9c1568bb9ef7423283ca56ecdb7dc278
-RECEIPT_ID: UNRECORDED
-EXIT_CODE: UNRECORDED
+RECEIPT_ID: 8F88E46F-625B-4682-BF9A-D68ADD241FFF
+EXIT_CODE: 0
 
-RECEIPT_DIGEST_SHA256: UNRECORDED
-STDOUT_DIGEST_SHA256: UNRECORDED
-STDERR_DIGEST_SHA256: UNRECORDED
-EXIT_CODE_DIGEST_SHA256: UNRECORDED
+RECEIPT_DIGEST_SHA256: 81cf48b0f482ad72328dfa52bd175bd03205e80705473993f8c1d39c0d64a483
+STDOUT_DIGEST_SHA256: 3d5a5cf0701ec9de565dea14f56034451d1128de32257f924c2a63492c30be85
+STDERR_DIGEST_SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+EXIT_CODE_DIGEST_SHA256: 9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa
 
 RULES:
-- This file states current truth only.
+- This file records the exact governed execution outcome captured under artifact-0005.
 - Artifact-0005 execution inputs are admissible, but execution itself is not yet recorded.
-- No governed execution outcome is registered here.
-- No cross-implementation verification is claimed here.
+- This file does not claim registration or seal completion.
+
 - No registration or seal completion is claimed here.

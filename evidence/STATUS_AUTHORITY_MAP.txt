@@ -4,7 +4,7 @@ STATUS: ROOT AUTHORITY MAPPING RECORDED
 PURPOSE:
 - This file binds the current evidence-root status surfaces to the authority identifiers and execution identifiers they rely on.
 - This file exists so current status claims can be checked against one explicit authority map.
-- This file states current truth only.
+- This file records the exact governed execution outcome captured under artifact-0005.
 - This file does not add any seal-state line.
 
 ROOT_STATUS_SURFACES:
@@ -24,7 +24,7 @@ ARTIFACT_STATUS_BINDINGS:
 - ARTIFACT-0002 = VERIFIED
 - ARTIFACT-0003 = VERIFIED
 - ARTIFACT-0004 = RECORDED
-- ARTIFACT-0005 = READY
+- ARTIFACT-0005 = VERIFIED
 
 ARTIFACT-0004 AUTHORITY BOUNDARY:
 - AUTHORITY_TYPE = CONSUMED FIXTURE AUTHORITY EVIDENCE
@@ -37,12 +37,12 @@ ARTIFACT-0005 AUTHORITY BOUNDARY:
 - AUTHORITY_TYPE = PUBLIC CANONICAL AUTHORITY EVIDENCE
 - AUTHORITY_SEAL_ID = seal_9c1568bb9ef7423283ca56ecdb7dc278
 - AUTHORITY_REF = github.com/Verifrax/AUCTORISEAL/public/seals/seal_9c1568bb9ef7423283ca56ecdb7dc278.json
-- RECEIPT_ID = UNRECORDED
-- NODE_VERDICT = UNRECORDED
-- RUST_VERDICT = UNRECORDED
-- CROSS_IMPLEMENTATION_MATCH = UNRECORDED
-- CANONICAL_SEMANTIC_SHA256 = UNRECORDED
-- STATUS = READY
+- RECEIPT_ID = 8F88E46F-625B-4682-BF9A-D68ADD241FFF
+- NODE_VERDICT = VERIFIED
+- RUST_VERDICT = VERIFIED
+- CROSS_IMPLEMENTATION_MATCH = MATCH
+- CANONICAL_SEMANTIC_SHA256 = 801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b
+- STATUS = VERIFIED
 
 MAPPING RULES:
 - artifact-0004 must remain bounded by consumed fixture authority evidence only.
