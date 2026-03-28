@@ -1,4 +1,4 @@
-STATUS: UNFROZEN
+STATUS: ENVIRONMENT FROZEN / READY FOR GOVERNED EXECUTION
 
 REQUIRED_ENVIRONMENT:
 - EXECUTION_COMMAND_PATH
@@ -15,6 +15,21 @@ RUNTIME_RULES:
 - LANG=C
 - LC_ALL=C
 
-BLOCKERS:
-- CORPIFORM_VERSION in runtime/env/env.example is stale and must be aligned to current runtime truth before artifact-0005 execution freeze.
-- Receipt and denial signing keys for artifact-0005 must not come from fixtures/.
+FROZEN_VALUES:
+- CORPIFORM_VERSION=v0.1.4
+- AUTHORITY_SEAL_PATH=evidence/artifact-0005/input/live/authority.seal.json
+- EXECUTION_COMMAND_PATH=evidence/artifact-0005/input/live/execution.command.json
+- SIGNING_PATHS_FILE=evidence/artifact-0005/input/live/SIGNING_MATERIAL_PATHS.txt
+
+BOUNDARY:
+- The artifact-0005 environment surface is aligned with the current CORPIFORM runtime version truth.
+- Receipt signing and denial signing material are frozen by external path reference only and are not committed to the repository.
+- This file freezes execution-environment requirements only.
+- This file does not claim that governed execution has already run.
+- This file does not claim that a CORPIFORM receipt has already been recorded.
+- This file does not claim verifier execution, registration, or seal completion.
+
+ADMISSIBILITY_RULES:
+- CORPIFORM_VERSION must match the published package surface and runtime environment surface exactly.
+- RECEIPT_SIGNING_KEY and DENIAL_SIGNING_KEY must resolve to non-fixture material outside the repository.
+- Execution is inadmissible if any required environment value is missing, unreadable, or inconsistent with the frozen live input boundary.
