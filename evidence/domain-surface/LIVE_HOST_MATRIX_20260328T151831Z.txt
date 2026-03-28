@@ -1,0 +1,59 @@
+VERIFRAX LIVE HOST MATRIX
+CAPTURED_AT_UTC=20260328T151831Z
+
+HOST=api.verifrax.net
+HTTP=200
+CONTENT_TYPE=text/plain; charset=UTF-8
+FINAL_URL=https://api.verifrax.net/
+TITLE=-
+BODY_SHA256=91c7505f44ff2038b9cad7ca466fae8bd497031de06eaca073aff4f28f9ac6d0
+
+HOST=proof.verifrax.net
+HTTP=200
+CONTENT_TYPE=text/html; charset=utf-8
+FINAL_URL=https://proof.verifrax.net/
+TITLE=VERIFRAX Proof Surface
+BODY_SHA256=ad0002f9e837b2f5f8b449aba312af6da514c4757ffb0bb6d9072c4f7d7dc5b5
+
+HOST=auctoriseal.verifrax.net
+HTTP=200
+CONTENT_TYPE=text/html; charset=utf-8
+FINAL_URL=https://auctoriseal.verifrax.net/
+TITLE=AUCTORISEAL Authority Surface
+BODY_SHA256=6bc7899a3a4cb34f6131d335e919e39b2e9632e96bd4300191426d3cfcc30224
+
+HOST=corpiform.verifrax.net
+HTTP=200
+CONTENT_TYPE=text/html; charset=utf-8
+FINAL_URL=https://corpiform.verifrax.net/
+TITLE=CORPIFORM Runtime Reference
+BODY_SHA256=a329339c7dd8b5731dab080450658d2bb84e793c677859318b5dbb50edaf8c0b
+
+HOST=cicullis.verifrax.net
+HTTP=200
+CONTENT_TYPE=text/html; charset=utf-8
+FINAL_URL=https://cicullis.verifrax.net/
+TITLE=CICULLIS Enforcement Reference
+BODY_SHA256=f902b1962bd44dd4527009a306af9cb3581ad6e276a7407f44e44b11164a2222
+
+HOST=verify.verifrax.net
+HTTP=200
+CONTENT_TYPE=text/html; charset=utf-8
+FINAL_URL=https://verify.verifrax.net/
+TITLE=Verifrax Verifier
+BODY_SHA256=06439bf41def43b43280861d706e5d5a467591aaea7f917963950949194af996
+
+HOST=sigillarium.verifrax.net
+HTTP=200
+CONTENT_TYPE=text/html; charset=utf-8
+FINAL_URL=https://sigillarium.verifrax.net/
+TITLE=SIGILLARIUM Seal Archive
+BODY_SHA256=652c949305f7b29cdf90f33e3141ee10704dbc40fca3eaa3ee95145c8a8167ff
+
+HOST=apply.verifrax.net
+HTTP=200
+CONTENT_TYPE=text/html; charset=utf-8
+FINAL_URL=https://apply.verifrax.net/
+TITLE=VERIFRAX Apply
+BODY_SHA256=0bee05d9de714cba908dda1838c0a4bed8dc0d0bc8752378c09c4e76835fdd0f
+
