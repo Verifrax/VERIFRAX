@@ -1,6 +1,6 @@
 {
   "artifact_id": "artifact-0005",
-  "title": "Public Canonical Authority-Governed Execution Boundary",
+  "title": "Artifact-0005 Execution Boundary Pending Registration",
   "subject": {
     "subject": "CORPIFORM governed execution under a public canonical AUCTORISEAL seal",
     "subject_ref": "github.com/Verifrax/CORPIFORM",
@@ -12,11 +12,10 @@
     "event": "governed execution receipt recording"
   },
   "claim_set": [
-    "a public canonical AUCTORISEAL seal exists for artifact-0005",
-    "the governed CORPIFORM execution completed under that seal",
-    "the governed execution produced a recorded CORPIFORM receipt",
-    "the receipt authority_seal_id matches the published canonical seal id",
-    "the recorded execution outputs and receipt digests are present inside the artifact boundary"
+    "a public canonical AUCTORISEAL seal candidate is referenced for artifact-0005",
+    "the artifact-0005 input boundary contains live-path candidates outside fixtures",
+    "artifact-0005 input surfaces still describe execution as blocked and unregistered",
+    "artifact-0005 must not be treated as executed, verified, registered, or sealed until those blockers are removed"
   ],
   "evidence_objects": [
     {
@@ -53,31 +52,18 @@
     "input_index": "evidence/artifact-0005/input/INPUT_INDEX.txt"
   },
   "observed_results": {
-    "authority_seal_status": "PRESENT",
-    "execution_status": "EXECUTED",
-    "receipt_status": "PRESENT",
-    "receipt_authority_binding": "MATCHED",
-    "exit_code": "0"
+    "authority_seal_status": "CANDIDATE_PRESENT",
+    "execution_status": "BLOCKED",
+    "receipt_status": "UNREGISTERED",
+    "receipt_authority_binding": "UNCONFIRMED",
+    "exit_code": "UNRECORDED"
   },
   "execution_evidence": {
-    "verifier_runs": [
-      {
-        "implementation": "verifier/node",
-        "verdict": "VERIFIED",
-        "status": "EXECUTED",
-        "evidence": "evidence/artifact-0005/reexecution/node/raw-output.txt"
-      },
-      {
-        "implementation": "verifier/rust",
-        "verdict": "VERIFIED",
-        "status": "EXECUTED",
-        "evidence": "evidence/artifact-0005/reexecution/rust/raw-output.txt"
-      }
-    ],
-    "cross_implementation_match": true,
-    "comparison_record": "evidence/artifact-0005/reexecution/COMPARISON.txt",
-    "canonical_sha256": "801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b"
+    "verifier_runs": [],
+    "cross_implementation_match": false,
+    "comparison_record": "UNRECORDED",
+    "canonical_sha256": "UNRECORDED"
   },
-  "verdict": "VERIFIED",
-  "verdict_note": "governed execution evidence was evaluated by the maintained node and rust semantic evaluators, both produced VERIFIED, and the canonical outputs matched byte-for-byte"
+  "verdict": "BLOCKED",
+  "verdict_note": "artifact-0005 input surfaces still state EXECUTION NOT YET RUN / BLOCKED, so artifact-0005 cannot be treated as executed, verified, registered, or sealed"
 }

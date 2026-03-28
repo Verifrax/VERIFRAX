@@ -13,20 +13,20 @@ CURRENT_ARTIFACT_CHAIN:
 - ARTIFACT-0002 = VERIFIED
 - ARTIFACT-0003 = VERIFIED
 - ARTIFACT-0004 = RECORDED
-- ARTIFACT-0005 = VERIFIED
+- ARTIFACT-0005 = BLOCKED
 
 CURRENT_ARTIFACT_MEANING:
 - ARTIFACT-0001 records repository integrity and initial protocol object grounding.
 - ARTIFACT-0002 records authority readiness evidence and now-resolved semantic validation.
 - ARTIFACT-0003 records public issuance-subject presence with matching Node and Rust semantic validation.
 - ARTIFACT-0004 records the first CORPIFORM authority-governed execution receipt boundary under consumed fixture authority evidence.
-- ARTIFACT-0005 records public canonical authority-governed execution, recorded CORPIFORM receipt material, and matching Node and Rust semantic verification outputs.
+- ARTIFACT-0005 records a defined but still blocked non-fixture execution boundary and must not be treated as executed, verified, registered, or sealed.
 
 CURRENT_BOUNDARY:
 - The bootstrap chain is semantically resolved through artifact-0003.
 - The execution boundary is extended by artifact-0004 recorded receipt evidence.
-- The public canonical authority-governed execution boundary is extended by artifact-0005.
-- Artifact-0005 is the current highest registered artifact in the evidence root.
+- Artifact-0005 currently defines a blocked candidate boundary only.
+- Artifact-0005 is present in the evidence root but is not yet admissible as a registered executed boundary.
 - Package publication evidence for @verifrax/auctoriseal and @verifrax/corpiform is also recorded in the evidence root.
 
 CURRENT_AUTHORITY_BINDING:
@@ -37,11 +37,11 @@ CURRENT_AUTHORITY_BINDING:
 
 CURRENT_ARTIFACT_0005_BINDING:
 - AUTHORITY_SEAL_ID: seal_9c1568bb9ef7423283ca56ecdb7dc278
-- RECEIPT_ID: 8F88E46F-625B-4682-BF9A-D68ADD241FFF
-- NODE_VERDICT: VERIFIED
-- RUST_VERDICT: VERIFIED
-- CROSS_IMPLEMENTATION_MATCH: MATCH
-- CANONICAL_SEMANTIC_SHA256: 801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b
+- RECEIPT_ID: UNRECORDED
+- NODE_VERDICT: UNRECORDED
+- RUST_VERDICT: UNRECORDED
+- CROSS_IMPLEMENTATION_MATCH: UNRECORDED
+- CANONICAL_SEMANTIC_SHA256: UNRECORDED
 
 CURRENT_ROOT_SURFACES:
 - EVIDENCE_INDEX: evidence/README.md
@@ -55,7 +55,7 @@ CURRENT_LIMITS:
 - This file does not claim universal proof beyond the recorded artifact boundaries.
 - This file does not replace artifact-level evidence inspection.
 - Artifact-0004 remains bounded by consumed fixture authority evidence and is not the public canonical authority basis.
-- Artifact-0005 is recorded and verified in the evidence root, but no seal-state line has been added.
+- Artifact-0005 remains blocked and unregistered in current truth, and no seal-state line has been added.
 
 NEXT_REQUIRED_WORK:
 - write consistency and authority audit surfaces

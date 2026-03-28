@@ -24,7 +24,7 @@ ARTIFACT_STATUS_BINDINGS:
 - ARTIFACT-0002 = VERIFIED
 - ARTIFACT-0003 = VERIFIED
 - ARTIFACT-0004 = RECORDED
-- ARTIFACT-0005 = VERIFIED
+- ARTIFACT-0005 = BLOCKED
 
 ARTIFACT-0004 AUTHORITY BOUNDARY:
 - AUTHORITY_TYPE = CONSUMED FIXTURE AUTHORITY EVIDENCE
@@ -37,16 +37,16 @@ ARTIFACT-0005 AUTHORITY BOUNDARY:
 - AUTHORITY_TYPE = PUBLIC CANONICAL AUTHORITY EVIDENCE
 - AUTHORITY_SEAL_ID = seal_9c1568bb9ef7423283ca56ecdb7dc278
 - AUTHORITY_REF = github.com/Verifrax/AUCTORISEAL/public/seals/seal_9c1568bb9ef7423283ca56ecdb7dc278.json
-- RECEIPT_ID = 8F88E46F-625B-4682-BF9A-D68ADD241FFF
-- NODE_VERDICT = VERIFIED
-- RUST_VERDICT = VERIFIED
-- CROSS_IMPLEMENTATION_MATCH = MATCH
-- CANONICAL_SEMANTIC_SHA256 = 801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b
-- STATUS = VERIFIED
+- RECEIPT_ID = UNRECORDED
+- NODE_VERDICT = UNRECORDED
+- RUST_VERDICT = UNRECORDED
+- CROSS_IMPLEMENTATION_MATCH = UNRECORDED
+- CANONICAL_SEMANTIC_SHA256 = UNRECORDED
+- STATUS = BLOCKED
 
 MAPPING RULES:
 - artifact-0004 must remain bounded by consumed fixture authority evidence only.
-- artifact-0005 must remain the current highest root-registered authority-governed execution boundary.
+- artifact-0005 must remain a blocked candidate boundary until input, execution, receipt, and verifier records are all admissibly frozen.
 - no root status surface may describe artifact-0004 as the public canonical authority basis.
 - no root status surface may describe artifact-0005 as sealed until release-gate conditions are fully satisfied and explicit seal-state lines are added.
 - current authority identifiers and current artifact-0005 identifiers must remain identical across the root status surfaces.
