@@ -1,310 +1,315 @@
 # VERIFRAX
 
-```
-SYS-003
-STATUS: REGISTERED
-REGISTRY: https://speedkit.eu
-SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
-```
-
-Deterministic verification for irreversible evidence, final judgments, and protocol-grade trust boundaries.
-
-VERIFRAX is a protocol and maintained implementation surface designed to produce deterministic, auditable verification outcomes from structured evidence while preserving explicit authority boundaries between specification, conformance, execution, release integrity, genesis authority, and historical material.
-
----
-
-![Determinism](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/determinism.yml?branch=main\&label=determinism)
-![Integrity](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/integrity.yml?branch=main\&label=integrity)
-![Reproducibility](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/verifier-reproducibility.yml?branch=main\&label=reproducibility)
-![Fuzzing](https://img.shields.io/github/actions/workflow/status/Verifrax/VERIFRAX/clusterfuzzlite.yml?branch=main\&label=fuzzing)
-![Protocol Baseline](https://img.shields.io/badge/protocol%20baseline-v1-blue)
-![Spec](https://img.shields.io/badge/spec-VERIFRAX--SPEC-black)
-![Engine Parity](https://img.shields.io/badge/engine%20parity-verified-green)
-
-![Protocol](https://img.shields.io/badge/protocol-VERIFRAX-black)
-![System ID](https://img.shields.io/badge/system-SYS--003-0A0A0A)
-![Status](https://img.shields.io/badge/status-registered-brightgreen)
-![Registry](https://img.shields.io/badge/registry-speedkit.eu-1f2328)
-![Snapshot](https://img.shields.io/badge/snapshot-REGISTRY__SNAPSHOT.json-1f6feb)
-![Branch](https://img.shields.io/badge/branch-main-2da44e)
-![Tag](https://img.shields.io/badge/tag-v2.8.1-1f6feb)
-![Specification](https://img.shields.io/badge/specification-normative-111111)
-![Spec Root](https://img.shields.io/badge/spec%20root-docs%2Fspec-111111)
-![Conformance](https://img.shields.io/badge/conformance-versioned-005cc5)
-![Conformance Root](https://img.shields.io/badge/conformance%20root-protocol--conformance-005cc5)
-![Verifier Surface](https://img.shields.io/badge/verifier-maintained-2da44e)
-![Node Verifier](https://img.shields.io/badge/verifier%2Fnode-active-2da44e)
-![Rust Verifier](https://img.shields.io/badge/verifier%2Frust-active-f0883e)
-![Release Integrity](https://img.shields.io/badge/release%20integrity-active-2da44e)
-![Freeze Surface](https://img.shields.io/badge/freeze%20surface-declared-0969da)
-![Freeze Authority](https://img.shields.io/badge/freeze%20authority-release--integrity%2Ffreeze--surfaces.json-0969da)
-![Authority Map](https://img.shields.io/badge/authority-AUTHORITY.md-critical)
-![Registry Surface](https://img.shields.io/badge/registry%20surface-maintained-8250df)
-![Index Surface](https://img.shields.io/badge/index%20surface-maintained-8250df)
-![Genesis Root](https://img.shields.io/badge/genesis-root%20anchored-2da44e)
-![Genesis Certificate](https://img.shields.io/badge/genesis%20certificate-published-2da44e)
-![Genesis Lineage](https://img.shields.io/badge/genesis%20lineage-tracked-2da44e)
-![Ecosystem Docs](https://img.shields.io/badge/ecosystem%20docs-aligned-8250df)
-![Historical Archives](https://img.shields.io/badge/history-preserved-lightgrey)
-![Archive Boundary](https://img.shields.io/badge/archive-non--authoritative-lightgrey)
-![Determinism Required](https://img.shields.io/badge/determinism-required-2da44e)
-![Canonicalization](https://img.shields.io/badge/canonicalization-defined-2da44e)
-![Bundle Hashing](https://img.shields.io/badge/bundle%20hashing-defined-2da44e)
-![Contradiction Detection](https://img.shields.io/badge/contradiction%20detection-defined-2da44e)
-![Invalidation](https://img.shields.io/badge/invalidation-defined-2da44e)
-![Finality](https://img.shields.io/badge/finality-enforced-2da44e)
-![Verdict Model](https://img.shields.io/badge/verdict%20model-deterministic-2da44e)
-![Failure Semantics](https://img.shields.io/badge/failure%20semantics-explicit-2da44e)
-![Implementation Neutrality](https://img.shields.io/badge/implementation-neutral-1f6feb)
-![Interoperability](https://img.shields.io/badge/interoperability-targeted-1f6feb)
-![Auditability](https://img.shields.io/badge/auditability-protocol--grade-1f6feb)
-![Reproducibility Required](https://img.shields.io/badge/reproducibility-required-1f6feb)
-![Governance](https://img.shields.io/badge/governance-defined-1f6feb)
-![Contribution Discipline](https://img.shields.io/badge/contributions-authority--aware-1f6feb)
-![Adversarial Posture](https://img.shields.io/badge/adversarial%20posture-explicit-d73a49)
-![Legitimacy Signals](https://img.shields.io/badge/legitimacy%20signals-documented-d73a49)
-
----
-
-## What VERIFRAX is
-
-VERIFRAX is a deterministic verification protocol and repository architecture for:
-
-* irreversible evidence evaluation
-* canonical bundle verification
-* explicit contradiction and invalidation handling
-* reproducible final judgments
-* auditable maintained verifier execution
-* stable release-integrity boundaries
-* explicit genesis authority anchoring
-* long-horizon historical traceability
-
-Independent implementations can converge on identical outputs without requiring hidden repository knowledge or ad hoc interpretation.
-
----
-
-## Genesis anchor
-
-The VERIFRAX protocol lineage begins from a single immutable genesis root.
-
-Canonical genesis root:
+Normative protocol authoring, evidence-root registration, and verification boundary for the governed Verifrax system.
 
-```
-index/GENESIS_HASH.txt
-```
+## Status
 
-Public genesis certificate:
+* Layer: protocol authoring, evidence, and verification boundary
+* Repository class: governed flagship repository
+* npm package: `@verifrax/verifrax`
+* System role: authored source material plus artifact-chain registration
+* Public host ownership: none claimed as sole host surface in this README
+* License: Apache License Version 2.0
 
-```
-public/genesis/certificate.json
-```
+## One-sentence role
 
-Genesis lineage record:
+VERIFRAX authors normative source material, records the artifact chain, and defines the verification boundary that interprets governed authority and governed execution without becoming the authority issuer or the execution runtime itself.
 
-```
-release-integrity/genesis-lineage.json
-```
+## What this repository is
 
-Human-readable genesis documentation:
+VERIFRAX is the flagship repository of the governed Verifrax stack.
 
-```
-docs/genesis/GENESIS_CHAIN.md
-```
+It exists to provide:
 
-The genesis root defines the immutable origin of the protocol lineage and must never change.
+* normative authored source material
+* protocol and verification boundary definition
+* maintained evidence-root structure
+* artifact registration and chain continuity
+* verification semantics for recorded inputs, receipts, and outputs
+* historical and current-state separation inside the evidence surface
+* linkage between authority, execution, proof, and public verifier surfaces
 
----
+This repository is the authored and recorded center of the stack.
 
-## Repository authority map
+## What this repository is not
 
-Active repository authority resolves through the following repository surfaces:
+VERIFRAX is not:
 
-* normative specification: `docs/spec/`
+* the authority issuance repository
+* the execution runtime repository
+* the derived specification publication surface
+* the public verifier UI itself
+* the public proof publication repository
+* the intake repository
+* the commercial landing surface
+* a generic package marketing surface
+* a substitute for authority issuance or receipt generation
 
-VERIFRAX authors normative source material.
-VERIFRAX-SPEC publishes derived specification artifacts from VERIFRAX.
-Derived artifacts are not upstream repository authority.
-Governance authority is external and bound through AUCTORISEAL plus the governed repo set in `.github`.
-* conformance authority: `protocol-conformance/`
-* maintained verifier surfaces: `verifier/node`, `verifier/rust`
-* release-integrity surface: `release-integrity/`
-* maintained registry surface: `registry/`
-* maintained index surface: `index/`
-* ecosystem documentation surface: `docs/ecosystem/`
-* repository authority boundary: `AUTHORITY.md`
+VERIFRAX does not:
 
-Historical materials remain preserved under:
+* mint authority objects
+* admit or execute governed runtime actions
+* replace AUCTORISEAL
+* replace CORPIFORM
+* replace the public verifier UI at `verify.verifrax.net`
+* replace the proof publication surface at `proof.verifrax.net`
 
-* `archive/`
-* `release-history/`
+VERIFRAX interprets governed material and records chain truth. It does not create every input that it later verifies.
 
-These directories never define active protocol authority.
+## Stack position
 
----
+The governed stack reads in this order:
 
-## Repository entrypoints
+1. `.github` — governed repository boundary and governance linkage
+2. `AUCTORISEAL` — authority issuance and public authority publication
+3. `CORPIFORM` — governed execution and receipt emission
+4. `VERIFRAX` — authored protocol boundary, evidence root, and chain registration
+5. `VERIFRAX-verify` — public verification surface
+6. `proof` — public proof publication surface
+7. `apply` — public intake surface
 
-### Specification
+VERIFRAX therefore sits after authority publication and execution recording when evaluating recorded chain truth, while also remaining upstream authored source material for the derived specification surface.
 
-Primary normative entrypoint in VERIFRAX authoring source:
+## Authority and specification direction
 
-```
-docs/spec/INDEX.md
-```
+The load-bearing direction across the governed system is:
 
-### Conformance
+* VERIFRAX authors normative source material.
+* VERIFRAX-SPEC publishes derived specification artifacts from VERIFRAX.
+* Derived artifacts are not upstream authority.
+* Governance authority is external and bound through AUCTORISEAL plus the governed repo set in `.github`.
 
-Primary conformance entrypoints:
+That direction must stay explicit in this README because VERIFRAX is both authored-source surface and evidence-root surface.
 
-```
-protocol-conformance/README.md
-protocol-conformance/v2/README.md
-```
+VERIFRAX is upstream for authored protocol material.
+VERIFRAX is not upstream for governance authority issuance.
 
-### Maintained verifier surfaces
+## Public-surface relationship
 
-```
-verifier/node/README.md
-verifier/rust/README.md
-```
+This repository must connect to the public domain surfaces without falsely claiming ownership of all of them.
 
-### Release integrity
+Relevant neighboring surfaces are:
 
-```
-release-integrity/README.md
-```
+* `https://api.verifrax.net/` — execution surface
+* `https://proof.verifrax.net/` — proof publication surface
+* `https://verify.verifrax.net/` — public verifier surface
+* `https://auctoriseal.verifrax.net/` — authority issuance/reference surface
+* `https://corpiform.verifrax.net/` — runtime reference surface
+* `https://apply.verifrax.net/` — intake surface
+* `https://sigillarium.verifrax.net/` — seal/archive reference surface
 
-Canonical active metadata:
+This repository must link to those surfaces as adjacent system boundaries.
 
-```
-release-integrity/freeze-surfaces.json
-release-integrity/reference-verifier-hashes.json
-release-integrity/release-sha256-manifest.json
-release-integrity/genesis-lineage.json
-```
+It must not claim that VERIFRAX itself is the sole owner of:
 
----
+* `api.verifrax.net`
+* `proof.verifrax.net`
+* `verify.verifrax.net`
+* `apply.verifrax.net`
+* `auctoriseal.verifrax.net`
+* `corpiform.verifrax.net`
+* `sigillarium.verifrax.net`
 
-## Protocol architecture
+## Evidence root boundary
 
-VERIFRAX operates across five repository-level control layers.
+VERIFRAX is the evidence-root repository.
 
-### Normative layer
+That means it is responsible for:
 
-`docs/spec/`
+* artifact directory continuity
+* recorded input/output boundaries where declared
+* chain registration text
+* current-state versus historical-state separation
+* contradiction containment inside evidence surfaces
+* evidence-visible linkage between authority, execution, receipt, and verification
 
-Defines protocol semantics.
+It must not allow older files to impersonate current truth.
 
-### Conformance layer
+It must not allow README prose to outrun evidence.
 
-`protocol-conformance/`
+## Artifact chain
 
-Defines implementation alignment targets.
+The artifact chain must be described here with exact boundary discipline.
 
-### Execution layer
+### Artifact-0004
 
-`verifier/node`
+Artifact-0004 is the recorded bounded execution boundary already present in the chain.
 
-`verifier/rust`
+This repository may describe artifact-0004 as recorded execution evidence.
 
-Defines maintained execution surfaces.
+It must not describe artifact-0004 as equivalent to the first public canonical seal.
 
-### Release-integrity layer
+### Artifact-0005
 
-`release-integrity/`
+Artifact-0005 is load-bearing across this repository because it is the next chain boundary that must connect:
 
-Defines frozen release surfaces and manifests.
+* public canonical authority
+* governed execution under that authority
+* recorded CORPIFORM receipt
+* VERIFRAX evidence registration
+* matching verification interpretation
+* public verification path
 
-### Historical lineage layer
+This README must therefore mention artifact-0005 as an active chain requirement.
 
-`archive/`
+It must not describe artifact-0005 as complete, sealed, or universally proven unless the evidence root actually proves that state.
 
-`release-history/`
+## Verifier boundary
 
-Preserves historical material only.
+VERIFRAX and the public verifier are related but not identical.
 
----
+### VERIFRAX
 
-## Deterministic verification model
+VERIFRAX defines and records the maintained verification boundary inside the governed repository system.
 
-Canonical execution order:
+### VERIFRAX-verify
 
-1. bundle validation
-2. canonical normalization
-3. profile compatibility
-4. signature verification
-5. contradiction detection
-6. invalidation processing
-7. verdict generation
-8. finality enforcement
+`VERIFRAX-verify` is the public verification surface at `https://verify.verifrax.net/`.
 
----
+That public surface must remain linked from this repository because verifier visibility is part of the load-bearing public chain.
 
-## Protocol guarantees
+This README must make the distinction explicit:
 
-### Deterministic outputs
+* VERIFRAX = authored protocol + evidence root + maintained verification boundary
+* VERIFRAX-verify = public verifier UI and public inspection surface
 
-Identical implementations must converge on identical outputs.
+If that distinction is blurred, proof, verifier, and protocol roles collapse into each other.
 
-### Explicit authority boundaries
+## Proof boundary
 
-Authority cannot be inferred from historical or archived surfaces.
+The proof publication surface is separate from both VERIFRAX and the public verifier.
 
-### Reproducible release verification
+* `proof` owns `https://proof.verifrax.net/`
+* VERIFRAX records and links evidence boundaries
+* VERIFRAX-verify gives public verifier access
 
-Release integrity resolves through deterministic manifests and verifier identity records.
+This repository must not present proof publication as if it were the same thing as authored protocol or public verifier UI.
 
-### Historical continuity without historical authority
+## Inputs and outputs
 
-Historical records remain preserved without remaining authoritative.
+### Inputs consumed by this repository
 
----
+VERIFRAX consumes and records material such as:
 
-## Using VERIFRAX
+* authority references published by AUCTORISEAL
+* governed execution receipts emitted by CORPIFORM
+* evidence bundles and protocol inputs
+* conformance material
+* verifier outputs and cross-implementation comparison material
+* chain registration metadata
 
-Review protocol:
+### Outputs produced by this repository
 
-```
-sed -n "1,220p" docs/spec/INDEX.md
-```
+VERIFRAX produces and maintains:
 
-Run Node verifier:
+* authored normative source material
+* evidence-root registration and artifact indexing
+* verification documentation and maintained verifier boundary
+* current-state and historical-state evidence mapping
+* chain continuity across recorded artifacts
 
-```
-cd verifier/node
-npm install
-node src/verifier.mjs
-```
+It does not produce authority objects or governed runtime admission.
 
-Run Rust verifier:
+## Package and publication truth
 
-```
-cd verifier/rust
-cargo run --release
-```
+This repository is first and foremost a protocol/evidence repository.
 
-Inspect release metadata:
+This README must not imply a public npm runtime package unless package metadata and publication reality prove that claim.
 
-```
-find release-integrity -maxdepth 2 -type f | LC_ALL=C sort
-```
+If package metadata changes, the README must follow the metadata rather than the reverse.
 
----
+## Current reading rule
+
+Read the neighboring repositories in this order when tracing the full system:
+
+* [`.github`](https://github.com/Verifrax/.github) — governance root
+* [`AUCTORISEAL`](https://github.com/Verifrax/AUCTORISEAL) — authority issuance/reference
+* [`CORPIFORM`](https://github.com/Verifrax/CORPIFORM) — governed execution and receipts
+* [`VERIFRAX-SPEC`](https://github.com/Verifrax/VERIFRAX-SPEC) — derived specification publication
+* [`VERIFRAX-PROFILES`](https://github.com/Verifrax/VERIFRAX-PROFILES) — deterministic profile constraints
+* [`VERIFRAX-verify`](https://github.com/Verifrax/VERIFRAX-verify) — public verifier UI
+* [`proof`](https://github.com/Verifrax/proof) — proof publication surface
+* [`apply`](https://github.com/Verifrax/apply) — intake surface
+* [`VERIFRAX-DOCS`](https://github.com/Verifrax/VERIFRAX-DOCS) — documentation/reference surface
+* [`ARCHITECTURE`](https://github.com/Verifrax/ARCHITECTURE) — topology and interaction map
+
+## CI and governance expectations
+
+Any CI posture described in this README must be real.
+
+The flagship repository should enforce real checks for:
+
+* identity alignment
+* integrity alignment
+* determinism where declared
+* verifier reproducibility where declared
+* artifact registration consistency
+* evidence-root drift detection
+* cross-reference consistency for artifact, authority, version, and digest surfaces
+
+This README must not use badges or prose to imply success states that the evidence root and workflows do not actually prove.
+
+## README truth rules
+
+This README fails if it:
+
+* blurs protocol authorship with authority issuance
+* blurs verification boundary with execution runtime
+* blurs public verifier UI with evidence root
+* overclaims artifact-0005 status
+* describes historical files as current truth
+* claims sole host ownership where none is proved
+* implies package publication beyond metadata reality
+
+## Verifrax system path labels
+
+The governed Verifrax path that this README must stay compatible with is:
+
+1. `.github` — organization governance and governed repository boundary
+2. `AUCTORISEAL` — authority issuance and public authority reference
+3. `CORPIFORM` — governed execution and receipt emission
+4. `VERIFRAX` — authored protocol, evidence root, and artifact-chain registration boundary
+5. `VERIFRAX-SPEC` — derived specification publication surface
+6. `VERIFRAX-PROFILES` — deterministic profile-constraint surface
+7. `VERIFRAX-SAMPLES` — pinned sample and reproducibility surface
+8. `VERIFRAX-verify` — public verification repository and UI boundary
+9. `VERIFRAX-DOCS` — explanatory documentation surface
+10. `cicullis` — enforcement boundary
+11. `proof` — proof publication surface
+12. `SIGILLARIUM` — seal and archive reference surface
+13. `apply` — intake surface
+
+The live host-label map that must remain explicit and non-contradictory is:
+
+* `https://api.verifrax.net/` — execution surface
+* `https://proof.verifrax.net/` — proof publication surface
+* `https://auctoriseal.verifrax.net/` — authority issuance and authority reference surface
+* `https://corpiform.verifrax.net/` — runtime and receipt reference surface
+* `https://cicullis.verifrax.net/` — enforcement reference surface
+* `https://verify.verifrax.net/` — public verification surface
+* `https://sigillarium.verifrax.net/` — seal and archive reference surface
+* `https://apply.verifrax.net/` — intake surface
+* `https://docs.verifrax.net/` — documentation surface
+
+This README must remain compatible with `artifact-0005` as the load-bearing authority → execution → verification → evidence boundary without claiming that this repository alone authors, proves, seals, or registers `artifact-0005` unless that role is actually true for this repository.
+
+## Security
+
+Do not publish hidden authority material, private execution inputs, unpublished verifier compromises, or internal evidence-handling vulnerabilities that would weaken the governed chain.
+
+Security issues that affect authority, execution, or evidence linkage are chain-integrity issues, not cosmetic issues.
 
 ## Contributing
 
-Contribution discipline is defined in `CONTRIBUTING.md`.
+A change is wrong if it:
 
-Valid contributions must preserve deterministic protocol authority resolution.
-
----
+* weakens the authored-source direction from VERIFRAX to VERIFRAX-SPEC
+* weakens the authority direction from AUCTORISEAL into governed execution
+* weakens artifact registration discipline
+* weakens evidence-root current-state truth
+* treats README prose as a substitute for evidence
+* introduces future-state claims as present state
 
 ## License
 
-See repository licensing metadata.
-
----
-
-## Maintained by
-
-VERIFRAX is maintained as a protocol-first repository with deterministic verification discipline and explicit authority boundaries.
+Apache License Version 2.0. See `LICENSE`.
