@@ -1,12 +1,24 @@
 # VERIFRAX
 
+```
+SYS-003
+STATUS: REGISTERED
+REGISTRY: https://speedkit.eu
+SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
+```
+
+![License](https://img.shields.io/badge/license-Apache--2.0-blue)
+![Role](https://img.shields.io/badge/role-protocol%20evidence%20boundary-111111)
+![Identity](https://github.com/Verifrax/VERIFRAX/actions/workflows/identity.yml/badge.svg?branch=main)
+![Determinism](https://github.com/Verifrax/VERIFRAX/actions/workflows/determinism.yml/badge.svg?branch=main)
+![Integrity](https://github.com/Verifrax/VERIFRAX/actions/workflows/integrity.yml/badge.svg?branch=main)
+
 Normative protocol authoring, evidence-root registration, and verification boundary for the governed Verifrax system.
 
 ## Status
 
 * Layer: protocol authoring, evidence, and verification boundary
 * Repository class: governed flagship repository
-* npm package: `@verifrax/verifrax`
 * System role: authored source material plus artifact-chain registration
 * Public host ownership: none claimed as sole host surface in this README
 * License: Apache License Version 2.0
