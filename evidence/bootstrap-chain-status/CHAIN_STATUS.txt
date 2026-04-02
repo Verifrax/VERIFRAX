@@ -11,5 +11,5 @@ PACKAGE-SURFACE-AUCTORISEAL: RECORDED
 PACKAGE-SURFACE-AUCTORISEAL-NOTE: @verifrax/auctoriseal package publication surface is recorded in evidence/package-surface/auctoriseal-0.1.2
 PACKAGE-SURFACE-CORPIFORM: RECORDED
 PACKAGE-SURFACE-CORPIFORM-NOTE: @verifrax/corpiform@0.1.4 is published with dist-tag latest and public access; VERIFRAX preserves package identity, packument, access status, and install help evidence
-CURRENT_BOUNDARY: bootstrap chain is semantically resolved for artifacts 0001-0003, extended by recorded CORPIFORM execution evidence in artifact-0004, indexed with recorded AUCTORISEAL and CORPIFORM package publication surfaces, and prepared for artifact-0005 governed execution without yet recording receipt or verifier results there
-NEXT_REQUIRED_WORK: align current-state indexes, contradiction audits, and remaining public truth surfaces before any seal-state line is added
+CURRENT_BOUNDARY: bootstrap chain is semantically resolved for artifacts 0001-0003, extended by recorded CORPIFORM execution evidence in artifact-0004, indexed with recorded AUCTORISEAL and CORPIFORM package publication surfaces, and extended by artifact-0005 verified governed execution with recorded receipt and matching Node and Rust verifier results
+NEXT_REQUIRED_WORK: historical-mark stale pre-execution artifact-0005 input surfaces, resolve receipt-identity ambiguity in stdout evidence, and align remaining repo and docs truth surfaces before any seal-state line is added

@@ -1,6 +1,6 @@
 {
   "artifact_id": "artifact-0005",
-  "title": "Artifact-0005 Governed Execution Boundary Ready for Execution",
+  "title": "Artifact-0005 Verified Governed Execution Boundary",
   "subject": {
     "subject": "CORPIFORM governed execution under a public canonical AUCTORISEAL seal",
     "subject_ref": "github.com/Verifrax/CORPIFORM",
@@ -14,7 +14,7 @@
   "claim_set": [
     "a public canonical AUCTORISEAL seal exists for artifact-0005",
     "the artifact-0005 input boundary contains frozen admissible non-fixture live material",
-    "artifact-0005 governed execution, receipt recording, and maintained-verifier execution remain unrecorded as current truth",
+    "artifact-0005 governed execution, receipt recording, and maintained-verifier execution are recorded as current truth",
     "the receipt authority_seal_id matches the published canonical seal id"
   ],
   "evidence_objects": [
@@ -78,5 +78,6 @@
     "canonical_sha256": "801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b"
   },
   "verdict": "VERIFIED",
-  "verdict_note": "artifact-0005 input and environment surfaces are frozen and admissible, but governed execution, receipt recording, verifier execution, registration, and seal completion remain unrecorded"
+  "verdict_note": "artifact-0005 input, execution, receipt, verifier outputs, and registration are recorded as current truth; seal completion is not claimed here",
+  "claims": []
 }
