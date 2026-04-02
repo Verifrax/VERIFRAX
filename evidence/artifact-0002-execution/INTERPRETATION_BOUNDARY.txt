@@ -1,8 +1,8 @@
-STATUS: ADAPTER_EXECUTED
-NODE_RESULT: artifact-0002: PASS
-RUST_RESULT: artifact-0002: PASS
-CROSS_IMPLEMENTATION_MATCH: YES
-MEANING: the maintained verifiers accepted the adapter suite and matched each other
-NON-MEANING: this does not yet prove the external readiness claim is semantically FAILED
-REASON: current maintained verifiers are conformance-suite runners, not artifact-claim evaluators
-NEXT_REQUIRED_WORK: define and implement semantic artifact verdict mapping before publishing Artifact-0002 as FAILED
+STATUS: HISTORICAL ADAPTER EXECUTION SNAPSHOT
+HISTORICAL_NOTE: retained for audit history only; this file does not define current truth for artifact-0002.
+ORIGINAL_STATUS_AT_CAPTURE: ADAPTER_EXECUTED
+ORIGINAL_BOUNDARY: adapter suite executed successfully against artifact-0002 through the maintained verifier adapter layer.
+CURRENT_TRUTH_REFERENCE: evidence/artifact-semantic-execution/CROSS_IMPLEMENTATION_STATUS.txt
+CURRENT_ARTIFACT_REFERENCE: evidence/artifact-0002/artifact-0002.json
+CURRENT_BOUNDARY_NOTE: artifact-0002 is recorded as VERIFIED in current truth through declared evidence presence and matching node/rust semantic outputs.
+NEXT_REQUIRED_WORK: preserve this file as a historical adapter-boundary snapshot only and avoid reading it as the active artifact-0002 interpretation surface
