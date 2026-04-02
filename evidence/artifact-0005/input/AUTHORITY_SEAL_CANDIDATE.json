@@ -3,7 +3,7 @@
   "status": "HISTORICAL AT CAPTURE / PRE-EXECUTION CANDIDATE ONLY",
   "historical_note": "Retained for audit history only. This file does not define current truth for artifact-0005.",
   "original_status_at_capture": "CANDIDATE / NOT YET ISSUED",
-  "purpose": "Canonical non-fixture authority seal input placeholder for governed execution freeze.",
+  "purpose": "Historical pre-issuance authority-seal candidate retained for artifact-0005 lineage audit.",
   "requirements": {
     "issuer_system": "AUCTORISEAL",
     "authority_basis": "public canonical authority object",
@@ -36,9 +36,9 @@
     "Must remain inside the artifact-0005 execution boundary only."
   ],
   "blockers": [
-    "No live issued non-fixture seal recorded yet.",
-    "No live cryptographic signature recorded yet.",
-    "Seal is unfit for execution until replaced by issued authority material."
+    "This file is superseded by the live issued authority seal path at evidence/artifact-0005/input/live/authority.seal.json.",
+    "Historical candidate material must not be treated as the active admissible authority input boundary.",
+    "Current authority truth is recorded in the live input, execution, receipt, and current-state surfaces."
   ],
   "historical_status": "HISTORICAL_AT_CAPTURE"
 }

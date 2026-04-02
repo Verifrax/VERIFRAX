@@ -1,7 +1,7 @@
 {
   "artifact": "artifact-0005",
-  "status": "CANDIDATE / NOT YET EXECUTED",
-  "purpose": "Canonical non-fixture governed execution command candidate for artifact-0005.",
+  "status": "HISTORICAL PRE-EXECUTION CANDIDATE",
+  "purpose": "Historical pre-execution command candidate retained for artifact-0005 lineage audit.",
   "command": {
     "command_id": "artifact-0005-cmd-mail-dispatch-001",
     "body": "mail",
@@ -23,8 +23,14 @@
     "No hidden parameters, fallback paths, or undocumented adapters are allowed."
   ],
   "blockers": [
-    "This candidate is not yet a live execution file path.",
-    "Live signing material for receipt and denial emission is not yet frozen outside fixtures.",
-    "This candidate is not registered evidence until the execution boundary is frozen and run."
+    "This file is superseded by the live admissible execution command path at evidence/artifact-0005/input/live/execution.command.json.",
+    "Historical candidate material must not be treated as the active execution boundary.",
+    "Current registration and execution truth are recorded in the artifact-0005 execution, receipt, and current-state surfaces."
+  ],
+  "notes": [
+    "This file is a historical pre-execution candidate retained for lineage traceability.",
+    "The live admissible execution command path is evidence/artifact-0005/input/live/execution.command.json.",
+    "Artifact-0005 is already recorded as a verified governed execution boundary in current truth.",
+    "This file does not define the active execution boundary or current registration state."
   ]
 }

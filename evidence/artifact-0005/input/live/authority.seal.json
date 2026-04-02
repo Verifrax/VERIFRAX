@@ -17,7 +17,7 @@
   "protocol": 1,
   "status": "active",
   "metadata": {
-    "notes": "artifact-0005 live non-fixture issuance candidate",
+    "notes": "artifact-0005 live non-fixture authority seal recorded in the admissible input boundary",
     "source_repo": "Verifrax/AUCTORISEAL",
     "source_event_hash": "8d3081a080e0a0b66a18d85730e9d74091c045e872950318f76a09496382c3d6",
     "source_fingerprint": "3e2ca2bdfb96a2312c28086cf52bc658a90e67edd8397bdcc769ad46a5049a65"
