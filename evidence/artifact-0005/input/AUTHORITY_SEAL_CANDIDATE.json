@@ -1,6 +1,8 @@
 {
   "artifact": "artifact-0005",
-  "status": "CANDIDATE / NOT YET ISSUED",
+  "status": "HISTORICAL AT CAPTURE / PRE-EXECUTION CANDIDATE ONLY",
+  "historical_note": "Retained for audit history only. This file does not define current truth for artifact-0005.",
+  "original_status_at_capture": "CANDIDATE / NOT YET ISSUED",
   "purpose": "Canonical non-fixture authority seal input placeholder for governed execution freeze.",
   "requirements": {
     "issuer_system": "AUCTORISEAL",
@@ -37,5 +39,6 @@
     "No live issued non-fixture seal recorded yet.",
     "No live cryptographic signature recorded yet.",
     "Seal is unfit for execution until replaced by issued authority material."
-  ]
+  ],
+  "historical_status": "HISTORICAL_AT_CAPTURE"
 }
