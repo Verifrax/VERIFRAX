@@ -1,0 +1,28 @@
+ARTIFACT: artifact-0005
+STATUS: RECEIPT IDENTITY INTERPRETATION RECORDED
+CANONICAL_RECEIPT_ID: 8F88E46F-625B-4682-BF9A-D68ADD241FFF
+NONCANONICAL_STDOUT_ONLY_ID: 0C7183B9-C3F8-4ADA-90A4-44A18DEFFA50
+
+RULES:
+- The canonical artifact-0005 receipt identifier is 8F88E46F-625B-4682-BF9A-D68ADD241FFF.
+- This canonical identifier is the one recorded in:
+  - evidence/bootstrap-chain-status/CHAIN_STATUS.txt
+  - evidence/CURRENT_STATE_INDEX.txt
+  - evidence/STATUS_AUTHORITY_MAP.txt
+  - evidence/artifact-0005/artifact-0005.json
+  - evidence/artifact-0005/EXECUTION_STATUS.txt
+  - evidence/artifact-0005/receipt/receipt.json
+  - evidence/artifact-0005/receipt/receipt.canonical.txt
+- The identifier 0C7183B9-C3F8-4ADA-90A4-44A18DEFFA50 appears only in raw stdout capture.
+- Raw stdout capture is preserved unchanged as historical execution evidence.
+- The stdout-only identifier does not define current truth for artifact-0005.
+- The stdout-only identifier is not the registered artifact-0005 receipt id.
+- The stdout-only identifier is not referenced by the canonical receipt object, canonical receipt serialization, or current-state root surfaces.
+
+INTERPRETATION:
+- Current truth follows the canonical receipt object and all root current-state surfaces.
+- Raw stdout remains preserved as-captured, but interpretation of artifact-0005 receipt identity is fixed to the canonical receipt id above.
+
+LIMIT:
+- This file resolves receipt identity interpretation only.
+- This file does not claim seal completion.

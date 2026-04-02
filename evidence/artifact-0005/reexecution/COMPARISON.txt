@@ -11,3 +11,8 @@ RULES:
 - Node and Rust semantic outputs matched byte-for-byte after canonicalization.
 - This file records cross-implementation agreement only.
 - This file does not register artifact-0005 in the root evidence index.
+
+RECEIPT_IDENTITY_NOTE:
+- Canonical artifact-0005 receipt id = 8F88E46F-625B-4682-BF9A-D68ADD241FFF
+- Raw stdout also contains 0C7183B9-C3F8-4ADA-90A4-44A18DEFFA50
+- Receipt identity interpretation is fixed by evidence/artifact-0005/receipt/RECEIPT_IDENTITY_NOTE.txt
