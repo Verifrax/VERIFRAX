@@ -9,10 +9,10 @@
     "event": "protocol readiness verification"
   },
   "claim_set": [
-    "no issued genesis authority seal artifact is present",
-    "no standalone authority ledger artifact is present",
+    "issued genesis authority seal artifact is present",
+    "standalone authority ledger artifact is present",
     "authority, ledger, and seals implementation surfaces exist as code",
-    "schema surfaces exist, but no issued live authority object was found"
+    "declared live authority objects are present and semantic readiness is satisfied"
   ],
   "evidence_objects": [
     {
@@ -34,34 +34,35 @@
     "ledger_tree": "evidence/artifact-0002/ledger-tree.txt",
     "seals_tree": "evidence/artifact-0002/seals-tree.txt",
     "issued_object_search": "evidence/artifact-0002/issued-object-search.txt",
-    "live_reference_search": "evidence/artifact-0002/live-reference-search.txt"
+    "live_reference_search": "evidence/artifact-0002/live-reference-search.txt",
+    "semantic_cross_implementation_status": "evidence/artifact-semantic-execution/CROSS_IMPLEMENTATION_STATUS.txt",
+    "execution_status": "evidence/artifact-0002/EXECUTION_STATUS.txt"
   },
   "observed_results": {
-    "seal_presence": "ABSENT",
-    "ledger_presence": "ABSENT",
-    "issued_object_search_summary": "no issued SEAL-0001 json, no authority-ledger json, no persisted ledger db/sqlite artifact found",
-    "classification_note": "implementation code exists, but repository-published issued authority objects were not observed"
+    "seal_presence": "PRESENT",
+    "ledger_presence": "PRESENT",
+    "issued_object_search_summary": "authority-ledger.json and public/genesis/SEAL-0001.json are present in declared evidence",
+    "classification_note": "declared evidence presence and semantic readiness are satisfied across maintained node and rust evaluators"
   },
   "execution_evidence": {
     "verifier_runs": [
       {
         "implementation": "verifier/node",
-        "output_log": "evidence/artifact-0002-execution/node-run.txt",
-        "artifact_line_log": "evidence/artifact-0002-execution/node-artifact-0002-line.txt",
-        "result_line": "artifact-0002: PASS",
-        "run_output_sha256": "a271a8cb4aaf1e24bb43ba673f300dec1007b9e4b145db73919c769d05239bfb"
+        "verdict": "VERIFIED",
+        "status": "EXECUTED",
+        "evidence": "evidence/artifact-semantic-execution/artifact-0002.node.semantic.json"
       },
       {
         "implementation": "verifier/rust",
-        "output_log": "evidence/artifact-0002-execution/rust-run.txt",
-        "artifact_line_log": "evidence/artifact-0002-execution/rust-artifact-0002-line.txt",
-        "result_line": "artifact-0002: PASS",
-        "run_output_sha256": "a271a8cb4aaf1e24bb43ba673f300dec1007b9e4b145db73919c769d05239bfb"
+        "verdict": "VERIFIED",
+        "status": "EXECUTED",
+        "evidence": "evidence/artifact-semantic-execution/artifact-0002.rust.semantic.json"
       }
     ],
     "cross_implementation_match": true,
-    "interpretation_boundary": "evidence/artifact-0002-execution/INTERPRETATION_BOUNDARY.txt"
+    "interpretation_boundary": "evidence/artifact-semantic-execution/CROSS_IMPLEMENTATION_STATUS.txt",
+    "historical_adapter_execution_boundary": "evidence/artifact-0002-execution/INTERPRETATION_BOUNDARY.txt"
   },
-  "verdict": "ADAPTER_EXECUTED",
-  "verdict_note": "adapter suite executed successfully and matched across maintained verifiers; semantic FAILED classification remains unproven by the current verifier model"
+  "verdict": "VERIFIED",
+  "verdict_note": "authority ledger and genesis seal are present in declared evidence; node and rust semantic evaluators produced VERIFIED outputs and matched across maintained implementations"
 }
