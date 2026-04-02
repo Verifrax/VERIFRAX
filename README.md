@@ -153,7 +153,7 @@ It must not describe artifact-0004 as equivalent to the first public canonical s
 
 ### Artifact-0005
 
-Artifact-0005 is load-bearing across this repository because it is the next chain boundary that must connect:
+Artifact-0005 is load-bearing across this repository because it is the verified governed-execution chain boundary that connects:
 
 * public canonical authority
 * governed execution under that authority
@@ -162,7 +162,7 @@ Artifact-0005 is load-bearing across this repository because it is the next chai
 * matching verification interpretation
 * public verification path
 
-This README must therefore mention artifact-0005 as an active chain requirement.
+This README must therefore describe artifact-0005 as a recorded current-truth boundary without overclaiming seal completion.
 
 It must not describe artifact-0005 as complete, sealed, or universally proven unless the evidence root actually proves that state.
 
