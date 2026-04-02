@@ -7,7 +7,7 @@ RULES:
 - This directory defines the non-fixture execution input boundary for artifact-0005.
 - No file under fixtures/ is an admissible artifact-0005 authority or command input.
 - Artifact-0005 must not rely on test-only signatures, test-only keys, or fixture-only command material.
-- The execution boundary is frozen at input level but not yet recorded as executed in this file.
+- The execution boundary is frozen at input level; execution truth is recorded in sibling execution, receipt, and current-state surfaces rather than in this manifest.
 
 REQUIRED_NON_FIXTURE_INPUTS:
 - authority seal issued from the canonical public authority basis

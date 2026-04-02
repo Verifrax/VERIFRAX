@@ -16,7 +16,7 @@ BOUNDARY_RULES:
 - No file under fixtures/ is admissible as artifact-0005 live command input.
 - No fixture key is admissible for artifact-0005 receipt or denial signing.
 - The live command, live authority seal, and live signing paths are frozen together as the admissible non-fixture execution input boundary.
-- Execution is not yet recorded in this file.
+- Execution truth is recorded in sibling execution, receipt, and current-state surfaces rather than in this input index.
 
 OPEN_BLOCKERS:
 
