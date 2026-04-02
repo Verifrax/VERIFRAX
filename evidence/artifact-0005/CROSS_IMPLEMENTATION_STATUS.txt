@@ -7,6 +7,6 @@ MATCH_STATUS: MATCH
 CANONICAL_SHA256: 801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b
 
 BOUNDARY:
-- artifact-0005 governed execution and receipt remain unrecorded
+- artifact-0005 governed execution and receipt are recorded
 - canonical outputs matched byte-for-byte
 - registration and seal completion are not claimed here

@@ -25,8 +25,8 @@ CURRENT_ARTIFACT_MEANING:
 CURRENT_BOUNDARY:
 - The bootstrap chain is semantically resolved through artifact-0003.
 - The execution boundary is extended by artifact-0004 recorded receipt evidence.
-- Artifact-0005 currently defines a blocked candidate boundary only.
-- Artifact-0005 is present in the evidence root but is not yet admissible as a registered executed boundary.
+- Artifact-0005 currently defines a verified governed execution boundary.
+- Artifact-0005 is present in the evidence root as an admissible registered executed boundary.
 - Package publication evidence for @verifrax/auctoriseal and @verifrax/corpiform is also recorded in the evidence root.
 
 CURRENT_AUTHORITY_BINDING:
@@ -55,7 +55,7 @@ CURRENT_LIMITS:
 - This file does not claim universal proof beyond the recorded artifact boundaries.
 - This file does not replace artifact-level evidence inspection.
 - Artifact-0004 remains bounded by consumed fixture authority evidence and is not the public canonical authority basis.
-- Artifact-0005 remains blocked and unregistered in current truth, and no seal-state line has been added.
+- Artifact-0005 remains verified and registered in current truth, and no seal-state line has been added.
 
 NEXT_REQUIRED_WORK:
 - write consistency and authority audit surfaces

@@ -46,7 +46,7 @@ ARTIFACT-0005 AUTHORITY BOUNDARY:
 
 MAPPING RULES:
 - artifact-0004 must remain bounded by consumed fixture authority evidence only.
-- artifact-0005 must remain a blocked candidate boundary until input, execution, receipt, and verifier records are all admissibly frozen.
+- artifact-0005 current-truth surfaces record a verified governed execution boundary with recorded input, execution, receipt, and matched verifier identifiers.
 - no root status surface may describe artifact-0004 as the public canonical authority basis.
 - no root status surface may describe artifact-0005 as sealed until release-gate conditions are fully satisfied and explicit seal-state lines are added.
 - current authority identifiers and current artifact-0005 identifiers must remain identical across the root status surfaces.
