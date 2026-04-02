@@ -1,8 +1,12 @@
-STATUS: NOT_EXECUTABLE
-REASON: claimed subject is absent
+STATUS: HISTORICAL PRE-REEXECUTION SNAPSHOT
+HISTORICAL_NOTE: retained for audit history only; this file does not define current truth for artifact-0003.
+ORIGINAL_STATUS_AT_CAPTURE: NOT_EXECUTABLE
+ORIGINAL_REASON_AT_CAPTURE: claimed subject is absent
 CANONICAL_SEAL_PATH: public/genesis/SEAL-0001.json
 CANONICAL_LEDGER_PATH: authority-ledger.json
-SEAL_STATUS: ABSENT
-LEDGER_STATUS: ABSENT
-CONSEQUENCE: Artifact-0003 cannot be executed or published as VERIFIED
-NEXT_REQUIRED_WORK: issue and publish the first genesis seal and authoritative ledger before re-attempting execution
+ORIGINAL_SEAL_STATUS_AT_CAPTURE: ABSENT
+ORIGINAL_LEDGER_STATUS_AT_CAPTURE: ABSENT
+CURRENT_TRUTH_REFERENCE: evidence/artifact-0003-reexecution/EXECUTION_STATUS.txt
+CURRENT_ARTIFACT_REFERENCE: evidence/artifact-0003/artifact-0003.json
+CURRENT_BOUNDARY_NOTE: artifact-0003 is recorded as VERIFIED in current truth through the reexecution evidence and matching node/rust verdicts.
+NEXT_REQUIRED_WORK: preserve this file as historical capture only and avoid reading it as the active artifact-0003 execution surface
