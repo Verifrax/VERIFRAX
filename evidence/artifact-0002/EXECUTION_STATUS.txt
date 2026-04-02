@@ -1,5 +1,10 @@
-STATUS: NOT EXECUTED
-REASON: current maintained verifiers do not accept artifact json input
-NODE_SCOPE: protocol-conformance/v2 only
-RUST_SCOPE: protocol-conformance/v2 only
-NEXT_REQUIRED_WORK: add a first-class artifact execution path or adapter layer before assigning a verifier-backed verdict
+STATUS: HISTORICAL PRE-SEMANTIC-SATISFACTION SNAPSHOT
+HISTORICAL_NOTE: retained for audit history only; this file does not define current truth for artifact-0002.
+ORIGINAL_STATUS_AT_CAPTURE: NOT EXECUTED
+ORIGINAL_REASON_AT_CAPTURE: current maintained verifiers do not accept artifact json input
+ORIGINAL_NODE_SCOPE: protocol-conformance/v2 only
+ORIGINAL_RUST_SCOPE: protocol-conformance/v2 only
+CURRENT_TRUTH_REFERENCE: evidence/artifact-semantic-execution/CROSS_IMPLEMENTATION_STATUS.txt
+CURRENT_ARTIFACT_REFERENCE: evidence/artifact-0002/artifact-0002.json
+CURRENT_BOUNDARY_NOTE: artifact-0002 is recorded as VERIFIED in current truth through declared evidence presence and matching node/rust semantic outputs.
+NEXT_REQUIRED_WORK: preserve this file as historical capture only and avoid reading it as the active artifact-0002 execution surface
