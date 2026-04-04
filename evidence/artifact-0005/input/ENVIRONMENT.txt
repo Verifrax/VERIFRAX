@@ -1,3 +1,14 @@
+HISTORICAL AT CAPTURE — PRE-EXECUTION INPUT SNAPSHOT ONLY
+
+ACTIVE CURRENT TRUTH FOR artifact-0005:
+- ../artifact-0005.json
+- ../EXECUTION_STATUS.txt
+- ../CROSS_IMPLEMENTATION_STATUS.txt
+- ../REGISTRATION_STATUS.txt
+
+This file preserves an earlier input-boundary capture only.
+It must not be read as the current artifact-0005 status surface.
+
 STATUS: ENVIRONMENT FROZEN / READY FOR GOVERNED EXECUTION
 
 REQUIRED_ENVIRONMENT:
@@ -25,8 +36,8 @@ BOUNDARY:
 - The artifact-0005 environment surface is aligned with the current CORPIFORM runtime version truth.
 - Receipt signing and denial signing material are frozen by external path reference only and are not committed to the repository.
 - This file freezes execution-environment requirements only.
-- This file does not claim that governed execution has already run.
-- This file does not claim that a CORPIFORM receipt has already been recorded.
+- Historical note: this environment snapshot was captured before governed execution completed.
+- Historical note: this environment snapshot was captured before receipt recording completed.
 - This file does not claim verifier execution, registration, or seal completion.
 
 ADMISSIBILITY_RULES:

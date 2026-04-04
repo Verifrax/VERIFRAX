@@ -1,0 +1,31 @@
+{
+  "authority_id": "AUTHORITY-0001-VERIFRAX",
+  "authority_type": "governed-repository-authority",
+  "system": "AUCTORISEAL",
+  "protocol": 1,
+  "schema_version": 1,
+  "issued_at": 1700000000000,
+  "issued_by": "root.primary",
+  "governance_binding": {
+    "mechanism": "AUCTORISEAL plus .github governed repo set",
+    "governed_repo_set_ref": "github.com/Verifrax/.github/governance/GOVERNED_REPOS.txt"
+  },
+  "subject": {
+    "organization": "Verifrax",
+    "scope": "public governed repository authority boundary"
+  },
+  "governed_repositories": [
+    "Verifrax/AUCTORISEAL",
+    "Verifrax/CORPIFORM",
+    "Verifrax/cicullis",
+    "Verifrax/VERIFRAX",
+    "Verifrax/VERIFRAX-DOCS",
+    "Verifrax/VERIFRAX-PROFILES",
+    "Verifrax/VERIFRAX-SAMPLES",
+    "Verifrax/VERIFRAX-SPEC",
+    "Verifrax/VERIFRAX-verify"
+  ],
+  "status": "published",
+  "finality": "non-final",
+  "notes": "Public canonical authority object for governed repository authority boundary."
+}

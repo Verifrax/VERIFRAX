@@ -1,0 +1,1 @@
+The VERIFRAX execution defined in this artifact ran under authority AUTHORITY-0001-VERIFRAX, produced receipt 8F88E46F-625B-4682-BF9A-D68ADD241FFF, and re-verified with matching Node and Rust verdicts.
