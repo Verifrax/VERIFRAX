@@ -10,7 +10,7 @@ This file preserves an earlier input-boundary capture only.
 It must not be read as the current artifact-0005 status surface.
 
 ARTIFACT: artifact-0005
-STATUS: INPUT BOUNDARY FROZEN / READY FOR GOVERNED EXECUTION
+STATUS: HISTORICAL PRE-EXECUTION INPUT SNAPSHOT / ACTIVE TRUTH DEFERRED TO SIBLING EXECUTION AND REGISTRATION SURFACES
 
 CURRENT_INPUT_TRUTH:
 - COMMAND_SURFACE: bin/corpiform execute
@@ -29,9 +29,9 @@ BOUNDARY_RULES:
 - The live command, live authority seal, and live signing paths are frozen together as the admissible non-fixture execution input boundary.
 - Execution truth is recorded in sibling execution, receipt, and current-state surfaces rather than in this input index.
 
-OPEN_BLOCKERS:
+ARCHIVAL_BOUNDARY:
 
 ARCHIVAL_CONTEXT:
 - preserved to show the pre-execution input boundary only
-- not an active blocker list
-- current artifact-0005 status is defined by sibling current-truth files
+- execution, receipt, registration, and verifier outcomes were recorded later in sibling current-truth files
+- this file is lineage evidence only and must not be read as an active blocker or active readiness surface
