@@ -1,6 +1,6 @@
 # artifact-0005
 
-Subtitle: public canonical authority issuance and governed execution seal
+Subtitle: public canonical authority issuance and governed execution boundary
 
 ## Claim
 

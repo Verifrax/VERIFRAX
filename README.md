@@ -10,7 +10,7 @@ SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
 ![License](https://img.shields.io/badge/license-Apache--2.0-blue)
 ![Role](https://img.shields.io/badge/role-protocol%20evidence%20boundary-111111)
 ![Identity](https://github.com/Verifrax/VERIFRAX/actions/workflows/identity.yml/badge.svg?branch=main)
-![Determinism](https://github.com/Verifrax/VERIFRAX/actions/workflows/determinism.yml/badge.svg?branch=main)
+![Determinism](https://github.com/Verifrax/VERIFRAX/actions/workflows/determinism-check.yml/badge.svg?branch=main)
 ![Integrity](https://github.com/Verifrax/VERIFRAX/actions/workflows/integrity.yml/badge.svg?branch=main)
 
 Normative protocol authoring, evidence-root registration, and verification boundary for the governed Verifrax system.
@@ -68,6 +68,17 @@ VERIFRAX does not:
 
 VERIFRAX interprets governed material and records chain truth. It does not create every input that it later verifies.
 
+Explicit non-role boundary:
+
+* VERIFRAX is not authority issuance.
+* VERIFRAX is not governed execution.
+* VERIFRAX is not proof publication host.
+* VERIFRAX is not verifier host.
+* VERIFRAX is not archive host.
+* VERIFRAX is not intake host.
+* VERIFRAX is not commercial landing host.
+* VERIFRAX is not runtime host.
+
 ## Stack position
 
 The governed stack reads in this order:
@@ -102,11 +113,16 @@ This repository must connect to the public domain surfaces without falsely claim
 
 Relevant neighboring surfaces are:
 
+* `https://www.verifrax.net/` — commercial root surface
+* `https://verifrax.net/` — apex redirect surface
 * `https://api.verifrax.net/` — execution surface
+* `https://status.verifrax.net/` — operational status surface
 * `https://proof.verifrax.net/` — proof publication surface
 * `https://verify.verifrax.net/` — public verifier surface
+* `https://docs.verifrax.net/` — documentation surface
 * `https://auctoriseal.verifrax.net/` — authority issuance/reference surface
 * `https://corpiform.verifrax.net/` — runtime reference surface
+* `https://cicullis.verifrax.net/` — enforcement reference surface
 * `https://apply.verifrax.net/` — intake surface
 * `https://sigillarium.verifrax.net/` — seal/archive reference surface
 
@@ -114,12 +130,17 @@ This repository must link to those surfaces as adjacent system boundaries.
 
 It must not claim that VERIFRAX itself is the sole owner of:
 
+* `www.verifrax.net`
+* `verifrax.net`
 * `api.verifrax.net`
+* `status.verifrax.net`
 * `proof.verifrax.net`
 * `verify.verifrax.net`
+* `docs.verifrax.net`
 * `apply.verifrax.net`
 * `auctoriseal.verifrax.net`
 * `corpiform.verifrax.net`
+* `cicullis.verifrax.net`
 * `sigillarium.verifrax.net`
 
 ## Evidence root boundary
@@ -237,6 +258,10 @@ Read the neighboring repositories in this order when tracing the full system:
 * [`.github`](https://github.com/Verifrax/.github) — governance root
 * [`AUCTORISEAL`](https://github.com/Verifrax/AUCTORISEAL) — authority issuance/reference
 * [`CORPIFORM`](https://github.com/Verifrax/CORPIFORM) — governed execution and receipts
+* [`VERIFRAX-WWW`](https://github.com/Verifrax/VERIFRAX-WWW) — commercial root host repository
+* [`VERIFRAX-API`](https://github.com/Verifrax/VERIFRAX-API) — execution host repository
+* [`VERIFRAX-STATUS`](https://github.com/Verifrax/VERIFRAX-STATUS) — status host repository
+* [`VERIFRAX-SURFACE`](https://github.com/Verifrax/VERIFRAX-SURFACE) — shared projection/form system
 * [`VERIFRAX-SPEC`](https://github.com/Verifrax/VERIFRAX-SPEC) — derived specification publication
 * [`VERIFRAX-PROFILES`](https://github.com/Verifrax/VERIFRAX-PROFILES) — deterministic profile constraints
 * [`VERIFRAX-verify`](https://github.com/Verifrax/VERIFRAX-verify) — public verifier UI
