@@ -1,7 +1,24 @@
-ARTIFACT: artifact-0005
-STATUS: INPUT DIGESTS RECORDED / EXECUTION NOT YET RUN
+HISTORICAL AT CAPTURE — PRE-EXECUTION INPUT DIGEST SNAPSHOT ONLY. THIS FILE DOES NOT DEFINE CURRENT TRUTH FOR ARTIFACT-0005.
 
-SHA256  55f73ac28735fc60e7b0b23ab7fcb0ad5593efeb8662fda08b3f6b04f2eba7ae  evidence/artifact-0005/input/live/authority.seal.json
-SHA256  029a6f23e54c6b9a101861fde5254e9b23294b3cdafcf51821bd21520d8b7844  evidence/artifact-0005/input/live/execution.command.json
-SHA256  5d377a9b59fe4e9167268307862531360012b493b916ad5ec00320596dae9852  runtime/env/env.example
-SHA256  27becebd21e487cfcfae65c91c871a12825176878094ae1775b2dc068be1d40c  evidence/artifact-0005/input/live/SIGNING_MATERIAL_PATHS.txt
+ACTIVE CURRENT TRUTH FOR artifact-0005:
+- ../artifact-0005.json
+- ../EXECUTION_STATUS.txt
+- ../CROSS_IMPLEMENTATION_STATUS.txt
+- ../REGISTRATION_STATUS.txt
+- ../receipt/receipt.json
+- ../../CURRENT_STATE_INDEX.txt
+
+ARTIFACT: artifact-0005
+STATUS: HISTORICAL PRE-EXECUTION INPUT DIGEST SNAPSHOT / ACTIVE TRUTH DEFERRED TO SIBLING EXECUTION, RECEIPT, REGISTRATION, AND CURRENT-STATE SURFACES
+
+DIGEST_RECORDS:
+SHA256 55f73ac28735fc60e7b0b23ab7fcb0ad5593efeb8662fda08b3f6b04f2eba7ae evidence/artifact-0005/input/live/authority.seal.json
+SHA256 029a6f23e54c6b9a101861fde5254e9b23294b3cdafcf51821bd21520d8b7844 evidence/artifact-0005/input/live/execution.command.json
+SHA256 5d377a9b59fe4e9167268307862531360012b493b916ad5ec00320596dae9852 runtime/env/env.example
+SHA256 27becebd21e487cfcfae65c91c871a12825176878094ae1775b2dc068be1d40c evidence/artifact-0005/input/live/SIGNING_MATERIAL_PATHS.txt
+
+ARCHIVAL_CONTEXT:
+- preserves the exact pre-execution input digests captured before governed execution
+- not an active execution blocker
+- not an active readiness surface
+- later execution, receipt, registration, and verifier truth were recorded in sibling current-truth files

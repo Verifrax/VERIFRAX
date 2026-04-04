@@ -1,13 +1,21 @@
 HISTORICAL AT CAPTURE — PRE-EXECUTION INPUT MANIFEST ONLY. THIS FILE DOES NOT DEFINE CURRENT TRUTH FOR ARTIFACT-0005.
 
+ACTIVE CURRENT TRUTH FOR artifact-0005:
+- ../artifact-0005.json
+- ../EXECUTION_STATUS.txt
+- ../CROSS_IMPLEMENTATION_STATUS.txt
+- ../REGISTRATION_STATUS.txt
+- ../receipt/receipt.json
+- ../../CURRENT_STATE_INDEX.txt
+
 ARTIFACT: artifact-0005
-STATUS: INPUT BOUNDARY DEFINED / READY FOR GOVERNED EXECUTION
+STATUS: HISTORICAL PRE-EXECUTION INPUT MANIFEST / ACTIVE TRUTH DEFERRED TO SIBLING EXECUTION, RECEIPT, REGISTRATION, AND CURRENT-STATE SURFACES
 
 RULES:
-- This directory defines the non-fixture execution input boundary for artifact-0005.
+- This directory defines the non-fixture execution input boundary captured before governed execution.
 - No file under fixtures/ is an admissible artifact-0005 authority or command input.
 - Artifact-0005 must not rely on test-only signatures, test-only keys, or fixture-only command material.
-- The execution boundary is frozen at input level; execution truth is recorded in sibling execution, receipt, and current-state surfaces rather than in this manifest.
+- The input boundary is preserved for lineage only; execution truth is recorded in sibling execution, receipt, registration, and current-state surfaces rather than in this manifest.
 
 REQUIRED_NON_FIXTURE_INPUTS:
 - authority seal issued from the canonical public authority basis
@@ -22,3 +30,8 @@ EXCLUDED_INPUTS:
 - fixtures/keys/receipt.key
 - fixtures/keys/denial.key
 - any file under fixtures/ used as a live artifact-0005 authority basis
+
+ARCHIVAL_CONTEXT:
+- preserved to show the pre-execution input boundary only
+- later execution, receipt, registration, and verifier outcomes were recorded in sibling current-truth files
+- this file is lineage evidence only and must not be read as an active blocker or active readiness surface
