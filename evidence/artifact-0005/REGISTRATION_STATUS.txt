@@ -1,0 +1,19 @@
+ARTIFACT_ID: artifact-0005
+ARTIFACT_TITLE: public canonical authority issuance and governed execution seal
+STATUS: REGISTERED IN ROOT EVIDENCE AS VERIFIED GOVERNED EXECUTION BOUNDARY
+AUTHORITY_ID: AUTHORITY-0001-VERIFRAX
+RECEIPT_ID: 8F88E46F-625B-4682-BF9A-D68ADD241FFF
+NODE_VERDICT: VERIFIED
+RUST_VERDICT: VERIFIED
+
+ROOT_REGISTRATION_SURFACES:
+- evidence/README.md
+- evidence/bootstrap-chain-status/CHAIN_STATUS.txt
+- evidence/CURRENT_STATE_INDEX.txt
+- evidence/STATUS_AUTHORITY_MAP.txt
+- evidence/CONSISTENCY_AUDIT.txt
+
+REGISTRATION_RULE:
+- artifact-0005 is registered as current verified governed execution evidence
+- artifact-0005 is not yet elevated here to final universal SEAL_STATE
+

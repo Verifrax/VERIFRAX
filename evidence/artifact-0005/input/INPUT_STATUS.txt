@@ -12,10 +12,11 @@ FINDINGS:
 
 BOUNDARY:
 - These findings establish admissible non-fixture execution inputs for artifact-0005.
-- This file does not claim that governed execution has already run.
-- This file does not claim that a CORPIFORM receipt has already been recorded.
+- Historical note: at capture time, governed execution had not yet run. This line is preserved only as prior-state context.
+- Historical note: at capture time, a CORPIFORM receipt had not yet been recorded. This line is preserved only as prior-state context.
 - This file does not claim registration, verifier execution, or seal completion.
 
-NEXT_REQUIRED_WORK:
-- execute the frozen governed command under the frozen live authority and frozen signing material
-- capture stdout, stderr, exit code, and receipt outputs into artifact-0005
+ARCHIVAL_CONTEXT:
+- preserved as pre-execution status context only
+- not an active current-status file
+- see ../EXECUTION_STATUS.txt, ../CROSS_IMPLEMENTATION_STATUS.txt, and ../REGISTRATION_STATUS.txt for current truth

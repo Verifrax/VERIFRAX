@@ -1,3 +1,14 @@
+HISTORICAL AT CAPTURE — PRE-EXECUTION INPUT SNAPSHOT ONLY
+
+ACTIVE CURRENT TRUTH FOR artifact-0005:
+- ../artifact-0005.json
+- ../EXECUTION_STATUS.txt
+- ../CROSS_IMPLEMENTATION_STATUS.txt
+- ../REGISTRATION_STATUS.txt
+
+This file preserves an earlier input-boundary capture only.
+It must not be read as the current artifact-0005 status surface.
+
 ARTIFACT: artifact-0005
 STATUS: INPUT BOUNDARY FROZEN / READY FOR GOVERNED EXECUTION
 
@@ -20,6 +31,7 @@ BOUNDARY_RULES:
 
 OPEN_BLOCKERS:
 
-NEXT_REQUIRED_WORK:
-- execute the frozen governed command under the frozen live authority and frozen signing paths
-- capture stdout, stderr, exit code, and receipt outputs into artifact-0005
+ARCHIVAL_CONTEXT:
+- preserved to show the pre-execution input boundary only
+- not an active blocker list
+- current artifact-0005 status is defined by sibling current-truth files

@@ -1,8 +1,8 @@
 {
   "artifact": "artifact-0005",
   "status": "HISTORICAL AT CAPTURE / PRE-EXECUTION CANDIDATE ONLY",
-  "historical_note": "Retained for audit history only. This file does not define current truth for artifact-0005.",
-  "original_status_at_capture": "CANDIDATE / NOT YET ISSUED",
+  "historical_note": "This file preserves the authority-candidate state captured before governed execution, receipt recording, and registration. It is not the active artifact-0005 status surface.",
+  "original_status_at_capture": "PRE-EXECUTION CANDIDATE SNAPSHOT",
   "purpose": "Historical pre-issuance authority-seal candidate retained for artifact-0005 lineage audit.",
   "requirements": {
     "issuer_system": "AUCTORISEAL",
@@ -40,5 +40,13 @@
     "Historical candidate material must not be treated as the active admissible authority input boundary.",
     "Current authority truth is recorded in the live input, execution, receipt, and current-state surfaces."
   ],
-  "historical_status": "HISTORICAL_AT_CAPTURE"
+  "historical_status": "HISTORICAL_AT_CAPTURE",
+  "historical_at_capture": true,
+  "active_interpretation_forbidden": true,
+  "current_truth_pointer": [
+    "../artifact-0005.json",
+    "../EXECUTION_STATUS.txt",
+    "../CROSS_IMPLEMENTATION_STATUS.txt",
+    "../REGISTRATION_STATUS.txt"
+  ]
 }

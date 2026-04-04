@@ -1,0 +1,16 @@
+STATUS: VERIFIED GOVERNED EXECUTION BOUNDARY
+AUTHORITY_ID: AUTHORITY-0001-VERIFRAX
+RECEIPT_ID: 8F88E46F-625B-4682-BF9A-D68ADD241FFF
+NODE_VERDICT: VERIFIED
+RUST_VERDICT: VERIFIED
+
+ASSERT ONLY:
+- the authority object recorded in authority/authority.json is the authority basis used by this artifact boundary
+- the governed execution output and receipt recorded here are the current artifact-0005 execution truth
+- Node and Rust verifier verdicts recorded here match on this artifact boundary
+
+DO NOT ASSERT:
+- universal or future seal coverage
+- release completeness outside this artifact
+- final SEAL_STATE
+

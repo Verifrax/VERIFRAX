@@ -57,7 +57,7 @@ CURRENT_LIMITS:
 - Artifact-0004 remains bounded by consumed fixture authority evidence and is not the public canonical authority basis.
 - Artifact-0005 remains verified and registered in current truth, and no seal-state line has been added.
 
-NEXT_REQUIRED_WORK:
-- write consistency and authority audit surfaces
-- align remaining current-truth surfaces across repos and docs
-- verify final release-gate conditions before any seal-state statement is added
+CURRENT_TRUTH_DISCIPLINE:
+- CURRENT_STATE_INDEX.txt records current truth only.
+- Historical or pre-state work items must live only in explicitly historical files.
+- CONSISTENCY_AUDIT.txt and STATUS_AUTHORITY_MAP.txt already exist and are part of the current truth perimeter.
