@@ -88,7 +88,7 @@ These surfaces are intentionally retained because protocol trust requires visibi
 
 Read this if you want to inspect stack components that are now publicly legible and recorded as canonical surfaces.
 
-- `component-surface/corpiform/` - `component-surface/syntagmarium/` - `component-surface/orbistium/` - `component-surface/consonorium/`
+- `component-surface/corpiform/` - `component-surface/syntagmarium/` - `component-surface/orbistium/` - `component-surface/consonorium/` - `component-surface/syntagmarium/` - `component-surface/orbistium/` - `component-surface/consonorium/`
 
 This records CORPIFORM as an execution component surface connected to AUCTORISEAL authority inputs and VERIFRAX verification-facing boundaries.
 
@@ -458,7 +458,7 @@ If you are entering this tree for the first time, start here:
 - issuance object: `artifact-0003/artifact-0003.json`
 - semantic cross-implementation result: `artifact-semantic-execution/CROSS_IMPLEMENTATION_STATUS.txt`
 - recorded execution component surface: `component-surface/corpiform/COMPONENT_STATUS.txt`
-- external package publication status: `package-surface/auctoriseal-0.1.2/PUBLICATION_STATUS.txt`
+- external package publication status: `package-surface/CURRENT_PACKAGE_INDEX.txt`
 
 ---
 
