@@ -88,7 +88,7 @@ These surfaces are intentionally retained because protocol trust requires visibi
 
 Read this if you want to inspect stack components that are now publicly legible and recorded as canonical surfaces.
 
-- `component-surface/corpiform/`
+- `component-surface/corpiform/` - `component-surface/syntagmarium/` - `component-surface/orbistium/` - `component-surface/consonorium/`
 
 This records CORPIFORM as an execution component surface connected to AUCTORISEAL authority inputs and VERIFRAX verification-facing boundaries.
 

@@ -27,7 +27,7 @@ CURRENT_BOUNDARY:
 - The execution boundary is extended by artifact-0004 recorded receipt evidence.
 - Artifact-0005 currently defines the verified governed execution boundary that anchors final public seal state.
 - Artifact-0005 is present in the evidence root as an admissible registered executed boundary.
-- Package publication evidence for @verifrax/auctoriseal and @verifrax/corpiform is also recorded in the evidence root.
+- Package publication evidence for the full public @verifrax package chain is recorded in the evidence root under evidence/package-surface/CURRENT_PACKAGE_INDEX.txt. - Sovereign law/state/runtime component surfaces for SYNTAGMARIUM, ORBISTIUM, and CONSONORIUM are recorded under evidence/component-surface/.
 
 CURRENT_AUTHORITY_BINDING:
 - GOVERNANCE ROOT: Verifrax/.github

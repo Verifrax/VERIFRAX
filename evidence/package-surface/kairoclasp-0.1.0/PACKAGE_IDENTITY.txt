@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/kairoclasp
+VERSION: 0.1.0
+LAYER: Primitive
+SOURCE_REPOSITORY: Verifrax/kairoclasp
+REPO_HEAD: 0cf2100

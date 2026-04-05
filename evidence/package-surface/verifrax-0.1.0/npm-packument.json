@@ -1,0 +1,65 @@
+{
+  "_id": "@verifrax/verifrax@0.1.0",
+  "name": "@verifrax/verifrax",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-04-05T12:28:06.664Z",
+    "0.1.0": "2026-04-05T12:28:06.935Z",
+    "modified": "2026-04-05T12:28:07.182Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Published CLI/runtime package boundary for the governed Verifrax verification system.",
+  "homepage": "https://github.com/Verifrax/VERIFRAX#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/VERIFRAX.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/VERIFRAX/issues"
+  },
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "_rev": "1-c9f5123da17bc23c271def2e96dd8ce6",
+  "_contentLength": 16910,
+  "version": "0.1.0",
+  "private": false,
+  "type": "commonjs",
+  "bin": {
+    "verifrax-seal": "bin/verifrax-seal.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "bca6ca9a796cfa1179b3450e2bd64655d5e470c5",
+  "_nodeVersion": "24.14.1",
+  "_npmVersion": "11.11.0",
+  "dist": {
+    "integrity": "sha512-qYHl+Dfn5yDEvOLNvPqItEwgBfqeX5XD9P0L8fy43R/OnJv6VNhIXzT5bEB8L9UkCnVWeRf0zkjevJY2g+vpZA==",
+    "shasum": "10bf9bc4f65838ac70af2aaf20250f5ba75a0e61",
+    "tarball": "https://registry.npmjs.org/@verifrax/verifrax/-/verifrax-0.1.0.tgz",
+    "fileCount": 4,
+    "unpackedSize": 26283,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEYCIQCEqC3RSEpWsBpH/GT6bNmLPA8nBwIqwP1bfuHTUzo7RAIhALnPcDt3EGdaVk+6NWhetKWTicFynirH4CL3l80pMf1K"
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/verifrax_0.1.0_1775392086786_0.6918548984564592"
+  },
+  "_hasShrinkwrap": false
+}

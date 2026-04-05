@@ -1,0 +1,63 @@
+{
+  "_id": "@verifrax/validexor@0.1.0",
+  "name": "@verifrax/validexor",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-03-08T10:24:28.201Z",
+    "0.1.0": "2026-03-08T10:24:28.442Z",
+    "modified": "2026-03-08T10:24:28.692Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Verifrax primitive — verification primitive for deterministic irreversible systems.",
+  "homepage": "https://github.com/Verifrax/validexor#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/validexor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/validexor/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "_rev": "1-2fc5dafbba03302d82eaa8984f07e278",
+  "_contentLength": 6115,
+  "version": "0.1.0",
+  "bin": {
+    "validexor": "validexor.sh"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "24c91c03a56d6440b7903acd73dfb9ff1b333bdf",
+  "_nodeVersion": "25.2.1",
+  "_npmVersion": "11.6.2",
+  "dist": {
+    "integrity": "sha512-M9xPATNAi9+uQ/cAUaiTS1hw6O2f8dTSmj6dwtx2G0eciKrujqp1ZhW/DbXMrZ38WP4ILAnoI43CUtOoifDIMw==",
+    "shasum": "2ad1f117dc62ac16be5ccbd2a4a80b9a91415889",
+    "tarball": "https://registry.npmjs.org/@verifrax/validexor/-/validexor-0.1.0.tgz",
+    "fileCount": 5,
+    "unpackedSize": 7027,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEUCIQDZBQFn7YB0/ntltDv3QBxJAHX+6viAZCnUcgHFVh/d6QIgRqYeUuAzYUNSqBIdAz1xhoQdkE1n61xT/zgGu3s5oy8="
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/validexor_0.1.0_1772965468283_0.5568473870978095"
+  },
+  "_hasShrinkwrap": false
+}

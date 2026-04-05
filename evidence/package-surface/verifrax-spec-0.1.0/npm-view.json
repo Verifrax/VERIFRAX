@@ -1,0 +1,62 @@
+{
+  "_id": "@verifrax/verifrax-spec@0.1.0",
+  "name": "@verifrax/verifrax-spec",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-04-05T12:28:02.735Z",
+    "0.1.0": "2026-04-05T12:28:02.993Z",
+    "modified": "2026-04-05T12:28:03.259Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Derived specification publication surface for the governed Verifrax system.",
+  "homepage": "https://github.com/Verifrax/VERIFRAX-SPEC#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/VERIFRAX-SPEC.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/VERIFRAX-SPEC/issues"
+  },
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "_rev": "1-ea8297f2bfe0eddaaa4770995e35fd00",
+  "_contentLength": 14277,
+  "version": "0.1.0",
+  "private": false,
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "57127238a658ccabd201f21c6da8558241ef758d",
+  "_nodeVersion": "24.14.1",
+  "_npmVersion": "11.11.0",
+  "dist": {
+    "integrity": "sha512-j5IMW4kx/PmbA4sSMxNxZdYjFy1nmUAFccez4kql/5zD9XqF/GgvfBM5/EUpEdNlrwOgoiARSPGhdGzHiMxn4g==",
+    "shasum": "ded978b341b6828fa6bb27772685adc794d7d0f8",
+    "tarball": "https://registry.npmjs.org/@verifrax/verifrax-spec/-/verifrax-spec-0.1.0.tgz",
+    "fileCount": 17,
+    "unpackedSize": 28116,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEYCIQDgbVAnBDPTnW5YHm5pdoxpMhSmkzQzcCzEosKsAQvQGQIhAPf/eeTy4afEmcv5dCKaspUhwcSYAs0jPSzoTIfuYpAt"
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/verifrax-spec_0.1.0_1775392082838_0.9057428366669216"
+  },
+  "_hasShrinkwrap": false
+}

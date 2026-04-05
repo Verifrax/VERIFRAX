@@ -1,0 +1,63 @@
+{
+  "_id": "@verifrax/attestorium@0.1.0",
+  "name": "@verifrax/attestorium",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-03-08T10:52:27.502Z",
+    "0.1.0": "2026-03-08T10:52:27.723Z",
+    "modified": "2026-03-08T10:52:27.954Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Verifrax primitive — attestation primitive for deterministic irreversible systems.",
+  "homepage": "https://github.com/Verifrax/attestorium#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/attestorium.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/attestorium/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "_rev": "1-100a1dc363f3f13a33b1cdc166798cf9",
+  "_contentLength": 6239,
+  "version": "0.1.0",
+  "bin": {
+    "attestorium": "attestorium.sh"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "2e7497601f23b3030a496289c2fc2414dd1cfab2",
+  "_nodeVersion": "25.2.1",
+  "_npmVersion": "11.6.2",
+  "dist": {
+    "integrity": "sha512-MUNeW/4MGtb2k8eXDuPpKiqPz1MpQIQmzWh3PJwxyL51GJY6PwJ+18kbP6F11847HAzTZjOae/qLHdjrQwXaOA==",
+    "shasum": "8d2cab6d957d3659dae758a248e8ebd9cf4ace2a",
+    "tarball": "https://registry.npmjs.org/@verifrax/attestorium/-/attestorium-0.1.0.tgz",
+    "fileCount": 5,
+    "unpackedSize": 7182,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEQCIGNulc7z0owWfJ0xcVurSIDd+4C4NBz81fKnt1PRkUEuAiASQdPkpPFrV/8H4wDIbNY/pdH6iOL6J7/6PnZAquLvzA=="
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/attestorium_0.1.0_1772967147586_0.075588415265613"
+  },
+  "_hasShrinkwrap": false
+}

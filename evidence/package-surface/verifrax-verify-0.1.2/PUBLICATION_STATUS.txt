@@ -1,0 +1,5 @@
+STATUS: PUBLIC
+PACKAGE: @verifrax/verifrax-verify
+VERSION: 0.1.2
+LATEST: 0.1.2
+EXACT: 0.1.2

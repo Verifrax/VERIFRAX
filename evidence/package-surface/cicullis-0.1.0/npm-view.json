@@ -1,0 +1,65 @@
+{
+  "_id": "@verifrax/cicullis@0.1.0",
+  "name": "@verifrax/cicullis",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-04-05T12:27:49.544Z",
+    "0.1.0": "2026-04-05T12:27:49.829Z",
+    "modified": "2026-04-05T12:27:50.087Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Deterministic GitHub enforcement action for Verifrax merge-time policy and compliance gating.",
+  "homepage": "https://github.com/Verifrax/cicullis#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/cicullis.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/cicullis/issues"
+  },
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "_rev": "1-db323f518b4a7c7df9b6acfb8d372329",
+  "_contentLength": 18400,
+  "version": "0.1.0",
+  "private": false,
+  "type": "commonjs",
+  "bin": {
+    "cicullis": "gate.sh"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "6f7e4e93482892a3261464c797ef6a5a9454b8a2",
+  "_nodeVersion": "24.14.1",
+  "_npmVersion": "11.11.0",
+  "dist": {
+    "integrity": "sha512-un3r3HP27qow5kDqy2iJFHQLlfQ29atgJD2e851QBab46bAr01our0Y/ZFyd8za0zoKevF/CenC0e3Eb1j1Iww==",
+    "shasum": "ef7e95079cb73708e76c49c91c38322bb7005757",
+    "tarball": "https://registry.npmjs.org/@verifrax/cicullis/-/cicullis-0.1.0.tgz",
+    "fileCount": 7,
+    "unpackedSize": 28554,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEYCIQDa81n+9Ptxay2KOTXVVTOx4mUmbQRO2yZyFpktDNy6rAIhALRkzqJOaUHQqPnQNTCNftypSSM+9pW8u3usneq2FPmj"
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/cicullis_0.1.0_1775392069667_0.32979478220659386"
+  },
+  "_hasShrinkwrap": false
+}

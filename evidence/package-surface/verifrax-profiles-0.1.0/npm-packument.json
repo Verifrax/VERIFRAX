@@ -1,0 +1,62 @@
+{
+  "_id": "@verifrax/verifrax-profiles@0.1.0",
+  "name": "@verifrax/verifrax-profiles",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-04-05T12:27:58.709Z",
+    "0.1.0": "2026-04-05T12:27:58.956Z",
+    "modified": "2026-04-05T12:27:59.203Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Deterministic profile corpus for the governed Verifrax verification system.",
+  "homepage": "https://github.com/Verifrax/VERIFRAX-PROFILES#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/VERIFRAX-PROFILES.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/VERIFRAX-PROFILES/issues"
+  },
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "_rev": "1-14987fcc9b1b7ea0265a74f278000177",
+  "_contentLength": 14794,
+  "version": "0.1.0",
+  "private": false,
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "724cb9e83632029d8be370fa0df3fcae4240e727",
+  "_nodeVersion": "24.14.1",
+  "_npmVersion": "11.11.0",
+  "dist": {
+    "integrity": "sha512-fam6EsAMTwFokDVUsM19Y+Uhs6ZZXE+j0qByhLUl9m4fwdDKIJcIUFJXjgWrlno2xSa5dEyHbjE1w3jR5p0CLg==",
+    "shasum": "301f87f2188a9b77ab7e5ed2d2f0b553a4f7a0dd",
+    "tarball": "https://registry.npmjs.org/@verifrax/verifrax-profiles/-/verifrax-profiles-0.1.0.tgz",
+    "fileCount": 11,
+    "unpackedSize": 25459,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEYCIQCp6U2/vGe5LxjikmGuJBaqBNV5BwhcTHRjMK7fy3/UNQIhALLjjkHzwBA8MP6qeml/wIE9JDfNltDpl9RulM+dk0AF"
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/verifrax-profiles_0.1.0_1775392078788_0.8588708329634118"
+  },
+  "_hasShrinkwrap": false
+}

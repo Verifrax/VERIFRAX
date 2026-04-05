@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/irrevocull
+VERSION: 0.1.0
+LAYER: Primitive
+SOURCE_REPOSITORY: Verifrax/irrevocull
+REPO_HEAD: 0fe2161

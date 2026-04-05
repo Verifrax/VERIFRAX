@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/cicullis
+VERSION: 0.1.0
+LAYER: Enforcement
+SOURCE_REPOSITORY: Verifrax/cicullis
+REPO_HEAD: 6f7e4e9

@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/verifrax
+VERSION: 0.1.0
+LAYER: Verification
+SOURCE_REPOSITORY: Verifrax/VERIFRAX
+REPO_HEAD: bca6ca9

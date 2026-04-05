@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/sigillarium
+VERSION: 0.1.0
+LAYER: Interface
+SOURCE_REPOSITORY: Verifrax/SIGILLARIUM
+REPO_HEAD: a7dc68e

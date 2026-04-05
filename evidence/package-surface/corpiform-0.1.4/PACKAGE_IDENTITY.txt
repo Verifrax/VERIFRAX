@@ -1,5 +1,5 @@
-PACKAGE_NAME=@verifrax/corpiform
-VERSION=0.1.4
-DIST_TAG=latest
-REPOSITORY=github.com/Verifrax/CORPIFORM
-REPOSITORY_HEAD=40047fb
+PACKAGE: @verifrax/corpiform
+VERSION: 0.1.4
+LAYER: Execution
+SOURCE_REPOSITORY: Verifrax/CORPIFORM
+REPO_HEAD: a47363c

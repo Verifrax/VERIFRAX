@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/auctoriseal
+VERSION: 0.1.2
+LAYER: Authority
+SOURCE_REPOSITORY: Verifrax/AUCTORISEAL
+REPO_HEAD: 18f1068

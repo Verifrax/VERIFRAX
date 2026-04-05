@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/archicustos
+VERSION: 0.1.0
+LAYER: Primitive
+SOURCE_REPOSITORY: Verifrax/archicustos
+REPO_HEAD: 33e6d7e

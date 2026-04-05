@@ -1,4 +1,77 @@
 {
+  "_id": "@verifrax/corpiform@0.1.4",
+  "_rev": "2-811f606a17c99c7e52efeb732c893ab8",
+  "name": "@verifrax/corpiform",
+  "dist-tags": {
+    "latest": "0.1.4"
+  },
+  "versions": [
+    "0.1.3",
+    "0.1.4"
+  ],
+  "time": {
+    "created": "2026-03-19T19:32:24.507Z",
+    "modified": "2026-03-20T09:43:51.668Z",
+    "0.1.3": "2026-03-19T19:32:24.737Z",
+    "0.1.4": "2026-03-20T09:43:51.473Z"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/CORPIFORM/issues"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/Verifrax/CORPIFORM#readme",
+  "keywords": [
+    "verifrax",
+    "corpiform",
+    "authority",
+    "execution",
+    "deterministic",
+    "receipt",
+    "denial",
+    "shell"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/CORPIFORM.git"
+  },
+  "description": "CORPIFORM is an authority-governed deterministic execution runtime that consumes AUCTORISEAL authority and emits signed, replay-resistant receipts.",
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "readmeFilename": "README.md",
+  "_contentLength": 9505,
   "version": "0.1.4",
-  "dist-tags.latest": "0.1.4"
+  "private": false,
+  "bin": {
+    "corpiform": "bin/corpiform"
+  },
+  "scripts": {
+    "test": "./bin/corpiform help >/dev/null",
+    "smoke": "./bin/corpiform help"
+  },
+  "gitHead": "40047fb76364d4993134490aa2b47817c2b48854",
+  "_nodeVersion": "25.2.1",
+  "_npmVersion": "11.6.2",
+  "dist": {
+    "integrity": "sha512-+VwMXQuvbGhkQMjJdn6GjLIDtDEUYm3lOw9pKzFzVKsgbA+NCrCZyRtKIIGPLf5thEcgZWtvGuvp6ngy6XBhxg==",
+    "shasum": "6baa1bf4e3d65f36c89590e8d14575510f9460eb",
+    "tarball": "https://registry.npmjs.org/@verifrax/corpiform/-/corpiform-0.1.4.tgz",
+    "fileCount": 46,
+    "unpackedSize": 57065,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEUCIQCDcZ5wmW/njBXvFXsPXFFoe4lJ9RCq4PcShpj5cSOj3wIgQkzHZMAZiO+Qz7ENFTX/lldCvST0Vl9kFP2fmBehY9M="
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/corpiform_0.1.4_1773999831319_0.7591214306868637"
+  },
+  "_hasShrinkwrap": false
 }

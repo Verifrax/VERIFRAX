@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/originseal
+VERSION: 0.1.0
+LAYER: Primitive
+SOURCE_REPOSITORY: Verifrax/originseal
+REPO_HEAD: 90898d3

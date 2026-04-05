@@ -1,0 +1,63 @@
+{
+  "_id": "@verifrax/originseal@0.1.0",
+  "name": "@verifrax/originseal",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-03-07T21:35:14.465Z",
+    "0.1.0": "2026-03-07T21:35:14.671Z",
+    "modified": "2026-03-07T21:35:14.874Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Verifrax primitive — origin sealing primitive for deterministic irreversible systems.",
+  "homepage": "https://github.com/Verifrax/originseal#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/originseal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/originseal/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "_rev": "1-92dfde155a1ce5a9e672fce0b6553053",
+  "_contentLength": 5191,
+  "version": "0.1.0",
+  "bin": {
+    "originseal": "originseal.sh"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "279a98a45cd6ecda09271e91a2fc2e1211694b6e",
+  "_nodeVersion": "25.2.1",
+  "_npmVersion": "11.6.2",
+  "dist": {
+    "integrity": "sha512-O+yUru4BMus6oWeXB9xNJcc0N3k0qsI86Yyiu4EjD4OYPXT8Fa5GZgoACHQVqaDXJ9yAZZpstN2VtxqP7VsxDA==",
+    "shasum": "9092ec64ed9aedbe8148a9ebdd6b673a85d20e31",
+    "tarball": "https://registry.npmjs.org/@verifrax/originseal/-/originseal-0.1.0.tgz",
+    "fileCount": 5,
+    "unpackedSize": 8717,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEYCIQCmr5Qzs1HEe2Fn3cAFj2QEISZqliX/CkuMaB6EzfAYoAIhAOKEWRF+BO+evCyhKm07p7QMsApwtOKiSchhfX9YwvDn"
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/originseal_0.1.0_1772919314535_0.851287489154728"
+  },
+  "_hasShrinkwrap": false
+}

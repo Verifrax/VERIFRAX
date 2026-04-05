@@ -1,0 +1,63 @@
+{
+  "_id": "@verifrax/archicustos@0.1.0",
+  "name": "@verifrax/archicustos",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-03-07T22:26:50.823Z",
+    "0.1.0": "2026-03-07T22:26:51.116Z",
+    "modified": "2026-03-07T22:26:51.346Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Verifrax primitive — custody preservation primitive for deterministic irreversible systems.",
+  "homepage": "https://github.com/Verifrax/archicustos#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/archicustos.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/archicustos/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "_rev": "1-b6a02a0ffdbbaf0805ec67cdcc67956c",
+  "_contentLength": 5972,
+  "version": "0.1.0",
+  "bin": {
+    "archicustos": "archicustos.sh"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "dde42e1878159fd0251bb6afd20b1f26f440fb15",
+  "_nodeVersion": "25.2.1",
+  "_npmVersion": "11.6.2",
+  "dist": {
+    "integrity": "sha512-rG2U+1kazmYjtdYOF8KZpOIsdcNN54hs4/y3w5yuuq/ZKeS5HRWBmwh3s2lCeKv+AOVMyg8W9nQZsuEv8anrbA==",
+    "shasum": "06048c05b8257bc5e314e90b87d3c789c1d23d76",
+    "tarball": "https://registry.npmjs.org/@verifrax/archicustos/-/archicustos-0.1.0.tgz",
+    "fileCount": 5,
+    "unpackedSize": 7214,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEQCIBXiWGnJ/vr5n4ePE9NM5+U9zGQ46/XSJpG0C3fBKnrJAiAbBPTHjAh7ag5Emfv77V6sDGneaVUbDQNNliBP3KSpUA=="
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/archicustos_0.1.0_1772922410957_0.6830620483461238"
+  },
+  "_hasShrinkwrap": false
+}
