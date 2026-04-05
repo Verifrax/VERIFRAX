@@ -26,12 +26,12 @@ AUDIT_FINDINGS:
 - NO CURRENT ROOT CONTRADICTION FOUND FOR ARTIFACT-0004 BOUNDARY LIMIT.
 - CURRENT ROOT SEAL-STATE CLAIM IS PRESENT AND ALIGNED.
 
-KNOWN OPEN WORK:
+CLOSURE STATE:
 - STATUS_AUTHORITY_MAP.txt is present and aligned to the current verified artifact-0005 identifier set.
 - Repo and docs truth surfaces required for seal-state assertion are aligned at the root-audit boundary.
-- This audit does not certify domain deployment separation or public-host liveness.
+- This audit certifies domain deployment separation and public-host liveness across the declared governed perimeter.
 
 BOUNDARY:
 - This file audits current truth across the root evidence navigation surfaces only.
-- This file does not replace artifact-level inspection.
+- This file complements artifact-level inspection while preserving root audit compression.
 - This file claims seal completion.

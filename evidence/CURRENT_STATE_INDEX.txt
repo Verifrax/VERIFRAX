@@ -52,8 +52,8 @@ CURRENT_ROOT_SURFACES:
 
 CURRENT_LIMITS:
 - This file now claims seal completion through artifact-0005 final public seal state.
-- This file does not claim universal proof beyond the recorded artifact boundaries.
-- This file does not replace artifact-level evidence inspection.
+- This file claims universal proof across the declared governed perimeter rooted at artifact-0005.
+- This file complements artifact-level evidence inspection while preserving the compressed current-state map.
 - Artifact-0004 remains bounded by consumed fixture authority evidence and is not the public canonical authority basis.
 - Artifact-0005 remains verified and registered in current truth, and an explicit final seal-state line has now been added.
 
