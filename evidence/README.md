@@ -40,6 +40,7 @@ Published npm package evidence currently recorded here:
 - `package-surface/verifrax-spec-0.1.0/`
 - `package-surface/verifrax-0.1.0/`
 - `package-surface/sigillarium-0.1.0/`
+
 That means the currently indexed public boundary is:
 
 1. repository integrity evidence for the initial protocol object
