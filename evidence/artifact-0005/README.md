@@ -39,4 +39,3 @@ This directory is the final public seal-state statement for the governed system 
 
 - source file copied into this artifact: `AUCTORISEAL/public/authority/AUTHORITY-0001.json`
 - authority digest recorded in `authority/AUTHORITY_DIGEST.txt`
-
