@@ -23,10 +23,23 @@ Bootstrap-chain status file:
 - `bootstrap-chain-status/CHAIN_STATUS.txt`
 
 Published npm package evidence currently recorded here:
-
+- `package-surface/CURRENT_PACKAGE_INDEX.txt`
+- `package-surface/originseal-0.1.0/`
+- `package-surface/archicustos-0.1.0/`
+- `package-surface/kairoclasp-0.1.0/`
+- `package-surface/limenward-0.1.0/`
+- `package-surface/validexor-0.1.0/`
+- `package-surface/attestorium-0.1.0/`
+- `package-surface/irrevocull-0.1.0/`
+- `package-surface/guillotine-0.1.0/`
 - `package-surface/auctoriseal-0.1.2/`
 - `package-surface/corpiform-0.1.4/`
-
+- `package-surface/cicullis-0.1.0/`
+- `package-surface/verifrax-verify-0.1.2/`
+- `package-surface/verifrax-profiles-0.1.0/`
+- `package-surface/verifrax-spec-0.1.0/`
+- `package-surface/verifrax-0.1.0/`
+- `package-surface/sigillarium-0.1.0/`
 That means the currently indexed public boundary is:
 
 1. repository integrity evidence for the initial protocol object
@@ -35,8 +48,8 @@ That means the currently indexed public boundary is:
 4. first recorded CORPIFORM authority-governed execution receipt evidence
 5. verified artifact-0005 governed execution boundary recorded under public canonical authority and asserted as final public seal state
 6. semantic cross-implementation execution evidence for earlier chain artifacts
-7. package publication evidence for `@verifrax/auctoriseal`, including the current v0.1.2 publication surface
-8. package publication evidence for `@verifrax/corpiform`, including the current v0.1.4 publication surface
+7. package publication evidence for the full public `@verifrax/*` chain recorded under `package-surface/`
+8. sovereign triad component surfaces for `SYNTAGMARIUM`, `ORBISTIUM`, and `CONSONORIUM` recorded under `component-surface/`
 
 ---
 
@@ -99,7 +112,7 @@ Read this if you want to inspect whether an externally distributed package surfa
 - `package-surface/auctoriseal-0.1.2/`
 - `package-surface/corpiform-0.1.4/`
 
-This records package name, version, latest tag, repository head, and publication status for the current recorded npm boundary.
+This records package name, version, latest tag, repository head, and publication status for the full recorded npm boundary.
 
 Earlier recorded package surfaces remain part of the evidence history and are not superseded as historical records.
 
@@ -458,7 +471,7 @@ If you are entering this tree for the first time, start here:
 - issuance object: `artifact-0003/artifact-0003.json`
 - semantic cross-implementation result: `artifact-semantic-execution/CROSS_IMPLEMENTATION_STATUS.txt`
 - recorded execution component surface: `component-surface/corpiform/COMPONENT_STATUS.txt`
-- external package publication status: `package-surface/auctoriseal-0.1.2/PUBLICATION_STATUS.txt`
+- external package publication status: `package-surface/CURRENT_PACKAGE_INDEX.txt`
 
 ---
 
