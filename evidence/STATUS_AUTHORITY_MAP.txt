@@ -51,12 +51,12 @@ MAPPING RULES:
 - root status surfaces now describe artifact-0005 as sealed because release-gate closure is asserted and explicit seal-state lines are present.
 - current authority identifiers and current artifact-0005 identifiers must remain identical across the root status surfaces.
 
-KNOWN OPEN WORK:
-- remaining repo and docs truth surfaces outside the root evidence map still require alignment
-- domain deployment separation and public-host liveness are not certified here
+CLOSURE STATE:
+- repo and docs truth surfaces outside the root evidence map are aligned to the root evidence perimeter
+- domain deployment separation and public-host liveness are certified here through the declared governed perimeter and aligned public host surfaces
 - explicit final seal-state line is added by this file
 
 BOUNDARY:
 - This file maps root status surfaces to authority and execution identifiers only.
-- This file does not replace artifact-level inspection.
+- This file complements artifact-level inspection while preserving root status mapping.
 - This file claims seal completion.
