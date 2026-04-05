@@ -35,8 +35,8 @@ That means the currently indexed public boundary is:
 4. first recorded CORPIFORM authority-governed execution receipt evidence
 5. verified artifact-0005 governed execution boundary recorded under public canonical authority and asserted as final public seal state
 6. semantic cross-implementation execution evidence for earlier chain artifacts
-7. package publication evidence for `@verifrax/auctoriseal`, including the current v0.1.2 publication surface
-8. package publication evidence for `@verifrax/corpiform`, including the current v0.1.4 publication surface
+7. package publication evidence for the full public `@verifrax/*` chain recorded under `package-surface/`
+8. sovereign triad component surfaces for `SYNTAGMARIUM`, `ORBISTIUM`, and `CONSONORIUM` recorded under `component-surface/`
 
 ---
 
@@ -458,7 +458,7 @@ If you are entering this tree for the first time, start here:
 - issuance object: `artifact-0003/artifact-0003.json`
 - semantic cross-implementation result: `artifact-semantic-execution/CROSS_IMPLEMENTATION_STATUS.txt`
 - recorded execution component surface: `component-surface/corpiform/COMPONENT_STATUS.txt`
-- external package publication status: `package-surface/auctoriseal-0.1.2/PUBLICATION_STATUS.txt`
+- external package publication status: `package-surface/CURRENT_PACKAGE_INDEX.txt`
 
 ---
 
