@@ -21,7 +21,6 @@ Normative protocol authoring, evidence-root registration, and verification bound
 * Repository class: governed flagship repository
 * System role: authored source material plus artifact-chain registration
 * Public host ownership: none claimed as sole host surface in this README
-* npm package surface: `packages/npm` publishes `@verifrax/verifrax@0.1.0`; root `package.json` remains private
 * License: Apache License Version 2.0
 
 ## One-sentence role

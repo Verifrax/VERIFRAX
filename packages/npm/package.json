@@ -1,0 +1,27 @@
+{
+  "name": "@verifrax/verifrax",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Published CLI/runtime package boundary for the governed Verifrax verification system.",
+  "license": "Apache-2.0",
+  "type": "commonjs",
+  "bin": {
+    "verifrax-seal": "bin/verifrax-seal.js"
+  },
+  "files": [
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/VERIFRAX.git"
+  },
+  "homepage": "https://github.com/Verifrax/VERIFRAX#readme",
+  "bugs": {
+    "url": "https://github.com/Verifrax/VERIFRAX/issues"
+  }
+}
