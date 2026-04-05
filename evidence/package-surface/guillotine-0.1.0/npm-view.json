@@ -1,0 +1,63 @@
+{
+  "_id": "@verifrax/guillotine@0.1.0",
+  "name": "@verifrax/guillotine",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-03-08T11:46:33.406Z",
+    "0.1.0": "2026-03-08T11:46:33.677Z",
+    "modified": "2026-03-08T11:46:33.888Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Verifrax primitive — termination primitive for deterministic irreversible systems.",
+  "homepage": "https://github.com/Verifrax/guillotine#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/guillotine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/guillotine/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "_rev": "1-77273c8f35b05837c14bcdb72cfc2012",
+  "_contentLength": 6190,
+  "version": "0.1.0",
+  "bin": {
+    "guillotine": "guillotine.sh"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "6f87950a9d9f9f7206940a3f4c875e2b38e255bd",
+  "_nodeVersion": "25.2.1",
+  "_npmVersion": "11.6.2",
+  "dist": {
+    "integrity": "sha512-ziexCLeKl0mj3Zp9pC2GD90hsHQ644bF7k4qTtVqwAcF80FeVghU9U9EM9paXfMiQL0bO1OKizQmr/9frBZbrA==",
+    "shasum": "e15d99c2daf44c709d98ce831424dcf6357c1bd3",
+    "tarball": "https://registry.npmjs.org/@verifrax/guillotine/-/guillotine-0.1.0.tgz",
+    "fileCount": 5,
+    "unpackedSize": 5971,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEUCIQDoU8YuBNriOo4eyd+fHT9RGo+FJJTVyZk1Bkgn5ud8CgIgY01CVGcN6BCegBYwvofw+FTqvXPHdyT79eWB6aSSb2w="
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/guillotine_0.1.0_1772970393538_0.04968876985091919"
+  },
+  "_hasShrinkwrap": false
+}

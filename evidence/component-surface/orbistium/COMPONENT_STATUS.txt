@@ -1,0 +1,6 @@
+STATUS: RECORDED
+COMPONENT: ORBISTIUM
+ROLE: sovereign accepted state store
+PACKAGE: none
+PUBLIC_HOST: none
+REPO_HEAD: d5035bb

@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/validexor
+VERSION: 0.1.0
+LAYER: Primitive
+SOURCE_REPOSITORY: Verifrax/validexor
+REPO_HEAD: 517b101

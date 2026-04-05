@@ -1,1 +1,77 @@
-{"_id":"@verifrax/corpiform","_rev":"2-811f606a17c99c7e52efeb732c893ab8","name":"@verifrax/corpiform","dist-tags":{"latest":"0.1.4"},"versions":{"0.1.3":{"name":"@verifrax/corpiform","version":"0.1.3","keywords":["verifrax","corpiform","authority","execution","deterministic","receipt","denial","shell"],"license":"Apache-2.0","_id":"@verifrax/corpiform@0.1.3","maintainers":[{"name":"kiasat","email":"midia.kiasat@gmail.com"},{"name":"verifrax-admin","email":"dev@verifrax.net"},{"name":"verifrax-systems","email":"contact@verifrax.net"}],"homepage":"https://github.com/Verifrax/CORPIFORM#readme","bugs":{"url":"https://github.com/Verifrax/CORPIFORM/issues"},"bin":{"corpiform":"bin/corpiform"},"dist":{"shasum":"d7897bcf17df9c248ed9fc3fa5f098666ebb56d2","tarball":"https://registry.npmjs.org/@verifrax/corpiform/-/corpiform-0.1.3.tgz","fileCount":46,"integrity":"sha512-EqSAY1zZP6r3N4MXJvDck4lAYrI4IwFrfVm7Jot1cUrdfRMWZzhmZmps06lxAD6o+2qAXGEnDVg1fCz3JxNt+w==","signatures":[{"sig":"MEUCIEJMcCJheRwzFnGL0MLY9OBlipYXuJhCge4MdEiYoKzKAiEAy6udAlVhFiCcUhh4bn+NQdF+hUd6/XyuAMxvKdHIums=","keyid":"SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"}],"unpackedSize":58091},"gitHead":"289b977fef41fee30d1b8dc248be83b3452a9cd1","private":false,"scripts":{"test":"./bin/corpiform help >/dev/null","smoke":"./bin/corpiform help"},"_npmUser":{"name":"kiasat","email":"midia.kiasat@gmail.com"},"repository":{"url":"git+https://github.com/Verifrax/CORPIFORM.git","type":"git"},"_npmVersion":"11.6.2","description":"Deterministic execution-control substrate for authority-gated actions in the Verifrax stack.","directories":{},"_nodeVersion":"25.2.1","_hasShrinkwrap":false,"_npmOperationalInternal":{"tmp":"tmp/corpiform_0.1.3_1773948744594_0.2024436580152229","host":"s3://npm-registry-packages-npm-production"}},"0.1.4":{"name":"@verifrax/corpiform","version":"0.1.4","description":"CORPIFORM is an authority-governed deterministic execution runtime that consumes AUCTORISEAL authority and emits signed, replay-resistant receipts.","license":"Apache-2.0","private":false,"repository":{"type":"git","url":"git+https://github.com/Verifrax/CORPIFORM.git"},"homepage":"https://github.com/Verifrax/CORPIFORM#readme","bugs":{"url":"https://github.com/Verifrax/CORPIFORM/issues"},"keywords":["verifrax","corpiform","authority","execution","deterministic","receipt","denial","shell"],"bin":{"corpiform":"bin/corpiform"},"scripts":{"test":"./bin/corpiform help >/dev/null","smoke":"./bin/corpiform help"},"gitHead":"40047fb76364d4993134490aa2b47817c2b48854","_id":"@verifrax/corpiform@0.1.4","_nodeVersion":"25.2.1","_npmVersion":"11.6.2","dist":{"integrity":"sha512-+VwMXQuvbGhkQMjJdn6GjLIDtDEUYm3lOw9pKzFzVKsgbA+NCrCZyRtKIIGPLf5thEcgZWtvGuvp6ngy6XBhxg==","shasum":"6baa1bf4e3d65f36c89590e8d14575510f9460eb","tarball":"https://registry.npmjs.org/@verifrax/corpiform/-/corpiform-0.1.4.tgz","fileCount":46,"unpackedSize":57065,"signatures":[{"keyid":"SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U","sig":"MEUCIQCDcZ5wmW/njBXvFXsPXFFoe4lJ9RCq4PcShpj5cSOj3wIgQkzHZMAZiO+Qz7ENFTX/lldCvST0Vl9kFP2fmBehY9M="}]},"_npmUser":{"name":"kiasat","email":"midia.kiasat@gmail.com"},"directories":{},"maintainers":[{"name":"kiasat","email":"midia.kiasat@gmail.com"},{"name":"verifrax-admin","email":"dev@verifrax.net"},{"name":"verifrax-systems","email":"contact@verifrax.net"}],"_npmOperationalInternal":{"host":"s3://npm-registry-packages-npm-production","tmp":"tmp/corpiform_0.1.4_1773999831319_0.7591214306868637"},"_hasShrinkwrap":false}},"time":{"created":"2026-03-19T19:32:24.507Z","modified":"2026-03-20T09:43:51.668Z","0.1.3":"2026-03-19T19:32:24.737Z","0.1.4":"2026-03-20T09:43:51.473Z"},"bugs":{"url":"https://github.com/Verifrax/CORPIFORM/issues"},"license":"Apache-2.0","homepage":"https://github.com/Verifrax/CORPIFORM#readme","keywords":["verifrax","corpiform","authority","execution","deterministic","receipt","denial","shell"],"repository":{"type":"git","url":"git+https://github.com/Verifrax/CORPIFORM.git"},"description":"CORPIFORM is an authority-governed deterministic execution runtime that consumes AUCTORISEAL authority and emits signed, replay-resistant receipts.","maintainers":[{"name":"kiasat","email":"midia.kiasat@gmail.com"},{"name":"verifrax-admin","email":"dev@verifrax.net"},{"name":"verifrax-systems","email":"contact@verifrax.net"}],"readme":"# CORPIFORM\n\n[![npm version](https://img.shields.io/npm/v/@verifrax/corpiform.svg)](https://www.npmjs.com/package/@verifrax/corpiform)\n[![npm downloads](https://img.shields.io/npm/dm/@verifrax/corpiform.svg)](https://www.npmjs.com/package/@verifrax/corpiform)\n[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@verifrax/corpiform)](https://bundlephobia.com/package/@verifrax/corpiform)\n[![license](https://img.shields.io/github/license/Verifrax/CORPIFORM.svg)](https://github.com/Verifrax/CORPIFORM/blob/main/LICENSE)\n[![build](https://img.shields.io/github/actions/workflow/status/Verifrax/CORPIFORM/ci.yml?branch=main)](https://github.com/Verifrax/CORPIFORM/actions)\n[![commit](https://img.shields.io/github/last-commit/Verifrax/CORPIFORM)](https://github.com/Verifrax/CORPIFORM/commits/main)\n[![determinism](https://img.shields.io/badge/determinism-required-black)](#design-constraints)\n[![execution](https://img.shields.io/badge/execution-authority--governed-blue)](#execution-model)\n[![replay](https://img.shields.io/badge/replay-forbidden-red)](#replay-resistance)\n[![verification](https://img.shields.io/badge/verification-verifrax-green)](https://github.com/Verifrax/VERIFRAX)\n\n---\n\n## Canonical definition\n\nCORPIFORM is an authority-governed deterministic execution runtime that consumes AUCTORISEAL authority and emits signed, replay-resistant receipts.\n\n---\n\n## Position in the Verifrax stack\n\n* **Authority** → [AUCTORISEAL](https://github.com/Verifrax/AUCTORISEAL)\n* **Execution** → CORPIFORM\n* **Verification** → [VERIFRAX](https://github.com/Verifrax/VERIFRAX)\n\nCORPIFORM does not issue authority.\nCORPIFORM does not verify truth.\nCORPIFORM enforces execution under authority.\n\n---\n\n## Current posture\n\n* Version: **v0.1.4**\n* State: **PRE-FINAL EXECUTION SURFACE**\n* Release type: **PUBLIC PRE-SEAL**\n* Authority model: **EXTERNAL (AUCTORISEAL-GOVERNED)**\n* Determinism: **REQUIRED**\n* Replay: **FORBIDDEN (ENFORCED BY RECEIPT)**\n* Compatibility: **GUARANTEED WITHIN RECORDED EXECUTION BOUNDARY (artifact-0004)**\n\n---\n\n## Verified execution boundary\n\nBound to:\n\n* VERIFRAX: **artifact-0004**\n* CORPIFORM commit: **f257493**\n* Receipt: **EE07B689-F1BF-4518-B49C-C973CB178029**\n\nThis is the only asserted compatibility boundary.\n\n---\n\n## Package surface\n\n* npm: [https://www.npmjs.com/package/@verifrax/corpiform](https://www.npmjs.com/package/@verifrax/corpiform)\n* dist-tag: **latest**\n\nCLI:\n\n```bash\nnpx @verifrax/corpiform\n```\n\n---\n\n## Execution model\n\nExecution is permitted only if all conditions hold:\n\n1. authority present and valid\n2. scope matches\n3. time window valid\n4. custody valid\n5. not revoked\n6. not previously executed (execute-once)\n\nFailure of any condition ⇒ **refusal**.\n\nSuccess ⇒ **execution + signed receipt**.\n\n---\n\n## Receipt model\n\nReceipt binds:\n\n* `command_id`\n* `authority_seal_id`\n* execution context\n* timestamp\n* outcome\n\nProperties:\n\n* canonicalizable\n* hashable\n* signable\n* externally verifiable\n\nGuarantees:\n\n* replay detection\n* traceability\n* authority binding\n\n---\n\n## Denial model\n\nAll refusals are:\n\n* deterministic\n* attributable\n* materialized as denial artifacts\n\nNo silent failure.\n\n---\n\n## Replay resistance\n\n* each `command_id` executes at most once\n* subsequent attempts are refused\n* prior execution is provable via receipt\n\n---\n\n## Canonical repository surfaces\n\n### Governing boundary\n\n* `STATUS.md`\n* `SCOPE.md`\n* `CONTRACT.md`\n* `AUTHORITY.md`\n* `FAILURE.md`\n* `DEATH.md`\n* `GOVERNANCE.md`\n* `SECURITY.md`\n* `VERSION.md`\n\n### Execution boundary\n\n* `execution/`\n* `bodies/`\n* `seals/`\n* `revocation/`\n* `receipts/`\n* `denials/`\n* `ledger/`\n\n### Integration boundary\n\n* `interfaces/`\n* `integrations/auctoriseal/`\n* `integrations/verifrax/`\n* `id/TRUSTED_ROOTS/auctoriseal_roots.json`\n\n### Runtime / adversarial\n\n* `runtime/`\n* `tests/`\n* `fixtures/`\n* `tools/`\n* `observability/`\n\n### Evidence boundary\n\n* `evidence/README.md`\n\n---\n\n## Design constraints\n\n* no authority → no execution\n* no ambiguity → no execution\n* no replay → enforced\n* no unsigned consequence → rejected\n* no hidden mutation → rejected\n\n---\n\n## Invariants\n\n* deterministic execution\n* external authority\n* canonical receipts\n* replay detectability\n* boundary-scoped finality\n\n---\n\n## What CORPIFORM is not\n\n* not an identity system\n* not an authority issuer\n* not a workflow engine\n* not a best-effort executor\n\nIt is a constrained execution runtime.\n\n---\n\n## Security\n\n* authority validation mandatory\n* receipt signing mandatory\n* denial paths explicit\n\nSee `SECURITY.md`.\n\n---\n\n## License\n\nApache License 2.0\n\nSee `LICENSE`.\n\n---\n\n## Links\n\n* Protocol: [https://github.com/Verifrax/VERIFRAX](https://github.com/Verifrax/VERIFRAX)\n* Authority: [https://github.com/Verifrax/AUCTORISEAL](https://github.com/Verifrax/AUCTORISEAL)\n* Execution: [https://github.com/Verifrax/CORPIFORM](https://github.com/Verifrax/CORPIFORM)\n","readmeFilename":"README.md"}
+{
+  "_id": "@verifrax/corpiform@0.1.4",
+  "_rev": "2-811f606a17c99c7e52efeb732c893ab8",
+  "name": "@verifrax/corpiform",
+  "dist-tags": {
+    "latest": "0.1.4"
+  },
+  "versions": [
+    "0.1.3",
+    "0.1.4"
+  ],
+  "time": {
+    "created": "2026-03-19T19:32:24.507Z",
+    "modified": "2026-03-20T09:43:51.668Z",
+    "0.1.3": "2026-03-19T19:32:24.737Z",
+    "0.1.4": "2026-03-20T09:43:51.473Z"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/CORPIFORM/issues"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/Verifrax/CORPIFORM#readme",
+  "keywords": [
+    "verifrax",
+    "corpiform",
+    "authority",
+    "execution",
+    "deterministic",
+    "receipt",
+    "denial",
+    "shell"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/CORPIFORM.git"
+  },
+  "description": "CORPIFORM is an authority-governed deterministic execution runtime that consumes AUCTORISEAL authority and emits signed, replay-resistant receipts.",
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "readmeFilename": "README.md",
+  "_contentLength": 9505,
+  "version": "0.1.4",
+  "private": false,
+  "bin": {
+    "corpiform": "bin/corpiform"
+  },
+  "scripts": {
+    "test": "./bin/corpiform help >/dev/null",
+    "smoke": "./bin/corpiform help"
+  },
+  "gitHead": "40047fb76364d4993134490aa2b47817c2b48854",
+  "_nodeVersion": "25.2.1",
+  "_npmVersion": "11.6.2",
+  "dist": {
+    "integrity": "sha512-+VwMXQuvbGhkQMjJdn6GjLIDtDEUYm3lOw9pKzFzVKsgbA+NCrCZyRtKIIGPLf5thEcgZWtvGuvp6ngy6XBhxg==",
+    "shasum": "6baa1bf4e3d65f36c89590e8d14575510f9460eb",
+    "tarball": "https://registry.npmjs.org/@verifrax/corpiform/-/corpiform-0.1.4.tgz",
+    "fileCount": 46,
+    "unpackedSize": 57065,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEUCIQCDcZ5wmW/njBXvFXsPXFFoe4lJ9RCq4PcShpj5cSOj3wIgQkzHZMAZiO+Qz7ENFTX/lldCvST0Vl9kFP2fmBehY9M="
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/corpiform_0.1.4_1773999831319_0.7591214306868637"
+  },
+  "_hasShrinkwrap": false
+}

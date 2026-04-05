@@ -1,0 +1,63 @@
+{
+  "_id": "@verifrax/limenward@0.1.0",
+  "name": "@verifrax/limenward",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-03-07T23:45:39.353Z",
+    "0.1.0": "2026-03-07T23:45:39.615Z",
+    "modified": "2026-03-07T23:45:39.806Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Verifrax primitive — boundary enforcement primitive for deterministic irreversible systems.",
+  "homepage": "https://github.com/Verifrax/limenward#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/limenward.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/limenward/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "_rev": "1-380a9f008e64669d7bbfc947af3ce71c",
+  "_contentLength": 6095,
+  "version": "0.1.0",
+  "bin": {
+    "limenward": "limenward.sh"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "6a850ceeeaba0f06bd4c333dd6c4ed865fe58670",
+  "_nodeVersion": "25.2.1",
+  "_npmVersion": "11.6.2",
+  "dist": {
+    "integrity": "sha512-VJF2l6DYKGwty15PESaG3B2inAD5/db6FTnmxOCtDGpfjkLQtmDFhQqOVmAYOrtlmCPE5fvNDWcB1Mbp8s5NQQ==",
+    "shasum": "519e20ecc6733bebc5955eeb3b0131ac64f33e1d",
+    "tarball": "https://registry.npmjs.org/@verifrax/limenward/-/limenward-0.1.0.tgz",
+    "fileCount": 5,
+    "unpackedSize": 9982,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEUCIQDOrECxUtM5TPcWC667dme11YU9RG1cqexpD/gPSZhjegIgc6VgpdhRpsf6NNFriUDXb3MopZUometnB64i0X/n+js="
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/limenward_0.1.0_1772927139471_0.7587539254098767"
+  },
+  "_hasShrinkwrap": false
+}

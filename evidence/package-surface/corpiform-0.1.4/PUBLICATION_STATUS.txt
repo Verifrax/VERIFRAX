@@ -1,0 +1,5 @@
+STATUS: PUBLIC
+PACKAGE: @verifrax/corpiform
+VERSION: 0.1.4
+LATEST: 0.1.4
+EXACT: 0.1.4

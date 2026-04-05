@@ -1,0 +1,63 @@
+{
+  "_id": "@verifrax/irrevocull@0.1.0",
+  "name": "@verifrax/irrevocull",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-03-08T11:17:21.552Z",
+    "0.1.0": "2026-03-08T11:17:21.785Z",
+    "modified": "2026-03-08T11:17:22.071Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Verifrax primitive — judgment primitive for deterministic irreversible systems.",
+  "homepage": "https://github.com/Verifrax/irrevocull#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/irrevocull.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/irrevocull/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "_rev": "1-d04110d6bbbe69b2058836aaba5d1406",
+  "_contentLength": 6197,
+  "version": "0.1.0",
+  "bin": {
+    "irrevocull": "irrevocull.sh"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "0cd771339202b83327d949fc93cddabec875c577",
+  "_nodeVersion": "25.2.1",
+  "_npmVersion": "11.6.2",
+  "dist": {
+    "integrity": "sha512-/TvDaRu1bmVqpIUKOQBytX7/vM5Bu4H+NpT4NHt7dbnTzgxd+JP4E0hK+yVlgY2VxxkGL7vo3siD9Flupzf3bQ==",
+    "shasum": "a28736f7f5066ccdbcea4f4c5cc6fca9fd9c6d7e",
+    "tarball": "https://registry.npmjs.org/@verifrax/irrevocull/-/irrevocull-0.1.0.tgz",
+    "fileCount": 5,
+    "unpackedSize": 6909,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEUCIEnY0fAkAMVuLP+k5JLeu8ppfJ8SBxCBZ1yz4NgDPBXuAiEAoTD/uwL6c4MXvKpLJvwJHlGQB2ow8CoVCq29NX9seYs="
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/irrevocull_0.1.0_1772968641643_0.44130164795206817"
+  },
+  "_hasShrinkwrap": false
+}

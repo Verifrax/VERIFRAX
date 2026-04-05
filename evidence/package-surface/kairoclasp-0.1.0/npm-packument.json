@@ -1,0 +1,63 @@
+{
+  "_id": "@verifrax/kairoclasp@0.1.0",
+  "name": "@verifrax/kairoclasp",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-03-07T23:13:54.853Z",
+    "0.1.0": "2026-03-07T23:13:55.142Z",
+    "modified": "2026-03-07T23:13:55.493Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Verifrax primitive — time boundary primitive for deterministic irreversible systems.",
+  "homepage": "https://github.com/Verifrax/kairoclasp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/kairoclasp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/kairoclasp/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "_rev": "1-5bd2344d8dc3195ed91498d253c593e9",
+  "_contentLength": 5947,
+  "version": "0.1.0",
+  "bin": {
+    "kairoclasp": "kairoclasp.sh"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "7b65695abc957b626b57d79b85480c93fa145575",
+  "_nodeVersion": "25.2.1",
+  "_npmVersion": "11.6.2",
+  "dist": {
+    "integrity": "sha512-URaEIY9tDi5MwVAEHtvzDWWwAiBDge4ebqRZrsc/x0i7SWbHpFUwCNhaxQoUiLn3sy9xMtmjwZNbBJIwkU7E+Q==",
+    "shasum": "bb6e4cff384d45c9fc7461380f2ba611096e7268",
+    "tarball": "https://registry.npmjs.org/@verifrax/kairoclasp/-/kairoclasp-0.1.0.tgz",
+    "fileCount": 5,
+    "unpackedSize": 9436,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEUCIAxIM/k93FNCdv5BtkMFcbjpwQ7QGwxQ+vseqjSKKN2yAiEAvmaaUTW20rux58SY6BDvxfF2vkpFpYO4QunDow/BvGo="
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/kairoclasp_0.1.0_1772925234985_0.5972645634422047"
+  },
+  "_hasShrinkwrap": false
+}

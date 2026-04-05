@@ -1,0 +1,81 @@
+{
+  "_id": "@verifrax/auctoriseal@0.1.2",
+  "_rev": "2-42908681050803a7b0d7d5498c58db63",
+  "name": "@verifrax/auctoriseal",
+  "dist-tags": {
+    "latest": "0.1.2"
+  },
+  "versions": [
+    "0.1.1",
+    "0.1.2"
+  ],
+  "time": {
+    "created": "2026-03-15T19:36:49.976Z",
+    "modified": "2026-03-15T21:07:44.694Z",
+    "0.1.1": "2026-03-15T19:36:50.270Z",
+    "0.1.2": "2026-03-15T21:07:44.550Z"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/AUCTORISEAL/issues"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/Verifrax/AUCTORISEAL",
+  "keywords": [
+    "verifrax",
+    "auctoriseal",
+    "authority",
+    "seal",
+    "ledger",
+    "governance",
+    "verification"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/AUCTORISEAL.git"
+  },
+  "description": "Authority sealing primitive for canonical authority ledgers, genesis seal publication, and verifier-visible issuance surfaces in the Verifrax stack.",
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "readmeFilename": "README.md",
+  "_contentLength": 10224,
+  "version": "0.1.2",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "node .verifrax/build.js",
+    "test": "node .verifrax/test.js",
+    "pack:check": "npm pack --dry-run"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "gitHead": "27ff3141196d567ed911e5e09b50eee14e9793dd",
+  "_nodeVersion": "25.2.1",
+  "_npmVersion": "11.6.2",
+  "dist": {
+    "integrity": "sha512-g1uoABFCGduaE9946FZ4xNlD+sgyFajB/S4RqDIHE58UWtJ9bnrv7nHqOz5ncekcKwbrlL8QVarbGDekWXbYrQ==",
+    "shasum": "7bdf2043d4380892a2bf596c0c53b88e8550c7d6",
+    "tarball": "https://registry.npmjs.org/@verifrax/auctoriseal/-/auctoriseal-0.1.2.tgz",
+    "fileCount": 110,
+    "unpackedSize": 180285,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEQCIBNpa80+7yf+DqBTI89Z1tp3yg3P9ygIiTy5N3p2YkIIAiBo2Xcpa6WJhT8LSeB2tIMIjD3Fam5bjW0djTbs0mNr3A=="
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/auctoriseal_0.1.2_1773608864367_0.7594045818431059"
+  },
+  "_hasShrinkwrap": false
+}

@@ -1,0 +1,30 @@
+VERIFRAX CURRENT PACKAGE INDEX
+STATUS: PUBLIC @verifrax PACKAGE CHAIN RECORDED
+
+RULES:
+- This file records the currently public npm package chain for Verifrax in bottom-to-top order.
+- Package truth here must match npm registry truth, package metadata, and repository reality at the same time.
+- One package = one source repository.
+
+CURRENT_PUBLIC_PACKAGE_CHAIN:
+- @verifrax/originseal = 0.1.0 [Primitive] (repo: Verifrax/originseal, head: 90898d3)
+- @verifrax/archicustos = 0.1.0 [Primitive] (repo: Verifrax/archicustos, head: 33e6d7e)
+- @verifrax/kairoclasp = 0.1.0 [Primitive] (repo: Verifrax/kairoclasp, head: 0cf2100)
+- @verifrax/limenward = 0.1.0 [Primitive] (repo: Verifrax/limenward, head: 9adc703)
+- @verifrax/validexor = 0.1.0 [Primitive] (repo: Verifrax/validexor, head: 517b101)
+- @verifrax/attestorium = 0.1.0 [Primitive] (repo: Verifrax/attestorium, head: 34648af)
+- @verifrax/irrevocull = 0.1.0 [Primitive] (repo: Verifrax/irrevocull, head: 0fe2161)
+- @verifrax/guillotine = 0.1.0 [Primitive] (repo: Verifrax/guillotine, head: 419db91)
+- @verifrax/auctoriseal = 0.1.2 [Authority] (repo: Verifrax/AUCTORISEAL, head: 18f1068)
+- @verifrax/corpiform = 0.1.4 [Execution] (repo: Verifrax/CORPIFORM, head: a47363c)
+- @verifrax/cicullis = 0.1.0 [Enforcement] (repo: Verifrax/cicullis, head: 6f7e4e9)
+- @verifrax/verifrax-verify = 0.1.2 [Verification] (repo: Verifrax/VERIFRAX-verify, head: ca18f80)
+- @verifrax/verifrax-profiles = 0.1.0 [Verification] (repo: Verifrax/VERIFRAX-PROFILES, head: 724cb9e)
+- @verifrax/verifrax-spec = 0.1.0 [Verification] (repo: Verifrax/VERIFRAX-SPEC, head: 5712723)
+- @verifrax/verifrax = 0.1.0 [Verification] (repo: Verifrax/VERIFRAX, head: bca6ca9)
+- @verifrax/sigillarium = 0.1.0 [Interface] (repo: Verifrax/SIGILLARIUM, head: a7dc68e)
+
+INDEX_POINTERS:
+- evidence/README.md
+- evidence/CURRENT_STATE_INDEX.txt
+- evidence/CONSISTENCY_AUDIT.txt

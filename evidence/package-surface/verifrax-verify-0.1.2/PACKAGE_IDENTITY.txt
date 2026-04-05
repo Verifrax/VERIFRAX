@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/verifrax-verify
+VERSION: 0.1.2
+LAYER: Verification
+SOURCE_REPOSITORY: Verifrax/VERIFRAX-verify
+REPO_HEAD: ca18f80

@@ -1,0 +1,66 @@
+{
+  "_id": "@verifrax/verifrax-verify@0.1.2",
+  "name": "@verifrax/verifrax-verify",
+  "dist-tags": {
+    "latest": "0.1.2"
+  },
+  "versions": [
+    "0.1.2"
+  ],
+  "time": {
+    "created": "2026-04-05T12:27:54.268Z",
+    "0.1.2": "2026-04-05T12:27:54.482Z",
+    "modified": "2026-04-05T12:27:54.740Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "Public verification surface for finality-grade truth checks, proof review, and post-hoc determination.",
+  "homepage": "https://github.com/Verifrax/VERIFRAX-verify#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/VERIFRAX-verify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/VERIFRAX-verify/issues"
+  },
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "_rev": "1-c5464c3662bac27f65043d35cbc2a419",
+  "_contentLength": 16539,
+  "private": false,
+  "version": "0.1.2",
+  "type": "module",
+  "scripts": {
+    "build": "node .verifrax/build.js",
+    "test": "node .verifrax/test.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "ca18f80fc95606bae09981ef76aa694a020dc0a1",
+  "_nodeVersion": "24.14.1",
+  "_npmVersion": "11.11.0",
+  "dist": {
+    "integrity": "sha512-G3HnVU6nHJ3tw0RU3SvhnMl5uNr9BCtfSnjdcUEfRWcCaOQLC4gLXJYwfR0qOpBLiUpSVNFlqY5nf72JnsT0DQ==",
+    "shasum": "ee5ab4ef1750f0ee8d231e366662cc1e9fae6547",
+    "tarball": "https://registry.npmjs.org/@verifrax/verifrax-verify/-/verifrax-verify-0.1.2.tgz",
+    "fileCount": 5,
+    "unpackedSize": 27636,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEYCIQCwdeRq0aRCXnl5F7uvYJK0J/QDF6WmfzMG+6yYri1rwgIhAOsJ0xZiP/+ZW6XioXaRqtH4hVg7LyeCCLurOUKmBykF"
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/verifrax-verify_0.1.2_1775392074333_0.9524652195282881"
+  },
+  "_hasShrinkwrap": false
+}

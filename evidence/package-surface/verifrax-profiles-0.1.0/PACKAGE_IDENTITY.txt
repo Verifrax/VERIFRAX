@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/verifrax-profiles
+VERSION: 0.1.0
+LAYER: Verification
+SOURCE_REPOSITORY: Verifrax/VERIFRAX-PROFILES
+REPO_HEAD: 724cb9e

@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/attestorium
+VERSION: 0.1.0
+LAYER: Primitive
+SOURCE_REPOSITORY: Verifrax/attestorium
+REPO_HEAD: 34648af

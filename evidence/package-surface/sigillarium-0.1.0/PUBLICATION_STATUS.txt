@@ -1,0 +1,5 @@
+STATUS: PUBLIC
+PACKAGE: @verifrax/sigillarium
+VERSION: 0.1.0
+LATEST: 0.1.0
+EXACT: 0.1.0

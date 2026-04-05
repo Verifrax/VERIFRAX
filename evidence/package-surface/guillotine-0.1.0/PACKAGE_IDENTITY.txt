@@ -1,0 +1,5 @@
+PACKAGE: @verifrax/guillotine
+VERSION: 0.1.0
+LAYER: Primitive
+SOURCE_REPOSITORY: Verifrax/guillotine
+REPO_HEAD: 419db91

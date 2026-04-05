@@ -1,0 +1,75 @@
+{
+  "_id": "@verifrax/sigillarium@0.1.0",
+  "name": "@verifrax/sigillarium",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": [
+    "0.1.0"
+  ],
+  "time": {
+    "created": "2026-04-05T12:28:13.120Z",
+    "0.1.0": "2026-04-05T12:28:13.370Z",
+    "modified": "2026-04-05T12:28:13.626Z"
+  },
+  "maintainers": [
+    "kiasat <midia.kiasat@gmail.com>",
+    "verifrax-admin <dev@verifrax.net>",
+    "verifrax-systems <contact@verifrax.net>"
+  ],
+  "description": "SIGILLARIUM CLI",
+  "homepage": "https://github.com/Verifrax/SIGILLARIUM#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/SIGILLARIUM.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verifrax/SIGILLARIUM/issues"
+  },
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "_rev": "1-5bef6f122c72a56d5769748f2ab007a8",
+  "_contentLength": 17151,
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "sigillarium": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "npx -y tsc -p tsconfig.json && node scripts/postbuild.mjs",
+    "test": "node dist/cli.js --help >/dev/null 2>&1 || true",
+    "prepack": "npm run build",
+    "postpack": "node scripts/postpack.mjs"
+  },
+  "dependencies": {
+    "@sigillarium/core": "1.0.0"
+  },
+  "devDependencies": {},
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "a7dc68eee03312b96ba92bba2a7de7f4ae245098",
+  "_nodeVersion": "24.14.1",
+  "_npmVersion": "11.11.0",
+  "dist": {
+    "integrity": "sha512-3un2hCGWOmlMbEzI9PbsVzYxV0P1DSHedDegkdw5G/zSyCB7VI3Z+S6tR5gos1kvRfvvbW7tAY8YmY+SSoI2dA==",
+    "shasum": "d01e45dc50d0ca2848c343caf7df6ff2b2e3fbdf",
+    "tarball": "https://registry.npmjs.org/@verifrax/sigillarium/-/sigillarium-0.1.0.tgz",
+    "fileCount": 28,
+    "unpackedSize": 41808,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEUCIQDhN2U42Yp6/OZaj/ADO7d62evXWiTueXN3SFM4TTKcvgIgT9yKCKAR1cVrfCaEBcHw2PDWf/rOKtFrphn22k/fV5Q="
+      }
+    ]
+  },
+  "_npmUser": "kiasat <midia.kiasat@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/sigillarium_0.1.0_1775392093207_0.9162523471545321"
+  },
+  "_hasShrinkwrap": false
+}
