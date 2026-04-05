@@ -33,7 +33,7 @@ That means the currently indexed public boundary is:
 2. authority readiness evidence for AUCTORISEAL
 3. authority issuance presence and re-execution evidence
 4. first recorded CORPIFORM authority-governed execution receipt evidence
-5. verified artifact-0005 governed execution boundary recorded under public canonical authority
+5. verified artifact-0005 governed execution boundary recorded under public canonical authority and asserted as final public seal state
 6. semantic cross-implementation execution evidence for earlier chain artifacts
 7. package publication evidence for `@verifrax/auctoriseal`, including the current v0.1.2 publication surface
 8. package publication evidence for `@verifrax/corpiform`, including the current v0.1.4 publication surface

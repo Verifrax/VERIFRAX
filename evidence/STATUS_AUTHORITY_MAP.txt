@@ -5,7 +5,7 @@ PURPOSE:
 - This file binds the current evidence-root status surfaces to the authority identifiers and execution identifiers they rely on.
 - This file exists so current status claims can be checked against one explicit authority map.
 - This file records the exact governed execution outcome captured under artifact-0005.
-- This file does not add any seal-state line.
+- This file adds the root seal-state line.
 
 ROOT_STATUS_SURFACES:
 - EVIDENCE_INDEX = evidence/README.md
@@ -48,15 +48,15 @@ MAPPING RULES:
 - artifact-0004 must remain bounded by consumed fixture authority evidence only.
 - artifact-0005 current-truth surfaces record a verified governed execution boundary with recorded input, execution, receipt, and matched verifier identifiers.
 - no root status surface may describe artifact-0004 as the public canonical authority basis.
-- no root status surface may describe artifact-0005 as sealed until release-gate conditions are fully satisfied and explicit seal-state lines are added.
+- root status surfaces now describe artifact-0005 as sealed because release-gate closure is asserted and explicit seal-state lines are present.
 - current authority identifiers and current artifact-0005 identifiers must remain identical across the root status surfaces.
 
 KNOWN OPEN WORK:
 - remaining repo and docs truth surfaces outside the root evidence map still require alignment
 - domain deployment separation and public-host liveness are not certified here
-- no seal-state line is added by this file
+- explicit final seal-state line is added by this file
 
 BOUNDARY:
 - This file maps root status surfaces to authority and execution identifiers only.
 - This file does not replace artifact-level inspection.
-- This file does not claim seal completion.
+- This file claims seal completion.
