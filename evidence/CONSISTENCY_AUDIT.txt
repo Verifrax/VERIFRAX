@@ -17,21 +17,21 @@ CURRENT_TRUTH_RESULTS:
 - ARTIFACT-0005 authority seal id is recorded as seal_9c1568bb9ef7423283ca56ecdb7dc278 across root current-state surfaces.
 - ARTIFACT-0005 receipt id is recorded as 8F88E46F-625B-4682-BF9A-D68ADD241FFF across root current-state surfaces.
 - ARTIFACT-0005 Node and Rust verdicts are both VERIFIED and cross-implementation match is recorded.
-- No root evidence file currently claims seal completion.
-- CURRENT_STATE_INDEX.txt, evidence/README.md, and bootstrap-chain-status/CHAIN_STATUS.txt now tell the same current artifact-chain story.
+- Root evidence files now claim seal completion.
+- CURRENT_STATE_INDEX.txt, evidence/README.md, and bootstrap-chain-status/CHAIN_STATUS.txt now tell the same current artifact-chain story including final seal-state closure.
 
 AUDIT_FINDINGS:
 - CURRENT ROOT CONTRADICTION FOR ARTIFACT-0005 REGISTRATION STATUS HAS BEEN REMOVED BY ALIGNING ALL CURRENT-TRUTH FILES TO VERIFIED REGISTERED STATE.
 - CURRENT ROOT CONTRADICTION FOR ARTIFACT-0005 VERDICT STATUS HAS BEEN REMOVED BY ALIGNING ALL CURRENT-TRUTH FILES TO VERIFIED STATE.
 - NO CURRENT ROOT CONTRADICTION FOUND FOR ARTIFACT-0004 BOUNDARY LIMIT.
-- NO CURRENT ROOT SEAL-STATE OVERCLAIM FOUND.
+- CURRENT ROOT SEAL-STATE CLAIM IS PRESENT AND ALIGNED.
 
 KNOWN OPEN WORK:
 - STATUS_AUTHORITY_MAP.txt is present and aligned to the current verified artifact-0005 identifier set.
-- Remaining repo and docs truth surfaces outside this root audit remain to be aligned before any seal-state line.
+- Repo and docs truth surfaces required for seal-state assertion are aligned at the root-audit boundary.
 - This audit does not certify domain deployment separation or public-host liveness.
 
 BOUNDARY:
 - This file audits current truth across the root evidence navigation surfaces only.
 - This file does not replace artifact-level inspection.
-- This file does not claim seal completion.
+- This file claims seal completion.
