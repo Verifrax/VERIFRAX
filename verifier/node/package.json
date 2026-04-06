@@ -8,9 +8,5 @@
     "verify": "node src/verifier.mjs"
   },
   "license": "MIT",
-  "files": [
-    "dist/",
-    "README.md",
-    "LICENSE"
-  ]
+  "private": true
 }
