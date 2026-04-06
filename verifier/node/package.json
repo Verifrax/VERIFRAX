@@ -7,5 +7,10 @@
   "scripts": {
     "verify": "node src/verifier.mjs"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ]
 }
