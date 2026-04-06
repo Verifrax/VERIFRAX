@@ -3,10 +3,15 @@
   "version": "0.1.0",
   "description": "Reference deterministic verifier for the VERIFRAX protocol",
   "type": "module",
-  "main": "src/verifier.mjs",
+  "main": "dist/verifier.mjs",
   "scripts": {
     "verify": "node src/verifier.mjs"
   },
   "license": "MIT",
-  "private": true
+  "private": true,
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ]
 }
