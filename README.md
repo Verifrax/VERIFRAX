@@ -15,6 +15,11 @@ SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
 
 Normative protocol authoring, evidence-root registration, and verification boundary for the governed Verifrax system.
 
+## Terminal planes
+
+- **[ANAGNORIUM](https://github.com/Verifrax/ANAGNORIUM)** — terminal recognition
+- **[REGRESSORIUM](https://github.com/Verifrax/REGRESSORIUM)** — terminal recourse
+
 ## Status
 
 * Layer: protocol authoring, evidence, and verification boundary
@@ -350,3 +355,10 @@ A change is wrong if it:
 ## License
 
 Apache License Version 2.0. See `LICENSE`.
+
+## Adjacent sovereign surfaces
+
+This repository is part of the Verifrax sovereign stack and remains bounded relative to:
+
+- **[ANAGNORIUM](https://github.com/Verifrax/ANAGNORIUM)** for terminal recognition
+- **[REGRESSORIUM](https://github.com/Verifrax/REGRESSORIUM)** for terminal recourse
