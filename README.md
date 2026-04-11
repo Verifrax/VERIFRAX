@@ -15,6 +15,21 @@ SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
 
 Normative protocol authoring, evidence-root registration, and verification boundary for the governed Verifrax system.
 
+## Proof artifacts
+
+This repository is part of the VERIFRAX proof perimeter.
+
+- **ARTIFACT-0006**
+- **ARTIFACT-0005**
+- **ARTIFACT-0004**
+- **ARTIFACT-0003**
+- **ARTIFACT-0002**
+- **ARTIFACT-0001**
+
+**Canonical public proof surface:** https://proof.verifrax.net  
+**Canonical proof publication repository:** https://github.com/Verifrax/proof  
+**Canonical evidence root:** https://github.com/Verifrax/VERIFRAX
+
 ## Terminal planes
 
 - **[ANAGNORIUM](https://github.com/Verifrax/ANAGNORIUM)** — terminal recognition
