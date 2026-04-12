@@ -1,5 +1,15 @@
 # VERIFRAX Evidence Index
 
+## Canonical artifact chain
+
+- **artifact-0006**
+- **artifact-0005**
+- **artifact-0004**
+- **artifact-0003**
+- **artifact-0002**
+- **artifact-0001**
+
+
 This directory is the public evidence surface for VERIFRAX.
 
 It exists so that any reviewer, claimant, challenger, auditor, or adversarial reader can inspect what was asserted, what was executed, what was observed, what was not executable, and what boundary the current evidence actually proves.
@@ -482,4 +492,3 @@ This index covers the evidence currently published under `VERIFRAX/evidence`.
 
 It does not claim that every possible future artifact already exists.
 It claims that the evidence that does exist is now navigable from a single public root.
-
