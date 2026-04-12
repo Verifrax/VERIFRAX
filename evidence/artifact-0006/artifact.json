@@ -1,0 +1,10 @@
+{
+  "artifact_id": "artifact-0006",
+  "title": "terminal constitutional consequence surface",
+  "status": "materialized",
+  "surfaces": {
+    "terminal_recognition": "https://github.com/Verifrax/ANAGNORIUM",
+    "terminal_recourse": "https://github.com/Verifrax/REGRESSORIUM"
+  },
+  "extends": "artifact-0005"
+}
