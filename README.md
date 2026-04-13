@@ -13,7 +13,7 @@ SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
 ![Determinism](https://github.com/Verifrax/VERIFRAX/actions/workflows/determinism-check.yml/badge.svg?branch=main)
 ![Integrity](https://github.com/Verifrax/VERIFRAX/actions/workflows/integrity.yml/badge.svg?branch=main)
 
-Normative protocol authoring, evidence-root registration, and verification boundary for the governed Verifrax system.
+VERIFRAX is the Verifrax authored protocol and evidence-root boundary: the public surface that authors normative source material, carries the evidence-root chain, and defines the primary verification boundary without becoming authority issuance, governed execution, public proof publication, archive/reference, intake, or commercial presentation.
 
 ## Proof artifacts
 
@@ -37,343 +37,144 @@ This repository is part of the VERIFRAX proof perimeter.
 
 ## Status
 
-* Layer: protocol authoring, evidence, and verification boundary
-* Repository class: governed flagship repository
-* System role: authored source material plus artifact-chain registration
-* Public host ownership: none claimed as sole host surface in this README
+* Layer: protocol authoring, evidence-root, and verification boundary
+* Repository class: primary authored source and evidence-root surface
+* Public host ownership: none directly; public presentation routes through bounded adjacent hosts
+* Package status: published protocol package surface
+* Current repository posture: registered authored source and live public repository surface
 * License: Apache License Version 2.0
 
-## One-sentence role
-
-VERIFRAX authors normative source material, records the artifact chain, and defines the verification boundary that interprets governed authority and governed execution without becoming the authority issuer or the execution runtime itself.
-
-## What this repository is
-
-VERIFRAX is the flagship repository of the governed Verifrax stack.
-
-It exists to provide:
-
-* normative authored source material
-* protocol and verification boundary definition
-* maintained evidence-root structure
-* artifact registration and chain continuity
-* verification semantics for recorded inputs, receipts, and outputs
-* historical and current-state separation inside the evidence surface
-* linkage between authority, execution, proof, and public verifier surfaces
-
-This repository is the authored and recorded center of the stack.
-
-## What this repository is not
-
-VERIFRAX is not:
-
-* the authority issuance repository
-* the execution runtime repository
-* the derived specification publication surface
-* the public verifier UI itself
-* the public proof publication repository
-* the intake repository
-* the commercial landing surface
-* a generic package marketing surface
-* a substitute for authority issuance or receipt generation
-
-VERIFRAX does not:
-
-* mint authority objects
-* admit or execute governed runtime actions
-* replace AUCTORISEAL
-* replace CORPIFORM
-* replace the public verifier UI at `verify.verifrax.net`
-* replace the proof publication surface at `proof.verifrax.net`
-
-VERIFRAX interprets governed material and records chain truth. It does not create every input that it later verifies.
-
-Explicit non-role boundary:
-
-* VERIFRAX is not authority issuance.
-* VERIFRAX is not governed execution.
-* VERIFRAX is not proof publication host.
-* VERIFRAX is not verifier host.
-* VERIFRAX is not archive host.
-* VERIFRAX is not intake host.
-* VERIFRAX is not commercial landing host.
-* VERIFRAX is not runtime host.
-
-## Stack position
-
-The governed stack reads in this order:
-
-1. `.github` — governed repository boundary and governance linkage
-2. `AUCTORISEAL` — authority issuance and public authority publication
-3. `CORPIFORM` — governed execution and receipt emission
-4. `VERIFRAX` — authored protocol boundary, evidence root, and chain registration
-5. `VERIFRAX-verify` — public verification surface
-6. `proof` — public proof publication surface
-7. `apply` — public intake surface
-
-VERIFRAX therefore sits after authority publication and execution recording when evaluating recorded chain truth, while also remaining upstream authored source material for the derived specification surface.
-
-## Authority and specification direction
-
-The load-bearing direction across the governed system is:
-
-* VERIFRAX authors normative source material.
-* VERIFRAX-SPEC publishes derived specification artifacts from VERIFRAX.
-* Derived artifacts are not upstream authority.
-* Governance authority is external and bound through AUCTORISEAL plus the governed repo set in `.github`.
-
-That direction must stay explicit in this README because VERIFRAX is both authored-source surface and evidence-root surface.
-
-VERIFRAX is upstream for authored protocol material.
-VERIFRAX is not upstream for governance authority issuance.
-
-## Public-surface relationship
-
-This repository must connect to the public domain surfaces without falsely claiming ownership of all of them.
-
-Relevant neighboring surfaces are:
-
-* `https://www.verifrax.net/` — commercial root surface
-* `https://verifrax.net/` — apex redirect surface
-* `https://api.verifrax.net/` — execution surface
-* `https://status.verifrax.net/` — operational status surface
-* `https://proof.verifrax.net/` — proof publication surface
-* `https://verify.verifrax.net/` — public verifier surface
-* `https://docs.verifrax.net/` — documentation surface
-* `https://auctoriseal.verifrax.net/` — authority issuance/reference surface
-* `https://corpiform.verifrax.net/` — runtime reference surface
-* `https://cicullis.verifrax.net/` — enforcement reference surface
-* `https://apply.verifrax.net/` — intake surface
-* `https://sigillarium.verifrax.net/` — seal/archive reference surface
-
-This repository must link to those surfaces as adjacent system boundaries.
-
-It must not claim that VERIFRAX itself is the sole owner of:
-
-* `www.verifrax.net`
-* `verifrax.net`
-* `api.verifrax.net`
-* `status.verifrax.net`
-* `proof.verifrax.net`
-* `verify.verifrax.net`
-* `docs.verifrax.net`
-* `apply.verifrax.net`
-* `auctoriseal.verifrax.net`
-* `corpiform.verifrax.net`
-* `cicullis.verifrax.net`
-* `sigillarium.verifrax.net`
-
-## Evidence root boundary
-
-VERIFRAX is the evidence-root repository.
-
-That means it is responsible for:
-
-* artifact directory continuity
-* recorded input/output boundaries where declared
-* chain registration text
-* current-state versus historical-state separation
-* contradiction containment inside evidence surfaces
-* evidence-visible linkage between authority, execution, receipt, and verification
-
-It must not allow older files to impersonate current truth.
-
-It must not allow README prose to outrun evidence.
-
-## Artifact chain
-
-The artifact chain must be described here with exact boundary discipline.
-
-### Artifact-0004
-
-Artifact-0004 is the recorded bounded execution boundary already present in the chain.
-
-This repository may describe artifact-0004 as recorded execution evidence.
-
-It must not describe artifact-0004 as equivalent to the first public canonical seal.
-
-### Artifact-0005
-
-Artifact-0005 is load-bearing across this repository because it is the verified governed-execution chain boundary that connects:
-
-* public canonical authority
-* governed execution under that authority
-* recorded CORPIFORM receipt
-* VERIFRAX evidence registration
-* matching verification interpretation
-* public verification path
-
-This README must therefore describe artifact-0005 as a recorded current-truth boundary without overclaiming seal completion.
-
-It must not describe artifact-0005 as complete, sealed, or universally proven unless the evidence root actually proves that state.
-
-## Verifier boundary
-
-VERIFRAX and the public verifier are related but not identical.
-
-### VERIFRAX
-
-VERIFRAX defines and records the maintained verification boundary inside the governed repository system.
-
-### VERIFRAX-verify
-
-`VERIFRAX-verify` is the public verification surface at `https://verify.verifrax.net/`.
-
-That public surface must remain linked from this repository because verifier visibility is part of the load-bearing public chain.
-
-This README must make the distinction explicit:
-
-* VERIFRAX = authored protocol + evidence root + maintained verification boundary
-* VERIFRAX-verify = public verifier UI and public inspection surface
-
-If that distinction is blurred, proof, verifier, and protocol roles collapse into each other.
-
-## Proof boundary
-
-The proof publication surface is separate from both VERIFRAX and the public verifier.
-
-* `proof` owns `https://proof.verifrax.net/`
-* VERIFRAX records and links evidence boundaries
-* VERIFRAX-verify gives public verifier access
-
-This repository must not present proof publication as if it were the same thing as authored protocol or public verifier UI.
-
-## Inputs and outputs
-
-### Inputs consumed by this repository
-
-VERIFRAX consumes and records material such as:
-
-* authority references published by AUCTORISEAL
-* governed execution receipts emitted by CORPIFORM
-* evidence bundles and protocol inputs
-* conformance material
-* verifier outputs and cross-implementation comparison material
-* chain registration metadata
-
-### Outputs produced by this repository
-
-VERIFRAX produces and maintains:
-
-* authored normative source material
-* evidence-root registration and artifact indexing
-* verification documentation and maintained verifier boundary
-* current-state and historical-state evidence mapping
-* chain continuity across recorded artifacts
-
-It does not produce authority objects or governed runtime admission.
-
-## Package and publication truth
-
-This repository is first and foremost a protocol/evidence repository.
-
-This README must not imply a public npm runtime package unless package metadata and publication reality prove that claim.
-
-If package metadata changes, the README must follow the metadata rather than the reverse.
-
-## Current reading rule
-
-Read the neighboring repositories in this order when tracing the full system:
-
-* [`.github`](https://github.com/Verifrax/.github) — governance root
-* [`AUCTORISEAL`](https://github.com/Verifrax/AUCTORISEAL) — authority issuance/reference
-* [`CORPIFORM`](https://github.com/Verifrax/CORPIFORM) — governed execution and receipts
-* [`VERIFRAX-WWW`](https://github.com/Verifrax/VERIFRAX-WWW) — commercial root host repository
-* [`VERIFRAX-API`](https://github.com/Verifrax/VERIFRAX-API) — execution host repository
-* [`VERIFRAX-STATUS`](https://github.com/Verifrax/VERIFRAX-STATUS) — status host repository
-* [`VERIFRAX-SURFACE`](https://github.com/Verifrax/VERIFRAX-SURFACE) — shared projection/form system
-* [`VERIFRAX-SPEC`](https://github.com/Verifrax/VERIFRAX-SPEC) — derived specification publication
-* [`VERIFRAX-PROFILES`](https://github.com/Verifrax/VERIFRAX-PROFILES) — deterministic profile constraints
-* [`VERIFRAX-verify`](https://github.com/Verifrax/VERIFRAX-verify) — public verifier UI
-* [`proof`](https://github.com/Verifrax/proof) — proof publication surface
-* [`apply`](https://github.com/Verifrax/apply) — intake surface
-* [`VERIFRAX-DOCS`](https://github.com/Verifrax/VERIFRAX-DOCS) — documentation/reference surface
-* [`ARCHITECTURE`](https://github.com/Verifrax/ARCHITECTURE) — topology and interaction map
-
-## CI and governance expectations
-
-Any CI posture described in this README must be real.
-
-The flagship repository should enforce real checks for:
-
-* identity alignment
-* integrity alignment
-* determinism where declared
-* verifier reproducibility where declared
-* artifact registration consistency
-* evidence-root drift detection
-* cross-reference consistency for artifact, authority, version, and digest surfaces
-
-This README must not use badges or prose to imply success states that the evidence root and workflows do not actually prove.
-
-## README truth rules
-
-This README fails if it:
-
-* blurs protocol authorship with authority issuance
-* blurs verification boundary with execution runtime
-* blurs public verifier UI with evidence root
-* overclaims artifact-0005 status
-* describes historical files as current truth
-* claims sole host ownership where none is proved
-* implies package publication beyond metadata reality
-
-## Verifrax system path labels
-
-The governed Verifrax path that this README must stay compatible with is:
-
-1. `.github` — organization governance and governed repository boundary
-2. `AUCTORISEAL` — authority issuance and public authority reference
-3. `CORPIFORM` — governed execution and receipt emission
-4. `VERIFRAX` — authored protocol, evidence root, and artifact-chain registration boundary
-5. `VERIFRAX-SPEC` — derived specification publication surface
-6. `VERIFRAX-PROFILES` — deterministic profile-constraint surface
-7. `VERIFRAX-SAMPLES` — pinned sample and reproducibility surface
-8. `VERIFRAX-verify` — public verification repository and UI boundary
-9. `VERIFRAX-DOCS` — explanatory documentation surface
-10. `cicullis` — enforcement boundary
-11. `proof` — proof publication surface
-12. `SIGILLARIUM` — seal and archive reference surface
-13. `apply` — intake surface
-
-The live host-label map that must remain explicit and non-contradictory is:
-
-* `https://api.verifrax.net/` — execution surface
-* `https://proof.verifrax.net/` — proof publication surface
-* `https://auctoriseal.verifrax.net/` — authority issuance and authority reference surface
-* `https://corpiform.verifrax.net/` — runtime and receipt reference surface
-* `https://cicullis.verifrax.net/` — enforcement reference surface
-* `https://verify.verifrax.net/` — public verification surface
-* `https://sigillarium.verifrax.net/` — seal and archive reference surface
-* `https://apply.verifrax.net/` — intake surface
-* `https://docs.verifrax.net/` — documentation surface
-
-This README must remain compatible with `artifact-0005` as the load-bearing authority → execution → verification → evidence boundary without claiming that this repository alone authors, proves, seals, or registers `artifact-0005` unless that role is actually true for this repository.
-
-## Security
-
-Do not publish hidden authority material, private execution inputs, unpublished verifier compromises, or internal evidence-handling vulnerabilities that would weaken the governed chain.
-
-Security issues that affect authority, execution, or evidence linkage are chain-integrity issues, not cosmetic issues.
-
-## Contributing
-
-A change is wrong if it:
-
-* weakens the authored-source direction from VERIFRAX to VERIFRAX-SPEC
-* weakens the authority direction from AUCTORISEAL into governed execution
-* weakens artifact registration discipline
-* weakens evidence-root current-state truth
-* treats README prose as a substitute for evidence
-* introduces future-state claims as present state
-
-## License
-
-Apache License Version 2.0. See `LICENSE`.
+## Boundary
+
+This repository owns authored protocol source, evidence-root chain, and primary verification boundary only.
+
+It defines normative source material.
+It carries the evidence-root chain of record.
+It anchors verification-boundary truth for the stack.
+
+It does not issue authority objects.
+It does not execute governed actions.
+It does not publish public proof as the proof surface.
+It does not serve as the public verifier UI.
+It does not serve as the seal/archive reference surface.
+It does not operate intake.
+It does not act as the commercial landing surface.
+It does not replace adjacent sovereign boundaries.
+
+## What it does
+
+- authors normative source material
+- carries the evidence-root chain
+- anchors the verification boundary that adjacent public surfaces depend on
+- defines artifact-chain truth at repository level
+- keeps authored source distinct from derived publication, authority, execution, proof publication, and verification UI
+
+## What it does not do
+
+- not authority issuance; that belongs to AUCTORISEAL
+- not governed execution; that belongs to CORPIFORM
+- not public proof publication; that belongs to proof
+- not public verification UI; that belongs to VERIFRAX-verify
+- not archive/reference; that belongs to SIGILLARIUM
+- not intake; that belongs to apply
+- not constitutional doctrine; that belongs to SYNTAGMARIUM
+- not canonical world-state; that belongs to ORBISTIUM
+- not reconciliation or repair; that belongs to CONSONORIUM
+- not sovereign cognition; that belongs to TACHYRIUM
 
 ## Adjacent sovereign surfaces
 
-This repository is part of the Verifrax sovereign stack and remains bounded relative to:
+- `AUCTORISEAL` defines authority issuance
+- `CORPIFORM` defines governed execution
+- `proof` defines public proof publication
+- `VERIFRAX-verify` defines public verification UI
+- `SIGILLARIUM` defines archive/reference
+- `apply` defines intake
+- `SYNTAGMARIUM` defines constitutional doctrine
+- `ORBISTIUM` defines canonical world-state
+- `CONSONORIUM` defines reconciliation / repair / projection
+- `TACHYRIUM` defines bounded sovereign cognition
 
-- **[ANAGNORIUM](https://github.com/Verifrax/ANAGNORIUM)** for terminal recognition
-- **[REGRESSORIUM](https://github.com/Verifrax/REGRESSORIUM)** for terminal recourse
+VERIFRAX authors and anchors evidence-root truth.
+It does not issue authority.
+It does not execute.
+It does not publish proof as the proof surface.
+It does not act as the verifier UI.
+
+That separation must remain explicit.
+
+## Authority and specification direction
+
+* `VERIFRAX` authors normative source material.
+* `VERIFRAX-SPEC` publishes derived specification artifacts from `VERIFRAX`.
+* `VERIFRAX-PROFILES` constrains interpretation without rewriting authored source.
+* Derived artifacts are not upstream authority.
+* Governance authority is external and binds through `AUCTORISEAL` plus the governed repository set declared in `.github`.
+
+## Public-surface relationship
+
+The public route around this repository is:
+
+* `proof.verifrax.net` — proof publication
+* `verify.verifrax.net` — public verification
+* `apply.verifrax.net` — intake
+* `sigillarium.verifrax.net` — archive/reference
+
+Those hosts depend on VERIFRAX boundary truth.
+They do not replace repository truth here.
+
+## Evidence root boundary
+
+VERIFRAX is the evidence-root chain boundary.
+
+Evidence-root chain truth here means the stack can point to VERIFRAX as the repository surface where artifact-chain grounding, authored source continuity, and verification-boundary truth are materially carried.
+
+Evidence root is not authority issuance.
+Evidence root is not execution.
+Evidence root is not proof publication.
+Evidence root is not verification UI.
+
+## Artifact chain
+
+Artifact-chain truth must remain explicit and non-collapsed.
+
+VERIFRAX carries the evidence-root relation for the live artifact chain.
+Derived or adjacent surfaces may reference that chain, but they do not become the repository evidence root by reference alone.
+
+## Public surface
+
+The public surface of this repository is its repository identity, README boundary, package surface, and authored-source materials carried by this repository.
+
+Publication here is not authority issuance.
+Publication here is not execution.
+Publication here is not public proof publication.
+Publication here is not verifier UI operation.
+Publication here is not archive/reference.
+Publication here is not intake.
+
+## Package / host / repo truth
+
+Repository truth for VERIFRAX lives in this repository.
+
+Package distribution, public hosts, proof publication, verification UI, and other adjacent surfaces are related but not interchangeable.
+Repository boundary still controls authored-source and evidence-root truth here.
+
+## Current reading rule
+
+Read hosts and repositories by owned role, not by naming similarity.
+
+If a repository or host starts sounding like authored source, authority, execution, proof publication, verification UI, archive/reference, intake, and commercial surface at the same time, the boundary is already broken.
+
+## Not this
+
+VERIFRAX is not authority issuance.
+VERIFRAX is not governed execution.
+VERIFRAX is not the public proof publication surface.
+VERIFRAX is not the public verifier UI.
+VERIFRAX is not the archive/reference surface.
+VERIFRAX is not intake.
+VERIFRAX is not the commercial landing surface.
+
+## License
+
+Apache License Version 2.0
