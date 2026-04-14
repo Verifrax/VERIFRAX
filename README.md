@@ -1,5 +1,9 @@
 # VERIFRAX
 
+Package: @verifrax/root
+Binary: verifrax-seal
+Repository: Verifrax/VERIFRAX
+
 ```
 SYS-003
 STATUS: REGISTERED
