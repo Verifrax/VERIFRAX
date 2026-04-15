@@ -1,6 +1,6 @@
 # VERIFRAX
 
-Package: @verifrax/root
+Package: @verifrax/verifrax
 Binary: verifrax-seal
 Repository: Verifrax/VERIFRAX
 
