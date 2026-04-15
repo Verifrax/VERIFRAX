@@ -1,5 +1,5 @@
 {
-  "name": "@verifrax/root",
+  "name": "@verifrax/verifrax",
   "private": false,
   "packageManager": "pnpm@9.0.0",
   "scripts": {
@@ -21,11 +21,11 @@
   "bin": {
     "verifrax-seal": "scripts/verifrax-seal.js"
   },
-  "version": "0.0.1",
+  "version": "0.1.3",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Verifrax/VERIFRAX.git"
+    "url": "git+https://github.com/Verifrax/VERIFRAX.git"
   },
   "homepage": "https://github.com/Verifrax/VERIFRAX#readme",
   "bugs": {
@@ -33,5 +33,14 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "files": [
+    "core",
+    "verifier",
+    "verifrax-engine",
+    "profiles",
+    "policy",
+    "README.md",
+    "LICENSE"
+  ]
 }
