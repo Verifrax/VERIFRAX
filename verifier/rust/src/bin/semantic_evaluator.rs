@@ -213,7 +213,6 @@ fn evaluate_artifact_0003(repo_root: &Path, artifact: &Value, artifact_path: &Pa
     }
 }
 
-
 fn evaluate_artifact_0005(repo_root: &Path, artifact: &Value, artifact_path: &Path) -> Value {
     let execution_status_path = resolve_evidence_path(repo_root, artifact_path, support_path(artifact, "execution_status"));
     let receipt_path = resolve_evidence_path(repo_root, artifact_path, support_path(artifact, "receipt_json"));

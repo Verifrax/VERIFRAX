@@ -1,14 +1,12 @@
 # VERIFRAX
 
-Package: @verifrax/root
+Package: @verifrax/verifrax
 Binary: verifrax-seal
 Repository: Verifrax/VERIFRAX
 
 ```
 SYS-003
 STATUS: REGISTERED
-REGISTRY: https://speedkit.eu
-SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
 ```
 
 ![License](https://img.shields.io/badge/license-Apache--2.0-blue)

@@ -26,7 +26,6 @@ VERIFRAX is the **authoritative source** for:
 |--------|--------------|
 | MK10-PRO | Upstream MTB definitions |
 | CICULLIS | Policy enforcement |
-| speedkit.eu | Discovery index |
 
 ## Non-authoritative
 

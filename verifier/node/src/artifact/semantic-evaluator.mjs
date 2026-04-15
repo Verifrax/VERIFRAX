@@ -197,7 +197,6 @@ function evaluateArtifact0003(repoRoot, artifact, artifactPath) {
   };
 }
 
-
 function evaluateArtifact0005(repoRoot, artifact, artifactPath) {
   const support = artifact.supporting_evidence || {};
 
