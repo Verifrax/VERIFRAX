@@ -3,8 +3,6 @@
 ```
 SYS-003
 STATUS: REGISTERED
-REGISTRY: https://speedkit.eu
-SNAPSHOT: https://speedkit.eu/REGISTRY_SNAPSHOT.json
 ```
 
 Deterministic verification for irreversible evidence, final judgments, and protocol-grade trust boundaries.
@@ -24,7 +22,6 @@ VERIFRAX is a protocol and maintained implementation surface designed to produce
 ![Protocol](https://img.shields.io/badge/protocol-VERIFRAX-black)
 ![System ID](https://img.shields.io/badge/system-SYS--003-0A0A0A)
 ![Status](https://img.shields.io/badge/status-registered-brightgreen)
-![Registry](https://img.shields.io/badge/registry-speedkit.eu-1f2328)
 ![Snapshot](https://img.shields.io/badge/snapshot-REGISTRY__SNAPSHOT.json-1f6feb)
 ![Branch](https://img.shields.io/badge/branch-main-2da44e)
 ![Tag](https://img.shields.io/badge/tag-v2.8.1-1f6feb)

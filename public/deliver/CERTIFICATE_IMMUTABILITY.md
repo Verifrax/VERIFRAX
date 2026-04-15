@@ -36,4 +36,3 @@ Third parties can verify certificates using:
 
 The certificate itself contains all necessary information for independent verification.
 
-

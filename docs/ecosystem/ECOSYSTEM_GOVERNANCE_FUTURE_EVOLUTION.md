@@ -144,8 +144,6 @@ The VERIFRAX ecosystem governance model allows future expansion
 without sacrificing deterministic verification, release integrity,
 or historical permanence.
 
-
-
 Active repository authority is defined by `AUTHORITY.md`. Maintained conformance suites are under `protocol-conformance/`, with the active suite root at `protocol-conformance/v2/`. Active maintained verifier implementations are `verifier/node` and `verifier/rust`. Active release freeze authority is defined by `release-integrity/freeze-surfaces.json`.
 
 ## Protocol Legitimacy Signals
