@@ -31,6 +31,6 @@ jobs:
           subject-path: dist/verifrax-src.tar.gz
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@9d7e5d1ffb1dd2a7f6b1a552c43e8648bb2a5db3 # v2
+        uses: softprops/action-gh-release@v2 # v2
         with:
           files: dist/*
