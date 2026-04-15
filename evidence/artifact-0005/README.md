@@ -9,7 +9,6 @@
 - **artifact-0002**
 - **artifact-0001**
 
-
 Subtitle: public canonical authority issuance and governed execution boundary
 
 ## Claim

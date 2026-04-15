@@ -25,7 +25,6 @@ TEXT="$(printf '%s' "$INPUT")"
 
 # --- Single-Seal Enforcement ----------------------------------------------
 
-
 # --- Origin Context --------------------------------------------------------
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"

@@ -9,7 +9,6 @@
 - **artifact-0002**
 - **artifact-0001**
 
-
 This directory is the public evidence surface for VERIFRAX.
 
 It exists so that any reviewer, claimant, challenger, auditor, or adversarial reader can inspect what was asserted, what was executed, what was observed, what was not executable, and what boundary the current evidence actually proves.
@@ -219,7 +218,6 @@ Supporting examples:
 - `artifact-0003/authority-ledger-presence.txt`
 - `artifact-0003/seal-0001-presence.txt`
 - `artifact-0003/issued-object-search.txt`
-
 
 ### `artifact-0004/`
 

@@ -72,7 +72,6 @@ function loadClaims(bundlePath: string): any[] {
   return claims;
 }
 
-
 /**
  * Main verification function
  * 
