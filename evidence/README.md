@@ -57,7 +57,7 @@ That means the currently indexed public boundary is:
 2. authority readiness evidence for AUCTORISEAL
 3. authority issuance presence and re-execution evidence
 4. first recorded CORPIFORM authority-governed execution receipt evidence
-5. verified artifact-0005 governed execution boundary recorded under public canonical authority and asserted as final public seal state
+5. verified artifact-0005 governed execution boundary recorded under public canonical authority as the current verified governed execution boundary
 6. semantic cross-implementation execution evidence for earlier chain artifacts
 7. package publication evidence for the full public `@verifrax/*` chain recorded under `package-surface/`
 8. sovereign triad component surfaces for `SYNTAGMARIUM`, `ORBISTIUM`, and `CONSONORIUM` recorded under `component-surface/`

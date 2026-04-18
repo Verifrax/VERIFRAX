@@ -20,7 +20,7 @@ The VERIFRAX execution defined in this artifact ran under authority AUTHORITY-00
 
 artifact-0005 records one verified governed execution boundary under authority `AUTHORITY-0001-VERIFRAX` with recorded receipt `8F88E46F-625B-4682-BF9A-D68ADD241FFF` and matching Node/Rust verdicts `VERIFIED` / `VERIFIED`.
 
-This directory is the final public seal-state statement for the governed system at artifact-0005. It is the exact artifact boundary for the recorded authority, execution, receipt, and re-verification material that now anchors final current truth.
+This directory is the current verified governed execution statement for artifact-0005. It is the exact artifact boundary for the recorded authority, execution, receipt, and re-verification material that anchors current truth for this artifact.
 
 ## Inspect here
 

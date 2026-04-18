@@ -19,6 +19,9 @@ SHA256 27becebd21e487cfcfae65c91c871a12825176878094ae1775b2dc068be1d40c evidence
 
 ARCHIVAL_CONTEXT:
 - preserves the exact pre-execution input digests captured before governed execution
+- this file is historical pre-execution lineage material only
+- this file must not be read as the current artifact-0005 status surface
+- this file does not override sibling execution, receipt, registration, or verifier current-truth surfaces
 - not an active execution blocker
 - not an active readiness surface
 - later execution, receipt, registration, and verifier truth were recorded in sibling current-truth files

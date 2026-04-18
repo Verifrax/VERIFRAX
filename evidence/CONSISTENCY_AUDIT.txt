@@ -17,21 +17,21 @@ CURRENT_TRUTH_RESULTS:
 - ARTIFACT-0005 authority seal id is recorded as seal_9c1568bb9ef7423283ca56ecdb7dc278 across root current-state surfaces.
 - ARTIFACT-0005 receipt id is recorded as 8F88E46F-625B-4682-BF9A-D68ADD241FFF across root current-state surfaces.
 - ARTIFACT-0005 Node and Rust verdicts are both VERIFIED and cross-implementation match is recorded.
-- Root evidence files now claim seal completion. - Public @verifrax package truth from originseal through sigillarium is now live and recorded in evidence/package-surface/CURRENT_PACKAGE_INDEX.txt. - Sovereign triad component surfaces are now recorded for SYNTAGMARIUM, ORBISTIUM, and CONSONORIUM.
-- CURRENT_STATE_INDEX.txt, evidence/README.md, and bootstrap-chain-status/CHAIN_STATUS.txt now tell the same current artifact-chain story including final seal-state closure.
+- Root evidence files now align to the current verified governed execution boundary only. - Public @verifrax package truth from originseal through sigillarium is now live and recorded in evidence/package-surface/CURRENT_PACKAGE_INDEX.txt. - Sovereign triad component surfaces are now recorded for SYNTAGMARIUM, ORBISTIUM, and CONSONORIUM.
+- CURRENT_STATE_INDEX.txt, evidence/README.md, and bootstrap-chain-status/CHAIN_STATUS.txt now tell the same current artifact-chain story without broader completion overclaim.
 
 AUDIT_FINDINGS:
 - CURRENT ROOT CONTRADICTION FOR ARTIFACT-0005 REGISTRATION STATUS HAS BEEN REMOVED BY ALIGNING ALL CURRENT-TRUTH FILES TO VERIFIED REGISTERED STATE.
 - CURRENT ROOT CONTRADICTION FOR ARTIFACT-0005 VERDICT STATUS HAS BEEN REMOVED BY ALIGNING ALL CURRENT-TRUTH FILES TO VERIFIED STATE.
 - NO CURRENT ROOT CONTRADICTION FOUND FOR ARTIFACT-0004 BOUNDARY LIMIT.
-- CURRENT ROOT SEAL-STATE CLAIM IS PRESENT AND ALIGNED.
+- CURRENT ROOT VERIFIED GOVERNED EXECUTION CLAIM IS PRESENT AND ALIGNED.
 
 CLOSURE STATE:
 - STATUS_AUTHORITY_MAP.txt is present and aligned to the current verified artifact-0005 identifier set.
-- Repo and docs truth surfaces required for seal-state assertion are aligned at the root-audit boundary.
+- Repo and docs truth surfaces required for the current verified governed execution boundary are aligned at the root-audit boundary.
 - This audit certifies domain deployment separation and public-host liveness across the declared governed perimeter.
 
 BOUNDARY:
 - This file audits current truth across the root evidence navigation surfaces only.
 - This file complements artifact-level inspection while preserving root audit compression.
-- This file claims seal completion.
+- This file does not claim seal completion or universal perimeter completion.

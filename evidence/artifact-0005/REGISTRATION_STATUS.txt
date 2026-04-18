@@ -15,4 +15,4 @@ ROOT_REGISTRATION_SURFACES:
 
 REGISTRATION_RULE:
 - artifact-0005 is registered as current verified governed execution evidence
-- artifact-0005 is now elevated here to final universal SEAL_STATE
+- artifact-0005 is registered here as the current verified governed execution boundary only

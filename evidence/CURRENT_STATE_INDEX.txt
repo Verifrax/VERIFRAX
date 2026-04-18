@@ -5,8 +5,8 @@ RULES:
 - This file is the compressed current-state navigation surface for the VERIFRAX evidence root.
 - This file records the exact governed execution outcome captured under artifact-0005.
 - Historical artifacts remain valid evidence but do not override this file as the root current-state map.
-- Final seal-state line is made here.
-- The recorded artifact-0005 boundary is now asserted as the final public seal-state anchor.
+- No final seal-state or universal-completion claim is made here.
+- The recorded artifact-0005 boundary is asserted here as the current verified governed execution anchor.
 
 CURRENT_ARTIFACT_CHAIN:
 - ARTIFACT-0001 = VERIFIED
@@ -25,7 +25,7 @@ CURRENT_ARTIFACT_MEANING:
 CURRENT_BOUNDARY:
 - The bootstrap chain is semantically resolved through artifact-0003.
 - The execution boundary is extended by artifact-0004 recorded receipt evidence.
-- Artifact-0005 currently defines the verified governed execution boundary that anchors final public seal state.
+- Artifact-0005 currently defines the verified governed execution boundary that anchors the current root truth boundary.
 - Artifact-0005 is present in the evidence root as an admissible registered executed boundary.
 - Package publication evidence for the full public @verifrax package chain is recorded in the evidence root under evidence/package-surface/CURRENT_PACKAGE_INDEX.txt. - Sovereign law/state/runtime component surfaces for SYNTAGMARIUM, ORBISTIUM, and CONSONORIUM are recorded under evidence/component-surface/.
 
@@ -51,11 +51,11 @@ CURRENT_ROOT_SURFACES:
 - ARTIFACT_0005_CROSS_IMPLEMENTATION_STATUS: evidence/artifact-0005/CROSS_IMPLEMENTATION_STATUS.txt
 
 CURRENT_LIMITS:
-- This file now claims seal completion through artifact-0005 final public seal state.
-- This file claims universal proof across the declared governed perimeter rooted at artifact-0005.
+- This file records the current verified governed execution boundary through artifact-0005 only.
+- This file does not claim universal proof, perimeter completion, or final seal state beyond the recorded artifact-0005 boundary.
 - This file complements artifact-level evidence inspection while preserving the compressed current-state map.
 - Artifact-0004 remains bounded by consumed fixture authority evidence and is not the public canonical authority basis.
-- Artifact-0005 remains verified and registered in current truth, and an explicit final seal-state line has now been added.
+- Artifact-0005 remains verified and registered in current truth, and no broader completion claim is made here.
 
 CURRENT_TRUTH_DISCIPLINE:
 - CURRENT_STATE_INDEX.txt records current truth only.
