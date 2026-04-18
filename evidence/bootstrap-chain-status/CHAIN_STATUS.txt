@@ -12,7 +12,7 @@ PACKAGE-SURFACE-AUCTORISEAL-NOTE: @verifrax/auctoriseal package publication surf
 PACKAGE-SURFACE-CORPIFORM: RECORDED
 PACKAGE-SURFACE-CORPIFORM-NOTE: @verifrax/corpiform@0.1.4 is published with dist-tag latest and public access; VERIFRAX preserves package identity, packument, access status, and install help evidence
 CURRENT_BOUNDARY: bootstrap chain is semantically resolved for artifacts 0001-0003, extended by recorded CORPIFORM execution evidence in artifact-0004, indexed with recorded AUCTORISEAL and CORPIFORM package publication surfaces, and extended by artifact-0005 verified governed execution with recorded receipt and matching Node and Rust verifier results
-RELEASE_GATE_STATUS: verified governed execution is recorded; explicit final seal-state line is now stated directly and release-gate closure is asserted.
+RELEASE_GATE_STATUS: verified governed execution is recorded in current truth; no broader completion or final seal-state claim is made here.
 
 PACKAGE-SURFACE-CHAIN: RECORDED
 PACKAGE-SURFACE-CHAIN-NOTE: public @verifrax package chain from primitives through sigillarium is live and recorded under evidence/package-surface/CURRENT_PACKAGE_INDEX.txt
