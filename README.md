@@ -213,3 +213,9 @@ VERIFRAX is not the commercial landing surface.
 ## License
 
 Apache License Version 2.0
+
+## Verification-result object
+
+- current active verification-result object: `verification/results/current/verification-result-0001.json`
+- historical verification-result archive: `verification/results/history/`
+- this object binds the current verified artifact-0005 boundary to a single machine-readable current verification result derived from matching Node and Rust semantic outputs

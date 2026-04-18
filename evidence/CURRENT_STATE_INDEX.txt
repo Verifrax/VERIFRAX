@@ -42,6 +42,8 @@ CURRENT_ARTIFACT_0005_BINDING:
 - RUST_VERDICT: VERIFIED
 - CROSS_IMPLEMENTATION_MATCH: MATCH
 - CANONICAL_SEMANTIC_SHA256: 801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b
+- VERIFICATION_RESULT_ID: verification-result-0001
+- VERIFICATION_RESULT_OBJECT: verification/results/current/verification-result-0001.json
 
 CURRENT_ROOT_SURFACES:
 - EVIDENCE_INDEX: evidence/README.md
@@ -49,6 +51,7 @@ CURRENT_ROOT_SURFACES:
 - ARTIFACT_0005_PRIMARY: evidence/artifact-0005/artifact-0005.json
 - ARTIFACT_0005_EXECUTION_STATUS: evidence/artifact-0005/EXECUTION_STATUS.txt
 - ARTIFACT_0005_CROSS_IMPLEMENTATION_STATUS: evidence/artifact-0005/CROSS_IMPLEMENTATION_STATUS.txt
+- VERIFICATION_RESULT_OBJECT: verification/results/current/verification-result-0001.json
 
 CURRENT_LIMITS:
 - This file records the current verified governed execution boundary through artifact-0005 only.
