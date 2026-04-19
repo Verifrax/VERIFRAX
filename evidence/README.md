@@ -16,6 +16,8 @@ It exists so that any reviewer, claimant, challenger, auditor, or adversarial re
 
 This index is not a substitute for the evidence objects themselves. It is the canonical navigation surface for those objects.
 
+The current machine-readable cross-stack binding object is published at `chain/current/cross-stack-chain-bundle-0001.json` with index `chain/current/index.json`.
+
 ---
 
 ## Current boundary

@@ -44,6 +44,8 @@ CURRENT_ARTIFACT_0005_BINDING:
 - CANONICAL_SEMANTIC_SHA256: 801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b
 - VERIFICATION_RESULT_ID: verification-result-0001
 - VERIFICATION_RESULT_OBJECT: verification/results/current/verification-result-0001.json
+- CROSS_STACK_CHAIN_BUNDLE: evidence/chain/current/cross-stack-chain-bundle-0001.json
+- CROSS_STACK_CHAIN_INDEX: evidence/chain/current/index.json
 
 CURRENT_ROOT_SURFACES:
 - EVIDENCE_INDEX: evidence/README.md
