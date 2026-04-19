@@ -9,7 +9,9 @@
       "verification_result_id": "verification-result-0001",
       "path": "verification/results/current/verification-result-0001.json",
       "receipt_id": "8F88E46F-625B-4682-BF9A-D68ADD241FFF",
-      "authority_seal_id": "seal_9c1568bb9ef7423283ca56ecdb7dc278"
+      "authority_seal_id": "seal_9c1568bb9ef7423283ca56ecdb7dc278",
+      "receipt_ref": "https://github.com/Verifrax/CORPIFORM/blob/main/receipts/current/execution-receipt-0001.json"
     }
-  ]
+  ],
+  "state_type": "ACTIVE_TRUTH"
 }

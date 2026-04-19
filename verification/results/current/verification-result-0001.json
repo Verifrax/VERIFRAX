@@ -32,5 +32,7 @@
   "recognition_object_ref": "https://github.com/Verifrax/ANAGNORIUM/blob/main/recognitions/current/recognition-object-0001.json",
   "recourse_object_ref": "https://github.com/Verifrax/REGRESSORIUM/blob/main/claims/current/recourse-object-0001.json",
   "continuity_ref": "evidence/continuity/current/continuity-object-0001.json",
-  "transfer_ref": "evidence/transfer/current/transfer-object-0001.json"
+  "transfer_ref": "evidence/transfer/current/transfer-object-0001.json",
+  "state_type": "ACTIVE_TRUTH",
+  "receipt_ref": "https://github.com/Verifrax/CORPIFORM/blob/main/receipts/current/execution-receipt-0001.json"
 }
