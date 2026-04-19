@@ -30,5 +30,6 @@
   "notes": [
     "This object states how bounded replay continuity is preserved for the current active chain.",
     "It does not replace law, authority, verification, recognition, recourse, or freeze objects."
-  ]
+  ],
+  "state_type": "ACTIVE_TRUTH"
 }

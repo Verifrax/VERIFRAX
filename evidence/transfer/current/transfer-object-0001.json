@@ -27,5 +27,6 @@
   "notes": [
     "This object defines the bounded transfer reading for continuity of the active chain.",
     "It is not a substitute for chamber objects or governance authority."
-  ]
+  ],
+  "state_type": "ACTIVE_TRUTH"
 }
