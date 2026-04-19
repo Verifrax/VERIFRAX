@@ -21,6 +21,28 @@ The public sovereign chamber reading of VERIFRAX is:
 
 These chambers are role-distinct and must not be collapsed into one another.
 
+## Stack reading lock
+
+Read the public stack in this order and with this separation intact:
+
+- `AUCTORISEAL` = authority issuance only
+- `CORPIFORM` = governed execution and receipt emission only
+- `VERIFRAX` = evidence root, verification result binding, continuity, transfer, and end-to-end chain publication only
+- `VERIFRAX-verify` = public verification surface only
+- `TACHYRIUM` = bounded subordinate cognition only
+- `ANAGNORIUM` = terminal recognition only
+- `REGRESSORIUM` = terminal recourse only
+
+Do not read implementation strata as sovereign chambers.
+
+- `VERIFRAX-WWW` is public perimeter presentation
+- `VERIFRAX-API` is interface and transport surface
+- `VERIFRAX-STATUS` is status publication
+- `VERIFRAX-SURFACE` is form and host-system surface
+
+Those implementation strata may publish, mirror, route, or present. They do not become law, accepted state, authority issuance, execution legitimacy, verification truth, terminal recognition, or terminal recourse by being public.
+
+
 ## Implementation strata and host-role separation
 
 The public implementation and host strata are subordinate support surfaces, not sovereign chambers.
