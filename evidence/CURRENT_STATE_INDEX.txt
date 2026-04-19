@@ -46,6 +46,10 @@ CURRENT_ARTIFACT_0005_BINDING:
 - VERIFICATION_RESULT_OBJECT: verification/results/current/verification-result-0001.json
 - CROSS_STACK_CHAIN_BUNDLE: evidence/chain/current/cross-stack-chain-bundle-0001.json
 - CROSS_STACK_CHAIN_INDEX: evidence/chain/current/index.json
+- CONTINUITY_OBJECT: evidence/continuity/current/continuity-object-0001.json
+- CONTINUITY_INDEX: evidence/continuity/current/index.json
+- TRANSFER_OBJECT: evidence/transfer/current/transfer-object-0001.json
+- TRANSFER_INDEX: evidence/transfer/current/index.json
 
 CURRENT_ROOT_SURFACES:
 - EVIDENCE_INDEX: evidence/README.md

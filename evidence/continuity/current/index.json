@@ -1,0 +1,13 @@
+{
+  "object_type": "ContinuityIndex",
+  "status": "ACTIVE_TRUTH",
+  "historical": false,
+  "current_continuity_object_ref": "evidence/continuity/current/continuity-object-0001.json",
+  "entries": [
+    {
+      "continuity_object_id": "continuity-object-0001",
+      "path": "evidence/continuity/current/continuity-object-0001.json",
+      "subject_artifact_id": "artifact-0005"
+    }
+  ]
+}

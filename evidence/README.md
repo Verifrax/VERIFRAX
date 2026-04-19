@@ -18,6 +18,9 @@ This index is not a substitute for the evidence objects themselves. It is the ca
 
 The current machine-readable cross-stack binding object is published at `chain/current/cross-stack-chain-bundle-0001.json` with index `chain/current/index.json`.
 
+The current machine-readable continuity object is published at `continuity/current/continuity-object-0001.json` with index `continuity/current/index.json`.
+The current machine-readable transfer object is published at `transfer/current/transfer-object-0001.json` with index `transfer/current/index.json`.
+
 ---
 
 ## Current boundary
