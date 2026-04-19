@@ -2,48 +2,52 @@
 
 ## This repository
 
-VERIFRAX is the **authoritative source** for:
-- Evidence bundle verification
-- Certificate generation
-- Verification engine logic
-- Certificate schema
+VERIFRAX is the authoritative repository boundary for:
 
-## Authoritative files
+- normative protocol specification under `docs/spec/`
+- maintained conformance under `protocol-conformance/`
+- maintained verifier implementations under `verifier/`
+- active release-integrity metadata under `release-integrity/`
+- registry and index surfaces used for deterministic repository interpretation
 
-| File | Authority |
+Repository authority must be read through `AUTHORITY.md`.
+
+## Canonical active surfaces
+
+| Surface | Authority |
 |------|-----------|
-| `verifrax-engine/execute_v2_6_0.js` | Execution engine |
-| `verifrax-reference-verifier/` | Offline verification |
-| `verifrax-freeze/` | Frozen snapshots |
-| `CERTIFICATE_SCHEMA.json` | Certificate structure |
-| `AUTHORITATIVE_SCOPE.md` | Authority boundaries |
-| `CANONICAL.md` | Scope and purpose |
-| `ADVERSARIAL_FAQ.md` | Misinterpretation corrections |
+| `AUTHORITY.md` | repository authority map |
+| `docs/spec/` | normative protocol semantics |
+| `protocol-conformance/` | maintained conformance authority |
+| `verifier/node` | maintained Node verifier |
+| `verifier/rust` | maintained Rust verifier |
+| `release-integrity/` | active release-integrity authority |
+| `registry/` | maintained registry declarations |
+| `index/` | maintained repository index surfaces |
 
-## Related systems
+## Historical and non-authority surfaces
 
-| System | Relationship |
-|--------|--------------|
-| MK10-PRO | Upstream MTB definitions |
-| CICULLIS | Policy enforcement |
+The following are not active repository authority unless a canonical active surface explicitly re-designates them:
 
-## Non-authoritative
+- `archive/`
+- `release-history/`
+- superseded verifier-era directories
+- frozen historical snapshots retained for lineage
+- generated outputs
+- explanatory prose outside declared active authority surfaces
 
-- `docs/` (informational only)
-- docs layer
-- Marketing text
-- README prose
+## Maintained verifier rule
+
+The only active maintained verifier directories in this repository are:
+
+- `verifier/node`
+- `verifier/rust`
+
+Archived or historical verifier material must not be treated as current implementation authority.
 
 ## Verification
 
 ```bash
-# Verify build hashes
-./BUILD_REPRODUCE.sh
-
-# Verify certificate against schema
-# (requires JSON schema validator)
+./docs/operations/BUILD_REPRODUCE.sh
 ```
 
-## Live endpoint
-
-https://api.verifrax.net — Production execution
