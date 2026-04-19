@@ -1,6 +1,6 @@
-# Verification result history
+# Historical verification-result archive
 
-This directory preserves historical verification-result objects or superseded current-result captures.
+This directory stores superseded or historical verification-result entry surfaces.
 
-Anything here is historical lineage material only.
-It must not outrank `verification/results/current/verification-result-0001.json` as the active current verification-result object.
+They must not outrank `verification/results/current/verification-result-0001.json`.
+They must not outrank `verification/results/current/index.json`.

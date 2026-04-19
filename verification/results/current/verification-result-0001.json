@@ -23,5 +23,14 @@
   "verdict": "VERIFIED",
   "derivation_rule": "This object is admitted as current verification truth only because the maintained Node and Rust semantic outputs for artifact-0005 matched byte-for-byte after canonicalization and the root evidence surfaces record artifact-0005 as VERIFIED in current truth.",
   "current_truth_scope": "artifact-0005 verified governed execution boundary only",
-  "historical_boundary": "Historical verification materials must remain under verification/results/history/ or explicitly historical evidence surfaces and must not outrank this active object."
+  "historical_boundary": "Historical verification materials must remain under verification/results/history/ or explicitly historical evidence surfaces and must not outrank this active object.",
+  "historical_archive_ref": "verification/results/history/",
+  "current_index_ref": "verification/results/current/index.json",
+  "accepted_epoch_ref": "https://github.com/Verifrax/ORBISTIUM/blob/main/epochs/current/accepted-epoch-0001.json",
+  "authority_object_ref": "https://github.com/Verifrax/AUCTORISEAL/blob/main/authorities/current/authority-object-0001.json",
+  "execution_receipt_ref": "https://github.com/Verifrax/CORPIFORM/blob/main/receipts/current/execution-receipt-0001.json",
+  "recognition_object_ref": "https://github.com/Verifrax/ANAGNORIUM/blob/main/recognitions/current/recognition-object-0001.json",
+  "recourse_object_ref": "https://github.com/Verifrax/REGRESSORIUM/blob/main/claims/current/recourse-object-0001.json",
+  "continuity_ref": "evidence/continuity/current/continuity-object-0001.json",
+  "transfer_ref": "evidence/transfer/current/transfer-object-0001.json"
 }

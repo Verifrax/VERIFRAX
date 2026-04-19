@@ -1,0 +1,15 @@
+{
+  "object_type": "VERIFICATION_RESULT_INDEX",
+  "status": "ACTIVE_TRUTH",
+  "historical": false,
+  "current_verification_result_ref": "verification/results/current/verification-result-0001.json",
+  "historical_archive_ref": "verification/results/history/",
+  "entries": [
+    {
+      "verification_result_id": "verification-result-0001",
+      "path": "verification/results/current/verification-result-0001.json",
+      "receipt_id": "8F88E46F-625B-4682-BF9A-D68ADD241FFF",
+      "authority_seal_id": "seal_9c1568bb9ef7423283ca56ecdb7dc278"
+    }
+  ]
+}

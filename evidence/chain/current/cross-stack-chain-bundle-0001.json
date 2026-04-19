@@ -20,7 +20,9 @@
     "recognition_object": "https://github.com/Verifrax/ANAGNORIUM/blob/main/recognitions/current/recognition-object-0001.json",
     "recourse_object": "https://github.com/Verifrax/REGRESSORIUM/blob/main/claims/current/recourse-object-0001.json",
     "continuity_object": "evidence/continuity/current/continuity-object-0001.json",
-    "transfer_object": "evidence/transfer/current/transfer-object-0001.json"
+    "transfer_object": "evidence/transfer/current/transfer-object-0001.json",
+    "continuity": "evidence/continuity/current/continuity-object-0001.json",
+    "transfer": "evidence/transfer/current/transfer-object-0001.json"
   },
   "index_refs": {
     "chain_index": "evidence/chain/current/index.json",
@@ -40,7 +42,9 @@
     "node_verdict": "VERIFIED",
     "rust_verdict": "VERIFIED",
     "cross_implementation_match": "MATCH",
-    "canonical_semantic_sha256": "801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b"
+    "canonical_semantic_sha256": "801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b",
+    "continuity_object_id": "continuity-object-0001",
+    "transfer_object_id": "transfer-object-0001"
   },
   "consistency": {
     "law_version_match": true,
@@ -69,5 +73,10 @@
     "Its role is to let an outsider trace claim class, governing law, freeze, epoch, authority, receipt, verification, recognition, and recourse without founder narration.",
     "The active chain now points to bounded continuity and transfer objects for survivability interpretation.",
     "Those objects exist to preserve replay legibility under founder loss or platform relocation without redefining chamber authority."
-  ]
+  ],
+  "integrity_checks": {
+    "verification_result_match": true,
+    "continuity_match": true,
+    "transfer_match": true
+  }
 }
