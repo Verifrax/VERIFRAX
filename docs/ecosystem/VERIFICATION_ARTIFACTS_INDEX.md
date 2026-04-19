@@ -11,7 +11,7 @@ deterministic verification surface of the protocol.
 The verification artifacts index exists to identify:
 
 - official conformance artifacts
-- reference verifier implementations
+- maintained verifier implementations
 - integrity manifests
 - evidence bundles
 - verification transcripts
@@ -54,8 +54,8 @@ Repository content outside these functions is not part of the index scope.
 The initial index includes:
 
 - protocol-conformance
-- Node reference verifier
-- Rust minimal verifier
+- maintained Node verifier
+- maintained Rust verifier
 - verifier hash registry
 - release SHA256 manifest
 - genesis lineage
