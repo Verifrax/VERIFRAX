@@ -22,7 +22,9 @@
     "continuity_object": "evidence/continuity/current/continuity-object-0001.json",
     "transfer_object": "evidence/transfer/current/transfer-object-0001.json",
     "continuity": "evidence/continuity/current/continuity-object-0001.json",
-    "transfer": "evidence/transfer/current/transfer-object-0001.json"
+    "transfer": "evidence/transfer/current/transfer-object-0001.json",
+    "continuity_ref": "evidence/continuity/current/continuity-object-0001.json",
+    "transfer_ref": "evidence/transfer/current/transfer-object-0001.json"
   },
   "index_refs": {
     "chain_index": "evidence/chain/current/index.json",
@@ -78,5 +80,6 @@
     "verification_result_match": true,
     "continuity_match": true,
     "transfer_match": true
-  }
+  },
+  "state_type": "ACTIVE_TRUTH"
 }
