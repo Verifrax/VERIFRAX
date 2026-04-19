@@ -1,0 +1,34 @@
+{
+  "object_type": "ContinuityObject",
+  "continuity_object_id": "continuity-object-0001",
+  "status": "ACTIVE_TRUTH",
+  "scope": "current bounded replay continuity for the active artifact-0005 chain",
+  "subject_artifact_id": "artifact-0005",
+  "subject_ref": "evidence/artifact-0005/artifact-0005.json",
+  "governing_law_version_ref": "https://github.com/Verifrax/SYNTAGMARIUM/blob/main/law/versions/current/law-version-0001.json",
+  "governing_freeze_object_ref": "https://github.com/Verifrax/SYNTAGMARIUM/blob/main/freeze/objects/current/freeze-object-0001.json",
+  "accepted_epoch_ref": "https://github.com/Verifrax/ORBISTIUM/blob/main/epochs/current/accepted-epoch-0001.json",
+  "authority_object_ref": "https://github.com/Verifrax/AUCTORISEAL/blob/main/authorities/current/authority-object-0001.json",
+  "verification_result_ref": "verification/results/current/verification-result-0001.json",
+  "chain_bundle_ref": "evidence/chain/current/cross-stack-chain-bundle-0001.json",
+  "release_integrity_ref": "release-integrity/README.md",
+  "archive_policy_ref": "docs/operations/ARCHIVE_POLICY.md",
+  "genesis_lineage_policy_ref": "docs/governance/GENESIS_LINEAGE_POLICY.md",
+  "freeze_manifest_ref": "freeze/FREEZE_SURFACE_MANIFEST.json",
+  "historical_archive_ref": "evidence/continuity/history/",
+  "continuity_guarantees": [
+    "active cross-stack chain binding is published as a machine-readable replay surface",
+    "historical materials remain subordinate and may not outrank active current truth",
+    "release-integrity and archive-policy surfaces preserve replay interpretation beyond a single release moment",
+    "freeze and lineage surfaces preserve reconstruction context across repository history"
+  ],
+  "failure_model": [
+    "founder absence does not by itself invalidate published active objects",
+    "platform relocation does not by itself redefine governing law, epoch, authority, verification, recognition, or recourse objects",
+    "historical mirrors remain non-active unless current truth explicitly points to them"
+  ],
+  "notes": [
+    "This object states how bounded replay continuity is preserved for the current active chain.",
+    "It does not replace law, authority, verification, recognition, recourse, or freeze objects."
+  ]
+}

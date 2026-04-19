@@ -1,0 +1,31 @@
+{
+  "object_type": "TransferObject",
+  "transfer_object_id": "transfer-object-0001",
+  "status": "ACTIVE_TRUTH",
+  "scope": "current bounded continuity transfer interpretation for the active artifact-0005 chain",
+  "subject_artifact_id": "artifact-0005",
+  "subject_ref": "evidence/artifact-0005/artifact-0005.json",
+  "continuity_object_ref": "evidence/continuity/current/continuity-object-0001.json",
+  "governing_law_version_ref": "https://github.com/Verifrax/SYNTAGMARIUM/blob/main/law/versions/current/law-version-0001.json",
+  "authority_object_ref": "https://github.com/Verifrax/AUCTORISEAL/blob/main/authorities/current/authority-object-0001.json",
+  "chain_bundle_ref": "evidence/chain/current/cross-stack-chain-bundle-0001.json",
+  "archive_policy_ref": "docs/operations/ARCHIVE_POLICY.md",
+  "release_integrity_ref": "release-integrity/README.md",
+  "genesis_lineage_policy_ref": "docs/governance/GENESIS_LINEAGE_POLICY.md",
+  "historical_archive_ref": "evidence/transfer/history/",
+  "transfer_conditions": [
+    "active object paths must remain explicit and machine-readable",
+    "historical mirrors must remain subordinate to active current truth",
+    "repository lineage and archive surfaces must remain sufficient for bounded replay interpretation",
+    "transfer does not authorize mutation of law, epoch, authority, verification, recognition, or recourse objects"
+  ],
+  "bounded_survival_reading": [
+    "continuity survives founder loss by published object linkage and replay surfaces",
+    "continuity survives platform loss only through reconstructable published objects, archives, and lineage policy",
+    "transfer interpretation remains bounded to published active-truth surfaces"
+  ],
+  "notes": [
+    "This object defines the bounded transfer reading for continuity of the active chain.",
+    "It is not a substitute for chamber objects or governance authority."
+  ]
+}

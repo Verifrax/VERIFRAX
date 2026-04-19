@@ -1,0 +1,13 @@
+{
+  "object_type": "TransferIndex",
+  "status": "ACTIVE_TRUTH",
+  "historical": false,
+  "current_transfer_object_ref": "evidence/transfer/current/transfer-object-0001.json",
+  "entries": [
+    {
+      "transfer_object_id": "transfer-object-0001",
+      "path": "evidence/transfer/current/transfer-object-0001.json",
+      "subject_artifact_id": "artifact-0005"
+    }
+  ]
+}

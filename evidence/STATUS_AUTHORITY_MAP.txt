@@ -14,6 +14,10 @@ ROOT_STATUS_SURFACES:
 - CONSISTENCY_AUDIT = evidence/CONSISTENCY_AUDIT.txt
 - CROSS_STACK_CHAIN_BUNDLE = evidence/chain/current/cross-stack-chain-bundle-0001.json
 - CROSS_STACK_CHAIN_INDEX = evidence/chain/current/index.json
+- CONTINUITY_OBJECT: evidence/continuity/current/continuity-object-0001.json
+- CONTINUITY_INDEX: evidence/continuity/current/index.json
+- TRANSFER_OBJECT: evidence/transfer/current/transfer-object-0001.json
+- TRANSFER_INDEX: evidence/transfer/current/index.json
 
 CURRENT_AUTHORITY_ROOT:
 - GOVERNANCE_ROOT = github.com/Verifrax/.github

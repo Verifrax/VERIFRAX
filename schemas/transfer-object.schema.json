@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://verifrax.net/schemas/transfer-object.schema.json",
+  "title": "VERIFRAX Transfer Object",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "transfer_object_id",
+    "status",
+    "scope",
+    "subject_artifact_id",
+    "subject_ref",
+    "continuity_object_ref",
+    "governing_law_version_ref",
+    "authority_object_ref",
+    "chain_bundle_ref",
+    "historical_archive_ref",
+    "transfer_conditions",
+    "bounded_survival_reading",
+    "notes"
+  ],
+  "properties": {
+    "object_type": { "type": "string", "const": "TransferObject" },
+    "transfer_object_id": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "const": "ACTIVE_TRUTH" },
+    "scope": { "type": "string", "minLength": 1 },
+    "subject_artifact_id": { "type": "string", "minLength": 1 },
+    "subject_ref": { "type": "string", "minLength": 1 },
+    "continuity_object_ref": { "type": "string", "minLength": 1 },
+    "governing_law_version_ref": { "type": "string", "minLength": 1 },
+    "authority_object_ref": { "type": "string", "minLength": 1 },
+    "chain_bundle_ref": { "type": "string", "minLength": 1 },
+    "archive_policy_ref": { "type": "string", "minLength": 1 },
+    "release_integrity_ref": { "type": "string", "minLength": 1 },
+    "genesis_lineage_policy_ref": { "type": "string", "minLength": 1 },
+    "historical_archive_ref": { "type": "string", "minLength": 1 },
+    "transfer_conditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "bounded_survival_reading": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "notes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

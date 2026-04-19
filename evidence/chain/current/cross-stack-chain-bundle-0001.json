@@ -18,13 +18,17 @@
     "execution_receipt": "https://github.com/Verifrax/CORPIFORM/blob/main/receipts/current/execution-receipt-0001.json",
     "verification_result": "verification/results/current/verification-result-0001.json",
     "recognition_object": "https://github.com/Verifrax/ANAGNORIUM/blob/main/recognitions/current/recognition-object-0001.json",
-    "recourse_object": "https://github.com/Verifrax/REGRESSORIUM/blob/main/claims/current/recourse-object-0001.json"
+    "recourse_object": "https://github.com/Verifrax/REGRESSORIUM/blob/main/claims/current/recourse-object-0001.json",
+    "continuity_object": "evidence/continuity/current/continuity-object-0001.json",
+    "transfer_object": "evidence/transfer/current/transfer-object-0001.json"
   },
   "index_refs": {
     "chain_index": "evidence/chain/current/index.json",
     "recognition_index": "https://github.com/Verifrax/ANAGNORIUM/blob/main/recognitions/current/index.json",
     "recourse_index": "https://github.com/Verifrax/REGRESSORIUM/blob/main/claims/current/index.json",
-    "historical_archive": "evidence/chain/history/"
+    "historical_archive": "evidence/chain/history/",
+    "continuity_index": "evidence/continuity/current/index.json",
+    "transfer_index": "evidence/transfer/current/index.json"
   },
   "binding_summary": {
     "authority_id": "AUTHORITY-0001-VERIFRAX",
@@ -47,16 +51,23 @@
     "subject_ref_match": true,
     "recognition_index_binding_ok": true,
     "recourse_index_binding_ok": true,
-    "recognition_precedes_recourse": true
+    "recognition_precedes_recourse": true,
+    "continuity_index_binding_ok": true,
+    "transfer_index_binding_ok": true,
+    "continuity_transfer_link_ok": true
   },
   "limits": [
     "this bundle records current cross-stack binding for artifact-0005 only",
     "this bundle does not replace law objects, accepted epoch objects, authority issuance objects, execution receipts, verification results, recognition objects, or recourse objects",
     "historical chain bundles must remain under evidence/chain/history/ and may not outrank this active bundle",
-    "this bundle is a machine-readable replay pointer surface, not a substitute for the underlying chamber objects"
+    "this bundle is a machine-readable replay pointer surface, not a substitute for the underlying chamber objects",
+    "continuity and transfer objects remain bounded replay-survival surfaces only",
+    "continuity and transfer do not replace chamber objects or governance authority"
   ],
   "notes": [
     "This object publishes the active cross-stack object chain for the current verified artifact-0005 boundary.",
-    "Its role is to let an outsider trace claim class, governing law, freeze, epoch, authority, receipt, verification, recognition, and recourse without founder narration."
+    "Its role is to let an outsider trace claim class, governing law, freeze, epoch, authority, receipt, verification, recognition, and recourse without founder narration.",
+    "The active chain now points to bounded continuity and transfer objects for survivability interpretation.",
+    "Those objects exist to preserve replay legibility under founder loss or platform relocation without redefining chamber authority."
   ]
 }
