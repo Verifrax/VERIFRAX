@@ -1,5 +1,5 @@
 {
-  "object_type": "CrossStackChainIndex",
+  "object_type": "CHAIN_INDEX",
   "status": "ACTIVE_TRUTH",
   "historical": false,
   "current_chain_bundle_ref": "evidence/chain/current/cross-stack-chain-bundle-0001.json",

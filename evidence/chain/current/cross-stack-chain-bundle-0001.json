@@ -1,5 +1,5 @@
 {
-  "object_type": "CrossStackChainBundle",
+  "object_type": "CROSS_STACK_CHAIN_BUNDLE",
   "chain_bundle_id": "cross-stack-chain-bundle-0001",
   "status": "ACTIVE_TRUTH",
   "subject_artifact_id": "artifact-0005",
