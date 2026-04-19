@@ -1,0 +1,62 @@
+{
+  "object_type": "CrossStackChainBundle",
+  "chain_bundle_id": "cross-stack-chain-bundle-0001",
+  "status": "ACTIVE_TRUTH",
+  "subject_artifact_id": "artifact-0005",
+  "subject_ref": "evidence/artifact-0005/artifact-0005.json",
+  "execution_subject_ref": "github.com/Verifrax/CORPIFORM",
+  "claim_class_refs": {
+    "verification_result": "https://github.com/Verifrax/SYNTAGMARIUM/blob/main/claim-classes/verification-result.json",
+    "recognition_object": "https://github.com/Verifrax/SYNTAGMARIUM/blob/main/claim-classes/recognition-object.json",
+    "recourse_object": "https://github.com/Verifrax/SYNTAGMARIUM/blob/main/claim-classes/recourse-object.json"
+  },
+  "governing_refs": {
+    "law_version": "https://github.com/Verifrax/SYNTAGMARIUM/blob/main/law/versions/current/law-version-0001.json",
+    "freeze_object": "https://github.com/Verifrax/SYNTAGMARIUM/blob/main/freeze/objects/current/freeze-object-0001.json",
+    "accepted_epoch": "https://github.com/Verifrax/ORBISTIUM/blob/main/epochs/current/accepted-epoch-0001.json",
+    "authority_object": "https://github.com/Verifrax/AUCTORISEAL/blob/main/authorities/current/authority-object-0001.json",
+    "execution_receipt": "https://github.com/Verifrax/CORPIFORM/blob/main/receipts/current/execution-receipt-0001.json",
+    "verification_result": "verification/results/current/verification-result-0001.json",
+    "recognition_object": "https://github.com/Verifrax/ANAGNORIUM/blob/main/recognitions/current/recognition-object-0001.json",
+    "recourse_object": "https://github.com/Verifrax/REGRESSORIUM/blob/main/claims/current/recourse-object-0001.json"
+  },
+  "index_refs": {
+    "chain_index": "evidence/chain/current/index.json",
+    "recognition_index": "https://github.com/Verifrax/ANAGNORIUM/blob/main/recognitions/current/index.json",
+    "recourse_index": "https://github.com/Verifrax/REGRESSORIUM/blob/main/claims/current/index.json",
+    "historical_archive": "evidence/chain/history/"
+  },
+  "binding_summary": {
+    "authority_id": "AUTHORITY-0001-VERIFRAX",
+    "authority_seal_id": "seal_9c1568bb9ef7423283ca56ecdb7dc278",
+    "receipt_id": "8F88E46F-625B-4682-BF9A-D68ADD241FFF",
+    "verification_result_id": "verification-result-0001",
+    "recognition_object_id": "recognition-object-0001",
+    "recourse_object_id": "recourse-object-0001",
+    "node_verdict": "VERIFIED",
+    "rust_verdict": "VERIFIED",
+    "cross_implementation_match": "MATCH",
+    "canonical_semantic_sha256": "801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b"
+  },
+  "consistency": {
+    "law_version_match": true,
+    "accepted_epoch_match": true,
+    "authority_object_match": true,
+    "execution_receipt_match": true,
+    "verification_result_match": true,
+    "subject_ref_match": true,
+    "recognition_index_binding_ok": true,
+    "recourse_index_binding_ok": true,
+    "recognition_precedes_recourse": true
+  },
+  "limits": [
+    "this bundle records current cross-stack binding for artifact-0005 only",
+    "this bundle does not replace law objects, accepted epoch objects, authority issuance objects, execution receipts, verification results, recognition objects, or recourse objects",
+    "historical chain bundles must remain under evidence/chain/history/ and may not outrank this active bundle",
+    "this bundle is a machine-readable replay pointer surface, not a substitute for the underlying chamber objects"
+  ],
+  "notes": [
+    "This object publishes the active cross-stack object chain for the current verified artifact-0005 boundary.",
+    "Its role is to let an outsider trace claim class, governing law, freeze, epoch, authority, receipt, verification, recognition, and recourse without founder narration."
+  ]
+}

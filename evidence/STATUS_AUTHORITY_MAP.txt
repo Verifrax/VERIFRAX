@@ -12,6 +12,8 @@ ROOT_STATUS_SURFACES:
 - CHAIN_STATUS = evidence/bootstrap-chain-status/CHAIN_STATUS.txt
 - CURRENT_STATE_INDEX = evidence/CURRENT_STATE_INDEX.txt
 - CONSISTENCY_AUDIT = evidence/CONSISTENCY_AUDIT.txt
+- CROSS_STACK_CHAIN_BUNDLE = evidence/chain/current/cross-stack-chain-bundle-0001.json
+- CROSS_STACK_CHAIN_INDEX = evidence/chain/current/index.json
 
 CURRENT_AUTHORITY_ROOT:
 - GOVERNANCE_ROOT = github.com/Verifrax/.github

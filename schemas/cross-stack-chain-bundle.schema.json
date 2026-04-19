@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Verifrax/VERIFRAX/blob/main/schemas/cross-stack-chain-bundle.schema.json",
+  "title": "VERIFRAX Cross-Stack Chain Bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "chain_bundle_id",
+    "status",
+    "subject_artifact_id",
+    "subject_ref",
+    "execution_subject_ref",
+    "claim_class_refs",
+    "governing_refs",
+    "index_refs",
+    "binding_summary",
+    "consistency",
+    "limits",
+    "notes"
+  ],
+  "properties": {
+    "object_type": { "const": "CrossStackChainBundle" },
+    "chain_bundle_id": { "type": "string", "minLength": 1 },
+    "status": { "const": "ACTIVE_TRUTH" },
+    "subject_artifact_id": { "const": "artifact-0005" },
+    "subject_ref": { "type": "string", "minLength": 1 },
+    "execution_subject_ref": { "type": "string", "minLength": 1 },
+    "claim_class_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verification_result",
+        "recognition_object",
+        "recourse_object"
+      ],
+      "properties": {
+        "verification_result": { "type": "string", "minLength": 1 },
+        "recognition_object": { "type": "string", "minLength": 1 },
+        "recourse_object": { "type": "string", "minLength": 1 }
+      }
+    },
+    "governing_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "law_version",
+        "freeze_object",
+        "accepted_epoch",
+        "authority_object",
+        "execution_receipt",
+        "verification_result",
+        "recognition_object",
+        "recourse_object"
+      ],
+      "properties": {
+        "law_version": { "type": "string", "minLength": 1 },
+        "freeze_object": { "type": "string", "minLength": 1 },
+        "accepted_epoch": { "type": "string", "minLength": 1 },
+        "authority_object": { "type": "string", "minLength": 1 },
+        "execution_receipt": { "type": "string", "minLength": 1 },
+        "verification_result": { "type": "string", "minLength": 1 },
+        "recognition_object": { "type": "string", "minLength": 1 },
+        "recourse_object": { "type": "string", "minLength": 1 }
+      }
+    },
+    "index_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chain_index",
+        "recognition_index",
+        "recourse_index",
+        "historical_archive"
+      ],
+      "properties": {
+        "chain_index": { "type": "string", "minLength": 1 },
+        "recognition_index": { "type": "string", "minLength": 1 },
+        "recourse_index": { "type": "string", "minLength": 1 },
+        "historical_archive": { "type": "string", "minLength": 1 }
+      }
+    },
+    "binding_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority_id",
+        "authority_seal_id",
+        "receipt_id",
+        "verification_result_id",
+        "recognition_object_id",
+        "recourse_object_id",
+        "node_verdict",
+        "rust_verdict",
+        "cross_implementation_match",
+        "canonical_semantic_sha256"
+      ],
+      "properties": {
+        "authority_id": { "type": "string", "minLength": 1 },
+        "authority_seal_id": { "type": "string", "minLength": 1 },
+        "receipt_id": { "type": "string", "minLength": 1 },
+        "verification_result_id": { "type": "string", "minLength": 1 },
+        "recognition_object_id": { "type": "string", "minLength": 1 },
+        "recourse_object_id": { "type": "string", "minLength": 1 },
+        "node_verdict": { "type": "string", "minLength": 1 },
+        "rust_verdict": { "type": "string", "minLength": 1 },
+        "cross_implementation_match": { "type": "string", "minLength": 1 },
+        "canonical_semantic_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "consistency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "law_version_match",
+        "accepted_epoch_match",
+        "authority_object_match",
+        "execution_receipt_match",
+        "verification_result_match",
+        "subject_ref_match",
+        "recognition_index_binding_ok",
+        "recourse_index_binding_ok",
+        "recognition_precedes_recourse"
+      ],
+      "properties": {
+        "law_version_match": { "const": true },
+        "accepted_epoch_match": { "const": true },
+        "authority_object_match": { "const": true },
+        "execution_receipt_match": { "const": true },
+        "verification_result_match": { "const": true },
+        "subject_ref_match": { "const": true },
+        "recognition_index_binding_ok": { "const": true },
+        "recourse_index_binding_ok": { "const": true },
+        "recognition_precedes_recourse": { "const": true }
+      }
+    },
+    "limits": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "notes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "object_type": "CrossStackChainIndex",
+  "status": "ACTIVE_TRUTH",
+  "historical": false,
+  "current_chain_bundle_ref": "evidence/chain/current/cross-stack-chain-bundle-0001.json",
+  "entries": [
+    {
+      "chain_bundle_id": "cross-stack-chain-bundle-0001",
+      "path": "evidence/chain/current/cross-stack-chain-bundle-0001.json",
+      "subject_artifact_id": "artifact-0005",
+      "verification_result_id": "verification-result-0001",
+      "recognition_object_id": "recognition-object-0001",
+      "recourse_object_id": "recourse-object-0001"
+    }
+  ]
+}
