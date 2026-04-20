@@ -12,5 +12,6 @@
       "recognition_object_id": "recognition-object-0001",
       "recourse_object_id": "recourse-object-0001"
     }
-  ]
+  ],
+  "state_type": "ACTIVE_TRUTH"
 }
