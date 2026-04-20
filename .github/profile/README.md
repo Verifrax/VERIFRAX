@@ -53,3 +53,16 @@ The public implementation and host strata are subordinate support surfaces, not 
 - **VERIFRAX-SURFACE** — form and host-system presentation only
 
 None of those implementation strata define constitutional law, accepted state, authority of record, execution legitimacy, terminal recognition, terminal recourse, or final verification truth.
+
+
+
+## Non-sovereign reading lock
+
+The org profile is a public topology and orientation surface only.
+
+It is not itself law.  
+It is not itself state.  
+It is not itself reconciliation.  
+It is not itself cognition.  
+
+Readers must not treat the org profile as a substitute for constitutional law objects, accepted-state objects, reconciliation runtime objects, or bounded subordinate cognition outputs. The profile points to bounded chambers and implementation strata; it does not itself become a sovereign chamber by describing them.
