@@ -1,6 +1,6 @@
 # VERIFRAX
 
-Package: @verifrax/root
+Package: @verifrax/verifrax
 Binary: verifrax-seal
 Repository: Verifrax/VERIFRAX
 
@@ -19,7 +19,7 @@ VERIFRAX is the Verifrax authored protocol and evidence-root boundary: the publi
 
 ## Proof artifacts
 
-This repository is part of the VERIFRAX governed protocol and evidence perimeter.
+This repository is part of the VERIFRAX proof perimeter.
 
 - **ARTIFACT-0006**
 - **ARTIFACT-0005**
@@ -61,7 +61,7 @@ It does not serve as the public verifier UI.
 It does not serve as the seal/archive reference surface.
 It does not operate intake.
 It does not act as the commercial landing surface.
-It does not replace adjacent chamber boundaries or implementation strata.
+It does not replace adjacent sovereign boundaries.
 
 ## What it does
 
@@ -84,7 +84,7 @@ It does not replace adjacent chamber boundaries or implementation strata.
 - not reconciliation or repair; that belongs to CONSONORIUM
 - not sovereign cognition; that belongs to TACHYRIUM
 
-## Adjacent chamber surfaces
+## Adjacent sovereign surfaces
 
 - `AUCTORISEAL` defines authority issuance
 - `CORPIFORM` defines governed execution
@@ -104,39 +104,6 @@ It does not publish proof as the proof surface.
 It does not act as the verifier UI.
 
 That separation must remain explicit.
-
-## Chamber stack vs implementation strata
-
-Read these as two different public classes:
-
-### Chambers
-
-- `SYNTAGMARIUM` — law
-- `ORBISTIUM` — state
-- `CONSONORIUM` — reconciliation
-- `TACHYRIUM` — cognition
-- `AUCTORISEAL` — authority
-- `CORPIFORM` — execution
-- `VERIFRAX` — verification
-- `ANAGNORIUM` — terminal recognition
-- `REGRESSORIUM` — terminal recourse
-
-### Implementation, host, and support strata
-
-- `VERIFRAX-WWW` — public root-host surface
-- `VERIFRAX-API` — API host implementation surface
-- `VERIFRAX-STATUS` — status host implementation surface
-- `VERIFRAX-SURFACE` — shared public-surface system
-- `VERIFRAX-SPEC` — derived specification publication
-- `VERIFRAX-DOCS` — explanatory documentation
-- `VERIFRAX-PROFILES` — deterministic profile-constraint surface
-- `VERIFRAX-verify` — public verification repository and UI boundary
-- `proof` — public proof publication surface
-- `SIGILLARIUM` — archive/reference surface
-- `apply` — intake surface
-
-These implementation, host, and support repositories are not parallel sovereignty.
-They must not be read as law, state, reconciliation, cognition, authority, execution, verification, terminal recognition, or terminal recourse merely because they are public-facing or operationally important.
 
 ## Authority and specification direction
 
@@ -213,9 +180,3 @@ VERIFRAX is not the commercial landing surface.
 ## License
 
 Apache License Version 2.0
-
-## Verification-result object
-
-- current active verification-result object: `verification/results/current/verification-result-0001.json`
-- historical verification-result archive: `verification/results/history/`
-- this object binds the current verified artifact-0005 boundary to a single machine-readable current verification result derived from matching Node and Rust semantic outputs

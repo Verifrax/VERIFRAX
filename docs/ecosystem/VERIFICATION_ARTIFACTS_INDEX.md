@@ -11,7 +11,7 @@ deterministic verification surface of the protocol.
 The verification artifacts index exists to identify:
 
 - official conformance artifacts
-- maintained verifier implementations
+- reference verifier implementations
 - integrity manifests
 - evidence bundles
 - verification transcripts
@@ -54,8 +54,8 @@ Repository content outside these functions is not part of the index scope.
 The initial index includes:
 
 - protocol-conformance
-- maintained Node verifier
-- maintained Rust verifier
+- Node reference verifier
+- Rust minimal verifier
 - verifier hash registry
 - release SHA256 manifest
 - genesis lineage
@@ -85,7 +85,5 @@ The index does not:
 
 The verification artifacts index is the canonical inventory of the
 artifacts that define and preserve VERIFRAX deterministic verification.
-
-
 
 Active repository authority is defined by `AUTHORITY.md`. Maintained conformance suites are under `protocol-conformance/`, with the active suite root at `protocol-conformance/v2/`. Active maintained verifier implementations are `verifier/node` and `verifier/rust`. Active release freeze authority is defined by `release-integrity/freeze-surfaces.json`.
