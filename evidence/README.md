@@ -9,17 +9,11 @@
 - **artifact-0002**
 - **artifact-0001**
 
-
 This directory is the public evidence surface for VERIFRAX.
 
 It exists so that any reviewer, claimant, challenger, auditor, or adversarial reader can inspect what was asserted, what was executed, what was observed, what was not executable, and what boundary the current evidence actually proves.
 
 This index is not a substitute for the evidence objects themselves. It is the canonical navigation surface for those objects.
-
-The current machine-readable cross-stack binding object is published at `chain/current/cross-stack-chain-bundle-0001.json` with index `chain/current/index.json`.
-
-The current machine-readable continuity object is published at `continuity/current/continuity-object-0001.json` with index `continuity/current/index.json`.
-The current machine-readable transfer object is published at `transfer/current/transfer-object-0001.json` with index `transfer/current/index.json`.
 
 ---
 
@@ -62,7 +56,7 @@ That means the currently indexed public boundary is:
 2. authority readiness evidence for AUCTORISEAL
 3. authority issuance presence and re-execution evidence
 4. first recorded CORPIFORM authority-governed execution receipt evidence
-5. verified artifact-0005 governed execution boundary recorded under public canonical authority as the current verified governed execution boundary
+5. verified artifact-0005 governed execution boundary recorded under public canonical authority and asserted as final public seal state
 6. semantic cross-implementation execution evidence for earlier chain artifacts
 7. package publication evidence for the full public `@verifrax/*` chain recorded under `package-surface/`
 8. sovereign triad component surfaces for `SYNTAGMARIUM`, `ORBISTIUM`, and `CONSONORIUM` recorded under `component-surface/`
@@ -224,7 +218,6 @@ Supporting examples:
 - `artifact-0003/authority-ledger-presence.txt`
 - `artifact-0003/seal-0001-presence.txt`
 - `artifact-0003/issued-object-search.txt`
-
 
 ### `artifact-0004/`
 
