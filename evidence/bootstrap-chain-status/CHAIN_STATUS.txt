@@ -1,3 +1,4 @@
+ARTIFACT-0006: MATERIALIZED ARTIFACT-0006-NOTE: terminal recognition and terminal recourse surfaces are materialized through ANAGNORIUM and REGRESSORIUM; artifact-0006 extends artifact-0005 without replacing artifact-0005 as the verified governed execution and final seal-state anchor.
 ARTIFACT-0001: VERIFIED
 ARTIFACT-0002: VERIFIED
 ARTIFACT-0002-NOTE: authority ledger and genesis seal are now present in declared evidence; node and rust semantic evaluators produced VERIFIED outputs
@@ -16,3 +17,5 @@ RELEASE_GATE_STATUS: verified governed execution is recorded in current truth; n
 
 PACKAGE-SURFACE-CHAIN: RECORDED
 PACKAGE-SURFACE-CHAIN-NOTE: public @verifrax package chain from primitives through sigillarium is live and recorded under evidence/package-surface/CURRENT_PACKAGE_INDEX.txt
+
+CURRENT_TERMINAL_EXTENSION: artifact-0006 materializes terminal recognition and terminal recourse surfaces while artifact-0005 remains the verified governed execution and final seal-state anchor.

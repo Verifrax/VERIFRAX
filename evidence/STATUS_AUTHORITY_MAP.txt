@@ -26,6 +26,7 @@ CURRENT_AUTHORITY_ROOT:
 - GOVERNANCE_BINDING_RULE = Governance authority is external and bound through AUCTORISEAL plus .github governed repo set.
 
 ARTIFACT_STATUS_BINDINGS:
+- ARTIFACT-0006 = MATERIALIZED
 - ARTIFACT-0001 = VERIFIED
 - ARTIFACT-0002 = VERIFIED
 - ARTIFACT-0003 = VERIFIED
@@ -50,12 +51,18 @@ ARTIFACT-0005 AUTHORITY BOUNDARY:
 - CANONICAL_SEMANTIC_SHA256 = 801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b
 - STATUS = VERIFIED
 
+ARTIFACT-0006 TERMINAL BOUNDARY:
+- TERMINAL_RECOGNITION_SURFACE = github.com/Verifrax/ANAGNORIUM
+- TERMINAL_RECOURSE_SURFACE = github.com/Verifrax/REGRESSORIUM
+- STATUS = MATERIALIZED
+- LIMIT = artifact-0006 materializes terminal surfaces and does not replace artifact-0005 as the verified governed execution and final seal-state anchor
 MAPPING RULES:
 - artifact-0004 must remain bounded by consumed fixture authority evidence only.
 - artifact-0005 current-truth surfaces record a verified governed execution boundary with recorded input, execution, receipt, and matched verifier identifiers.
 - no root status surface may describe artifact-0004 as the public canonical authority basis.
 - root status surfaces describe artifact-0005 as the current verified governed execution boundary only.
 - current authority identifiers and current artifact-0005 identifiers must remain identical across the root status surfaces.
+- current status surfaces now describe artifact-0006 as the terminal materialization extension while preserving artifact-0005 as the verified governed execution anchor.
 
 CLOSURE STATE:
 - repo and docs truth surfaces outside the root evidence map are aligned to the root evidence perimeter

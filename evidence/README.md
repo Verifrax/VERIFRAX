@@ -21,6 +21,7 @@ This index is not a substitute for the evidence objects themselves. It is the ca
 
 Current bootstrap-chain status:
 
+- **ARTIFACT-0006:** MATERIALIZED
 - **ARTIFACT-0001:** VERIFIED
 - **ARTIFACT-0002:** VERIFIED
 - **ARTIFACT-0003:** VERIFIED
@@ -60,6 +61,7 @@ That means the currently indexed public boundary is:
 6. semantic cross-implementation execution evidence for earlier chain artifacts
 7. package publication evidence for the full public `@verifrax/*` chain recorded under `package-surface/`
 8. sovereign triad component surfaces for `SYNTAGMARIUM`, `ORBISTIUM`, and `CONSONORIUM` recorded under `component-surface/`
+9. terminal recognition and terminal recourse surfaces materialized through artifact-0006 without replacing artifact-0005 as the final seal-state anchor
 
 ---
 
@@ -81,6 +83,7 @@ This tells you what the currently accepted boundary is for the bootstrap chain.
 
 Read the artifact directories if you want to inspect the declared subject, claim set, and collected evidence objects for each protocol artifact.
 
+- `artifact-0006/`
 - `artifact-0001/`
 - `artifact-0002/`
 - `artifact-0003/`
@@ -242,6 +245,27 @@ Supporting examples:
 - `artifact-0004/receipt.sha256`
 - `artifact-0004/receipt.canonical.sha256`
 - `artifact-0004/EXECUTION_STATUS.txt`
+
+### `artifact-0006/`
+
+Purpose:
+
+- terminal constitutional consequence surface materialization
+
+Use this when checking:
+
+- whether terminal recognition is publicly materialized through ANAGNORIUM
+- whether terminal recourse is publicly materialized through REGRESSORIUM
+- whether artifact-0006 extends artifact-0005 without replacing artifact-0005 as the verified governed execution and final seal-state anchor
+
+Primary file:
+
+- `artifact-0006/artifact.json`
+
+Boundary:
+
+- artifact-0006 does not rerun, replace, or supersede the artifact-0005 governed execution receipt.
+- artifact-0006 records the materialization of terminal recognition and terminal recourse surfaces as bounded public repository surfaces.
 
 ### `artifact-0005/`
 
