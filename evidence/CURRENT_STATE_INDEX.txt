@@ -9,6 +9,7 @@ RULES:
 - The recorded artifact-0005 boundary is asserted here as the current verified governed execution anchor.
 
 CURRENT_ARTIFACT_CHAIN:
+- ARTIFACT-0006 = MATERIALIZED
 - ARTIFACT-0001 = VERIFIED
 - ARTIFACT-0002 = VERIFIED
 - ARTIFACT-0003 = VERIFIED
@@ -16,6 +17,7 @@ CURRENT_ARTIFACT_CHAIN:
 - ARTIFACT-0005 = VERIFIED
 
 CURRENT_ARTIFACT_MEANING:
+- ARTIFACT-0006 records terminal recognition and terminal recourse surface materialization through ANAGNORIUM and REGRESSORIUM without replacing artifact-0005 as the verified governed execution anchor.
 - ARTIFACT-0001 records repository integrity and initial protocol object grounding.
 - ARTIFACT-0002 records authority readiness evidence and now-resolved semantic validation.
 - ARTIFACT-0003 records public issuance-subject presence with matching Node and Rust semantic validation.
@@ -23,6 +25,8 @@ CURRENT_ARTIFACT_MEANING:
 - ARTIFACT-0005 records public canonical authority-governed execution, recorded CORPIFORM receipt material, and matching Node and Rust semantic verification outputs.
 
 CURRENT_BOUNDARY:
+- Artifact-0006 currently defines the terminal recognition and recourse materialization extension of the evidence chain.
+- Artifact-0006 does not replace artifact-0005 as the verified governed execution and final seal-state anchor.
 - The bootstrap chain is semantically resolved through artifact-0003.
 - The execution boundary is extended by artifact-0004 recorded receipt evidence.
 - Artifact-0005 currently defines the verified governed execution boundary that anchors the current root truth boundary.
@@ -52,6 +56,7 @@ CURRENT_ARTIFACT_0005_BINDING:
 - TRANSFER_INDEX: evidence/transfer/current/index.json
 
 CURRENT_ROOT_SURFACES:
+- ARTIFACT_0006_PRIMARY: evidence/artifact-0006/artifact.json
 - EVIDENCE_INDEX: evidence/README.md
 - CHAIN_STATUS: evidence/bootstrap-chain-status/CHAIN_STATUS.txt
 - ARTIFACT_0005_PRIMARY: evidence/artifact-0005/artifact-0005.json

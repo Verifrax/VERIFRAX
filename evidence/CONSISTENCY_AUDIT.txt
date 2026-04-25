@@ -2,6 +2,7 @@ VERIFRAX ROOT CONSISTENCY AUDIT
 STATUS: CURRENT-STATE CONSISTENCY RECORDED
 
 AUDIT_SCOPE:
+- evidence/artifact-0006/artifact.json
 - evidence/README.md
 - evidence/bootstrap-chain-status/CHAIN_STATUS.txt
 - evidence/CURRENT_STATE_INDEX.txt
@@ -11,6 +12,7 @@ AUDIT_SCOPE:
 - evidence/artifact-0005/CROSS_IMPLEMENTATION_STATUS.txt
 
 CURRENT_TRUTH_RESULTS:
+- ARTIFACT-0006 is materialized as the terminal recognition and terminal recourse surface extension.
 - ARTIFACT-0004 remains RECORDED and bounded by consumed fixture authority evidence only.
 - ARTIFACT-0004 stale registration instruction has been removed from EXECUTION_STATUS.txt.
 - ARTIFACT-0005 is registered in the evidence root as VERIFIED.
@@ -21,6 +23,7 @@ CURRENT_TRUTH_RESULTS:
 - CURRENT_STATE_INDEX.txt, evidence/README.md, and bootstrap-chain-status/CHAIN_STATUS.txt now tell the same current artifact-chain story without broader completion overclaim.
 
 AUDIT_FINDINGS:
+- CURRENT ROOT ARTIFACT-0006 MATERIALIZATION LINE IS PRESENT AND ALIGNED.
 - CURRENT ROOT CONTRADICTION FOR ARTIFACT-0005 REGISTRATION STATUS HAS BEEN REMOVED BY ALIGNING ALL CURRENT-TRUTH FILES TO VERIFIED REGISTERED STATE.
 - CURRENT ROOT CONTRADICTION FOR ARTIFACT-0005 VERDICT STATUS HAS BEEN REMOVED BY ALIGNING ALL CURRENT-TRUTH FILES TO VERIFIED STATE.
 - NO CURRENT ROOT CONTRADICTION FOUND FOR ARTIFACT-0004 BOUNDARY LIMIT.
