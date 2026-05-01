@@ -1,4 +1,4 @@
-# VERIFRAX Genesis Certificate
+# VERIFRAX retired initial certificate lineage
 
 ## Canonical genesis anchor
 
@@ -18,7 +18,7 @@ No other file defines the genesis root.
 
 ---
 
-## Published genesis certificate
+## Published retired initial certificate lineage
 
 Executed at:
 
@@ -116,7 +116,7 @@ Canonical field order for hash derivation:
 The active genesis authority surface published by this repository currently includes:
 
 * the canonical genesis root
-* the public genesis certificate
+* the public retired initial certificate lineage
 * the active genesis lineage record
 * the active freeze declaration
 * the active release SHA-256 manifest
@@ -146,7 +146,7 @@ Inspect the canonical genesis root:
 cat index/GENESIS_HASH.txt
 ```
 
-Inspect the public genesis certificate:
+Inspect the public retired initial certificate lineage:
 
 ```bash
 cat public/genesis/certificate.json

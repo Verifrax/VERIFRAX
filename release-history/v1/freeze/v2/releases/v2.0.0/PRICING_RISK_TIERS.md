@@ -22,7 +22,7 @@ VERIFRAX verifies **conformance to declared rules**, not truth, legality, or fac
 - Non-commercial evidence verification
 
 **Pricing:**
-- **Base Fee:** €120.00 per verification event
+- **Base Fee:** retired fixed fee per verification event
 - **Bundle Size Limit:** 2GB
 - **Verification Time:** Standard (no SLA)
 
@@ -193,7 +193,7 @@ All verifications require:
 - **Warranty:** Process warranty only (not verdict correctness)
 
 **Tier 3:**
-- **Liability:** Up to 10x fee amount (€120,000.00)
+- **Liability:** Up to 10x fee amount (retired liability value)
 - **Warranty:** Process warranty + insurance coverage
 
 ## Service Level Agreements (SLA)

@@ -62,7 +62,7 @@ The genesis root represents the starting anchor of the entire verification proto
 
 ---
 
-# 2 — Genesis Certificate
+# 2 — retired initial certificate lineage
 
 Path:
 
@@ -262,7 +262,7 @@ index/GENESIS_HASH.txt
 The repository currently publishes the active genesis authority surface, including:
 
 * the canonical genesis root
-* the public genesis certificate
+* the public retired initial certificate lineage
 * lineage records
 * release-integrity declarations
 
