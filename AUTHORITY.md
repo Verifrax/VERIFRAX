@@ -38,7 +38,7 @@ Active surfaces:
 Interpretation rules:
 
 * `index/GENESIS_HASH.txt` defines the canonical genesis root.
-* `public/genesis/` publishes the public genesis certificate and explanatory documentation.
+* `public/genesis/` publishes the public retired initial certificate lineage and explanatory documentation.
 * `release-integrity/genesis-lineage.json` binds the genesis root to the active repository release lineage.
 
 No other file or directory defines genesis semantics.

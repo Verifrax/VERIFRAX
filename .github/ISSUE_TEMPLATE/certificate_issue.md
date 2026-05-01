@@ -40,7 +40,7 @@ What happened.
 ## Verification Command Output (if applicable)
 
 ```
-<paste output of verifrax verify certificate.json>
+<paste output of current verifier path>
 ```
 
 ## Additional Context

@@ -20,7 +20,7 @@ VERIFRAX produces **deterministic verification certificates** over evidence bund
 
 ## Example
 
-1. Pay €120 at api.verifrax.net
+1. Pay retired fixed fee at api.verifrax.net
 2. Upload evidence bundle
 3. Receive certificate with hash
 
@@ -32,7 +32,7 @@ d7c23b65887c0ef554555b231c59935f6e2717586b54a68da8dc49b0bc61731b
 ## Verification
 
 ```bash
-verifrax verify certificate.json
+current verifier path
 ```
 
 Or verify manually: recompute SHA-256 of canonical JSON, compare to `certificate_hash`.

@@ -86,7 +86,7 @@ x-verifrax-version: 2.8.0
 
 ---
 
-## Genesis Certificate Execution
+## retired initial certificate lineage Execution
 
 ### Executed: 2026-01-24T12:21:29.434Z
 
@@ -112,9 +112,9 @@ Freeze Commit: dc7238ffb4e0507192d588564f6c0d2f06387451
 ### Attestation
 
 This certificate was produced by:
-- A real €120 payment through Stripe
+- A real retired fixed fee payment through Stripe
 - Execution on the live `api.verifrax.net` Worker
 - One-time token consumption (no retry possible)
 
-**This is the Genesis Certificate. It proves the system is real, paid, and final.**
+**This is the retired initial certificate lineage. It proves the system is real, paid, and final.**
 
