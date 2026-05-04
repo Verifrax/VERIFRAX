@@ -1,4 +1,4 @@
-ARTIFACT-0006: MATERIALIZED ARTIFACT-0006-NOTE: terminal recognition and terminal recourse surfaces are materialized through ANAGNORIUM and REGRESSORIUM; artifact-0006 extends artifact-0005 without replacing artifact-0005 as the verified governed execution and final seal-state anchor.
+ARTIFACT-0006: MATERIALIZED ARTIFACT-0006-NOTE: terminal recognition and terminal recourse surfaces are materialized through ANAGNORIUM and REGRESSORIUM; artifact-0006 extends artifact-0005 without replacing artifact-0005 as the verified governed execution anchor.
 ARTIFACT-0001: VERIFIED
 ARTIFACT-0002: VERIFIED
 ARTIFACT-0002-NOTE: authority ledger and genesis seal are now present in declared evidence; node and rust semantic evaluators produced VERIFIED outputs
@@ -13,9 +13,9 @@ PACKAGE-SURFACE-AUCTORISEAL-NOTE: @verifrax/auctoriseal package publication surf
 PACKAGE-SURFACE-CORPIFORM: RECORDED
 PACKAGE-SURFACE-CORPIFORM-NOTE: @verifrax/corpiform@0.1.4 is published with dist-tag latest and public access; VERIFRAX preserves package identity, packument, access status, and install help evidence
 CURRENT_BOUNDARY: bootstrap chain is semantically resolved for artifacts 0001-0003, extended by recorded CORPIFORM execution evidence in artifact-0004, indexed with recorded AUCTORISEAL and CORPIFORM package publication surfaces, and extended by artifact-0005 verified governed execution with recorded receipt and matching Node and Rust verifier results
-RELEASE_GATE_STATUS: verified governed execution is recorded in current truth; no broader completion or final seal-state claim is made here.
+RELEASE_GATE_STATUS: verified governed execution is recorded in current truth; receipt and registration are recorded for artifact-0005; seal completion, verified governed execution state, and broader completion are not claimed here.
 
 PACKAGE-SURFACE-CHAIN: RECORDED
 PACKAGE-SURFACE-CHAIN-NOTE: public @verifrax package chain from primitives through sigillarium is live and recorded under evidence/package-surface/CURRENT_PACKAGE_INDEX.txt
 
-CURRENT_TERMINAL_EXTENSION: artifact-0006 materializes terminal recognition and terminal recourse surfaces while artifact-0005 remains the verified governed execution and final seal-state anchor.
+CURRENT_TERMINAL_EXTENSION: artifact-0006 materializes terminal recognition and terminal recourse surfaces while artifact-0005 remains the verified governed execution anchor.
