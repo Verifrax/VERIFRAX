@@ -78,6 +78,6 @@
     "canonical_sha256": "801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b"
   },
   "verdict": "VERIFIED",
-  "verdict_note": "artifact-0005 input, execution, receipt, verifier outputs, and registration are recorded as current truth; seal completion is not claimed here",
+  "verdict_note": "artifact-0005 input, execution, receipt, verifier outputs, and registration are recorded as current truth; seal completion, verified governed execution state, and universal completion are not claimed here",
   "claims": []
 }

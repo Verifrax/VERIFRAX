@@ -57,11 +57,11 @@ That means the currently indexed public boundary is:
 2. authority readiness evidence for AUCTORISEAL
 3. authority issuance presence and re-execution evidence
 4. first recorded CORPIFORM authority-governed execution receipt evidence
-5. verified artifact-0005 governed execution boundary recorded under public canonical authority and asserted as final public seal state
+5. verified artifact-0005 governed execution boundary recorded under public canonical authority; receipt and registration are recorded; seal completion is not claimed here
 6. semantic cross-implementation execution evidence for earlier chain artifacts
 7. package publication evidence for the full public `@verifrax/*` chain recorded under `package-surface/`
 8. sovereign triad component surfaces for `SYNTAGMARIUM`, `ORBISTIUM`, and `CONSONORIUM` recorded under `component-surface/`
-9. terminal recognition and terminal recourse surfaces materialized through artifact-0006 without replacing artifact-0005 as the final seal-state anchor
+9. terminal recognition and terminal recourse surfaces materialized through artifact-0006 without replacing artifact-0005 as the verified governed execution anchor
 
 ---
 
@@ -256,7 +256,7 @@ Use this when checking:
 
 - whether terminal recognition is publicly materialized through ANAGNORIUM
 - whether terminal recourse is publicly materialized through REGRESSORIUM
-- whether artifact-0006 extends artifact-0005 without replacing artifact-0005 as the verified governed execution and final seal-state anchor
+- whether artifact-0006 extends artifact-0005 without replacing artifact-0005 as the verified governed execution and verified governed execution anchor
 
 Primary file:
 
