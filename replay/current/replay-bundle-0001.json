@@ -1,0 +1,42 @@
+{
+  "object_type": "ReplayBundle",
+  "replay_bundle_id": "replay-bundle-0001",
+  "status": "ACTIVE_TRUTH",
+  "subject": "artifact-0005",
+  "chain_lock_ref": "https://github.com/Verifrax/ORBISTIUM/blob/main/chains/current/minimum-object-chain-lock-0001.json",
+  "inputs": {
+    "artifact": "evidence/artifact-0005/artifact-0005.json",
+    "authority_seal": "evidence/artifact-0005/input/live/authority.seal.json",
+    "execution_command": "evidence/artifact-0005/input/live/execution.command.json",
+    "receipt": "evidence/artifact-0005/receipt/receipt.json"
+  },
+  "expected_outputs": {
+    "canonical_semantic_sha256": "801c87f08221ac194282b1a2e7f58cac2dcc143f6944c98a888edc086a72fc6b",
+    "verification_verdict": "VERIFIED",
+    "execution_status": "RECORDED",
+    "recognition_status": "RECOGNIZED",
+    "recourse_status": "OPEN_FOR_RECOURSE"
+  },
+  "replay_paths": [
+    {
+      "implementation": "node",
+      "verdict_ref": "evidence/artifact-0005/reexecution/node/VERDICT.txt",
+      "semantic_ref": "evidence/artifact-0005/reexecution/node/semantic.canonical.json"
+    },
+    {
+      "implementation": "rust",
+      "verdict_ref": "evidence/artifact-0005/reexecution/rust/VERDICT.txt",
+      "semantic_ref": "evidence/artifact-0005/reexecution/rust/semantic.canonical.json"
+    }
+  ],
+  "comparison_ref": "evidence/artifact-0005/reexecution/COMPARISON.txt",
+  "refusal_rule": "If any required input, chain object, verifier output, or comparison record is absent, replay must refuse rather than infer.",
+  "non_role_boundary": [
+    "Replay does not define law.",
+    "Replay does not accept state.",
+    "Replay does not issue authority.",
+    "Replay does not execute.",
+    "Replay does not recognize.",
+    "Replay does not assign recourse."
+  ]
+}

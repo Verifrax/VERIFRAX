@@ -1,0 +1,15 @@
+{
+  "object_type": "ReplayBundleIndex",
+  "status": "ACTIVE_TRUTH",
+  "governing_boundary": "VERIFRAX",
+  "current_replay_bundle_ref": "replay/current/replay-bundle-0001.json",
+  "entries": [
+    {
+      "replay_bundle_id": "replay-bundle-0001",
+      "path": "replay/current/replay-bundle-0001.json",
+      "status": "ACTIVE_TRUTH",
+      "subject": "artifact-0005"
+    }
+  ],
+  "historical_archive_ref": "replay/history/"
+}
