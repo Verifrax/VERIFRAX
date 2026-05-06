@@ -1,0 +1,21 @@
+{
+  "object_type": "VerificationResult",
+  "verification_result_id": "verification-result-0001",
+  "status": "ACTIVE_TRUTH",
+  "claim_class": "verification-result",
+  "artifact_id": "artifact-0005",
+  "law_version_ref": "SYNTAGMARIUM/claim-classes/current/claim-class-admission-0001.json",
+  "accepted_epoch_ref": "ORBISTIUM/epochs/current/accepted-epoch-0001.json",
+  "authority_object_ref": "AUCTORISEAL/authorities/current/authority-object-0001.json",
+  "freeze_object_ref": "SYNTAGMARIUM/freeze/objects/current/freeze-object-0001.json",
+  "chain_lock_ref": "ORBISTIUM/chains/current/minimum-object-chain-lock-0001.json",
+  "replay_bundle_ref": "VERIFRAX/replay/current/replay-bundle-0001.json",
+  "verification_scope": "artifact-0005-under-frozen-chain-prefix",
+  "verification_passed": true,
+  "may_recognize_terminal_truth": false,
+  "may_assign_recourse": false,
+  "may_mutate_authority": false,
+  "may_mutate_accepted_epoch": false,
+  "may_infer_missing_truth": false,
+  "truth_warning": "VERIFICATION_RESULT_NOT_RECOGNITION_OBJECT"
+}

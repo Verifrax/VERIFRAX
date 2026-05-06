@@ -1,0 +1,7 @@
+{
+  "object_type": "VerificationResultIndex",
+  "status": "ACTIVE_INDEX",
+  "current_verification_result_id": "verification-result-0001",
+  "current_verification_result_ref": "verification/current/verification-result-0001.json",
+  "truth_warning": "INDEX_POINTS_TO_VERIFICATION_RESULT_NOT_RECOGNITION"
+}
