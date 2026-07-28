@@ -5,7 +5,7 @@
   "scripts": {
     "ci": "pnpm -r test && pnpm -r lint",
     "build": "pnpm -r --if-present build",
-    "build:ci": "pnpm -r --if-present build || true",
+    "build:ci": "pnpm -r --if-present build",
     "build:strict": "pnpm -r --if-present build",
     "test": "pnpm -r --if-present test",
     "lint": "pnpm -r --if-present lint"

@@ -2,14 +2,13 @@ name: Gates
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
-  statuses: write  # REQUIRED: publish legacy commit statuses for branch protection
 
 concurrency:
   group: gates-${{ github.workflow }}-${{ github.ref }}
@@ -20,83 +19,71 @@ jobs:
     name: cicullis
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
+
       - name: Policy gate
         run: |
-          echo "TODO: implement CICULLIS policy checks"
-          exit 0
+          set -euo pipefail
+          ./gate.sh --profile profiles/default.profile
 
   hygiene:
     name: hygiene
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
-      - name: Repo hygiene
+
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
+        with:
+          node-version: "20"
+          cache: pnpm
+
+      - name: Activate package manager
         run: |
-          echo "TODO: implement hygiene checks (format, lint, docs, etc.)"
-          exit 0
+          set -euo pipefail
+          corepack enable
+          corepack prepare pnpm@9.0.0 --activate
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Repository hygiene
+        run: |
+          set -euo pipefail
+          node scripts/repo-hygiene.mjs
+          while IFS= read -r -d '' file; do
+            bash -n "$file"
+          done < <(find . -type f -name '*.sh' -not -path './node_modules/*' -not -path './.git/*' -print0)
 
   selftest:
     name: selftest
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
-      - name: Self-tests
-        run: |
-          echo "TODO: implement tests"
-          exit 0
 
-  publish-required-statuses:
-    name: Publish required legacy statuses
-    runs-on: ubuntu-latest
-    needs: [cicullis, hygiene, selftest]
-    if: ${{ always() }}
-    permissions:
-      statuses: write
-      contents: read
-    steps:
-      - name: Post required status contexts
-        env:
-          GH_TOKEN: ${{ github.token }}
-          REPO: ${{ github.repository }}
-          EVENT: ${{ github.event_name }}
-          SHA_PR: ${{ github.event.pull_request.head.sha }}
-          SHA_PUSH: ${{ github.sha }}
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
+        with:
+          node-version: "20"
+          cache: pnpm
+
+      - name: Activate package manager
         run: |
           set -euo pipefail
+          corepack enable
+          corepack prepare pnpm@9.0.0 --activate
 
-          # Select correct commit SHA for the event type
-          if [ "$EVENT" = "pull_request" ]; then
-            SHA="$SHA_PR"
-          else
-            SHA="$SHA_PUSH"
-          fi
+      - name: Install
+        run: pnpm install --frozen-lockfile
 
-          # Compute state: success only if all needed jobs succeeded
-          state="success"
-          if [ "${{ needs.cicullis.result }}" != "success" ] || \
-             [ "${{ needs.hygiene.result }}" != "success" ] || \
-             [ "${{ needs.selftest.result }}" != "success" ]; then
-            state="failure"
-          fi
-
-          echo "Publishing legacy statuses on $REPO@$SHA => $state"
-
-          for ctx in \
-            "Gates / cicullis (pull_request)" \
-            "Gates / hygiene (pull_request)" \
-            "Gates / selftest (pull_request)"
-          do
-            echo "POST status: $ctx"
-            gh api -X POST "repos/$REPO/statuses/$SHA" \
-              -H "Accept: application/vnd.github+json" \
-              -f state="$state" \
-              -f context="$ctx" \
-              -f description="Published by Gates for branch protection (legacy status)"
-          done
+      - name: Build and test
+        run: |
+          set -euo pipefail
+          pnpm build:strict
+          pnpm test
+          node protocol-conformance/runner/run_conformance.mjs
+          node scripts/verify-truth-index.mjs

@@ -12,100 +12,71 @@ jobs:
   conformance-delivery-v1:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - name: Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
         with:
           node-version: "20"
-      - name: Install pnpm
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+          cache: pnpm
 
-      - name: Install jq
+      - name: Activate package manager
         run: |
           set -euo pipefail
-          sudo apt-get update
-          sudo apt-get install -y jq
+          corepack enable
+          corepack prepare pnpm@9.0.0 --activate
 
       - name: Install dependencies
-        run: |
-          set -euo pipefail
-          pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build verifier
-        run: |
-          set -euo pipefail
-          pnpm build
+        run: pnpm build:strict
 
       - name: Run delivery CLI on golden bundle
-        id: run-verifier
         run: |
           set -euo pipefail
-          BUNDLE_PATH="public/conformance/golden/delivery_v1/input"
-          OUTPUT_DIR="/tmp/delivery-output"
 
           node scripts/delivery_v1_runner.mjs \
-            --in "$BUNDLE_PATH" \
-            --out "$OUTPUT_DIR" \
+            --in public/conformance/golden/delivery_v1/input \
+            --out /tmp/delivery-output \
             --profile delivery_v1@1.0.0
 
-      - name: Verify bundle hash matches expected
+      - name: Verify deterministic output
         run: |
           set -euo pipefail
-          OUTPUT_DIR="/tmp/delivery-output"
-          EXPECTED_DIR="public/conformance/golden/delivery_v1/expected"
 
-          if [ ! -f "$OUTPUT_DIR/verdict.json" ]; then
-            echo "❌ Verdict output not found"
-            exit 1
-          fi
+          OUTPUT="/tmp/delivery-output/verdict.json"
+          EXPECTED="public/conformance/golden/delivery_v1/expected/bundle_hash.txt"
 
-          BUNDLE_HASH=$(jq -r ".bundle_hash" "$OUTPUT_DIR/verdict.json")
+          test -f "$OUTPUT"
+          test -f "$EXPECTED"
+
+          BUNDLE_HASH="$(jq -r '.bundle_hash' "$OUTPUT")"
+          EXPECTED_HASH="$(tr -d '\n' < "$EXPECTED")"
 
           if [ -z "$BUNDLE_HASH" ] || [ "$BUNDLE_HASH" = "null" ]; then
-            echo "❌ bundle_hash missing from verdict output"
+            echo "bundle_hash missing from verdict."
             exit 1
           fi
 
-          if [ -f "$EXPECTED_DIR/bundle_hash.txt" ]; then
-            EXPECTED_HASH=$(tr -d "\n" < "$EXPECTED_DIR/bundle_hash.txt")
-            if [ "$BUNDLE_HASH" != "$EXPECTED_HASH" ]; then
-              echo "❌ Bundle hash mismatch"
-              echo "Expected: $EXPECTED_HASH"
-              echo "Got: $BUNDLE_HASH"
-              exit 1
-            fi
-            echo "✅ Bundle hash matches expected: $BUNDLE_HASH"
-          else
-            echo "⚠️  No expected bundle_hash.txt found, saving current hash"
-            mkdir -p "$EXPECTED_DIR"
-            echo "$BUNDLE_HASH" > "$EXPECTED_DIR/bundle_hash.txt"
+          if [ "$BUNDLE_HASH" != "$EXPECTED_HASH" ]; then
+            echo "Bundle hash mismatch."
+            echo "Expected: $EXPECTED_HASH"
+            echo "Actual:   $BUNDLE_HASH"
+            exit 1
           fi
 
-      - name: Verify verdict_id format
-        run: |
-          set -euo pipefail
-          OUTPUT_DIR="/tmp/delivery-output"
-          VERDICT_ID=$(jq -r ".verdict_id" "$OUTPUT_DIR/verdict.json")
+          VERDICT_ID="$(jq -r '.verdict_id' "$OUTPUT")"
 
           if [[ ! "$VERDICT_ID" =~ ^VFXV1:sha256:[a-f0-9]{64}:sha256:[a-f0-9]{64}$ ]]; then
-            echo "❌ Invalid verdict_id format: $VERDICT_ID"
-            echo "Expected format: VFXV1:sha256:<64-hex>:sha256:<64-hex>"
+            echo "Invalid verdict_id: $VERDICT_ID"
             exit 1
           fi
 
-          echo "✅ Verdict ID format valid: $VERDICT_ID"
-
-      - name: Verify binary-only output
-        run: |
-          set -euo pipefail
-          OUTPUT_DIR="/tmp/delivery-output"
-          KEYS=$(jq -r "keys | sort | join(\",\")" "$OUTPUT_DIR/verdict.json")
+          KEYS="$(jq -r 'keys | sort | join(",")' "$OUTPUT")"
 
           if [ "$KEYS" != "bundle_hash,verdict_id" ]; then
-            echo "❌ Output contains extra keys: $KEYS"
-            echo "Expected only: bundle_hash,verdict_id"
+            echo "Unexpected verdict keys: $KEYS"
             exit 1
           fi
 
-          echo "✅ Binary-only output verified"
+          echo "Delivery v1 output is deterministic and binary-only."

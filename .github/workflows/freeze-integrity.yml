@@ -4,109 +4,139 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'verifrax-freeze/**'
+      - "verifrax-freeze/**"
+      - "BUILD_HASH.txt"
+      - "BUILD_REPRODUCE.sh"
+      - "docs/spec/CERTIFICATE_SCHEMA.json"
+      - ".certificate_schema_checksum"
 
 env:
   LC_ALL: C
   TZ: UTC
+
 jobs:
   block-freeze-modification:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
 
       - name: Block modifications to frozen artifacts
         run: |
-          # Check if any freeze files are modified (not added)
-          MODIFIED=$(git diff --name-status origin/main...HEAD -- verifrax-freeze/ | grep "^M" || true)
-          
-          if [ -n "$MODIFIED" ]; then
-            NON_GITLINK=$(printf "%s\n" "$MODIFIED" | grep -v "^M[[:space:]]\+verifrax-freeze/v2\.8\.0/source/VERIFRAX$" || true)
-            if [ -n "$NON_GITLINK" ]; then
-              echo "FAIL: Modifications to verifrax-freeze/* are forbidden"
-              echo "Only submodule gitlink recovery for verifrax-freeze/v2.8.0/source/VERIFRAX is allowed in this change"
-              echo "Modified files:"
-              printf "%s\n" "$MODIFIED"
-              exit 1
+          set -euo pipefail
+
+          mapfile -t CHANGES < <(
+            git diff --name-status \
+              "${{ github.event.pull_request.base.sha }}" \
+              "${{ github.event.pull_request.head.sha }}" \
+              -- verifrax-freeze/
+          )
+
+          FORBIDDEN=()
+
+          for change in "${CHANGES[@]}"; do
+            status="${change%%$'\t'*}"
+            file="${change#*$'\t'}"
+
+            if [ "$status" = "M" ] &&
+               [ "$file" != "verifrax-freeze/v2.8.0/source/VERIFRAX" ]; then
+              FORBIDDEN+=("$change")
             fi
-            echo "PASS: allowed submodule gitlink recovery only"
+          done
+
+          if [ "${#FORBIDDEN[@]}" -gt 0 ]; then
+            echo "Forbidden modifications to frozen artifacts:"
+            printf '  %s\n' "${FORBIDDEN[@]}"
+            exit 1
           fi
-          
-          echo "PASS: No forbidden modifications to frozen artifacts"
+
+          echo "Frozen artifact modifications verified."
 
   offline-verifier:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - name: Set up Node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
         with:
-          node-version: '20'
+          node-version: "20"
 
-      - name: Run offline verifier (network disabled)
+      - name: Verify offline CLI behaviour
         run: |
-          # Create test certificate
-          cat > /tmp/test-cert.json << 'EOF'
-          {
-            "bundle_hash": "6844deb82bb6806be4b70db7e97ef8c0e6a52d689e2dc51ee77fe810c34e21a8",
-            "certificate_hash": "d7c23b65887c0ef554555b231c59935f6e2717586b54a68da8dc49b0bc61731b",
-            "certificate_version": "1.1.0",
-            "executed_at": "2026-01-24T12:21:29.434Z",
-            "profile_id": "public@1.0.0",
-            "reason_codes": [],
-            "verdict": "verified",
-            "verifrax_version": "2.8.0"
-          }
-          EOF
-          
-          # Run verifier (should work offline)
+          set -euo pipefail
+
           cd archive/verifrax-reference-verifier
-          node verify.js /tmp/test-cert.json || echo "Verifier executed"
-          
-          echo "PASS: Offline verifier can run without network"
+          node cli.js --help >/tmp/verifrax-help.txt
+          test -s /tmp/verifrax-help.txt
+
+          printf '%s\n' '{"invalid":true}' >/tmp/verifrax-invalid-certificate.json
+
+          set +e
+          node cli.js /tmp/verifrax-invalid-certificate.json \
+            >/tmp/verifrax-invalid.stdout \
+            2>/tmp/verifrax-invalid.stderr
+          STATUS="$?"
+          set -e
+
+          if [ "$STATUS" -eq 0 ]; then
+            echo "Invalid certificate was accepted."
+            exit 1
+          fi
+
+          echo "Offline verifier rejects invalid certificates."
 
   build-hash-verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - name: Verify BUILD_HASH.txt consistency
+      - name: Verify BUILD_HASH.txt without mutating checkout
         run: |
-          if [ -f BUILD_HASH.txt ]; then
-            RECORDED=$(cat BUILD_HASH.txt)
-            echo "Recorded build hash: $RECORDED"
-            
-            # Regenerate and compare
-            ./BUILD_REPRODUCE.sh > /dev/null 2>&1
-            CURRENT=$(cat BUILD_HASH.txt)
-            
-            if [ "$RECORDED" != "$CURRENT" ]; then
-              echo "FAIL: Build hash changed without version bump"
-              echo "Recorded: $RECORDED"
-              echo "Current: $CURRENT"
-              exit 1
-            fi
+          set -euo pipefail
+
+          test -s BUILD_HASH.txt
+          test -x BUILD_REPRODUCE.sh
+
+          RECORDED="$(tr -d '\n' < BUILD_HASH.txt)"
+          TEMP_ROOT="$(mktemp -d)"
+
+          git archive HEAD | tar -x -C "$TEMP_ROOT"
+
+          (
+            cd "$TEMP_ROOT"
+            ./BUILD_REPRODUCE.sh >/tmp/verifrax-build-reproduce.log
+          )
+
+          CURRENT="$(tr -d '\n' < "$TEMP_ROOT/BUILD_HASH.txt")"
+
+          if [ "$RECORDED" != "$CURRENT" ]; then
+            echo "Build hash mismatch."
+            echo "Recorded: $RECORDED"
+            echo "Current:  $CURRENT"
+            exit 1
           fi
-          echo "PASS: Build hash verified"
+
+          git diff --exit-code
+          echo "Build hash verified."
 
   certificate-schema-verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Verify certificate schema checksum
         run: |
-          EXPECTED=$(awk '{print $1}' .certificate_schema_checksum)
-          ACTUAL=$(sha256sum docs/spec/CERTIFICATE_SCHEMA.json | cut -d' ' -f1)
-          
+          set -euo pipefail
+
+          EXPECTED="$(awk '{print $1}' .certificate_schema_checksum)"
+          ACTUAL="$(sha256sum docs/spec/CERTIFICATE_SCHEMA.json | cut -d' ' -f1)"
+
           if [ "$EXPECTED" != "$ACTUAL" ]; then
-            echo "FAIL: CERTIFICATE_SCHEMA.json has been modified"
+            echo "CERTIFICATE_SCHEMA.json checksum mismatch."
             echo "Expected: $EXPECTED"
-            echo "Actual: $ACTUAL"
+            echo "Actual:   $ACTUAL"
             exit 1
           fi
-          echo "PASS: Certificate schema checksum verified"
-# noop: retrigger spec status
+
+          echo "Certificate schema checksum verified."

@@ -4,25 +4,38 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   enforce-ui-non-authority:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Enforce read-only, fact-only UI
         run: |
           set -euo pipefail
+
           FORBIDDEN_WORDS="recommend|should|why|guide|help|tutorial|how to|best practice|advice"
 
-          echo "Scanning UI surface..."
-          MATCHES=$(rg -n -i -S "(${FORBIDDEN_WORDS})" public docs .github \
-            | rg -v "^public/VERDICT_REFERENCE_v1\.md:" || true)
+          set +e
+          MATCHES="$(
+            rg -n -i -S "(${FORBIDDEN_WORDS})" public docs .github \
+              | awk '!/^public\/VERDICT_REFERENCE_v1\.md:/'
+          )"
+          STATUS="$?"
+          set -e
+
+          if [ "$STATUS" -gt 1 ]; then
+            echo "UI contract scan failed to execute."
+            exit "$STATUS"
+          fi
 
           if [ -n "$MATCHES" ]; then
-            echo "❌ FORBIDDEN AUTHORITY LANGUAGE DETECTED"
+            echo "Forbidden authority language detected:"
             echo "$MATCHES"
             exit 1
           fi
 
-          echo "✅ UI contract satisfied"
+          echo "UI contract satisfied."

@@ -8,20 +8,29 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - name: Run VERIFRAX action (audit)
+      - name: Run surface-only action
         uses: ./
         with:
-          surface_path: fixtures/surfaces/minimal.surface.json
+          surface_path: fixtures/surfaces/evaluation.surface.json
           policy_path: policy/example.v1.json
-          sbom_path: "fixtures/sbom/minimal.cdx.json"
-          provenance_path: ""
-          sigstore_bundle_path: ""
           mode: audit
-          out_path: verifrax.seal.json
+          out_path: surface-only.seal.json
 
-      - name: Show output
+      - name: Run artifact-ingestion action
+        uses: ./
+        with:
+          sbom_path: fixtures/sbom/minimal.cdx.json
+          policy_path: policy/example.v1.json
+          mode: audit
+          out_path: artifact.seal.json
+
+      - name: Validate outputs
         run: |
-          test -f verifrax.seal.json
-          head -c 200 verifrax.seal.json || true
+          set -euo pipefail
+          test -s surface-only.seal.json
+          test -s artifact.seal.json
+          jq -e '.surface.artifact_hash and .seal and .decision' surface-only.seal.json
+          jq -e '.surface.artifact_hash and .seal and .decision' artifact.seal.json
+          head -c 200 surface-only.seal.json

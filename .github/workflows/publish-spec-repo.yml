@@ -2,66 +2,69 @@ name: publish-spec-repo
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - 'public/spec/**'
-      - '.github/workflows/publish-spec-repo.yml'
+      - "public/spec/**"
+      - ".github/workflows/publish-spec-repo.yml"
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout VERIFRAX
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Export spec
         run: |
           set -euo pipefail
           bash scripts/spec-export.sh /tmp/spec-export
 
-      - name: Push to VERIFRAX-SPEC via PR (protected main)
+      - name: Publish through protected-repository pull request
         env:
           PAT: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
           GH_TOKEN: ${{ secrets.VERIFRAX_SYSTEMS_PUSH_TOKEN }}
         run: |
           set -euo pipefail
 
-          test -n "${PAT}"
-          test -n "${GH_TOKEN}"
+          test -n "$PAT"
+          test -n "$GH_TOKEN"
 
-          BR="autopublish-${GITHUB_SHA::7}-${GITHUB_RUN_ID}"
-          test -n "${BR}"
+          BRANCH="autopublish-${GITHUB_SHA::7}-${GITHUB_RUN_ID}"
 
           git config --global user.name "verifrax-systems"
           git config --global user.email "verifrax-systems@users.noreply.github.com"
 
           rm -rf spec-repo
-          git clone "https://x-access-token:${PAT}@github.com/Verifrax/VERIFRAX-SPEC.git" spec-repo
+          git clone \
+            "https://x-access-token:${PAT}@github.com/Verifrax/VERIFRAX-SPEC.git" \
+            spec-repo
+
           cd spec-repo
-
           git fetch origin main
-          git checkout -B "$BR" origin/main
+          git switch -c "$BRANCH" origin/main
 
-          rm -rf ./*
+          find . \
+            -mindepth 1 \
+            -maxdepth 1 \
+            ! -name .git \
+            -exec rm -rf {} +
+
           cp -R /tmp/spec-export/. .
-
           git add -A
+
           if git diff --cached --quiet; then
-            echo "no changes"
-            exit 0
+            echo "No spec publication changes."
+          else
+            git commit -m "publish: spec from ${GITHUB_SHA}"
+            git push -u origin "$BRANCH"
+
+            gh pr create \
+              --repo Verifrax/VERIFRAX-SPEC \
+              --title "publish: ${GITHUB_SHA::7}" \
+              --body "Automated publication from Verifrax/VERIFRAX@${GITHUB_SHA}" \
+              --head "$BRANCH" \
+              --base main
           fi
-
-          git commit -m "publish: spec from ${GITHUB_SHA}"
-          git push --force-with-lease origin "$BR"
-
-          gh pr create \
-            --repo Verifrax/VERIFRAX-SPEC \
-            --title "publish: ${GITHUB_SHA::7}" \
-            --body "automated publish from Verifrax/VERIFRAX@${GITHUB_SHA}" \
-            --head "$BR" \
-            --base main || true

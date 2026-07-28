@@ -8,105 +8,95 @@ env:
   LC_ALL: C
   TZ: UTC
 
+permissions:
+  contents: read
+
 jobs:
   enforce-binary-output:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - name: Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
         with:
           node-version: "20"
-      - name: Install pnpm
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+          cache: pnpm
 
-      - name: Install jq
+      - name: Activate package manager
         run: |
           set -euo pipefail
-          sudo apt-get update
-          sudo apt-get install -y jq
+          corepack enable
+          corepack prepare pnpm@9.0.0 --activate
 
       - name: Install dependencies
-        run: |
-          set -euo pipefail
-          pnpm install
+        run: pnpm install --frozen-lockfile
 
-      - name: Find golden bundle
-        id: find-bundle
+      - name: Resolve golden bundle
+        id: bundle
         run: |
           set -euo pipefail
+
           BUNDLE_PATH=""
-          if [ -d "public/conformance/golden/delivery_v1/input" ]; then
+
+          if [ -d public/conformance/golden/delivery_v1/input ]; then
             BUNDLE_PATH="public/conformance/golden/delivery_v1/input"
-          elif [ -d "tests/bundles/valid" ]; then
-            BUNDLE_DIR=$(find tests/bundles/valid -mindepth 1 -maxdepth 1 -type d | head -1 || true)
-            if [ -n "${BUNDLE_DIR:-}" ]; then
-              BUNDLE_PATH="$BUNDLE_DIR"
-            fi
+          elif [ -d tests/bundles/valid ]; then
+            BUNDLE_PATH="$(
+              find tests/bundles/valid \
+                -mindepth 1 \
+                -maxdepth 1 \
+                -type d \
+                -print \
+                -quit
+            )"
           fi
 
           if [ -z "$BUNDLE_PATH" ]; then
-            echo "❌ No golden bundle found"
+            echo "No golden bundle found."
             exit 1
           fi
 
-          echo "bundle_path=$BUNDLE_PATH" >> "$GITHUB_OUTPUT"
+          echo "bundle_path=$BUNDLE_PATH" >>"$GITHUB_OUTPUT"
 
       - name: Build verifier
-        run: |
-          set -euo pipefail
-          pnpm build
+        run: pnpm build:strict
 
-      - name: Run verifier on golden bundle
-        id: run-verifier
+      - name: Run verifier
         run: |
           set -euo pipefail
-          BUNDLE_PATH="${{ steps.find-bundle.outputs.bundle_path }}"
 
           node scripts/delivery_v1_runner.mjs \
-            --in "$BUNDLE_PATH" \
+            --in "${{ steps.bundle.outputs.bundle_path }}" \
             --out /tmp/verifier-output \
             --profile delivery_v1@1.0.0
 
           cp /tmp/verifier-output/verdict.json verdict.json
 
-      - name: Assert binary-only output contract
+      - name: Assert output contract
         run: |
           set -euo pipefail
-          if [ ! -f "verdict.json" ]; then
-            echo "❌ Verdict output not found"
-            exit 1
-          fi
 
-          KEYS=$(jq -r "keys | sort | join(\",\")" verdict.json)
-          EXPECTED_KEYS="bundle_hash,verdict_id"
+          test -f verdict.json
 
-          echo "Found keys: $KEYS"
-          echo "Expected keys: $EXPECTED_KEYS"
+          KEYS="$(jq -r 'keys | sort | join(",")' verdict.json)"
 
-          if [ "$KEYS" != "$EXPECTED_KEYS" ]; then
-            echo "❌ VERIFIER OUTPUT CONTRACT VIOLATION"
-            echo "Verifier output must contain EXACTLY: verdict_id, bundle_hash"
-            echo "Found: $KEYS"
-            echo ""
-            echo "Current output:"
+          if [ "$KEYS" != "bundle_hash,verdict_id" ]; then
+            echo "Unexpected verifier keys: $KEYS"
             cat verdict.json
             exit 1
           fi
 
-          VERDICT_ID=$(jq -r ".verdict_id" verdict.json)
+          VERDICT_ID="$(jq -r '.verdict_id' verdict.json)"
+          BUNDLE_HASH="$(jq -r '.bundle_hash' verdict.json)"
+
           if [[ ! "$VERDICT_ID" =~ ^VFXV1:sha256:[a-f0-9]{64}:sha256:[a-f0-9]{64}$ ]]; then
-            echo "❌ Invalid verdict_id format: $VERDICT_ID"
-            echo "Expected format: VFXV1:sha256:<64-hex>:sha256:<64-hex>"
+            echo "Invalid verdict_id: $VERDICT_ID"
             exit 1
           fi
 
-          BUNDLE_HASH=$(jq -r ".bundle_hash" verdict.json)
           if [[ ! "$BUNDLE_HASH" =~ ^sha256:[a-f0-9]{64}$ ]]; then
-            echo "❌ Invalid bundle_hash format: $BUNDLE_HASH"
-            echo "Expected format: sha256:<64-hex>"
+            echo "Invalid bundle_hash: $BUNDLE_HASH"
             exit 1
           fi
 
-          echo "✅ Verifier output contract satisfied: binary-only output"
+          echo "Verifier output contract satisfied."

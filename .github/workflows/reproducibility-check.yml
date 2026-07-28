@@ -1,35 +1,24 @@
-name: Verifier Reproducibility
+name: Verifier Reproducibility Check
 
 on:
   pull_request:
   push:
-    branches:
-      - main
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
   reproducibility:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
         with:
           node-version: "20"
 
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Run Node verifier
+      - name: Verify deterministic reference output
         run: |
-          node verifier/node/src/verifier.mjs > node.txt
-
-      - name: Run Rust verifier
-        run: |
-          cargo run --manifest-path verifier/rust/Cargo.toml --bin verifrax-rust-verifier > rust.txt
-
-      - name: Compare outputs
-        run: |
-          diff node.txt rust.txt
+          set -euo pipefail
+          node ci/verify-reproducibility.mjs
