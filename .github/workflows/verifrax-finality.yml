@@ -39,8 +39,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          test -s BUILD_HASH.txt
-          test -x BUILD_REPRODUCE.sh
+          test -s docs/operations/BUILD_HASH.txt
+          test -s docs/operations/BUILD_REPRODUCE.sh
           test -s protocol-conformance/runner/run_conformance.mjs
           test -s scripts/verify-truth-index.mjs
 
@@ -53,14 +53,14 @@ jobs:
         run: |
           set -euo pipefail
 
-          RECORDED="$(tr -d '\n' < BUILD_HASH.txt)"
+          RECORDED="$(tr -d '\n' < docs/operations/BUILD_HASH.txt)"
           TEMP_ROOT="$(mktemp -d)"
 
           git archive HEAD | tar -x -C "$TEMP_ROOT"
 
           (
             cd "$TEMP_ROOT"
-            ./BUILD_REPRODUCE.sh >/tmp/verifrax-finality-build.log
+            bash docs/operations/BUILD_REPRODUCE.sh >/tmp/verifrax-finality-build.log
           )
 
           CURRENT="$(tr -d '\n' < "$TEMP_ROOT/BUILD_HASH.txt")"
