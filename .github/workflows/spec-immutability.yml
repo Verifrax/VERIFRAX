@@ -3,17 +3,20 @@ name: Spec immutability
 on:
   pull_request:
     paths:
-      - 'public/spec/**'
+      - "public/spec/**"
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - 'public/spec/**'
+      - "public/spec/**"
+
+permissions:
+  contents: read
 
 jobs:
   spec:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
 
@@ -22,40 +25,58 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Any change under an existing version dir is forbidden.
-          # Allow only NEW version dirs.
           git fetch origin "${{ github.base_ref }}" --depth=1
-
           BASE="origin/${{ github.base_ref }}"
-          CHANGED="$(git diff --name-only "$BASE"...HEAD -- 'public/spec/' || true)"
 
-          # Find version directories that already exist on base
-          EXISTING="$(git ls-tree -d --name-only "$BASE" public/spec | sed 's#^public/spec/##' || true)"
+          mapfile -t CHANGED < <(
+            git diff --name-only "$BASE"...HEAD -- public/spec/
+          )
 
-          for v in $EXISTING; do
-            if echo "$CHANGED" | grep -q "^public/spec/$v/"; then
-              echo "ERROR: Frozen spec version modified: public/spec/$v/"
-              echo "Only new version directories may be added."
-              exit 1
-            fi
+          mapfile -t EXISTING < <(
+            git ls-tree -d --name-only "$BASE" "public/spec/*" \
+              | sed 's#^public/spec/##'
+          )
+
+          for version in "${EXISTING[@]}"; do
+            for file in "${CHANGED[@]}"; do
+              case "$file" in
+                "public/spec/$version/"*)
+                  echo "Frozen spec version modified: public/spec/$version/"
+                  exit 1
+                  ;;
+              esac
+            done
           done
 
-      - name: Verify MANIFEST.sha256 for all spec versions
+          echo "Existing spec versions are immutable."
+
+      - name: Verify manifests
         run: |
           set -euo pipefail
-          for d in public/spec/*; do
-            [ -d "$d" ] || continue
-            [ -f "$d/MANIFEST.sha256" ] || { echo "Missing $d/MANIFEST.sha256"; exit 1; }
-            [ -f "$d/FREEZE.txt" ] || { echo "Missing $d/FREEZE.txt"; exit 1; }
-            [ -f "$d/SOURCE.txt" ] || { echo "Missing $d/SOURCE.txt"; exit 1; }
 
-            ( cd "$d"
-              tmp="$(mktemp)"
-              find . -type f ! -name 'MANIFEST.sha256' ! -name 'MANIFEST_SHA256.txt' -print0 \
+          for directory in public/spec/*; do
+            if [ ! -d "$directory" ]; then
+              continue
+            fi
+
+            test -f "$directory/MANIFEST.sha256"
+            test -f "$directory/FREEZE.txt"
+            test -f "$directory/SOURCE.txt"
+
+            (
+              cd "$directory"
+              TEMP_MANIFEST="$(mktemp)"
+
+              find . \
+                -type f \
+                ! -name MANIFEST.sha256 \
+                ! -name MANIFEST_SHA256.txt \
+                -print0 \
                 | LC_ALL=C sort -z \
                 | xargs -0 sha256sum \
                 | sed 's/  \.\//  /' \
-                > "$tmp"
-              diff -u MANIFEST.sha256 "$tmp"
+                >"$TEMP_MANIFEST"
+
+              diff -u MANIFEST.sha256 "$TEMP_MANIFEST"
             )
           done

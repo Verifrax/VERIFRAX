@@ -1,0 +1,10 @@
+{
+  "record_type": "SECURITY_CORRECTION",
+  "date": "2026-07-28",
+  "surface": "protocol-conformance/runner/run_conformance.mjs",
+  "reason": "The frozen runner compared expected.verdict to itself and accepted tampered expected outputs. The original bytes are preserved under release-history/v2.",
+  "original_sha256": "9a354495d7db51b419232d39b58ffbdc1428e53a492845ce36284d98da4cf772",
+  "corrected_sha256": "8f6b302391603940d8c3a6740893541aa23bc6978b774ab9ec3f687f8cec7d9c",
+  "original_preserved_at": "release-history/v2/protocol-conformance/runner/run_conformance.mjs",
+  "manifest_updated": true
+}

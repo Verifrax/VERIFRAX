@@ -1,36 +1,49 @@
 name: Release
 
 on:
-  workflow_dispatch:
   push:
     tags:
       - "v*"
 
-permissions: read-all
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
-      attestations: write
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
 
-      - name: Build artifact
+      - name: Build deterministic source archive
         run: |
+          set -euo pipefail
+
           mkdir -p dist
-          tar -czf dist/verifrax-src.tar.gz .
+          PREFIX="verifrax-${GITHUB_REF_NAME}/"
 
-      - name: Generate provenance
-        uses: actions/attest-build-provenance@v2
-        with:
-          subject-path: dist/verifrax-src.tar.gz
+          git archive \
+            --format=tar \
+            --prefix="$PREFIX" \
+            "$GITHUB_SHA" \
+            | gzip -n >"dist/verifrax-${GITHUB_REF_NAME}-src.tar.gz"
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2 # v2
-        with:
-          files: dist/*
+          (
+            cd dist
+            sha256sum "verifrax-${GITHUB_REF_NAME}-src.tar.gz" \
+              >"verifrax-${GITHUB_REF_NAME}-src.tar.gz.sha256"
+          )
+
+      - name: Create immutable GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          gh release create "$GITHUB_REF_NAME" \
+            dist/* \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --title "$GITHUB_REF_NAME" \
+            --generate-notes

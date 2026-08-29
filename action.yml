@@ -19,7 +19,7 @@ inputs:
     required: false
     default: ""
   policy_path:
-    description: Path to policy YAML (prefer policy/vX.Y.Z/policy.yaml)
+    description: Path to VERIFRAX policy JSON
     required: true
   mode:
     description: enforce|audit

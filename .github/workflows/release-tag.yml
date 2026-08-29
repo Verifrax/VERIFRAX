@@ -1,21 +1,22 @@
 name: release-tag
+
 on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Tag to create (e.g. v1.0.2 or v1)"
+        description: Tag to create, such as v1.0.2
         required: true
         type: string
       title:
-        description: "Release title"
+        description: Release title
         required: true
         type: string
       notes:
-        description: "Release notes"
+        description: Release notes
         required: true
         type: string
       target:
-        description: "Git ref to tag (default: HEAD). Use e.g. v1.0.2^{} for alias tags."
+        description: Existing commit or ref to tag
         required: false
         type: string
         default: ""
@@ -27,28 +28,48 @@ jobs:
   tag:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
 
-      - name: Create / move tag
+      - name: Create immutable annotated tag
+        env:
+          TAG: ${{ inputs.tag }}
+          TARGET_INPUT: ${{ inputs.target }}
+          RELEASE_TITLE: ${{ inputs.title }}
         run: |
-          TAG="${{ inputs.tag }}"
-          TARGET="${{ inputs.target }}"
-          [ -n "$TARGET" ] || TARGET="HEAD"
+          set -euo pipefail
 
-          git config user.name  "verifrax-release-bot"
+          if [[ ! "$TAG" =~ ^v[0-9]+(\.[0-9]+){0,2}([.-][A-Za-z0-9.-]+)?$ ]]; then
+            echo "Invalid release tag: $TAG"
+            exit 1
+          fi
+
+          TARGET="${TARGET_INPUT:-HEAD}"
+          git rev-parse --verify "$TARGET^{commit}" >/dev/null
+
+          if git show-ref --verify --quiet "refs/tags/$TAG"; then
+            echo "Tag already exists and will not be moved: $TAG"
+            exit 1
+          fi
+
+          git config user.name "verifrax-release-bot"
           git config user.email "verifrax-release-bot@users.noreply.github.com"
 
-          git tag -fa "$TAG" "$TARGET" -m "${{ inputs.title }}"
-          git push --force origin "$TAG"
+          git tag -a "$TAG" "$TARGET" -m "$RELEASE_TITLE"
+          git push origin "refs/tags/$TAG"
 
-      - name: Create / update release
+      - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+          RELEASE_TITLE: ${{ inputs.title }}
+          RELEASE_NOTES: ${{ inputs.notes }}
         run: |
-          gh release delete "${{ inputs.tag }}" --repo "${{ github.repository }}" -y || true
-          gh release create "${{ inputs.tag }}" \
-            --repo  "${{ github.repository }}" \
-            --title "${{ inputs.title }}" \
-            --notes "${{ inputs.notes }}"
+          set -euo pipefail
+
+          gh release create "$TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --title "$RELEASE_TITLE" \
+            --notes "$RELEASE_NOTES"

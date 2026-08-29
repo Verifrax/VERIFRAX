@@ -3,37 +3,22 @@ name: Truth Index Integrity
 on:
   pull_request:
   push:
-    branches:
-      - main
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
   truth-index:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - name: Verify integrity manifests
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
+        with:
+          node-version: "20"
+
+      - name: Verify integrity manifests and bound hashes
         run: |
-          node -e '
-
-          const fs = require("fs");
-
-          const files = [
-            "release-integrity/reference-verifier-hashes.json",
-            "release-integrity/release-sha256-manifest.json",
-            "release-integrity/genesis-lineage.json",
-            "release-integrity/freeze-surfaces.json"
-          ];
-
-          for (const f of files) {
-            if (!fs.existsSync(f)) {
-              console.error("Missing required truth index artifact:", f);
-              process.exit(1);
-            }
-          }
-
-          console.log("Truth index artifacts verified present.");
-
-          '
+          set -euo pipefail
+          node scripts/verify-truth-index.mjs

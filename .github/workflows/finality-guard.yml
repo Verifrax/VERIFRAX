@@ -9,16 +9,20 @@ on:
 env:
   LC_ALL: C
   TZ: UTC
+
 jobs:
   block-authority-re-entry:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
-      
-      - name: Check for semantic changes
+
+      - name: Block frozen semantic changes
+        shell: bash
         run: |
+          set -euo pipefail
+
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             BASE_SHA="${{ github.event.pull_request.base.sha }}"
             HEAD_SHA="${{ github.event.pull_request.head.sha }}"
@@ -26,31 +30,30 @@ jobs:
             BASE_SHA="${{ github.event.before }}"
             HEAD_SHA="${{ github.sha }}"
           fi
-          
-          CHANGED_FILES=$(git diff --name-only $BASE_SHA $HEAD_SHA 2>/dev/null | grep -E '^(core/axioms|core/contracts|core/schemas|public/VERDICT_REFERENCE_v1\.md)' || true)
-          
-          if [ -z "$CHANGED_FILES" ]; then
-            echo "✅ No frozen files modified"
-            exit 0
-          fi
-          
-          echo "❌ FROZEN FILES MODIFIED - AUTHORITY RE-ENTRY ATTEMPT"
-          echo ""
-          echo "Modified files:"
-          echo "$CHANGED_FILES"
-          echo ""
-          echo "These files are FROZEN under v1 finality:"
-          echo "- core/axioms/**"
-          echo "- core/contracts/**"
-          echo "- core/schemas/**"
-          echo "- public/VERDICT_REFERENCE_v1.md"
-          echo ""
-          echo "Changes to these files are BLOCKED unless:"
-          echo "1. Change is mechanical (formatting only)"
-          echo "2. Accompanied by conformance proof"
-          echo "3. Approved by v2+ versioning process"
-          echo ""
-          echo "To modify semantics, create a new major version (v2, v3, etc.)"
-          exit 1echo "⚠️  Checking if changes are mechanical only..."
-          echo "Manual review required for semantic changes"
 
+          if [[ "$BASE_SHA" =~ ^0+$ ]]; then
+            BASE_SHA="$(git rev-list --max-parents=0 "$HEAD_SHA")"
+          fi
+
+          mapfile -t CHANGED_FILES < <(
+            git diff --name-only "$BASE_SHA" "$HEAD_SHA"
+          )
+
+          FROZEN_FILES=()
+
+          for file in "${CHANGED_FILES[@]}"; do
+            case "$file" in
+              core/axioms/*|core/contracts/*|core/schemas/*|public/VERDICT_REFERENCE_v1.md)
+                FROZEN_FILES+=("$file")
+                ;;
+            esac
+          done
+
+          if [ "${#FROZEN_FILES[@]}" -gt 0 ]; then
+            printf '%s\n' "FROZEN FILES MODIFIED:"
+            printf '  - %s\n' "${FROZEN_FILES[@]}"
+            printf '%s\n' "Semantic changes require a new major protocol version."
+            exit 1
+          fi
+
+          echo "No frozen authority files were modified."

@@ -2,201 +2,74 @@ name: Verifrax Finality
 
 on:
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+env:
+  LC_ALL: C
+  TZ: UTC
 
 jobs:
-  finality-gate:
+  finality:
     runs-on: ubuntu-latest
-    outputs:
-      run_finality: ${{ steps.gate.outputs.run_finality }}
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
 
-      - name: EX-001 finality gate
-        id: gate
-        shell: bash
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
+        with:
+          node-version: "20"
+      - name: Activate package manager
+        run: |
+          set -euo pipefail
+          corepack enable
+          corepack prepare pnpm@9.0.0 --activate
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify finality surfaces
         run: |
           set -euo pipefail
 
-          # Releases always run finality.
-          if [ "${{ github.event_name }}" = "release" ]; then
-            echo "run_finality=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
+          test -s docs/operations/BUILD_HASH.txt
+          test -s docs/operations/BUILD_REPRODUCE.sh
+          test -s protocol-conformance/runner/run_conformance.mjs
+          test -s scripts/verify-truth-index.mjs
 
-          # Push runs finality only on main.
-          if [ "${{ github.event_name }}" = "push" ]; then
-            if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-              echo "run_finality=true" >> "$GITHUB_OUTPUT"
-            else
-              echo "EX-001: Non-main push. Finality non-blocking."
-              echo "run_finality=false" >> "$GITHUB_OUTPUT"
-            fi
-            exit 0
-          fi
+          node protocol-conformance/runner/run_conformance.mjs
+          node scripts/verify-truth-index.mjs
+          pnpm build:strict
+          pnpm test
 
-          # PR gating.
-          BASE="${{ github.event.pull_request.base.sha }}"
-          HEAD="${{ github.event.pull_request.head.sha }}"
-          CHANGED="$(git diff --name-only "$BASE" "$HEAD" || true)"
-
-          # Ignore non-runtime governance reshuffles.
-          GOV_IGNORE_REGEX="^(freeze-archive/|freeze/FREEZE_SURFACE_MANIFEST\\.json$|\\.github/workflows/freeze-surface-guard\\.yml$)"
-          RUNTIME_REGEX="^(freeze/|verifrax-engine/|verifrax-reference-verifier/|index/|issuance/|core/|adapters/|fixtures/|examples/|package\\.json$|pnpm-lock\\.yaml$|\\.github/workflows/verifrax-finality\\.yml$)"
-
-          CHANGED_EFFECTIVE="$(echo "$CHANGED" | grep -vE "$GOV_IGNORE_REGEX" || true)"
-
-          if ! echo "$CHANGED_EFFECTIVE" | grep -E "$RUNTIME_REGEX" >/dev/null; then
-            echo "EX-001: Governance-only PR (no runtime surface). Finality non-blocking."
-            echo "run_finality=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          if [ ! -f BUILD_HASH.txt ]; then
-            echo "EX-001: Runtime surface touched but BUILD_HASH.txt missing. Finality non-blocking."
-            echo "run_finality=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          if [ ! -f scripts/seed.claim.mjs ] || [ ! -f scripts/bundle.build.mjs ] || [ ! -f scripts/publish.index.mjs ]; then
-            echo "EX-001: Finality workflow helper scripts absent in repository tree. Finality non-blocking."
-            echo "run_finality=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          echo "Runtime surface + artifacts present — enforcing finality."
-          echo "run_finality=true" >> "$GITHUB_OUTPUT"
-
-  seed-claim:
-    needs: finality-gate
-    if: needs.finality-gate.outputs.run_finality == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-
-      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
-        with:
-          node-version: '20'
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Create claim at build time
-        env:
-          VERIFRAX_ORG: ${{ github.repository_owner }}
-          VERIFRAX_KEY_ID: ${{ github.sha }}
-          VERIFRAX_PROFILE_ID: public@1.0.0
+      - name: Verify reproducible build hash outside checkout
         run: |
-          mkdir -p out/claims
-          if [ -f scripts/seed.claim.mjs ]; then
-            node scripts/seed.claim.mjs build-provenance ${{ github.sha }} run \
-              --assertions '[{"assertion_id":"build-commit","predicate":"has_git_commit","object":"${{ github.sha }}"}]'
-          else
-            printf "%s\n" \
-              "{" \
-              "  \"claim_id\": \"build-provenance-placeholder-$VERIFRAX_KEY_ID\"," \
-              "  \"type\": \"build-provenance-placeholder\"," \
-              "  \"status\": \"skipped\"," \
-              "  \"reason\": \"seed.claim.mjs not present on this repository surface\"," \
-              "  \"commit\": \"$VERIFRAX_KEY_ID\"" \
-              "}" \
-              > out/claims/build-provenance.placeholder.json
+          set -euo pipefail
+
+          RECORDED="$(tr -d '\n' < docs/operations/BUILD_HASH.txt)"
+          TEMP_ROOT="$(mktemp -d)"
+
+          git archive HEAD | tar -x -C "$TEMP_ROOT"
+
+          (
+            cd "$TEMP_ROOT"
+            bash docs/operations/BUILD_REPRODUCE.sh >/tmp/verifrax-finality-build.log
+          )
+
+          CURRENT="$(tr -d '\n' < "$TEMP_ROOT/BUILD_HASH.txt")"
+
+          if [ "$RECORDED" != "$CURRENT" ]; then
+            echo "Finality build hash mismatch."
+            echo "Recorded: $RECORDED"
+            echo "Current:  $CURRENT"
+            exit 1
           fi
 
-      - name: Upload claim artifact
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: claim
-          path: out/claims/*.json
-
-  build-evidence-bundle:
-    needs: [finality-gate, seed-claim]
-    if: needs.finality-gate.outputs.run_finality == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-
-      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
-        with:
-          node-version: '20'
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Download claim artifact
-        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
-        with:
-          name: claim
-
-      - name: Build evidence bundle
-        run: |
-          mkdir -p out/bundles out/claims /tmp/finality-claim-input
-          if [ -f scripts/bundle.build.mjs ]; then
-            node scripts/bundle.build.mjs
-          else
-            find . -maxdepth 3 -type f -name "*.json" ! -path "./node_modules/*" ! -path "./.git/*" -print0 | while IFS= read -r -d "" f; do
-              cp "$f" /tmp/finality-claim-input/ 2>/dev/null || true
-            done
-            if compgen -G "/tmp/finality-claim-input/*.json" > /dev/null; then
-              zip -q -j out/bundles/finality-placeholder.zip /tmp/finality-claim-input/*.json
-            else
-              printf "%s\n" "{\"status\":\"skipped\",\"reason\":\"no claim json present after artifact download\"}" > /tmp/finality-claim-input/placeholder.json
-              zip -q -j out/bundles/finality-placeholder.zip /tmp/finality-claim-input/placeholder.json
-            fi
-          fi
-
-      - name: Upload bundle artifact
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: bundle
-          path: out/bundles/*.zip
-
-  publish-index:
-    needs: [finality-gate, build-evidence-bundle]
-    if: github.event_name == 'release'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-        with:
-          ref: ${{ github.sha }}
-
-      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
-        with:
-          node-version: '20'
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Download bundle artifact
-        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
-        with:
-          name: bundle
-
-      - name: Publish to truth index
-        run: |
-          if [ -f scripts/publish.index.mjs ]; then
-            node scripts/publish.index.mjs out/bundles
-          else
-            echo "publish.index.mjs not present; skipping publish on this repository surface"
-          fi
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./index
+          git diff --exit-code
