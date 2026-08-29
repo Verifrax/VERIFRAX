@@ -222,13 +222,11 @@ jobs:
 
           if git diff --cached --quiet; then
             echo "No managed spec publication changes."
-            exit 0
-          fi
-
-          # Credentials are required only when a real managed publication
-          # delta exists. Read/no-op publication never depends on the PAT.
-          test -n "$PAT"
-          test -n "$GH_TOKEN"
+          else
+            # Credentials are required only when a real managed publication
+            # delta exists. Read/no-op publication never depends on the PAT.
+            test -n "$PAT"
+            test -n "$GH_TOKEN"
 
           git config --global user.name "verifrax-systems"
           git config --global user.email "verifrax-systems@users.noreply.github.com"
@@ -245,9 +243,10 @@ jobs:
             origin \
             "$BRANCH"
 
-          gh pr create \
-            --repo "$TARGET_REPO" \
-            --title "publish: ${GITHUB_SHA::7}" \
-            --body "Automated publication from Verifrax/VERIFRAX@${GITHUB_SHA}" \
-            --head "$BRANCH" \
-            --base main
+            gh pr create \
+              --repo "$TARGET_REPO" \
+              --title "publish: ${GITHUB_SHA::7}" \
+              --body "Automated publication from Verifrax/VERIFRAX@${GITHUB_SHA}" \
+              --head "$BRANCH" \
+              --base main
+          fi
