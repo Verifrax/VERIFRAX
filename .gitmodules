@@ -3,3 +3,4 @@
 [submodule "verifrax-freeze/v2.8.0/source/VERIFRAX"]
 	path = verifrax-freeze/v2.8.0/source/VERIFRAX
 	url = https://github.com/Verifrax/VERIFRAX.git
+	update = none
