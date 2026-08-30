@@ -16,7 +16,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@sigstore/verify": "3.1.1"
+    "@sigstore/verify": "4.1.2"
   },
   "bin": {
     "verifrax-seal": "scripts/verifrax-seal.js"
