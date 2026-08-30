@@ -79,3 +79,23 @@ jobs:
           fi
 
           echo "PASS: FAILURE_CODES.json checksum verified"
+
+  required-context:
+    name: Determinism Check
+    if: ${{ always() }}
+    needs:
+      - determinism
+      - failure-codes-checksum
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Verify determinism required context
+        env:
+          DETERMINISM_RESULT: ${{ needs.determinism.result }}
+          FAILURE_CODES_RESULT: ${{ needs.failure-codes-checksum.result }}
+        run: |
+          set -euo pipefail
+          test "$DETERMINISM_RESULT" = "success"
+          test "$FAILURE_CODES_RESULT" = "success"
+          echo "PASS: Determinism Check required context satisfied"
