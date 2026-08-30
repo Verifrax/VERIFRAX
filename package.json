@@ -11,12 +11,15 @@
     "lint": "pnpm -r --if-present lint"
   },
   "devDependencies": {
-    "@types/node": "25",
-    "@vercel/ncc": "^0.38.4",
-    "typescript": "^5.9.3"
+    "@types/node": "24",
+    "@vercel/ncc": "^0.45.0",
+    "typescript": "^7.0.2"
   },
   "dependencies": {
-    "@sigstore/verify": "3.1.1"
+    "@sigstore/verify": "4.1.2"
+  },
+  "engines": {
+    "node": "^24.15.0"
   },
   "bin": {
     "verifrax-seal": "scripts/verifrax-seal.js"

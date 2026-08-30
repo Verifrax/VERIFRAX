@@ -4,7 +4,7 @@
 
 | Component | Version | Hash verification |
 |-----------|---------|-------------------|
-| Node.js | 20.x LTS | n/a |
+| Node.js | 24.15.0 LTS | n/a |
 | Wrangler | 4.x | n/a |
 | SHA-256 | OpenSSL | Standard |
 
