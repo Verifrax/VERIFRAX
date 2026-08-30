@@ -61,7 +61,7 @@ jobs:
 
       - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
         with:
-          node-version: "20"
+          node-version: "24.15.0"
 
       - name: Verify offline CLI behaviour
         run: |
