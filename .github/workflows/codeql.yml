@@ -28,4 +28,4 @@ jobs:
         with:
           languages: ${{ matrix.language }}
       - uses: github/codeql-action/autobuild@89a39a4e59826350b863aa6b6252a07ad50cf83e
-      - uses: github/codeql-action/analyze@89a39a4e59826350b863aa6b6252a07ad50cf83e
+      - uses: github/codeql-action/analyze@b96794f015dfd88f77b49b1c93e0fa7110f94c63
