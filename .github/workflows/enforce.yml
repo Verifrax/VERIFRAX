@@ -15,7 +15,7 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
-      - uses: midiakiasat/cicullis@569b496eb09e4df687c56fc0dceb4abdc8d5479d
+      - uses: midiakiasat/cicullis@dab3de0e68ef9de41dc733d6fa694512ef4b7716
 
   hygiene:
     runs-on: ubuntu-latest
